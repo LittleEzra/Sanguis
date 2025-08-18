@@ -1,0 +1,26 @@
+{
+  "parent": "sanguis:sanguis/root",
+  "criteria": {
+    "0": {
+      "trigger": "sanguis:vampire_transformation"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.sanguis.sanguis.turn_to_vampire.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "sanguis:bloody_fang"
+    },
+    "title": {
+      "translate": "advancements.sanguis.sanguis.turn_to_vampire.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

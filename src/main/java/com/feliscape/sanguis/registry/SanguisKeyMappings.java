@@ -1,0 +1,26 @@
+package com.feliscape.sanguis.registry;
+
+import com.feliscape.sanguis.Sanguis;
+import com.mojang.blaze3d.platform.InputConstants;
+import net.minecraft.client.KeyMapping;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.jarjar.nio.util.Lazy;
+import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
+import org.lwjgl.glfw.GLFW;
+
+@EventBusSubscriber(modid = Sanguis.MOD_ID, value = Dist.CLIENT)
+public class SanguisKeyMappings {
+    public static final Lazy<KeyMapping> DRAIN_BLOOD = Lazy.of(() -> new KeyMapping(
+            "key.sanguis.drain_blood",
+            InputConstants.Type.KEYSYM,
+            GLFW.GLFW_KEY_V,
+            "key.categories.gameplay"
+    ));
+
+    @SubscribeEvent
+    public static void registerBindings(RegisterKeyMappingsEvent event) {
+        event.register(DRAIN_BLOOD.get());
+    }
+}

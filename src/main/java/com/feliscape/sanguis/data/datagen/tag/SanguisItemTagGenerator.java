@@ -1,0 +1,28 @@
+package com.feliscape.sanguis.data.datagen.tag;
+
+import com.feliscape.sanguis.Sanguis;
+import com.feliscape.sanguis.registry.SanguisItems;
+import com.feliscape.sanguis.registry.SanguisTags;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
+import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+
+import java.util.concurrent.CompletableFuture;
+
+public class SanguisItemTagGenerator extends ItemTagsProvider {
+    public SanguisItemTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, ExistingFileHelper existingFileHelper, CompletableFuture<TagLookup<Block>> blockTags) {
+        super(output, lookupProvider, blockTags, Sanguis.MOD_ID, existingFileHelper);
+    }
+
+    @Override
+    protected void addTags(HolderLookup.Provider provider) {
+        this.tag(SanguisTags.Items.STAKES)
+                .add(SanguisItems.WOODEN_STAKE.get());
+
+        this.tag(Tags.Items.TOOLS)
+                .addTag(SanguisTags.Items.STAKES);
+    }
+}

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "sanguis:vampire_blood"
+    },
+    "A": {
+      "item": "minecraft:golden_apple"
+    },
+    "G": {
+      "item": "sanguis:garlic"
+    }
+  },
+  "pattern": [
+    " G ",
+    "G#G",
+    " A "
+  ],
+  "result": {
+    "count": 1,
+    "id": "sanguis:garlic_solution"
+  }
+}

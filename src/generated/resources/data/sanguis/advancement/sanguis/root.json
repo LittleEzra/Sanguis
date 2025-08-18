@@ -1,0 +1,28 @@
+{
+  "criteria": {
+    "0": {
+      "trigger": "minecraft:tick"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "sanguis:textures/gui/advancements.png",
+    "description": {
+      "translate": "advancements.sanguis.sanguis.root.description"
+    },
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "sanguis:bloody_fang"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.sanguis.sanguis.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

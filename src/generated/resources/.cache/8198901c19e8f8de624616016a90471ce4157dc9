@@ -1,0 +1,4 @@
+// 1.21.1	2025-08-17T18:59:06.4959985	Tags for minecraft:entity_type mod id sanguis
+e4664c370cee056d98f8fc7b944eb2e5ec298060 data/sanguis/tags/entity_type/blood_drinkable.json
+6ded3ea2e35a47445f95b3e2a263d918575d48cf data/sanguis/tags/entity_type/infectable.json
+07488a9deeddf936cade814405fa69ad8d692c1d data/sanguis/tags/entity_type/vampiric.json

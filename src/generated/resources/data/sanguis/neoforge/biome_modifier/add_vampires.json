@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "#sanguis:spawns_vampires",
+  "spawners": {
+    "type": "sanguis:vampire",
+    "maxCount": 2,
+    "minCount": 1,
+    "weight": 25
+  }
+}

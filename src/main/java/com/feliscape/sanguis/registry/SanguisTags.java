@@ -1,0 +1,35 @@
+package com.feliscape.sanguis.registry;
+
+import com.feliscape.sanguis.Sanguis;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.biome.Biome;
+
+public class SanguisTags {
+    public static class Items{
+        public static final TagKey<Item> STAKES = create("stakes");
+
+        private static TagKey<Item> create(String name){
+            return TagKey.create(Registries.ITEM, Sanguis.location(name));
+        }
+    }
+    public static class EntityTypes{
+        public static final TagKey<EntityType<?>> VAMPIRIC = create("vampiric");
+        public static final TagKey<EntityType<?>> STAKE_IMMUNE = create("stake_immune");
+        public static final TagKey<EntityType<?>> INFECTABLE = create("infectable");
+        public static final TagKey<EntityType<?>> BLOOD_DRINKABLE = create("blood_drinkable");
+
+        private static TagKey<EntityType<?>> create(String name){
+            return TagKey.create(Registries.ENTITY_TYPE, Sanguis.location(name));
+        }
+    }
+    public static class Biomes{
+        public static final TagKey<Biome> SPAWNS_VAMPIRES = create("spawns_vampires");
+
+        private static TagKey<Biome> create(String name){
+            return TagKey.create(Registries.BIOME, Sanguis.location(name));
+        }
+    }
+}

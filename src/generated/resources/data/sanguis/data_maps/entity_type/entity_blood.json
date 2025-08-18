@@ -1,0 +1,25 @@
+{
+  "values": {
+    "minecraft:chicken": {
+      "amount": 1
+    },
+    "minecraft:cow": {
+      "amount": 4
+    },
+    "minecraft:piglin": {
+      "amount": 5
+    },
+    "minecraft:piglin_brute": {
+      "amount": 5
+    },
+    "minecraft:sheep": {
+      "amount": 3
+    },
+    "minecraft:villager": {
+      "amount": 6
+    },
+    "minecraft:wandering_trader": {
+      "amount": 6
+    }
+  }
+}
