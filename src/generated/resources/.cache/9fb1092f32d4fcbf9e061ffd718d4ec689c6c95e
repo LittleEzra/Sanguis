@@ -1,7 +1,9 @@
-// 1.21.1	2025-08-18T15:29:34.2069794	Recipes
+// 1.21.1	2025-08-18T17:09:00.3389908	Recipes
 ae5d35534f62db898f1b1b4118992dbd182a2edb data/sanguis/advancement/recipes/misc/blood_bottle.json
 646855c7f9a5d936f8b98b0c24fbac9c77afd604 data/sanguis/advancement/recipes/misc/garlic_solution.json
+3bbe77ba0f8a8a1f43a49fe600f02c00f6e6c526 data/sanguis/advancement/recipes/misc/garlic_string.json
 4abd6df8c0f00be68bb8f5d613bdd57861b67f9f data/sanguis/advancement/recipes/misc/wooden_stake.json
 2fd384a564eefb02d7fec8a9a98731d7e06d8489 data/sanguis/recipe/blood_bottle.json
 8e11c9a36fd1783d1b6e2e5a192b52d7f1b38d03 data/sanguis/recipe/garlic_solution.json
+27d2e11b6b8abb1df443c05d102cb28782e79fac data/sanguis/recipe/garlic_string.json
 a7e7ea14fb286f6b2d43b7aef2315dce62cb2f2b data/sanguis/recipe/wooden_stake.json

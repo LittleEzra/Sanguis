@@ -1,10 +1,13 @@
 package com.feliscape.sanguis.data.datagen.model;
 
 import com.feliscape.sanguis.Sanguis;
+import com.feliscape.sanguis.content.block.GarlicCropBlock;
+import com.feliscape.sanguis.registry.SanguisBlocks;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CropBlock;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
@@ -19,7 +22,19 @@ public class SanguisBlockModelProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
+        simpleCropBlock(SanguisBlocks.GARLIC.get());
+        simpleBlock(SanguisBlocks.GARLIC_STRING.get(), models().getExistingFile(Sanguis.location("block/garlic_string")));
+    }
 
+    private void simpleCropBlock(CropBlock block) {
+        getVariantBuilder(block)
+                .forAllStates(state -> {
+                    int age = block.getAge(state);
+                    return ConfiguredModel.builder()
+                            .modelFile(models().crop(name(block) + "_" + age, extend(blockTexture(block), "_" + age))
+                                    .renderType("cutout"))
+                            .build();
+                });
     }
 
     private void blockWithItem(Supplier<? extends Block> block){

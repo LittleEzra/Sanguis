@@ -1,15 +1,15 @@
 package com.feliscape.sanguis.content.attachment;
 
-import com.feliscape.sanguis.Sanguis;
 import com.feliscape.sanguis.registry.SanguisCriteriaTriggers;
 import com.feliscape.sanguis.registry.SanguisDataAttachmentTypes;
+import com.feliscape.sanguis.registry.SanguisTags;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.Difficulty;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
@@ -82,8 +82,17 @@ public class VampireData extends DataAttachment {
                     this.holder.igniteForSeconds(2.0F);
                 }
 
-                if (this.holder instanceof Player player && !player.getAbilities().invulnerable) {
+                if (this.holder instanceof Player player) {
                     this.bloodData.tick(player);
+
+                    if (this.holder.tickCount % 20 == 0){
+                        BlockPos blockPos = this.holder.blockPosition();
+                        if (BlockPos.findClosestMatch(blockPos, 4, 4, pos ->
+                                this.holder.level().getBlockState(pos).is(SanguisTags.Blocks.VAMPIRE_REPELLENTS)).isPresent()){
+                            this.holder.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 60, 1, true, true));
+                            this.holder.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 0, true, true));
+                        }
+                    }
                 }
             }
         }
@@ -197,11 +206,15 @@ public class VampireData extends DataAttachment {
         this.holder = living;
     }
 
-    public static VampireData copyPersistent(VampireData oldData, IAttachmentHolder holder, HolderLookup.Provider provider){
+    public static VampireData copyDeathPersistent(VampireData oldData, IAttachmentHolder holder, HolderLookup.Provider provider){
+        VampireData newData;
         if (oldData.infectionTime != 0){
-            return new VampireData(oldData.isVampire);
+            newData = new VampireData(oldData.isVampire);
+        } else{
+            newData = new VampireData(oldData.infectionTime, oldData.isVampire);
         }
-        return new VampireData(oldData.infectionTime, oldData.isVampire);
+        newData.setHolder(holder);
+        return newData;
     }
 
     public static VampireData getInstance(IAttachmentHolder iAttachmentHolder) {
@@ -221,7 +234,7 @@ public class VampireData extends DataAttachment {
 
         this.infectionTime = buffer.readInt();
         this.isVampire = buffer.readBoolean();
-        this.bloodData.update(buffer.readInt(), buffer.readInt(), buffer.readFloat());
+        this.bloodData.update(buffer);
         this.setHolder(living);
         return this;
     }

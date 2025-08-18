@@ -6,12 +6,14 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 
-public class GarlicFoodItem extends Item {
-    public GarlicFoodItem(Properties properties) {
-        super(properties);
+public class GarlicItem extends ItemNameBlockItem {
+    public GarlicItem(Block block, Properties properties) {
+        super(block, properties);
     }
 
     @Override

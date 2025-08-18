@@ -1,0 +1,9 @@
+{
+  "entries": [
+    "sanguis:add_to_village_plains",
+    "sanguis:add_to_village_taiga",
+    "sanguis:add_to_village_savanna",
+    "sanguis:add_to_pillager_outpost"
+  ],
+  "replace": false
+}

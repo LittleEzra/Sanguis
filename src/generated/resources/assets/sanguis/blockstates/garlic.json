@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "sanguis:block/garlic_0"
+    },
+    "age=1": {
+      "model": "sanguis:block/garlic_1"
+    },
+    "age=2": {
+      "model": "sanguis:block/garlic_2"
+    },
+    "age=3": {
+      "model": "sanguis:block/garlic_3"
+    },
+    "age=4": {
+      "model": "sanguis:block/garlic_4"
+    }
+  }
+}

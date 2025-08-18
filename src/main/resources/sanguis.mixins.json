@@ -5,7 +5,8 @@
   "mixins": [
     "BrainMixin",
     "FoodDataMixin",
-    "MobMixin"
+    "MobMixin",
+    "VillagerHostilesSensorMixin"
   ],
   "client": [
     "LightTextureMixin"

@@ -6,8 +6,16 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.Block;
 
 public class SanguisTags {
+    public static class Blocks{
+        public static final TagKey<Block> VAMPIRE_REPELLENTS = create("vampire_repellents");
+
+        private static TagKey<Block> create(String name){
+            return TagKey.create(Registries.BLOCK, Sanguis.location(name));
+        }
+    }
     public static class Items{
         public static final TagKey<Item> STAKES = create("stakes");
 

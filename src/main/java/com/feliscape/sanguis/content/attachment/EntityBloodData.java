@@ -3,6 +3,7 @@ package com.feliscape.sanguis.content.attachment;
 import com.feliscape.sanguis.data.damage.SanguisDamageSources;
 import com.feliscape.sanguis.registry.SanguisDataAttachmentTypes;
 import com.feliscape.sanguis.registry.SanguisDataMapTypes;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -19,18 +20,38 @@ import org.jetbrains.annotations.Nullable;
 public class EntityBloodData extends DataAttachment{
     private LivingEntity holder;
     int remainingBlood = 1;
+    float saturation;
     int maxBlood = 1;
     int frozenTicks = 0;
 
     public EntityBloodData() {
 
     }
-    public EntityBloodData(int remainingBlood, int maxBlood) {
+
+    @Override
+    protected void save(CompoundTag tag) {
+        tag.putInt("remainingBlood", this.getRemainingBlood());
+        tag.putFloat("saturation", this.getSaturation());
+        tag.putInt("maxBlood", this.getMaxBlood());
+        tag.putInt("frozenTicks", this.getFrozenTicks());
+    }
+
+    @Override
+    protected void load(CompoundTag tag) {
+        this.remainingBlood = tag.getInt("remainingBlood");
+        this.saturation = tag.getInt("saturation");
+        this.maxBlood = tag.getInt("maxBlood");
+        this.frozenTicks = tag.getInt("frozenTicks");
+    }
+
+    public EntityBloodData(int remainingBlood, float saturation, int maxBlood) {
         this.remainingBlood = remainingBlood;
+        this.saturation = saturation;
         this.maxBlood = maxBlood;
     }
-    public EntityBloodData(int remainingBlood, int maxBlood, int frozenTicks) {
+    public EntityBloodData(int remainingBlood, float saturation, int maxBlood, int frozenTicks) {
         this.remainingBlood = remainingBlood;
+        this.saturation = saturation;
         this.maxBlood = maxBlood;
         this.frozenTicks = frozenTicks;
     }
@@ -56,6 +77,14 @@ public class EntityBloodData extends DataAttachment{
 
     private void setFrozenTicks(int frozenTicks) {
         this.frozenTicks = frozenTicks;
+    }
+
+    public float getSaturation() {
+        return saturation;
+    }
+
+    private void setSaturation(float saturation) {
+        this.saturation = saturation;
     }
 
     public boolean isFrozen() {
@@ -97,7 +126,7 @@ public class EntityBloodData extends DataAttachment{
             throw new IllegalArgumentException("Entity %s does not have blood".formatted(entity.getDisplayName().getString()));
         }
 
-        EntityBloodData data = new EntityBloodData(bloodContent.amount(), bloodContent.amount());
+        EntityBloodData data = new EntityBloodData(bloodContent.amount(), bloodContent.saturationModifier(), bloodContent.amount());
         data.setHolder(entity);
         return data;
     }
@@ -144,6 +173,7 @@ public class EntityBloodData extends DataAttachment{
         @Override
         public void write(RegistryFriendlyByteBuf buf, EntityBloodData attachment, boolean initialSync) {
             buf.writeInt(attachment.getRemainingBlood());
+            buf.writeFloat(attachment.getSaturation());
             buf.writeInt(attachment.getMaxBlood());
             buf.writeInt(attachment.getFrozenTicks());
         }
@@ -157,6 +187,7 @@ public class EntityBloodData extends DataAttachment{
             } else {
                 previousValue.setHolder(holder);
                 previousValue.setRemainingBlood(buf.readInt());
+                previousValue.setSaturation(buf.readFloat());
                 previousValue.setMaxBlood(buf.readInt());
                 previousValue.setFrozenTicks(buf.readInt());
                 return previousValue;

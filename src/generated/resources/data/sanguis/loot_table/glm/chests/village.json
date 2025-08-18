@@ -1,0 +1,54 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "chance": 0.75,
+              "condition": "minecraft:random_chance"
+            }
+          ],
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 4.0,
+                "min": 1.4
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "sanguis:garlic"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "chance": 0.45,
+              "condition": "minecraft:random_chance"
+            }
+          ],
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 2.6,
+                "min": 1.2
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "sanguis:garlic_flower"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "sanguis:glm/chests/village"
+}

@@ -1,7 +1,6 @@
 package com.feliscape.sanguis.content.attachment;
 
 import com.feliscape.sanguis.registry.SanguisDataComponents;
-import com.feliscape.sanguis.registry.SanguisItems;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
@@ -9,12 +8,16 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.food.FoodConstants;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.GameRules;
 
 public class VampireBloodData {
     private int drinkDelay = 0;
     private int blood = maxBlood();
     private float exhaustion;
+    private float saturation;
+    private int tickTimer;
 
     public static final StreamCodec<RegistryFriendlyByteBuf, VampireBloodData> FULL_STREAM_CODEC = StreamCodec.composite(
             ByteBufCodecs.INT,
@@ -23,6 +26,10 @@ public class VampireBloodData {
             VampireBloodData::getBlood,
             ByteBufCodecs.FLOAT,
             VampireBloodData::getExhaustion,
+            ByteBufCodecs.FLOAT,
+            VampireBloodData::getSaturation,
+            ByteBufCodecs.INT,
+            data -> data.tickTimer,
             VampireBloodData::new
     );
 
@@ -30,22 +37,27 @@ public class VampireBloodData {
 
     }
 
-    public VampireBloodData(int drinkDelay, int blood, float exhaustion) {
+    public VampireBloodData(int drinkDelay, int blood, float exhaustion, float saturation, int tickTimer) {
         this.drinkDelay = drinkDelay;
         this.blood = blood;
         this.exhaustion = exhaustion;
+        this.saturation = saturation;
+        this.tickTimer = tickTimer;
     }
 
     public void drink(LivingEntity holder, LivingEntity target){
         if (EntityBloodData.canHaveBlood(target) && drinkDelay <= 0){
-            increaseBlood(target.getData(EntityBloodData.type()).drain(), holder, true);
+            var data = target.getData(EntityBloodData.type());
+            increaseBlood(data.drain(), holder, true);
+            this.saturation = Math.min(this.saturation + data.getSaturation(), blood);
             this.drinkDelay = 18;
             holder.syncData(VampireData.type());
         }
     }
 
-    public void drink(LivingEntity holder, int amount){
+    public void drink(LivingEntity holder, int amount, float saturation){
         increaseBlood(amount);
+        this.saturation = Math.min(this.saturation + saturation, blood);
         holder.syncData(VampireData.type());
     }
 
@@ -54,14 +66,53 @@ public class VampireBloodData {
             drinkDelay--;
         }
 
-        Difficulty difficulty = player.level().getDifficulty();
-        if (difficulty != Difficulty.PEACEFUL) {
-            increaseExhaustion(restingExhaustion());
+        if (!player.getAbilities().invulnerable) {
+            Difficulty difficulty = player.level().getDifficulty();
+
+            if (this.exhaustion > 4.0F) {
+                this.exhaustion -= 4.0F;
+                if (this.saturation > 0.0F) {
+                    this.saturation = Math.max(this.saturation - 1.0F, 0.0F);
+                } else if (difficulty != Difficulty.PEACEFUL) {
+                    this.blood = Math.max(this.blood - 1, 0);
+                }
+            }
+
+            addExhaustion(restingExhaustion());
 
             if (exhaustion >= 4.0F) {
                 exhaustion -= 4.0F;
                 decreaseBlood(1);
                 player.syncData(VampireData.type());
+            }
+
+            boolean canRegenerate = player.level().getGameRules().getBoolean(GameRules.RULE_NATURAL_REGENERATION);
+            if (canRegenerate && this.saturation > 0.0F && player.isHurt() && this.blood >= 20) {
+                this.tickTimer++;
+                if (this.tickTimer >= 10) {
+                    float f = Math.min(this.saturation, 6.0F);
+                    player.heal(f / 6.0F);
+                    this.addExhaustion(f);
+                    this.tickTimer = 0;
+                }
+            } else if (canRegenerate && this.blood >= 18 && player.isHurt()) {
+                this.tickTimer++;
+                if (this.tickTimer >= 80) {
+                    player.heal(1.0F);
+                    this.addExhaustion(6.0F);
+                    this.tickTimer = 0;
+                }
+            } else if (this.blood <= 0) {
+                this.tickTimer++;
+                if (this.tickTimer >= 80) {
+                    if (player.getHealth() > 10.0F || difficulty == Difficulty.HARD || player.getHealth() > 1.0F && difficulty == Difficulty.NORMAL) {
+                        player.hurt(player.damageSources().starve(), 1.0F);
+                    }
+
+                    this.tickTimer = 0;
+                }
+            } else {
+                this.tickTimer = 0;
             }
         }
     }
@@ -78,12 +129,15 @@ public class VampireBloodData {
         return 0.004F; // Same value as
     }
 
-    public void increaseExhaustion(float amount){
-        this.exhaustion += amount;
+    public void addExhaustion(float amount){
+        this.exhaustion = Math.min(this.exhaustion + amount, 40.0F);
     }
 
     public float getExhaustion(){
         return exhaustion;
+    }
+    public float getSaturation(){
+        return saturation;
     }
 
     public int decreaseBlood(int amount){
@@ -177,6 +231,8 @@ public class VampireBloodData {
     public static CompoundTag save(CompoundTag tag, VampireBloodData data) {
         tag.putInt("blood", data.blood);
         tag.putFloat("exhaustion", data.exhaustion);
+        tag.putFloat("saturation", data.saturation);
+        tag.putInt("foodTickTimer", data.tickTimer);
         return tag;
     }
 
@@ -184,12 +240,16 @@ public class VampireBloodData {
         VampireBloodData data = new VampireBloodData();
         data.blood = tag.getInt("blood");
         data.exhaustion = tag.getFloat("exhaustion");
+        data.saturation = tag.getFloat("saturation");
+        data.tickTimer = tag.getInt("foodTickTimer");
         return data;
     }
 
-    public void update(int drinkDelay, int blood, float exhaustion) {
-        this.drinkDelay = drinkDelay;
-        this.blood = blood;
-        this.exhaustion = exhaustion;
+    public void update(RegistryFriendlyByteBuf byteBuf) {
+        this.drinkDelay = byteBuf.readInt();
+        this.blood = byteBuf.readInt();
+        this.exhaustion = byteBuf.readFloat();
+        this.saturation = byteBuf.readFloat();
+        this.tickTimer = byteBuf.readInt();
     }
 }

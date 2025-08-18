@@ -1,12 +1,12 @@
 package com.feliscape.sanguis.content.entity;
 
+import com.feliscape.sanguis.content.entity.ai.RunAwayFromBlockGoal;
 import com.feliscape.sanguis.networking.SanguisLevelEvents;
 import com.feliscape.sanguis.networking.payload.SanguisLevelEventPayload;
 import com.feliscape.sanguis.registry.SanguisTags;
 import com.feliscape.sanguis.util.VampireUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.TimeUtil;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -42,8 +42,9 @@ public class VampireEntity extends Monster implements NeutralMob {
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(1, new FleeSunGoal(this, 1.5));
-        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, false));
+        this.goalSelector.addGoal(1, new RunAwayFromBlockGoal(this, SanguisTags.Blocks.VAMPIRE_REPELLENTS, 4, 4, 1.25));
+        this.goalSelector.addGoal(2, new FleeSunGoal(this, 1.25));
+        this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 1.0D, false));
         this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0));
         this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));

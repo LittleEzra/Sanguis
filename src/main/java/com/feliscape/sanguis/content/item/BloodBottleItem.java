@@ -39,7 +39,7 @@ public class BloodBottleItem extends Item {
 
         if (entityLiving.hasData(VampireData.type()) && VampireUtil.isVampire(entityLiving)) {
             var data = entityLiving.getData(VampireData.type());
-            data.getBloodData().drink(entityLiving, 1);
+            data.getBloodData().drink(entityLiving, 1, 0.6F);
         }
 
         if (player != null) {

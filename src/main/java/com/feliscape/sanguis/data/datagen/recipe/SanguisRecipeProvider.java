@@ -1,6 +1,7 @@
 package com.feliscape.sanguis.data.datagen.recipe;
 
 import com.feliscape.sanguis.content.item.BloodBottleItem;
+import com.feliscape.sanguis.registry.SanguisBlocks;
 import com.feliscape.sanguis.registry.SanguisItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -46,6 +47,14 @@ public class SanguisRecipeProvider extends RecipeProvider {
                 .define('#', Tags.Items.GLASS_BLOCKS)
                 .define('I', Items.IRON_NUGGET)
                 .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
+                .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, SanguisBlocks.GARLIC_STRING, 4)
+                .pattern("GSG")
+                .pattern("GSG")
+                .pattern("GSG")
+                .define('S', Items.STRING)
+                .define('G', SanguisItems.GARLIC_FLOWER)
+                .unlockedBy(getHasName(SanguisItems.GARLIC_FLOWER), has(SanguisItems.GARLIC_FLOWER))
                 .save(recipeOutput);
     }
 }

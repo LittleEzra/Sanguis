@@ -18,13 +18,24 @@ public class SanguisDataMapProvider extends DataMapProvider {
     @Override
     protected void gather(HolderLookup.Provider provider) {
         this.builder(SanguisDataMapTypes.ENTITY_BLOOD)
-                .add(EntityType.VILLAGER.builtInRegistryHolder(), new EntityBloodContent(6), false)
-                .add(EntityType.WANDERING_TRADER.builtInRegistryHolder(), new EntityBloodContent(6), false)
-                .add(EntityType.PIGLIN.builtInRegistryHolder(), new EntityBloodContent(5), false)
-                .add(EntityType.PIGLIN_BRUTE.builtInRegistryHolder(), new EntityBloodContent(5), false)
-                .add(EntityType.SHEEP.builtInRegistryHolder(), new EntityBloodContent(3), false)
-                .add(EntityType.COW.builtInRegistryHolder(), new EntityBloodContent(4), false)
-                .add(EntityType.CHICKEN.builtInRegistryHolder(), new EntityBloodContent(1), false)
+                .add(EntityType.VILLAGER.builtInRegistryHolder(),
+                        new EntityBloodContent(6, 1.0f), false)
+                .add(EntityType.WANDERING_TRADER.builtInRegistryHolder(),
+                        new EntityBloodContent(6, 1.0f), false)
+                .add(EntityType.PIGLIN.builtInRegistryHolder(),
+                        new EntityBloodContent(5, 0.75f), false)
+                .add(EntityType.PIGLIN_BRUTE.builtInRegistryHolder(),
+                        new EntityBloodContent(5, 0.75f), false)
+                .add(EntityType.SHEEP.builtInRegistryHolder(),
+                        new EntityBloodContent(3, 0.4f), false)
+                .add(EntityType.GOAT.builtInRegistryHolder(),
+                        new EntityBloodContent(3, 0.6f), false)
+                .add(EntityType.PIG.builtInRegistryHolder(),
+                        new EntityBloodContent(3, 0.75f), false)
+                .add(EntityType.COW.builtInRegistryHolder(),
+                        new EntityBloodContent(4, 0.4f), false)
+                .add(EntityType.CHICKEN.builtInRegistryHolder(),
+                        new EntityBloodContent(1, 0.1f), false)
         ;
     }
 }

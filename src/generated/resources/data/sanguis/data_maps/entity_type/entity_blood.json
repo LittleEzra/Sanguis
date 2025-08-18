@@ -1,25 +1,40 @@
 {
   "values": {
     "minecraft:chicken": {
-      "amount": 1
+      "amount": 1,
+      "saturationMod": 0.1
     },
     "minecraft:cow": {
-      "amount": 4
+      "amount": 4,
+      "saturationMod": 0.4
+    },
+    "minecraft:goat": {
+      "amount": 3,
+      "saturationMod": 0.6
+    },
+    "minecraft:pig": {
+      "amount": 3,
+      "saturationMod": 0.75
     },
     "minecraft:piglin": {
-      "amount": 5
+      "amount": 5,
+      "saturationMod": 0.75
     },
     "minecraft:piglin_brute": {
-      "amount": 5
+      "amount": 5,
+      "saturationMod": 0.75
     },
     "minecraft:sheep": {
-      "amount": 3
+      "amount": 3,
+      "saturationMod": 0.4
     },
     "minecraft:villager": {
-      "amount": 6
+      "amount": 6,
+      "saturationMod": 1.0
     },
     "minecraft:wandering_trader": {
-      "amount": 6
+      "amount": 6,
+      "saturationMod": 1.0
     }
   }
 }

@@ -34,7 +34,10 @@ public class SanguisItemModelProvider extends ItemModelProvider {
         this.handheldItem(SanguisItems.WOODEN_STAKE);
 
         this.simpleItem(SanguisItems.GARLIC);
+        this.simpleItem(SanguisItems.GARLIC_FLOWER);
         this.spawnEggItem(SanguisItems.VAMPIRE_SPAWN_EGG.get());
+
+        this.blockItemSprite(SanguisBlocks.GARLIC_STRING);
     }
     
     private ItemModelBuilder bloodBottleItem(Supplier<? extends Item> item){

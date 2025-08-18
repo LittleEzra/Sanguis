@@ -3,6 +3,7 @@ package com.feliscape.sanguis.data.datagen;
 import com.feliscape.sanguis.Sanguis;
 import com.feliscape.sanguis.data.datagen.advancement.SanguisAdvancementProvider;
 import com.feliscape.sanguis.data.datagen.language.SanguisEnUsProvider;
+import com.feliscape.sanguis.data.datagen.loot.SanguisGlobalLootModifierProvider;
 import com.feliscape.sanguis.data.datagen.loot.SanguisLootTableProvider;
 import com.feliscape.sanguis.data.datagen.map.SanguisDataMapProvider;
 import com.feliscape.sanguis.data.datagen.model.SanguisBlockModelProvider;
@@ -46,7 +47,7 @@ public class DataGenerators {
         //generator.addProvider(event.includeServer(), new SanguisAdvancementProvider(packOutput, lookupProvider, existingFileHelper));
 
         generator.addProvider(event.includeServer(), new SanguisLootTableProvider(packOutput, lookupProvider));
-        //generator.addProvider(event.includeServer(), new SanguisGlobalLootModifierProvider(packOutput, lookupProvider));
+        generator.addProvider(event.includeServer(), new SanguisGlobalLootModifierProvider(packOutput, lookupProvider));
 
         generator.addProvider(event.includeServer(), new SanguisAdvancementProvider(packOutput, lookupProvider, existingFileHelper));
 

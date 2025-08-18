@@ -4,6 +4,7 @@ import com.feliscape.sanguis.SanguisClientConfig;
 import com.feliscape.sanguis.SanguisServerConfig;
 import com.feliscape.sanguis.data.damage.SanguisDamageTypes;
 import com.feliscape.sanguis.data.datagen.advancement.SanguisAdvancements;
+import com.feliscape.sanguis.registry.SanguisBlocks;
 import com.feliscape.sanguis.registry.SanguisEntityTypes;
 import com.feliscape.sanguis.registry.SanguisItems;
 import com.feliscape.sanguis.registry.SanguisKeyMappings;
@@ -25,8 +26,12 @@ public class SanguisEnUsProvider extends SanguisLanguageProvider{
         this.addItem(SanguisItems.WOODEN_STAKE, "Wooden Stake");
 
         this.addItem(SanguisItems.GARLIC, "Garlic");
+        this.addItem(SanguisItems.GARLIC_FLOWER, "Garlic Flower");
 
         this.addItem(SanguisItems.VAMPIRE_SPAWN_EGG, "Vampire Spawn Egg");
+
+        this.addBlock(SanguisBlocks.GARLIC, "Garlic");
+        this.addBlock(SanguisBlocks.GARLIC_STRING, "Garlic String");
 
         this.addEntityType(SanguisEntityTypes.VAMPIRE, "Vampire");
 

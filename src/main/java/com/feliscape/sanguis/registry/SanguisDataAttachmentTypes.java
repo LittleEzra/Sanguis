@@ -18,7 +18,7 @@ public class SanguisDataAttachmentTypes {
             () -> AttachmentType.serializable(VampireData::getInstance)
                     .sync(new VampireData.SyncHandler())
                     .copyOnDeath()
-                    .copyHandler(VampireData::copyPersistent).build());
+                    .copyHandler(VampireData::copyDeathPersistent).build());
     public static final Supplier<AttachmentType<EntityBloodData>> ENTITY_BLOOD = ATTACHMENT_TYPES.register("entity_blood",
             () -> AttachmentType.serializable(EntityBloodData::getInstance).sync(new EntityBloodData.SyncHandler()).build());
 

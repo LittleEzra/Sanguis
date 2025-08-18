@@ -1,6 +1,8 @@
 package com.feliscape.sanguis.registry;
 
 import com.feliscape.sanguis.Sanguis;
+import com.feliscape.sanguis.content.block.GarlicCropBlock;
+import com.feliscape.sanguis.content.block.GarlicStringBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -21,7 +23,21 @@ import java.util.function.Function;
 public class SanguisBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(Sanguis.MOD_ID);
 
-
+    public static final DeferredBlock<GarlicCropBlock> GARLIC = BLOCKS.registerBlock("garlic",
+            p -> new GarlicCropBlock(p
+                    .mapColor(MapColor.PLANT)
+                    .noCollission()
+                    .randomTicks()
+                    .instabreak()
+                    .sound(SoundType.CROP)
+                    .pushReaction(PushReaction.DESTROY)));
+    public static final DeferredBlock<GarlicStringBlock> GARLIC_STRING = registerBlockWithItem("garlic_string",
+            p -> new GarlicStringBlock(p
+                    .mapColor(MapColor.TERRACOTTA_MAGENTA)
+                    .noCollission()
+                    .instabreak()
+                    .sound(SoundType.WOOL)
+                    .pushReaction(PushReaction.DESTROY)));
 
     private static LeavesBlock leaves(BlockBehaviour.Properties properties, SoundType soundType) {
         return new LeavesBlock(

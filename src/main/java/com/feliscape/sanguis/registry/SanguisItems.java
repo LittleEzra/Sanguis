@@ -3,7 +3,6 @@ package com.feliscape.sanguis.registry;
 import com.feliscape.sanguis.Sanguis;
 import com.feliscape.sanguis.content.item.*;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tiers;
 import net.neoforged.bus.api.IEventBus;
@@ -27,8 +26,10 @@ public class SanguisItems {
     public static final DeferredItem<StakeItem> WOODEN_STAKE = ITEMS.registerItem("wooden_stake",
             p -> new StakeItem(p.stacksTo(1).attributes(SwordItem.createAttributes(Tiers.WOOD, 1, -1.6F))));
 
-    public static final DeferredItem<GarlicFoodItem> GARLIC = ITEMS.registerItem("garlic",
-            p -> new GarlicFoodItem(p.food(SanguisFoods.GARLIC)));
+    public static final DeferredItem<GarlicItem> GARLIC = ITEMS.registerItem("garlic",
+            p -> new GarlicItem(SanguisBlocks.GARLIC.get(), p.food(SanguisFoods.GARLIC)));
+    public static final DeferredItem<Item> GARLIC_FLOWER = ITEMS.registerItem("garlic_flower",
+            p -> new Item(p));
 
     public static final DeferredItem<DeferredSpawnEggItem> VAMPIRE_SPAWN_EGG = ITEMS.registerItem("vampire_spawn_egg",
             p -> new DeferredSpawnEggItem(SanguisEntityTypes.VAMPIRE, 0x404450, 0xb9214d, p));

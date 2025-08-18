@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "item": "sanguis:garlic_flower"
+    },
+    "S": {
+      "item": "minecraft:string"
+    }
+  },
+  "pattern": [
+    "GSG",
+    "GSG",
+    "GSG"
+  ],
+  "result": {
+    "count": 4,
+    "id": "sanguis:garlic_string"
+  }
+}

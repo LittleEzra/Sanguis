@@ -28,7 +28,7 @@ public class SanguisBiomeModifiers {
                         biomes.getOrThrow(SanguisTags.Biomes.SPAWNS_VAMPIRES),
                         List.of(new MobSpawnSettings.SpawnerData(
                                 SanguisEntityTypes.VAMPIRE.get(),
-                                25, 1, 2
+                                70, 1, 2
                         ))
                 ));
     }
