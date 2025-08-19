@@ -1,6 +1,6 @@
 package com.feliscape.sanguis.client.model;
 
-import com.feliscape.sanguis.content.entity.VampireEntity;
+import com.feliscape.sanguis.content.entity.living.VampireEntity;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
 

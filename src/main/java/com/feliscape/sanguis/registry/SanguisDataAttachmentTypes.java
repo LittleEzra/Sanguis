@@ -2,6 +2,7 @@ package com.feliscape.sanguis.registry;
 
 import com.feliscape.sanguis.Sanguis;
 import com.feliscape.sanguis.content.attachment.EntityBloodData;
+import com.feliscape.sanguis.content.attachment.HunterData;
 import com.feliscape.sanguis.content.attachment.VampireData;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.attachment.AttachmentType;
@@ -19,6 +20,11 @@ public class SanguisDataAttachmentTypes {
                     .sync(new VampireData.SyncHandler())
                     .copyOnDeath()
                     .copyHandler(VampireData::copyDeathPersistent).build());
+    public static final Supplier<AttachmentType<HunterData>> HUNTER = ATTACHMENT_TYPES.register("hunter",
+            () -> AttachmentType.serializable(HunterData::getInstance)
+                    .sync(new HunterData.SyncHandler())
+                    .copyOnDeath()
+                    .copyHandler(HunterData::copyDeathPersistent).build());
     public static final Supplier<AttachmentType<EntityBloodData>> ENTITY_BLOOD = ATTACHMENT_TYPES.register("entity_blood",
             () -> AttachmentType.serializable(EntityBloodData::getInstance).sync(new EntityBloodData.SyncHandler()).build());
 

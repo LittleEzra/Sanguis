@@ -1,6 +1,7 @@
 package com.feliscape.sanguis.registry;
 
 import com.feliscape.sanguis.Sanguis;
+import com.feliscape.sanguis.content.entity.projectile.GoldenQuarrel;
 import com.feliscape.sanguis.content.item.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SwordItem;
@@ -22,9 +23,15 @@ public class SanguisItems {
                     .component(SanguisDataComponents.MAX_BLOOD, 6)
             ));
 
-    public static final DeferredItem<VampireCureItem> GARLIC_SOLUTION = ITEMS.registerItem("garlic_solution", VampireCureItem::new);
+    public static final DeferredItem<Item> SYRINGE = ITEMS.registerItem("syringe", Item::new);
+    public static final DeferredItem<GarlicInjectionItem> GARLIC_INJECTION = ITEMS.registerItem("garlic_injection",
+            p -> new GarlicInjectionItem(p.stacksTo(1)));
+    public static final DeferredItem<AcidInjectionItem> ACID_INJECTION = ITEMS.registerItem("acid_injection",
+            p -> new AcidInjectionItem(p.stacksTo(1)));
     public static final DeferredItem<StakeItem> WOODEN_STAKE = ITEMS.registerItem("wooden_stake",
             p -> new StakeItem(p.stacksTo(1).attributes(SwordItem.createAttributes(Tiers.WOOD, 1, -1.6F))));
+    public static final DeferredItem<GoldenQuarrelItem> GOLDEN_QUARREL = ITEMS.registerItem("golden_quarrel",
+            p -> new GoldenQuarrelItem(p));
 
     public static final DeferredItem<GarlicItem> GARLIC = ITEMS.registerItem("garlic",
             p -> new GarlicItem(SanguisBlocks.GARLIC.get(), p.food(SanguisFoods.GARLIC)));

@@ -1,9 +1,15 @@
-// 1.21.1	2025-08-18T17:09:00.3389908	Recipes
+// 1.21.1	2025-08-19T12:14:21.9860691	Recipes
+6f3f1fbd9da03ce9df703c045069a26329c9b26c data/sanguis/advancement/recipes/combat/golden_quarrel.json
+4abd6df8c0f00be68bb8f5d613bdd57861b67f9f data/sanguis/advancement/recipes/combat/wooden_stake.json
+e69c7bbe9e56e85703c3cc90a4f08d0cf3e26033 data/sanguis/advancement/recipes/misc/acid_injection.json
 ae5d35534f62db898f1b1b4118992dbd182a2edb data/sanguis/advancement/recipes/misc/blood_bottle.json
-646855c7f9a5d936f8b98b0c24fbac9c77afd604 data/sanguis/advancement/recipes/misc/garlic_solution.json
+0a909c0e448369173c185f8babe1b44d0924f166 data/sanguis/advancement/recipes/misc/garlic_injection.json
 3bbe77ba0f8a8a1f43a49fe600f02c00f6e6c526 data/sanguis/advancement/recipes/misc/garlic_string.json
-4abd6df8c0f00be68bb8f5d613bdd57861b67f9f data/sanguis/advancement/recipes/misc/wooden_stake.json
+2b1acdc6f43258dfcfae5489d3752b7989ee7f43 data/sanguis/advancement/recipes/misc/syringe.json
+6ee7b5289b4b529bde2bbd55f69ce3b1148af195 data/sanguis/recipe/acid_injection.json
 2fd384a564eefb02d7fec8a9a98731d7e06d8489 data/sanguis/recipe/blood_bottle.json
-8e11c9a36fd1783d1b6e2e5a192b52d7f1b38d03 data/sanguis/recipe/garlic_solution.json
+f9e8b9319be127177b42f04c653875084e84fe50 data/sanguis/recipe/garlic_injection.json
 27d2e11b6b8abb1df443c05d102cb28782e79fac data/sanguis/recipe/garlic_string.json
-a7e7ea14fb286f6b2d43b7aef2315dce62cb2f2b data/sanguis/recipe/wooden_stake.json
+c16f9e107bc676f537282ec92357f0c7f755f564 data/sanguis/recipe/golden_quarrel.json
+a65898e351b5aecfbb24bdf8bf5e47bac5d39cc3 data/sanguis/recipe/syringe.json
+783187c71e37272eea8cea6c1527e149341adb8d data/sanguis/recipe/wooden_stake.json

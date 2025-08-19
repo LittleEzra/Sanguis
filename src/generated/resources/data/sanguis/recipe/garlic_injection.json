@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "sanguis:syringe"
+    },
+    {
+      "item": "sanguis:garlic"
+    },
+    {
+      "item": "sanguis:garlic"
+    },
+    {
+      "item": "sanguis:garlic"
+    },
+    {
+      "item": "minecraft:golden_apple"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "sanguis:garlic_injection"
+  }
+}

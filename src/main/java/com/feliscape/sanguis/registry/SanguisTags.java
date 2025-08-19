@@ -18,6 +18,7 @@ public class SanguisTags {
     }
     public static class Items{
         public static final TagKey<Item> STAKES = create("stakes");
+        public static final TagKey<Item> QUARRELS = create("quarrels");
 
         private static TagKey<Item> create(String name){
             return TagKey.create(Registries.ITEM, Sanguis.location(name));
@@ -25,6 +26,7 @@ public class SanguisTags {
     }
     public static class EntityTypes{
         public static final TagKey<EntityType<?>> VAMPIRIC = create("vampiric");
+        public static final TagKey<EntityType<?>> HUNTER = create("hunter");
         public static final TagKey<EntityType<?>> STAKE_IMMUNE = create("stake_immune");
         public static final TagKey<EntityType<?>> INFECTABLE = create("infectable");
         public static final TagKey<EntityType<?>> BLOOD_DRINKABLE = create("blood_drinkable");

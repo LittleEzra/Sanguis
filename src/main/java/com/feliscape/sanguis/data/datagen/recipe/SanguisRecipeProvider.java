@@ -5,10 +5,7 @@ import com.feliscape.sanguis.registry.SanguisBlocks;
 import com.feliscape.sanguis.registry.SanguisItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.*;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
@@ -24,7 +21,7 @@ public class SanguisRecipeProvider extends RecipeProvider {
 
     @Override
     protected void buildRecipes(RecipeOutput recipeOutput) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, SanguisItems.WOODEN_STAKE.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, SanguisItems.WOODEN_STAKE.get())
                 .pattern("/")
                 .pattern("#")
                 .pattern("#")
@@ -32,14 +29,35 @@ public class SanguisRecipeProvider extends RecipeProvider {
                 .define('#', ItemTags.PLANKS)
                 .unlockedBy("has_planks", has(ItemTags.PLANKS))
                 .save(recipeOutput);
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, SanguisItems.GARLIC_SOLUTION.get())
-                .pattern(" G ")
-                .pattern("G#G")
-                .pattern(" A ")
-                .define('#', SanguisItems.VAMPIRE_BLOOD)
-                .define('G', SanguisItems.GARLIC)
-                .define('A', Items.GOLDEN_APPLE)
-                .unlockedBy(getHasName(SanguisItems.VAMPIRE_BLOOD), has(SanguisItems.VAMPIRE_BLOOD))
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, SanguisItems.GOLDEN_QUARREL.get())
+                .pattern("#")
+                .pattern("/")
+                .pattern("F")
+                .define('#', Items.GOLD_NUGGET)
+                .define('/', Tags.Items.RODS_WOODEN)
+                .define('F', Items.FEATHER)
+                .unlockedBy("has_gold_nugget", has(Items.GOLD_NUGGET))
+                .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, SanguisItems.SYRINGE)
+                .pattern("#")
+                .pattern("#")
+                .pattern("I")
+                .define('#', Tags.Items.GLASS_BLOCKS)
+                .define('I', Items.IRON_NUGGET)
+                .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
+                .save(recipeOutput);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, SanguisItems.GARLIC_INJECTION)
+                .requires(SanguisItems.SYRINGE)
+                .requires(SanguisItems.GARLIC, 3)
+                .requires(Items.GOLDEN_APPLE)
+                .unlockedBy(getHasName(SanguisItems.SYRINGE), has(SanguisItems.SYRINGE))
+                .save(recipeOutput);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, SanguisItems.ACID_INJECTION)
+                .requires(SanguisItems.SYRINGE)
+                .requires(Items.APPLE, 2)
+                .requires(Items.SLIME_BALL)
+                .requires(SanguisItems.VAMPIRE_BLOOD)
+                .unlockedBy(getHasName(SanguisItems.SYRINGE), has(SanguisItems.SYRINGE))
                 .save(recipeOutput);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BloodBottleItem.getWithFill(0))
                 .pattern("# #")

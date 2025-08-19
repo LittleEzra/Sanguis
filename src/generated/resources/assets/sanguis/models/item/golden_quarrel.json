@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "sanguis:item/garlic_solution"
+    "layer0": "sanguis:item/golden_quarrel"
   }
 }

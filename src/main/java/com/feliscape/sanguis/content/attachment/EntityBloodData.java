@@ -72,7 +72,7 @@ public class EntityBloodData extends DataAttachment{
     }
 
     public int getFrozenTicks() {
-        return maxBlood;
+        return this.frozenTicks;
     }
 
     private void setFrozenTicks(int frozenTicks) {

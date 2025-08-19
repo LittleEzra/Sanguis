@@ -1,0 +1,27 @@
+{
+  "parent": "sanguis:sanguis/root",
+  "criteria": {
+    "0": {
+      "trigger": "sanguis:hunter_inject"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.sanguis.sanguis.hunter.inject.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "sanguis:garlic"
+    },
+    "title": {
+      "translate": "advancements.sanguis.sanguis.hunter.inject.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

@@ -3,11 +3,9 @@ package com.feliscape.sanguis.client.render.entity;
 import com.feliscape.sanguis.Sanguis;
 import com.feliscape.sanguis.client.SanguisModelLayers;
 import com.feliscape.sanguis.client.model.VampireModel;
-import com.feliscape.sanguis.content.entity.VampireEntity;
-import net.minecraft.client.renderer.entity.EntityRenderer;
+import com.feliscape.sanguis.content.entity.living.VampireEntity;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
-import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
 import net.minecraft.resources.ResourceLocation;
 

@@ -19,11 +19,18 @@ public class SanguisEnUsProvider extends SanguisLanguageProvider{
     protected void addTranslations() {
         this.addItem(SanguisItems.BLOODY_FANG, "Bloody Fang");
         this.addItem(SanguisItems.ACTIVATED_VAMPIRE_BLOOD, "Activated Vampire Blood");
+        this.addItemTooltip(SanguisItems.ACTIVATED_VAMPIRE_BLOOD, "Inflicts vampirism, while skipping the incubation time");
         this.addItem(SanguisItems.VAMPIRE_BLOOD, "Vampire Blood");
         this.addItem(SanguisItems.BLOOD_BOTTLE, "Blood Bottle");
 
-        this.addItem(SanguisItems.GARLIC_SOLUTION, "Garlic Solution");
+        this.addItem(SanguisItems.SYRINGE, "Syringe");
+        this.addItem(SanguisItems.GARLIC_INJECTION, "Garlic Injection");
+        this.addItemTooltip(SanguisItems.GARLIC_INJECTION, "Cures or immunizes against vampirism");
+        this.addItem(SanguisItems.ACID_INJECTION, "Acid Injection");
+        this.addItemTooltip(SanguisItems.ACID_INJECTION, "Destroys the garlic within a hunter's blood");
+        this.add(SanguisItems.ACID_INJECTION.get().getDescriptionId() + ".warning", "Warning: You might die after injecting this");
         this.addItem(SanguisItems.WOODEN_STAKE, "Wooden Stake");
+        this.addItem(SanguisItems.GOLDEN_QUARREL, "Golden Quarrel");
 
         this.addItem(SanguisItems.GARLIC, "Garlic");
         this.addItem(SanguisItems.GARLIC_FLOWER, "Garlic Flower");
@@ -40,12 +47,15 @@ public class SanguisEnUsProvider extends SanguisLanguageProvider{
                 "Sanguis",
                 "Sanguis turpis et dentes cruenti"); // Vile blood and blood-stained teeth
 
-        this.addAdvancement(SanguisAdvancements.TURN_TO_VAMPIRE,
+        this.addAdvancement(SanguisAdvancements.VAMPIRE_TRANSFORMATION,
                 "Bloodsucker",
                 "Complete your transformation into a vampire");
-        this.addAdvancement(SanguisAdvancements.CURE_VAMPIRE,
+        this.addAdvancement(SanguisAdvancements.VAMPIRE_CURE,
                 "Back to Mortal Blood",
                 "Revert your transformation by drinking harmful Garlic Solution");
+        this.addAdvancement(SanguisAdvancements.HUNTER_INJECT,
+                "Toss a Coin",
+                "Become a Vampire Hunter by immunizing yourself against vampirism");
 
         this.addDeathMessage(SanguisDamageTypes.DRAINING, "%1$s was drained");
         this.addDeathMessagePlayer(SanguisDamageTypes.DRAINING, "%1$s was drained by %2$s");
@@ -61,5 +71,6 @@ public class SanguisEnUsProvider extends SanguisLanguageProvider{
 
         // Vampire Form
         this.addConfigValue("server", SanguisServerConfig.CONFIG.vampireDrainDistance, "Drain Distance");
+        this.addConfigValue("server", SanguisServerConfig.CONFIG.vampireInfectChance, "Vampire Infect Chance");
     }
 }

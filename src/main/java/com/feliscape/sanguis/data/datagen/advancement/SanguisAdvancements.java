@@ -1,8 +1,7 @@
 package com.feliscape.sanguis.data.datagen.advancement;
 
 import com.feliscape.sanguis.data.advancement.CustomAdvancement;
-import com.feliscape.sanguis.data.advancement.VampireCureTrigger;
-import com.feliscape.sanguis.data.advancement.VampireTransformationTrigger;
+import com.feliscape.sanguis.data.advancement.SimpleEventTrigger;
 import com.feliscape.sanguis.registry.SanguisItems;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.core.HolderLookup;
@@ -24,16 +23,24 @@ public class SanguisAdvancements implements AdvancementProvider.AdvancementGener
             .type(CustomAdvancement.Type.ROOT)
             .awardedAutomatically()),
 
-            TURN_TO_VAMPIRE = create("sanguis/turn_to_vampire",b -> b
+            VAMPIRE_TRANSFORMATION = create("sanguis/vampire/transformation", b -> b
                     .icon(SanguisItems.BLOODY_FANG)
                     .after(ROOT)
-                    .type(CustomAdvancement.Type.CHALLENGE)
-                    .trigger(VampireTransformationTrigger.TriggerInstance.any())),
-            CURE_VAMPIRE = create("sanguis/cure_vampire",b -> b
-                    .icon(SanguisItems.GARLIC_SOLUTION)
-                    .after(TURN_TO_VAMPIRE)
-                    .type(CustomAdvancement.Type.CHALLENGE)
-                    .trigger(VampireCureTrigger.TriggerInstance.any())),
+                    .type(CustomAdvancement.Type.GOAL)
+                    .announceToChat(false)
+                    .trigger(SimpleEventTrigger.TriggerInstance.vampireTransformation())),
+            VAMPIRE_CURE = create("sanguis/vampire/cure", b -> b
+                    .icon(SanguisItems.GARLIC_INJECTION)
+                    .after(VAMPIRE_TRANSFORMATION)
+                    .type(CustomAdvancement.Type.GOAL)
+                    .announceToChat(false)
+                    .trigger(SimpleEventTrigger.TriggerInstance.vampireCure())),
+            HUNTER_INJECT = create("sanguis/hunter/inject",b -> b
+                    .icon(SanguisItems.GARLIC)
+                    .after(ROOT)
+                    .type(CustomAdvancement.Type.GOAL)
+                    .announceToChat(false)
+                    .trigger(SimpleEventTrigger.TriggerInstance.hunterInject())),
 
     END = null;
 

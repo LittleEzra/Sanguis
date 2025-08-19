@@ -4,12 +4,14 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "BrainMixin",
+    "CrossbowMixin",
     "FoodDataMixin",
     "MobMixin",
     "VillagerHostilesSensorMixin"
   ],
   "client": [
-    "LightTextureMixin"
+    "client.ItemRendererMixin",
+    "client.LightTextureMixin"
   ],
   "injectors": {
     "defaultRequire": 1

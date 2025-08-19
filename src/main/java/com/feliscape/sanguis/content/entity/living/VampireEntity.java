@@ -1,5 +1,7 @@
-package com.feliscape.sanguis.content.entity;
+package com.feliscape.sanguis.content.entity.living;
 
+import com.feliscape.sanguis.SanguisServerConfig;
+import com.feliscape.sanguis.content.attachment.VampireData;
 import com.feliscape.sanguis.content.entity.ai.RunAwayFromBlockGoal;
 import com.feliscape.sanguis.networking.SanguisLevelEvents;
 import com.feliscape.sanguis.networking.payload.SanguisLevelEventPayload;
@@ -120,10 +122,27 @@ public class VampireEntity extends Monster implements NeutralMob {
         if (super.doHurtTarget(entity)){
             Vec3 direction = entity.position().subtract(this.position()).normalize();
             SanguisLevelEventPayload.send(SanguisLevelEvents.VAMPIRE_BITE, this.getEyePosition().add(direction.scale(this.getBbWidth())));
+
+            if (biteCanInfect(entity)){
+                entity.getData(VampireData.type()).infect();
+            }
+
             return true;
         } else{
             return false;
         }
+    }
+
+    private boolean biteCanInfect(Entity entity) {
+        if (!VampireUtil.canInfect(entity)) return false;
+
+        double chance = SanguisServerConfig.CONFIG.vampireInfectChance.getAsDouble();
+        if (chance <= 0.0D || level().random.nextDouble() > chance) return false;
+
+        Vec3 ownViewVector = entity.calculateViewVector(0.0F, entity.getYHeadRot());
+        Vec3 offset = this.position().vectorTo(entity.position());
+        offset = new Vec3(offset.x, 0.0, offset.z).normalize();
+        return offset.dot(ownViewVector) > 0.5;
     }
 
     public static boolean checkVampireSpawnRules(

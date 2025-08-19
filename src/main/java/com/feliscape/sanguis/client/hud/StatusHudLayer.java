@@ -1,26 +1,35 @@
 package com.feliscape.sanguis.client.hud;
 
 import com.feliscape.sanguis.Sanguis;
+import com.feliscape.sanguis.util.HunterUtil;
 import com.feliscape.sanguis.util.VampireUtil;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.resources.ResourceLocation;
 
-public class VampireStatusHudLayer extends HudLayer {
+public class StatusHudLayer extends HudLayer {
     public static final ResourceLocation LOCATION = Sanguis.location("vampire_status");
-    private static final ResourceLocation FANGS_SPRITE = Sanguis.location("hud/fangs");
+    private static final ResourceLocation INFECTED_SPRITE = Sanguis.location("hud/status/infected");
+    private static final ResourceLocation VAMPIRE_SPRITE = Sanguis.location("hud/status/vampire");
+    private static final ResourceLocation HUNTER_SPRITE = Sanguis.location("hud/status/hunter");
 
     @Override
     public void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
         if (!canRenderOverlay() || player().isSpectator()) return;
 
-        if (VampireUtil.isVampire(player())){
-            int x = (guiGraphics.guiWidth() - 15) / 2;
-            int y = guiGraphics.guiHeight() - 31 - getHeight(player());
+        ResourceLocation location = null;
 
-            guiGraphics.blitSprite(FANGS_SPRITE, x , y, 15, 10);
-        }
+        if (VampireUtil.isInfected(player())) location = INFECTED_SPRITE;
+        if (VampireUtil.isVampire(player())) location = VAMPIRE_SPRITE;
+        else if (HunterUtil.isHunter(player())) location = HUNTER_SPRITE;
+
+        if (location == null) return;
+
+        int x = (guiGraphics.guiWidth() - 15) / 2;
+        int y = guiGraphics.guiHeight() - 36 - getHeight(player());
+
+        guiGraphics.blitSprite(location, x , y, 15, 15);
     }
 
     private int getHeight(LocalPlayer player) {

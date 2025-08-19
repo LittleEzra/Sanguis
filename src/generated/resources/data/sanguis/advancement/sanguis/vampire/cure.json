@@ -1,0 +1,27 @@
+{
+  "parent": "sanguis:sanguis/vampire/transformation",
+  "criteria": {
+    "0": {
+      "trigger": "sanguis:vampire_cure"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.sanguis.sanguis.vampire.cure.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "sanguis:garlic_injection"
+    },
+    "title": {
+      "translate": "advancements.sanguis.sanguis.vampire.cure.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

@@ -4,7 +4,8 @@ import com.feliscape.sanguis.Sanguis;
 import com.feliscape.sanguis.SanguisServerConfig;
 import com.feliscape.sanguis.client.hud.BloodLevelHudLayer;
 import com.feliscape.sanguis.client.hud.DrainBarHudLayer;
-import com.feliscape.sanguis.client.hud.VampireStatusHudLayer;
+import com.feliscape.sanguis.client.hud.StatusHudLayer;
+import com.feliscape.sanguis.client.render.entity.GoldenQuarrelRenderer;
 import com.feliscape.sanguis.client.render.entity.VampireRenderer;
 import com.feliscape.sanguis.networking.payload.DrainBloodPayload;
 import com.feliscape.sanguis.registry.SanguisEntityTypes;
@@ -29,11 +30,13 @@ public class ClientEvents {
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event)
     {
         event.registerEntityRenderer(SanguisEntityTypes.VAMPIRE.get(), VampireRenderer::new);
+
+        event.registerEntityRenderer(SanguisEntityTypes.GOLDEN_QUARREL.get(), GoldenQuarrelRenderer::new);
     }
     @SubscribeEvent
     public static void registerGuiLayers(RegisterGuiLayersEvent event)
     {
-        event.registerBelow(VanillaGuiLayers.EXPERIENCE_LEVEL, VampireStatusHudLayer.LOCATION, new VampireStatusHudLayer());
+        event.registerBelow(VanillaGuiLayers.EXPERIENCE_BAR, StatusHudLayer.LOCATION, new StatusHudLayer());
         event.registerAbove(VanillaGuiLayers.FOOD_LEVEL, BloodLevelHudLayer.LOCATION, new BloodLevelHudLayer());
         event.registerAbove(VanillaGuiLayers.CROSSHAIR, DrainBarHudLayer.LOCATION, new DrainBarHudLayer());
     }

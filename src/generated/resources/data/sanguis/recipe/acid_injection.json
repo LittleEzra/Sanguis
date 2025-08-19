@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "sanguis:syringe"
+    },
+    {
+      "item": "minecraft:apple"
+    },
+    {
+      "item": "minecraft:apple"
+    },
+    {
+      "item": "minecraft:slime_ball"
+    },
+    {
+      "item": "sanguis:vampire_blood"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "sanguis:acid_injection"
+  }
+}

@@ -22,6 +22,9 @@ public class SanguisItemTagGenerator extends ItemTagsProvider {
         this.tag(SanguisTags.Items.STAKES)
                 .add(SanguisItems.WOODEN_STAKE.get());
 
+        this.tag(SanguisTags.Items.QUARRELS)
+                .add(SanguisItems.GOLDEN_QUARREL.get());
+
         this.tag(Tags.Items.TOOLS)
                 .addTag(SanguisTags.Items.STAKES);
     }

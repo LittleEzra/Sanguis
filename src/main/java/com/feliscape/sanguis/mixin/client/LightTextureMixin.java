@@ -1,4 +1,4 @@
-package com.feliscape.sanguis.mixin;
+package com.feliscape.sanguis.mixin.client;
 
 import com.feliscape.sanguis.SanguisClientConfig;
 import com.feliscape.sanguis.util.VampireUtil;

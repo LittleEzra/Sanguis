@@ -2,7 +2,9 @@ package com.feliscape.sanguis.content.item;
 
 import com.feliscape.sanguis.content.attachment.VampireData;
 import com.feliscape.sanguis.util.VampireUtil;
+import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
@@ -12,6 +14,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
+
+import java.util.List;
 
 public class VampireCureItem extends Item {
     public VampireCureItem(Properties properties) {
@@ -27,7 +31,7 @@ public class VampireCureItem extends Item {
 
         if (entityLiving.hasData(VampireData.type())) {
             VampireData data = entityLiving.getData(VampireData.type());
-            if (data.isInfected()){
+            if (data.isInfected() || data.isVampire()){
                 data.cure(true);
             }
         }
@@ -64,5 +68,10 @@ public class VampireCureItem extends Item {
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         return ItemUtils.startUsingInstantly(level, player, hand);
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        tooltipComponents.add(Component.translatable(this.getDescriptionId(stack) + ".tooltip").withStyle(ChatFormatting.GRAY));
     }
 }

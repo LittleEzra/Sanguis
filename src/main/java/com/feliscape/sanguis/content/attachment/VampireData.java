@@ -150,7 +150,7 @@ public class VampireData extends DataAttachment {
      * @return Whether the vampire state changed
      */
     public boolean cure(){
-        if (!this.isVampire) return false;
+        if (!this.isVampire && !this.isInfected()) return false;
 
         this.infectionTime = -1;
         this.checkVampireStatus();
@@ -162,8 +162,9 @@ public class VampireData extends DataAttachment {
      * @return Whether the vampire state changed
      */
     public boolean cure(boolean causeEffects){
+        boolean wasVampire = this.isVampire;
         if (this.cure()){
-            if (causeEffects) {
+            if (causeEffects && wasVampire) {
                 this.holder.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 240, 2));
                 this.holder.addEffect(new MobEffectInstance(MobEffects.POISON, 100, 2));
                 this.holder.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 200, 1));
@@ -178,13 +179,23 @@ public class VampireData extends DataAttachment {
         this.bloodData.drink(this.holder, target);
     }
 
-    public void infect(LivingEntity entity) {
-        entity.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 200, 1));
+    public void infect() {
+        this.holder.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 200, 1));
         this.infectionTime = 5 * 60 * 20; // 5 Minutes
+        this.holder.syncData(type());
     }
     public void infectImmediately() {
         this.infectionTime = 0;
         this.checkVampireStatus();
+        this.holder.syncData(type());
+    }
+
+    public void reduceInfection(int amount) {
+        this.infectionTime += amount;
+        if (infectionTime > 11000){
+            cure(false);
+            this.holder.syncData(type());
+        }
     }
 
     public static AttachmentType<VampireData> type(){
@@ -192,7 +203,7 @@ public class VampireData extends DataAttachment {
     }
 
     public boolean isInfected() {
-        return isVampire || infectionTime >= 0;
+        return infectionTime > 0;
     }
 
     public VampireBloodData getBloodData() {

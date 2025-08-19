@@ -19,7 +19,7 @@ public class VampireUtil {
 
     public static boolean canInfect(Entity entity) {
         return entity instanceof LivingEntity && entity.getType().is(SanguisTags.EntityTypes.INFECTABLE) &&
-                !isVampire(entity);
+                !isVampire(entity) && !HunterUtil.isHunter(entity);
     }
 
     public static boolean shouldBurnInSunlight(LivingEntity entity){
@@ -40,5 +40,12 @@ public class VampireUtil {
         if (!isVampire(vampire)) return false;
 
         return !isVampire(target) && target.getType().builtInRegistryHolder().getData(SanguisDataMapTypes.ENTITY_BLOOD) != null;
+    }
+
+    public static boolean isInfected(Entity entity) {
+        if (!(entity instanceof LivingEntity)) return false;
+
+        if (entity.getType().is(SanguisTags.EntityTypes.VAMPIRIC)) return false;
+        return entity.hasData(VampireData.type()) && !isVampire(entity) && entity.getData(VampireData.type()).isInfected();
     }
 }

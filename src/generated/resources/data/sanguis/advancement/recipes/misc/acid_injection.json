@@ -1,32 +1,32 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "sanguis:garlic_solution"
-      },
-      "trigger": "minecraft:recipe_unlocked"
-    },
-    "has_vampire_blood": {
+    "has_syringe": {
       "conditions": {
         "items": [
           {
-            "items": "sanguis:vampire_blood"
+            "items": "sanguis:syringe"
           }
         ]
       },
       "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "sanguis:acid_injection"
+      },
+      "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
       "has_the_recipe",
-      "has_vampire_blood"
+      "has_syringe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "sanguis:garlic_solution"
+      "sanguis:acid_injection"
     ]
   }
 }

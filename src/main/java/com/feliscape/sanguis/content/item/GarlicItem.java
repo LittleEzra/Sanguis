@@ -1,5 +1,6 @@
 package com.feliscape.sanguis.content.item;
 
+import com.feliscape.sanguis.content.attachment.VampireData;
 import com.feliscape.sanguis.util.VampireUtil;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -19,8 +20,13 @@ public class GarlicItem extends ItemNameBlockItem {
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity livingEntity) {
         FoodProperties foodproperties = stack.getFoodProperties(livingEntity);
-        if (foodproperties != null && VampireUtil.isVampire(livingEntity)){
-            livingEntity.addEffect(new MobEffectInstance(MobEffects.POISON, 400, 2));
+        if (foodproperties != null){
+            if (VampireUtil.isVampire(livingEntity)) {
+                livingEntity.addEffect(new MobEffectInstance(MobEffects.POISON, 400, 2));
+            }
+            else if (VampireUtil.isInfected(livingEntity)){
+                livingEntity.getData(VampireData.type()).reduceInfection(1200);
+            }
         }
         return super.finishUsingItem(stack, level, livingEntity);
     }

@@ -19,7 +19,7 @@ public class VampireFangItem extends Item {
         ItemStack itemStack = player.getItemInHand(usedHand);
         if (player.isShiftKeyDown()){
             if (VampireUtil.canInfect(player)) {
-                player.getData(VampireData.type()).infect(player);
+                player.getData(VampireData.type()).infect();
                 return InteractionResultHolder.sidedSuccess(itemStack, level.isClientSide());
             }
         }

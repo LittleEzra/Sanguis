@@ -22,9 +22,10 @@ public class SanguisBiomeTagGenerator extends BiomeTagsProvider {
         super(output, provider, Sanguis.MOD_ID, existingFileHelper);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        //noinspection unchecked
+
         this.tag(SanguisTags.Biomes.SPAWNS_VAMPIRES)
                 .addTags(BiomeTags.IS_FOREST,
                         Tags.Biomes.IS_DESERT,

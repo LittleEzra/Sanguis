@@ -25,19 +25,22 @@ public class SanguisItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        this.simpleItem(SanguisItems.BLOODY_FANG);
-        this.simpleItem(SanguisItems.VAMPIRE_BLOOD);
-        this.simpleItem(SanguisItems.ACTIVATED_VAMPIRE_BLOOD);
-        this.bloodBottleItem(SanguisItems.BLOOD_BOTTLE);
+        simpleItem(SanguisItems.BLOODY_FANG);
+        simpleItem(SanguisItems.VAMPIRE_BLOOD);
+        simpleItem(SanguisItems.ACTIVATED_VAMPIRE_BLOOD);
+        bloodBottleItem(SanguisItems.BLOOD_BOTTLE);
 
-        this.simpleItem(SanguisItems.GARLIC_SOLUTION);
-        this.handheldItem(SanguisItems.WOODEN_STAKE);
+        syringeItem(SanguisItems.SYRINGE);
+        syringeItem(SanguisItems.GARLIC_INJECTION);
+        syringeItem(SanguisItems.ACID_INJECTION);
+        handheldItem(SanguisItems.WOODEN_STAKE);
+        simpleItem(SanguisItems.GOLDEN_QUARREL);
 
-        this.simpleItem(SanguisItems.GARLIC);
-        this.simpleItem(SanguisItems.GARLIC_FLOWER);
-        this.spawnEggItem(SanguisItems.VAMPIRE_SPAWN_EGG.get());
+        simpleItem(SanguisItems.GARLIC);
+        simpleItem(SanguisItems.GARLIC_FLOWER);
+        spawnEggItem(SanguisItems.VAMPIRE_SPAWN_EGG.get());
 
-        this.blockItemSprite(SanguisBlocks.GARLIC_STRING);
+        blockItemSprite(SanguisBlocks.GARLIC_STRING);
     }
     
     private ItemModelBuilder bloodBottleItem(Supplier<? extends Item> item){
@@ -59,6 +62,12 @@ public class SanguisItemModelProvider extends ItemModelProvider {
             ;
         }
         return builder;
+    }
+
+    private ItemModelBuilder syringeItem(Supplier<? extends Item> item){
+        return withExistingParent(getLocation(item.get()).getPath(),
+                Sanguis.location("item/template_syringe"))
+                .texture("layer0", Sanguis.location("item/" + getLocation(item.get()).getPath()));
     }
 
     private ItemModelBuilder simpleItem(Supplier<? extends Item> item){

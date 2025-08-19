@@ -1,0 +1,6 @@
+{
+  "parent": "sanguis:item/template_syringe",
+  "textures": {
+    "layer0": "sanguis:item/syringe"
+  }
+}
