@@ -29,14 +29,29 @@ public class SanguisBiomeTagGenerator extends BiomeTagsProvider {
         this.tag(SanguisTags.Biomes.SPAWNS_VAMPIRES)
                 .addTags(BiomeTags.IS_FOREST,
                         Tags.Biomes.IS_DESERT,
+                        BiomeTags.IS_TAIGA,
                         BiomeTags.IS_BADLANDS,
                         BiomeTags.IS_MOUNTAIN,
-                        BiomeTags.IS_JUNGLE
+                        BiomeTags.IS_JUNGLE,
+                        BiomeTags.IS_SAVANNA
                         )
                 .add(
                     Biomes.PLAINS,
                     Biomes.SUNFLOWER_PLAINS,
                     Biomes.SNOWY_BEACH,
+                    Biomes.SNOWY_PLAINS,
+                    Biomes.SNOWY_TAIGA
+                );
+        this.tag(SanguisTags.Biomes.HAS_HUNTER_CAMPS)
+                .addTags(BiomeTags.IS_FOREST,
+                        BiomeTags.IS_TAIGA,
+                        Tags.Biomes.IS_DESERT,
+                        BiomeTags.IS_MOUNTAIN,
+                        BiomeTags.IS_SAVANNA
+                        )
+                .add(
+                    Biomes.PLAINS,
+                    Biomes.SUNFLOWER_PLAINS,
                     Biomes.SNOWY_PLAINS,
                     Biomes.SNOWY_TAIGA
                 );

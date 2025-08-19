@@ -19,7 +19,7 @@ public class SanguisEnUsProvider extends SanguisLanguageProvider{
     protected void addTranslations() {
         this.addItem(SanguisItems.BLOODY_FANG, "Bloody Fang");
         this.addItem(SanguisItems.ACTIVATED_VAMPIRE_BLOOD, "Activated Vampire Blood");
-        this.addItemTooltip(SanguisItems.ACTIVATED_VAMPIRE_BLOOD, "Inflicts vampirism, while skipping the incubation time");
+        this.addItemTooltip(SanguisItems.ACTIVATED_VAMPIRE_BLOOD, "[DEBUG ITEM] Inflicts vampirism, while skipping the incubation time");
         this.addItem(SanguisItems.VAMPIRE_BLOOD, "Vampire Blood");
         this.addItem(SanguisItems.BLOOD_BOTTLE, "Blood Bottle");
 
@@ -28,19 +28,22 @@ public class SanguisEnUsProvider extends SanguisLanguageProvider{
         this.addItemTooltip(SanguisItems.GARLIC_INJECTION, "Cures or immunizes against vampirism");
         this.addItem(SanguisItems.ACID_INJECTION, "Acid Injection");
         this.addItemTooltip(SanguisItems.ACID_INJECTION, "Destroys the garlic within a hunter's blood");
-        this.add(SanguisItems.ACID_INJECTION.get().getDescriptionId() + ".warning", "Warning: You might die after injecting this");
+        this.add(SanguisItems.ACID_INJECTION.get().getDescriptionId() + ".warning", "Warning: You will likely die after injecting this");
         this.addItem(SanguisItems.WOODEN_STAKE, "Wooden Stake");
+        this.addItem(SanguisItems.REINFORCED_STAKE, "Reinforced Stake");
         this.addItem(SanguisItems.GOLDEN_QUARREL, "Golden Quarrel");
 
         this.addItem(SanguisItems.GARLIC, "Garlic");
         this.addItem(SanguisItems.GARLIC_FLOWER, "Garlic Flower");
 
         this.addItem(SanguisItems.VAMPIRE_SPAWN_EGG, "Vampire Spawn Egg");
+        this.addItem(SanguisItems.VAMPIRE_HUNTER_SPAWN_EGG, "Vampire Hunter Spawn Egg");
 
         this.addBlock(SanguisBlocks.GARLIC, "Garlic");
         this.addBlock(SanguisBlocks.GARLIC_STRING, "Garlic String");
 
         this.addEntityType(SanguisEntityTypes.VAMPIRE, "Vampire");
+        this.addEntityType(SanguisEntityTypes.VAMPIRE_HUNTER, "Vampire Hunter");
 
         //noinspection SpellCheckingInspection
         this.addAdvancement(SanguisAdvancements.ROOT,

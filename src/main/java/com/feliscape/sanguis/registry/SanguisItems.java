@@ -29,7 +29,9 @@ public class SanguisItems {
     public static final DeferredItem<AcidInjectionItem> ACID_INJECTION = ITEMS.registerItem("acid_injection",
             p -> new AcidInjectionItem(p.stacksTo(1)));
     public static final DeferredItem<StakeItem> WOODEN_STAKE = ITEMS.registerItem("wooden_stake",
-            p -> new StakeItem(p.stacksTo(1).attributes(SwordItem.createAttributes(Tiers.WOOD, 1, -1.6F))));
+            p -> new StakeItem(Tiers.WOOD, p.stacksTo(1).attributes(SwordItem.createAttributes(Tiers.WOOD, 1, -2.3F))));
+    public static final DeferredItem<StakeItem> REINFORCED_STAKE = ITEMS.registerItem("reinforced_stake",
+            p -> new StakeItem(Tiers.IRON, p.stacksTo(1).attributes(SwordItem.createAttributes(Tiers.IRON, 0, -2.3F))));
     public static final DeferredItem<GoldenQuarrelItem> GOLDEN_QUARREL = ITEMS.registerItem("golden_quarrel",
             p -> new GoldenQuarrelItem(p));
 
@@ -40,6 +42,8 @@ public class SanguisItems {
 
     public static final DeferredItem<DeferredSpawnEggItem> VAMPIRE_SPAWN_EGG = ITEMS.registerItem("vampire_spawn_egg",
             p -> new DeferredSpawnEggItem(SanguisEntityTypes.VAMPIRE, 0x404450, 0xb9214d, p));
+    public static final DeferredItem<DeferredSpawnEggItem> VAMPIRE_HUNTER_SPAWN_EGG = ITEMS.registerItem("vampire_hunter_spawn_egg",
+            p -> new DeferredSpawnEggItem(SanguisEntityTypes.VAMPIRE_HUNTER, 0x404355, 0x4865e1, p));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

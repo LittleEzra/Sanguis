@@ -20,7 +20,8 @@ public class SanguisItemTagGenerator extends ItemTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         this.tag(SanguisTags.Items.STAKES)
-                .add(SanguisItems.WOODEN_STAKE.get());
+                .add(SanguisItems.WOODEN_STAKE.get())
+                .add(SanguisItems.REINFORCED_STAKE.get());
 
         this.tag(SanguisTags.Items.QUARRELS)
                 .add(SanguisItems.GOLDEN_QUARREL.get());

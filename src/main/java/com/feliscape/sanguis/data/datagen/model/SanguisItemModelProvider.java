@@ -34,11 +34,13 @@ public class SanguisItemModelProvider extends ItemModelProvider {
         syringeItem(SanguisItems.GARLIC_INJECTION);
         syringeItem(SanguisItems.ACID_INJECTION);
         handheldItem(SanguisItems.WOODEN_STAKE);
+        handheldItem(SanguisItems.REINFORCED_STAKE);
         simpleItem(SanguisItems.GOLDEN_QUARREL);
 
         simpleItem(SanguisItems.GARLIC);
         simpleItem(SanguisItems.GARLIC_FLOWER);
         spawnEggItem(SanguisItems.VAMPIRE_SPAWN_EGG.get());
+        spawnEggItem(SanguisItems.VAMPIRE_HUNTER_SPAWN_EGG.get());
 
         blockItemSprite(SanguisBlocks.GARLIC_STRING);
     }

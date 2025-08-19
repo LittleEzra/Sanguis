@@ -183,6 +183,6 @@ public class VampireEntity extends Monster implements NeutralMob {
 
     @Override
     public boolean isPreventingPlayerRest(Player player) {
-        return this.isAngryAt(player);
+        return this.shouldAttack(player);
     }
 }

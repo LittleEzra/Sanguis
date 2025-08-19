@@ -6,11 +6,12 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.Tiers;
 
 public class StakeItem extends SwordItem {
-    public StakeItem(Properties properties) {
-        super(Tiers.WOOD, properties);
+    public StakeItem(Tier tier, Properties properties) {
+        super(tier, properties);
     }
 
     @Override

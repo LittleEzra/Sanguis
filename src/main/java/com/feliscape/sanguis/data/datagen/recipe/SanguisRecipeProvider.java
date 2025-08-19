@@ -29,6 +29,15 @@ public class SanguisRecipeProvider extends RecipeProvider {
                 .define('#', ItemTags.PLANKS)
                 .unlockedBy("has_planks", has(ItemTags.PLANKS))
                 .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, SanguisItems.REINFORCED_STAKE.get())
+                .pattern("/")
+                .pattern("I")
+                .pattern("#")
+                .define('I', Items.IRON_INGOT)
+                .define('/', Tags.Items.RODS_WOODEN)
+                .define('#', ItemTags.PLANKS)
+                .unlockedBy("has_planks", has(ItemTags.PLANKS))
+                .save(recipeOutput);
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, SanguisItems.GOLDEN_QUARREL.get())
                 .pattern("#")
                 .pattern("/")

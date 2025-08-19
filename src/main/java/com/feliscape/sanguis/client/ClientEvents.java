@@ -6,6 +6,7 @@ import com.feliscape.sanguis.client.hud.BloodLevelHudLayer;
 import com.feliscape.sanguis.client.hud.DrainBarHudLayer;
 import com.feliscape.sanguis.client.hud.StatusHudLayer;
 import com.feliscape.sanguis.client.render.entity.GoldenQuarrelRenderer;
+import com.feliscape.sanguis.client.render.entity.VampireHunterRenderer;
 import com.feliscape.sanguis.client.render.entity.VampireRenderer;
 import com.feliscape.sanguis.networking.payload.DrainBloodPayload;
 import com.feliscape.sanguis.registry.SanguisEntityTypes;
@@ -30,6 +31,7 @@ public class ClientEvents {
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event)
     {
         event.registerEntityRenderer(SanguisEntityTypes.VAMPIRE.get(), VampireRenderer::new);
+        event.registerEntityRenderer(SanguisEntityTypes.VAMPIRE_HUNTER.get(), VampireHunterRenderer::new);
 
         event.registerEntityRenderer(SanguisEntityTypes.GOLDEN_QUARREL.get(), GoldenQuarrelRenderer::new);
     }

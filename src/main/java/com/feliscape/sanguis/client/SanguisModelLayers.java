@@ -1,6 +1,7 @@
 package com.feliscape.sanguis.client;
 
 import com.feliscape.sanguis.Sanguis;
+import com.feliscape.sanguis.client.model.VampireHunterModel;
 import com.google.common.collect.Sets;
 import net.minecraft.client.model.HumanoidArmorModel;
 import net.minecraft.client.model.HumanoidModel;
@@ -22,6 +23,7 @@ public class SanguisModelLayers {
     public static final ModelLayerLocation VAMPIRE = register("vampire");
     public static final ModelLayerLocation VAMPIRE_ARMOR_OUTER = registerOuterArmor("vampire");
     public static final ModelLayerLocation VAMPIRE_ARMOR_INNER = registerInnerArmor("vampire");
+    public static final ModelLayerLocation VAMPIRE_HUNTER = register("vampire_hunter");
 
     private static ModelLayerLocation register(String path) {
         return register(path, "main");
@@ -63,5 +65,6 @@ public class SanguisModelLayers {
         event.registerLayerDefinition(VAMPIRE, () -> LayerDefinition.create(HumanoidModel.createMesh(CubeDeformation.NONE, 0.0F), 64, 64));
         event.registerLayerDefinition(VAMPIRE_ARMOR_OUTER, () -> outerArmor);
         event.registerLayerDefinition(VAMPIRE_ARMOR_INNER, () -> innerArmor);
+        event.registerLayerDefinition(VAMPIRE_HUNTER, VampireHunterModel::createBodyLayer);
     }
 }

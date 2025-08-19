@@ -1,0 +1,19 @@
+{
+  "attributes": {
+    "range_bonus": -1,
+    "category": "stake",
+    "attacks": [
+      {
+        "hitbox": "FORWARD_BOX",
+        "damage_multiplier": 1,
+        "angle": 0,
+        "upswing": 0.0,
+        "animation": "bettercombat:one_handed_stab",
+        "swing_sound": {
+          "id": "bettercombat:sword_slash",
+          "pitch": 1
+        }
+      }
+    ]
+  }
+}

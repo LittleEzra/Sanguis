@@ -2,6 +2,7 @@ package com.feliscape.sanguis.registry;
 
 import com.feliscape.sanguis.Sanguis;
 import com.feliscape.sanguis.content.entity.living.VampireEntity;
+import com.feliscape.sanguis.content.entity.living.VampireHunter;
 import com.feliscape.sanguis.content.entity.projectile.GoldenQuarrel;
 import com.feliscape.sanguis.registry.util.DeferredEntityTypeRegister;
 import net.minecraft.core.registries.Registries;
@@ -23,6 +24,12 @@ public class SanguisEntityTypes {
                     .eyeHeight(1.74F)
                     .passengerAttachments(2.0125F)
                     .ridingOffset(-0.7F)
+                    .clientTrackingRange(8));
+    public static final DeferredHolder<EntityType<?>, EntityType<VampireHunter>> VAMPIRE_HUNTER = ENTITY_TYPES.registerEntityType("vampire_hunter",
+            VampireHunter::new, MobCategory.MISC, b -> b
+                    .sized(0.6F, 1.95F)
+                    .passengerAttachments(2.0F)
+                    .ridingOffset(-0.6F)
                     .clientTrackingRange(8));
 
     public static final Supplier<EntityType<GoldenQuarrel>> GOLDEN_QUARREL = ENTITY_TYPES.registerEntityType("golden_quarrel",

@@ -1,0 +1,14 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 14356925,
+    "separation": 10,
+    "spacing": 28
+  },
+  "structures": [
+    {
+      "structure": "sanguis:hunter_camp",
+      "weight": 1
+    }
+  ]
+}
