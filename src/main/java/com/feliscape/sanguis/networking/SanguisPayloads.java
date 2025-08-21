@@ -1,8 +1,7 @@
 package com.feliscape.sanguis.networking;
 
 import com.feliscape.sanguis.Sanguis;
-import com.feliscape.sanguis.networking.payload.DrainBloodPayload;
-import com.feliscape.sanguis.networking.payload.SanguisLevelEventPayload;
+import com.feliscape.sanguis.networking.payload.*;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
@@ -24,6 +23,22 @@ public class SanguisPayloads {
                 DrainBloodPayload.TYPE,
                 DrainBloodPayload.STREAM_CODEC,
                 DrainBloodPayload::handle
+        );
+
+        registrar.playToServer(
+                OpenActiveQuestsPayload.TYPE,
+                OpenActiveQuestsPayload.STREAM_CODEC,
+                OpenActiveQuestsPayload::handle
+        );
+        registrar.playToServer(
+                CompleteQuestPayload.TYPE,
+                CompleteQuestPayload.STREAM_CODEC,
+                CompleteQuestPayload::handle
+        );
+        registrar.playToServer(
+                CancelQuestPayload.TYPE,
+                CancelQuestPayload.STREAM_CODEC,
+                CancelQuestPayload::handle
         );
     }
 }

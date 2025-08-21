@@ -1,4 +1,6 @@
-// 1.21.1	2025-08-17T18:59:06.4959985	Tags for minecraft:entity_type mod id sanguis
-e4664c370cee056d98f8fc7b944eb2e5ec298060 data/sanguis/tags/entity_type/blood_drinkable.json
+// 1.21.1	2025-08-21T12:33:19.8904348	Tags for minecraft:entity_type mod id sanguis
+20dc65f5fe53dd324b9a116ef9e8f92795f1b9e0 data/minecraft/tags/entity_type/undead.json
+e745b113a1ccede7d648752a799e6e9b8c2c34e7 data/sanguis/tags/entity_type/foul_blood.json
 6ded3ea2e35a47445f95b3e2a263d918575d48cf data/sanguis/tags/entity_type/infectable.json
+8bb03e693e7b20a70c516717d88c79538ea57464 data/sanguis/tags/entity_type/kill_mob_quest_valid.json
 07488a9deeddf936cade814405fa69ad8d692c1d data/sanguis/tags/entity_type/vampiric.json

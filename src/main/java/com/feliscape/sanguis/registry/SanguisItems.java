@@ -23,6 +23,9 @@ public class SanguisItems {
                     .component(SanguisDataComponents.MAX_BLOOD, 6)
             ));
 
+    public static final DeferredItem<Item> STEEL_BLEND = ITEMS.registerItem("steel_blend", Item::new);
+    public static final DeferredItem<Item> STEEL_INGOT = ITEMS.registerItem("steel_ingot", Item::new);
+
     public static final DeferredItem<Item> SYRINGE = ITEMS.registerItem("syringe", Item::new);
     public static final DeferredItem<GarlicInjectionItem> GARLIC_INJECTION = ITEMS.registerItem("garlic_injection",
             p -> new GarlicInjectionItem(p.stacksTo(1)));
@@ -32,6 +35,12 @@ public class SanguisItems {
             p -> new StakeItem(Tiers.WOOD, p.stacksTo(1).attributes(SwordItem.createAttributes(Tiers.WOOD, 1, -2.3F))));
     public static final DeferredItem<StakeItem> REINFORCED_STAKE = ITEMS.registerItem("reinforced_stake",
             p -> new StakeItem(Tiers.IRON, p.stacksTo(1).attributes(SwordItem.createAttributes(Tiers.IRON, 0, -2.3F))));
+
+    public static final DeferredItem<CleaverItem> STEEL_CLEAVER = ITEMS.registerItem("steel_cleaver",
+            p -> new CleaverItem(SanguisTiers.STEEL, 0.25F, p.stacksTo(1).attributes(SwordItem.createAttributes(SanguisTiers.STEEL, 6, -3.0F))));
+    public static final DeferredItem<CleaverItem> DIAMOND_CLEAVER = ITEMS.registerItem("diamond_cleaver",
+            p -> new CleaverItem(Tiers.DIAMOND, 0.35F, p.stacksTo(1).attributes(SwordItem.createAttributes(Tiers.DIAMOND, 7, -3.0F))));
+
     public static final DeferredItem<GoldenQuarrelItem> GOLDEN_QUARREL = ITEMS.registerItem("golden_quarrel",
             p -> new GoldenQuarrelItem(p));
 

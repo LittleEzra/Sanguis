@@ -35,6 +35,9 @@ public class Sanguis {
         SanguisParticles.register(modEventBus);
 
         SanguisCriteriaTriggers.register(modEventBus);
+        SanguisQuestTypes.register(modEventBus);
+
+        SanguisMenuTypes.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);
 

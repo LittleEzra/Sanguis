@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "sanguis:block/quest_board"
+    }
+  }
+}

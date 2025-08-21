@@ -15,8 +15,12 @@ public class CrossbowMixin {
     @Unique
     private static final Predicate<ItemStack> QUARRELS = itemStack -> itemStack.is(SanguisTags.Items.QUARRELS);
 
+    @ModifyReturnValue(method = "getSupportedHeldProjectiles", at = @At("TAIL"))
+    public Predicate<ItemStack> injectQuarrelsToHeld(Predicate<ItemStack> original){
+        return original.or(QUARRELS);
+    }
     @ModifyReturnValue(method = "getAllSupportedProjectiles", at = @At("TAIL"))
-    public Predicate<ItemStack> injectQuarrels(Predicate<ItemStack> original){
+    public Predicate<ItemStack> injectQuarrelsToAll(Predicate<ItemStack> original){
         return original.or(QUARRELS);
     }
 }

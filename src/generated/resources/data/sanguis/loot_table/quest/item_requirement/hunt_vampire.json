@@ -1,0 +1,42 @@
+{
+  "type": "minecraft:empty",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 84.0,
+                "min": 74.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "sanguis:vampire_blood"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 88.0,
+                "min": 78.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "sanguis:bloody_fang"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "sanguis:quest/item_requirement/hunt_vampire"
+}

@@ -1,0 +1,27 @@
+{
+	"parent": "item/handheld",
+	"texture_size": [24, 24],
+	"textures": {
+		"layer0": "sanguis:item/steel_cleaver_in_hand"
+	},
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [-50, -90, 0],
+			"translation": [0, 7, 0.15],
+			"scale": [1.35, 1.35, 1.35]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [-50, 90, 0],
+			"translation": [0, 7, 0.15],
+			"scale": [1.35, 1.35, 1.35]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, -90, 25],
+			"translation": [1.13, 4.2, 1.13]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 90, -25],
+			"translation": [1.13, 4.2, 1.13]
+		}
+	}
+}

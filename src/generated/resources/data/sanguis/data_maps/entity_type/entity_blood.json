@@ -8,9 +8,25 @@
       "amount": 4,
       "saturationMod": 0.4
     },
+    "minecraft:donkey": {
+      "amount": 4,
+      "saturationMod": 0.3
+    },
     "minecraft:goat": {
       "amount": 3,
       "saturationMod": 0.6
+    },
+    "minecraft:horse": {
+      "amount": 4,
+      "saturationMod": 0.3
+    },
+    "minecraft:mooshroom": {
+      "amount": 4,
+      "saturationMod": 0.4
+    },
+    "minecraft:mule": {
+      "amount": 4,
+      "saturationMod": 0.3
     },
     "minecraft:pig": {
       "amount": 3,

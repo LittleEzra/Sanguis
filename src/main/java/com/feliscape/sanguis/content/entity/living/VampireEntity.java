@@ -3,16 +3,20 @@ package com.feliscape.sanguis.content.entity.living;
 import com.feliscape.sanguis.SanguisServerConfig;
 import com.feliscape.sanguis.content.attachment.VampireData;
 import com.feliscape.sanguis.content.entity.ai.RunAwayFromBlockGoal;
+import com.feliscape.sanguis.data.damage.SanguisDamageSources;
 import com.feliscape.sanguis.networking.SanguisLevelEvents;
 import com.feliscape.sanguis.networking.payload.SanguisLevelEventPayload;
 import com.feliscape.sanguis.registry.SanguisTags;
 import com.feliscape.sanguis.util.VampireUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.TimeUtil;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.Difficulty;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -24,6 +28,7 @@ import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -53,6 +58,7 @@ public class VampireEntity extends Monster implements NeutralMob {
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this).setAlertOthers());
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true, this::shouldAttack));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, false));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, VampireHunter.class, false));
     }
 
     public static AttributeSupplier createAttributes() {
@@ -119,18 +125,40 @@ public class VampireEntity extends Monster implements NeutralMob {
 
     @Override
     public boolean doHurtTarget(Entity entity) {
-        if (super.doHurtTarget(entity)){
+        float f = (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE);
+        DamageSource damagesource = SanguisDamageSources.draining(level(), this);
+        if (this.level() instanceof ServerLevel serverlevel) {
+            f = EnchantmentHelper.modifyDamage(serverlevel, this.getWeaponItem(), entity, damagesource, f);
+        }
+
+        boolean flag = entity.hurt(damagesource, f);
+        if (flag) {
+            float f1 = this.getKnockback(entity, damagesource);
+            if (f1 > 0.0F && entity instanceof LivingEntity livingentity) {
+                livingentity.knockback(
+                        (double)(f1 * 0.5F),
+                        (double) Mth.sin(this.getYRot() * (float) (Math.PI / 180.0)),
+                        (double)(-Mth.cos(this.getYRot() * (float) (Math.PI / 180.0)))
+                );
+                this.setDeltaMovement(this.getDeltaMovement().multiply(0.6, 1.0, 0.6));
+            }
+
+            if (this.level() instanceof ServerLevel serverlevel1) {
+                EnchantmentHelper.doPostAttackEffects(serverlevel1, entity, damagesource);
+            }
+
+            this.setLastHurtMob(entity);
+            this.playAttackSound();
+
             Vec3 direction = entity.position().subtract(this.position()).normalize();
             SanguisLevelEventPayload.send(SanguisLevelEvents.VAMPIRE_BITE, this.getEyePosition().add(direction.scale(this.getBbWidth())));
 
             if (biteCanInfect(entity)){
                 entity.getData(VampireData.type()).infect();
             }
-
-            return true;
-        } else{
-            return false;
         }
+
+        return flag;
     }
 
     private boolean biteCanInfect(Entity entity) {

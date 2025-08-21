@@ -1,6 +1,7 @@
 package com.feliscape.sanguis.util;
 
 import com.feliscape.sanguis.Sanguis;
+import com.feliscape.sanguis.content.attachment.HunterData;
 import com.feliscape.sanguis.content.attachment.VampireData;
 import com.feliscape.sanguis.registry.SanguisDataMapTypes;
 import com.feliscape.sanguis.registry.SanguisTags;
@@ -39,7 +40,15 @@ public class VampireUtil {
     public static boolean canDrink(LivingEntity vampire, LivingEntity target){
         if (!isVampire(vampire)) return false;
 
-        return !isVampire(target) && target.getType().builtInRegistryHolder().getData(SanguisDataMapTypes.ENTITY_BLOOD) != null;
+        return !isVampire(target) && (target.getType().is(SanguisTags.EntityTypes.FOUL_BLOOD) ||
+                target.getType().builtInRegistryHolder().getData(SanguisDataMapTypes.ENTITY_BLOOD) != null);
+    }
+
+    public static boolean hasFoulBlood(Entity entity){
+        if (!(entity instanceof LivingEntity)) return false;
+
+        if (entity.getType().is(SanguisTags.EntityTypes.FOUL_BLOOD)) return true;
+        return entity.hasData(HunterData.type()) && entity.getData(HunterData.type()).hasInjection();
     }
 
     public static boolean isInfected(Entity entity) {

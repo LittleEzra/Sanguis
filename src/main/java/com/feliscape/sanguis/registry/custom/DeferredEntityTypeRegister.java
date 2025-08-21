@@ -1,4 +1,4 @@
-package com.feliscape.sanguis.registry.util;
+package com.feliscape.sanguis.registry.custom;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;

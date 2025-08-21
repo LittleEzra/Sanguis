@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "/": {
+      "tag": "c:rods/wooden"
+    },
+    "G": {
+      "item": "sanguis:garlic"
+    },
+    "S": {
+      "item": "sanguis:steel_ingot"
+    }
+  },
+  "pattern": [
+    "SSG",
+    "S/G",
+    "S/ "
+  ],
+  "result": {
+    "count": 1,
+    "id": "sanguis:steel_cleaver"
+  }
+}

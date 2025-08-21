@@ -1,5 +1,6 @@
 package com.feliscape.sanguis.data.datagen.loot;
 
+import com.feliscape.sanguis.data.loot.SanguisQuestLootTables;
 import net.minecraft.advancements.critereon.DamageSourcePredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -18,7 +19,8 @@ public class SanguisLootTableProvider extends LootTableProvider {
         super(output, Collections.emptySet(), List.of(
                 new SubProviderEntry(SanguisBlockLootTableProvider::new, LootContextParamSets.BLOCK),
                 new SubProviderEntry(SanguisEntityLootTableProvider::new, LootContextParamSets.ENTITY),
-                new SubProviderEntry(SanguisChestLootTableProvider::new, LootContextParamSets.CHEST)
+                new SubProviderEntry(SanguisChestLootTableProvider::new, LootContextParamSets.CHEST),
+                new SubProviderEntry(SanguisQuestLootTableProvider::new, LootContextParamSets.EMPTY)
                 ),
                 registries);
     }

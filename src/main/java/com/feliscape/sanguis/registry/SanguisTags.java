@@ -18,6 +18,7 @@ public class SanguisTags {
     }
     public static class Items{
         public static final TagKey<Item> STAKES = create("stakes");
+        public static final TagKey<Item> CLEAVERS = create("cleavers");
         public static final TagKey<Item> QUARRELS = create("quarrels");
 
         private static TagKey<Item> create(String name){
@@ -29,7 +30,9 @@ public class SanguisTags {
         public static final TagKey<EntityType<?>> HUNTER = create("hunter");
         public static final TagKey<EntityType<?>> STAKE_IMMUNE = create("stake_immune");
         public static final TagKey<EntityType<?>> INFECTABLE = create("infectable");
-        public static final TagKey<EntityType<?>> BLOOD_DRINKABLE = create("blood_drinkable");
+        public static final TagKey<EntityType<?>> FOUL_BLOOD = create("foul_blood");
+
+        public static final TagKey<EntityType<?>> KILL_MOB_QUEST_VALID = create("kill_mob_quest_valid");
 
         private static TagKey<EntityType<?>> create(String name){
             return TagKey.create(Registries.ENTITY_TYPE, Sanguis.location(name));

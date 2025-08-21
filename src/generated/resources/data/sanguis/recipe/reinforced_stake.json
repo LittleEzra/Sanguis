@@ -8,13 +8,13 @@
     "/": {
       "tag": "c:rods/wooden"
     },
-    "I": {
-      "item": "minecraft:iron_ingot"
+    "S": {
+      "item": "sanguis:steel_ingot"
     }
   },
   "pattern": [
     "/",
-    "I",
+    "S",
     "#"
   ],
   "result": {

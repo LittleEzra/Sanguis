@@ -8,9 +8,13 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.registries.DeferredItem;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -31,9 +35,9 @@ public class SanguisRecipeProvider extends RecipeProvider {
                 .save(recipeOutput);
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, SanguisItems.REINFORCED_STAKE.get())
                 .pattern("/")
-                .pattern("I")
+                .pattern("S")
                 .pattern("#")
-                .define('I', Items.IRON_INGOT)
+                .define('S', SanguisItems.STEEL_INGOT)
                 .define('/', Tags.Items.RODS_WOODEN)
                 .define('#', ItemTags.PLANKS)
                 .unlockedBy("has_planks", has(ItemTags.PLANKS))
@@ -83,5 +87,46 @@ public class SanguisRecipeProvider extends RecipeProvider {
                 .define('G', SanguisItems.GARLIC_FLOWER)
                 .unlockedBy(getHasName(SanguisItems.GARLIC_FLOWER), has(SanguisItems.GARLIC_FLOWER))
                 .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, SanguisItems.STEEL_BLEND)
+                .requires(Items.IRON_INGOT, 2)
+                .requires(ItemTags.COALS)
+                .requires(SanguisItems.GARLIC)
+                .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
+                .save(recipeOutput);
+        ;
+        smelting(recipeOutput, SanguisItems.STEEL_INGOT, SanguisItems.STEEL_BLEND);
+        blasting(recipeOutput, SanguisItems.STEEL_INGOT, SanguisItems.STEEL_BLEND);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, SanguisItems.STEEL_CLEAVER)
+                .pattern("SSG")
+                .pattern("S/G")
+                .pattern("S/ ")
+                .define('/', Tags.Items.RODS_WOODEN)
+                .define('S', SanguisItems.STEEL_INGOT)
+                .define('G', SanguisItems.GARLIC)
+                .unlockedBy(getHasName(SanguisItems.STEEL_INGOT), has(SanguisItems.STEEL_INGOT))
+                .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, SanguisItems.DIAMOND_CLEAVER)
+                .pattern("SDG")
+                .pattern("D/G")
+                .pattern("S/ ")
+                .define('/', Tags.Items.RODS_WOODEN)
+                .define('S', SanguisItems.STEEL_INGOT)
+                .define('D', Items.DIAMOND)
+                .define('G', SanguisItems.GARLIC)
+                .unlockedBy(getHasName(Items.DIAMOND), has(Items.DIAMOND))
+                .save(recipeOutput);
+    }
+
+    private static void smelting(RecipeOutput recipeOutput, DeferredItem<Item> result, DeferredItem<Item> ingredient) {
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(ingredient), RecipeCategory.BUILDING_BLOCKS, result, 0.1F, 200)
+                .unlockedBy(getHasName(ingredient), has(ingredient))
+                .save(recipeOutput, getSmeltingRecipeName(result));
+    }
+    private static void blasting(RecipeOutput recipeOutput, DeferredItem<Item> result, DeferredItem<Item> ingredient) {
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(ingredient), RecipeCategory.BUILDING_BLOCKS, result, 0.1F, 100)
+                .unlockedBy(getHasName(ingredient), has(ingredient))
+                .save(recipeOutput, getBlastingRecipeName(result));
     }
 }

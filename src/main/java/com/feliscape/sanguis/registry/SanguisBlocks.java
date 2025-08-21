@@ -3,6 +3,7 @@ package com.feliscape.sanguis.registry;
 import com.feliscape.sanguis.Sanguis;
 import com.feliscape.sanguis.content.block.GarlicCropBlock;
 import com.feliscape.sanguis.content.block.GarlicStringBlock;
+import com.feliscape.sanguis.content.block.QuestBoardBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -23,6 +24,8 @@ import java.util.function.Function;
 public class SanguisBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(Sanguis.MOD_ID);
 
+    public static final DeferredBlock<QuestBoardBlock> QUEST_BOARD = registerBlockWithItem("quest_board",
+            p -> new QuestBoardBlock(p.instabreak()));
     public static final DeferredBlock<GarlicCropBlock> GARLIC = BLOCKS.registerBlock("garlic",
             p -> new GarlicCropBlock(p
                     .mapColor(MapColor.PLANT)

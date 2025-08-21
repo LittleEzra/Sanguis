@@ -1,4 +1,4 @@
-// 1.21.1	2025-08-19T12:26:52.3704552	Item Models: sanguis
+// 1.21.1	2025-08-20T09:49:41.7790118	Item Models: sanguis
 3144ff9fc8c93ffc6bff4ef8458a50e4fe75990e assets/sanguis/models/item/acid_injection.json
 7bd89e4fb156ffdffd95790904ca2fb26d0e6026 assets/sanguis/models/item/activated_vampire_blood.json
 faf923147d06eb94886db10d5fd6057e5cf90353 assets/sanguis/models/item/bloody_fang.json
@@ -15,7 +15,10 @@ b3852d83fae718029b84024002fe380c5c012560 assets/sanguis/models/item/garlic_injec
 8fba4dd13906fc27b1e464b5f1a6519cecd13c54 assets/sanguis/models/item/garlic_string.json
 1c20a16de0ac47eac32e1a427e8eb4da96bcec29 assets/sanguis/models/item/golden_quarrel.json
 4efbd72ac27815190bed4eb457bf6792b16ac94c assets/sanguis/models/item/reinforced_stake.json
+57408942e66a755d8235048a20f79edd46ee3f4b assets/sanguis/models/item/steel_blend.json
+24a165a99c3cad89ebbffb0c9adf0e3fa7e43c71 assets/sanguis/models/item/steel_ingot.json
 884f656f703c3fa1b385dff260db2daf4536ad45 assets/sanguis/models/item/syringe.json
 3074ea05df62ea93a70fd01523e59dfbe4e0b87c assets/sanguis/models/item/vampire_blood.json
+63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/sanguis/models/item/vampire_hunter_spawn_egg.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/sanguis/models/item/vampire_spawn_egg.json
 26b21cd51565002f8c665f82adb29aa3b523e9b9 assets/sanguis/models/item/wooden_stake.json

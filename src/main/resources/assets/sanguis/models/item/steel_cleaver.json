@@ -1,0 +1,18 @@
+{
+  "parent": "item/handheld",
+  "loader": "neoforge:separate_transforms",
+  "base": {
+    "parent": "sanguis:item/steel_cleaver_in_hand"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "sanguis:item/steel_cleaver_flat"
+    },
+    "ground": {
+      "parent": "sanguis:item/steel_cleaver_flat"
+    },
+    "fixed": {
+      "parent": "sanguis:item/steel_cleaver_flat"
+    }
+  }
+}

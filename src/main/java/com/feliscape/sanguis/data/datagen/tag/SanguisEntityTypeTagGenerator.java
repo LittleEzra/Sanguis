@@ -22,18 +22,24 @@ public class SanguisEntityTypeTagGenerator extends EntityTypeTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
+        this.tag(EntityTypeTags.UNDEAD)
+                .addTag(SanguisTags.EntityTypes.VAMPIRIC)
+        ;
+
         this.tag(SanguisTags.EntityTypes.VAMPIRIC)
                 .add(SanguisEntityTypes.VAMPIRE.get());
 
-        this.tag(SanguisTags.EntityTypes.BLOOD_DRINKABLE)
-                .add(
-                        EntityType.VILLAGER,
-                        EntityType.SHEEP,
-                        EntityType.COW,
-                        EntityType.CHICKEN
-                );
+        this.tag(SanguisTags.EntityTypes.FOUL_BLOOD)
+                .add(SanguisEntityTypes.VAMPIRE_HUNTER.get());
 
         this.tag(SanguisTags.EntityTypes.INFECTABLE)
                 .add(EntityType.PLAYER);
+
+        this.tag(SanguisTags.EntityTypes.KILL_MOB_QUEST_VALID)
+                .add(SanguisEntityTypes.VAMPIRE.get())
+                .add(EntityType.SKELETON)
+                .add(EntityType.ZOMBIE)
+                .add(EntityType.WITCH)
+        ;
     }
 }

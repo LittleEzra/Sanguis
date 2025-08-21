@@ -1,11 +1,17 @@
 package com.feliscape.sanguis.content.attachment;
 
+import com.feliscape.sanguis.data.damage.SanguisDamageSources;
 import com.feliscape.sanguis.registry.SanguisDataComponents;
+import com.feliscape.sanguis.registry.SanguisTags;
+import com.feliscape.sanguis.util.HunterUtil;
+import com.feliscape.sanguis.util.VampireUtil;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.Difficulty;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodConstants;
@@ -46,13 +52,30 @@ public class VampireBloodData {
     }
 
     public void drink(LivingEntity holder, LivingEntity target){
-        if (EntityBloodData.canHaveBlood(target) && drinkDelay <= 0){
+        if (drinkDelay > 0) return;
+
+        if (VampireUtil.hasFoulBlood(target)){
+            target.hurt(SanguisDamageSources.draining(target.level(), target),
+                    2.0F);
+            target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 1));
+            holder.addEffect(new MobEffectInstance(MobEffects.POISON, 200, 2));
+        }
+        else if (target instanceof Player player){
+            if (!VampireUtil.isVampire(player)){
+                target.hurt(SanguisDamageSources.draining(target.level(), target),
+                        2.0F);
+                increaseBlood(1, holder, true);
+                this.saturation = Math.min(this.saturation + 1.0F, blood);
+                holder.syncData(VampireData.type());
+            }
+        }
+        else if (EntityBloodData.canHaveBlood(target)){
             var data = target.getData(EntityBloodData.type());
             increaseBlood(data.drain(), holder, true);
             this.saturation = Math.min(this.saturation + data.getSaturation(), blood);
-            this.drinkDelay = 18;
             holder.syncData(VampireData.type());
         }
+        this.drinkDelay = 14;
     }
 
     public void drink(LivingEntity holder, int amount, float saturation){

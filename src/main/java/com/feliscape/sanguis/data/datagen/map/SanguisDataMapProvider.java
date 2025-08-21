@@ -34,8 +34,16 @@ public class SanguisDataMapProvider extends DataMapProvider {
                         new EntityBloodContent(3, 0.75f), false)
                 .add(EntityType.COW.builtInRegistryHolder(),
                         new EntityBloodContent(4, 0.4f), false)
+                .add(EntityType.MOOSHROOM.builtInRegistryHolder(),
+                        new EntityBloodContent(4, 0.4f), false)
                 .add(EntityType.CHICKEN.builtInRegistryHolder(),
                         new EntityBloodContent(1, 0.1f), false)
+                .add(EntityType.HORSE.builtInRegistryHolder(),
+                        new EntityBloodContent(4, 0.3f), false)
+                .add(EntityType.DONKEY.builtInRegistryHolder(),
+                        new EntityBloodContent(4, 0.3f), false)
+                .add(EntityType.MULE.builtInRegistryHolder(),
+                        new EntityBloodContent(4, 0.3f), false)
         ;
     }
 }

@@ -1,6 +1,7 @@
 package com.feliscape.sanguis.client;
 
 import com.feliscape.sanguis.Sanguis;
+import com.feliscape.sanguis.SanguisClient;
 import com.feliscape.sanguis.SanguisServerConfig;
 import com.feliscape.sanguis.client.hud.BloodLevelHudLayer;
 import com.feliscape.sanguis.client.hud.DrainBarHudLayer;
@@ -9,8 +10,10 @@ import com.feliscape.sanguis.client.render.entity.GoldenQuarrelRenderer;
 import com.feliscape.sanguis.client.render.entity.VampireHunterRenderer;
 import com.feliscape.sanguis.client.render.entity.VampireRenderer;
 import com.feliscape.sanguis.networking.payload.DrainBloodPayload;
+import com.feliscape.sanguis.networking.payload.OpenActiveQuestsPayload;
 import com.feliscape.sanguis.registry.SanguisEntityTypes;
 import com.feliscape.sanguis.registry.SanguisKeyMappings;
+import com.feliscape.sanguis.util.HunterUtil;
 import com.feliscape.sanguis.util.VampireUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
@@ -27,6 +30,11 @@ import net.neoforged.neoforge.network.PacketDistributor;
 @EventBusSubscriber(modid = Sanguis.MOD_ID, value = Dist.CLIENT)
 public class ClientEvents {
 
+    @SubscribeEvent
+    public static void registerClientReloadListeners(RegisterClientReloadListenersEvent event)
+    {
+        new SanguisClient.ReloadListener(event);
+    }
     @SubscribeEvent
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event)
     {
@@ -59,14 +67,23 @@ public class ClientEvents {
         if (minecraft.player == null) return;
 
         LocalPlayer player = minecraft.player;
-        if (SanguisKeyMappings.DRAIN_BLOOD.get().consumeClick()){
+        boolean triggered = false;
+        while (SanguisKeyMappings.DRAIN_BLOOD.get().consumeClick()){
+            if (triggered) continue; // We want to clear the entire click "stack" but only trigger the drinking once per tick
+
             if (minecraft.hitResult != null && minecraft.hitResult.getType() == HitResult.Type.ENTITY){
                 EntityHitResult hitResult = ((EntityHitResult) minecraft.hitResult);
                 Entity target = hitResult.getEntity();
                 if (player.distanceTo(target) <= SanguisServerConfig.CONFIG.vampireDrainDistance.getAsDouble()){
                     PacketDistributor.sendToServer(new DrainBloodPayload(target.getId()));
+                    triggered = true;
                 }
             }
+        }
+
+        while(SanguisKeyMappings.OPEN_ACTIVE_QUESTS.get().consumeClick()){
+            if (HunterUtil.isHunter(player))
+                PacketDistributor.sendToServer(new OpenActiveQuestsPayload());
         }
     }
 }

@@ -40,6 +40,7 @@ public class SanguisBlockLootTableProvider extends BlockLootSubProvider {
     protected void generate() {
         HolderLookup.RegistryLookup<Enchantment> enchantmentLookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
 
+        this.dropSelf(SanguisBlocks.QUEST_BOARD.get());
         this.dropSelf(SanguisBlocks.GARLIC_STRING.get());
 
 

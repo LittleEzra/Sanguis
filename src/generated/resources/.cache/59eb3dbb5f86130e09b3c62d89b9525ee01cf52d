@@ -1,10 +1,14 @@
-// 1.21.1	2025-08-19T16:03:58.4161081	Loot Tables
+// 1.21.1	2025-08-21T10:15:51.0684665	Loot Tables
 9c0c27b45237d3fd7b25649b7fda48ce152304bc data/sanguis/loot_table/blocks/garlic.json
 6cc74d41bd4edb77b3f744d01671634fdfcef9d0 data/sanguis/loot_table/blocks/garlic_string.json
+b593d6a738f97c3c054638a2db21cc543fbaf9e7 data/sanguis/loot_table/blocks/quest_board.json
 50374d0d15e37745afc3dae41ac7c746aa3a2e97 data/sanguis/loot_table/chests/hunter_camp/food.json
 0ff646d716184aad6453d2a4c5b6bbe761df219c data/sanguis/loot_table/chests/hunter_camp/shrine.json
 c348bc8016ba96e41b4018f5e57de347915138e5 data/sanguis/loot_table/chests/hunter_camp/storage.json
 dbd604b7d870f9148adb311f983ee3936cb3d98a data/sanguis/loot_table/chests/hunter_camp/tent.json
 3d1fdfbf2d9eec7e97ba3a3d1a373e4a5413ab77 data/sanguis/loot_table/chests/hunter_camp/tower.json
 05e61d0a1a185936ed47537ba43cc64e884cd8ac data/sanguis/loot_table/entities/vampire.json
+abef92a4bf8cb49dffbf49ec4caae9755fa5b354 data/sanguis/loot_table/entities/vampire_hunter.json
 5902d330c94d805e1e7f81da96b369f2fd2df561 data/sanguis/loot_table/glm/chests/village.json
+97bbee1db9125fd54c1896f83c7373bc5fa2b375 data/sanguis/loot_table/quest/item_requirement/hunt_vampire.json
+97697cd827cae2288926dd4494ed11764b2b463d data/sanguis/loot_table/quest/reward/basic.json

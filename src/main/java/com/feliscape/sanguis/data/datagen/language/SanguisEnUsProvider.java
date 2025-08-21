@@ -23,14 +23,23 @@ public class SanguisEnUsProvider extends SanguisLanguageProvider{
         this.addItem(SanguisItems.VAMPIRE_BLOOD, "Vampire Blood");
         this.addItem(SanguisItems.BLOOD_BOTTLE, "Blood Bottle");
 
+        this.addItem(SanguisItems.STEEL_BLEND, "Steel Blend");
+        this.addItem(SanguisItems.STEEL_INGOT, "Steel Ingot");
+
         this.addItem(SanguisItems.SYRINGE, "Syringe");
         this.addItem(SanguisItems.GARLIC_INJECTION, "Garlic Injection");
         this.addItemTooltip(SanguisItems.GARLIC_INJECTION, "Cures or immunizes against vampirism");
         this.addItem(SanguisItems.ACID_INJECTION, "Acid Injection");
         this.addItemTooltip(SanguisItems.ACID_INJECTION, "Destroys the garlic within a hunter's blood");
         this.add(SanguisItems.ACID_INJECTION.get().getDescriptionId() + ".warning", "Warning: You will likely die after injecting this");
+
         this.addItem(SanguisItems.WOODEN_STAKE, "Wooden Stake");
         this.addItem(SanguisItems.REINFORCED_STAKE, "Reinforced Stake");
+
+        this.addItem(SanguisItems.STEEL_CLEAVER, "Steel Cleaver");
+        this.addItem(SanguisItems.DIAMOND_CLEAVER, "Diamond Cleaver");
+        this.add("item.sanguis.cleaver.tooltip", "%1$s damage against Vampires");
+
         this.addItem(SanguisItems.GOLDEN_QUARREL, "Golden Quarrel");
 
         this.addItem(SanguisItems.GARLIC, "Garlic");
@@ -39,6 +48,7 @@ public class SanguisEnUsProvider extends SanguisLanguageProvider{
         this.addItem(SanguisItems.VAMPIRE_SPAWN_EGG, "Vampire Spawn Egg");
         this.addItem(SanguisItems.VAMPIRE_HUNTER_SPAWN_EGG, "Vampire Hunter Spawn Egg");
 
+        this.addBlock(SanguisBlocks.QUEST_BOARD, "Quest Board");
         this.addBlock(SanguisBlocks.GARLIC, "Garlic");
         this.addBlock(SanguisBlocks.GARLIC_STRING, "Garlic String");
 
@@ -57,17 +67,31 @@ public class SanguisEnUsProvider extends SanguisLanguageProvider{
                 "Back to Mortal Blood",
                 "Revert your transformation by drinking harmful Garlic Solution");
         this.addAdvancement(SanguisAdvancements.HUNTER_INJECT,
-                "Toss a Coin",
+                "Vaccinated",
                 "Become a Vampire Hunter by immunizing yourself against vampirism");
 
         this.addDeathMessage(SanguisDamageTypes.DRAINING, "%1$s was drained");
         this.addDeathMessagePlayer(SanguisDamageTypes.DRAINING, "%1$s was drained by %2$s");
+
+        this.add("quest.sanguis.fetch_items.title", "Fetch Items");
+        this.add("quest.sanguis.fetch_items.name", "Collect %1$s");
+        this.add("quest.sanguis.kill_mobs.title", "Kill Mobs");
+        this.add("quest.sanguis.kill_mobs.name", "Kill %1$s");
 
         this.add("itemGroup.sanguis.base", "Sanguis");
 
         this.add("sanguis.cant_eat_message", "You cannot eat this");
 
         this.addKeyMapping(SanguisKeyMappings.DRAIN_BLOOD, "Drain Blood");
+        this.addKeyMapping(SanguisKeyMappings.OPEN_ACTIVE_QUESTS, "Open Active Quests");
+
+        this.add("container.sanguis.active_quests", "Active Quests");
+        this.add("container.sanguis.active_quests.cancel", "Cancel");
+        this.add("container.sanguis.active_quests.complete", "Complete");
+
+        this.add("commands.sanguis.quest.addrandom.failure.invalid_type", "Quest type \"%1$s\" doesn't exist");
+        this.add("commands.sanguis.quest.addrandom.success.single", "Added quest of type \"%1$s\" to %2$s");
+        this.add("commands.sanguis.quest.addrandom.success.multiple", "Added quest of type \"%1$s\" to %2$s players");
 
         this.addConfigSection("vampire_form", "Vampire Form");
         this.addConfigValue("client", SanguisClientConfig.CONFIG.vampireNightVisionBrightness, "Night Vision Brightness");

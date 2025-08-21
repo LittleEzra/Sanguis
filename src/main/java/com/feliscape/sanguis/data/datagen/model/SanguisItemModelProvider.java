@@ -30,11 +30,16 @@ public class SanguisItemModelProvider extends ItemModelProvider {
         simpleItem(SanguisItems.ACTIVATED_VAMPIRE_BLOOD);
         bloodBottleItem(SanguisItems.BLOOD_BOTTLE);
 
+        simpleItem(SanguisItems.STEEL_BLEND);
+        simpleItem(SanguisItems.STEEL_INGOT);
+
         syringeItem(SanguisItems.SYRINGE);
         syringeItem(SanguisItems.GARLIC_INJECTION);
         syringeItem(SanguisItems.ACID_INJECTION);
+
         handheldItem(SanguisItems.WOODEN_STAKE);
         handheldItem(SanguisItems.REINFORCED_STAKE);
+
         simpleItem(SanguisItems.GOLDEN_QUARREL);
 
         simpleItem(SanguisItems.GARLIC);
