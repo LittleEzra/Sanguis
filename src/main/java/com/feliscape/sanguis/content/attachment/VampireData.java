@@ -1,29 +1,55 @@
 package com.feliscape.sanguis.content.attachment;
 
+import com.feliscape.sanguis.Sanguis;
 import com.feliscape.sanguis.registry.SanguisCriteriaTriggers;
 import com.feliscape.sanguis.registry.SanguisDataAttachmentTypes;
+import com.feliscape.sanguis.registry.SanguisSoundEvents;
 import com.feliscape.sanguis.registry.SanguisTags;
+import com.feliscape.sanguis.util.VampireUtil;
+import com.google.common.collect.ImmutableMultimap;
+import com.google.common.collect.Multimap;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ambient.Bat;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.attachment.AttachmentSyncHandler;
 import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.attachment.IAttachmentHolder;
+import net.neoforged.neoforge.common.NeoForgeMod;
 import org.jetbrains.annotations.Nullable;
 
 public class VampireData extends DataAttachment {
+    private LivingEntity holder;
     private int infectionTime = -1;
     private boolean isVampire;
-    private LivingEntity holder;
+
+    private boolean wasBat;
+    private boolean isBat;
+    @Nullable
+    private Bat bat;
+    private static final Multimap<Holder<Attribute>, AttributeModifier> BAT_ATTRIBUTES = ImmutableMultimap.of(
+            NeoForgeMod.CREATIVE_FLIGHT, new AttributeModifier(Sanguis.location("vampire.bat_form.flight"),
+                    1.0D, AttributeModifier.Operation.ADD_VALUE),
+            Attributes.ATTACK_DAMAGE, new AttributeModifier(Sanguis.location("vampire.bat_form.damage"),
+                    -1.0D, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+            Attributes.MAX_HEALTH, new AttributeModifier(Sanguis.location("vampire.bat_form.health"),
+                    -0.5D, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    );
 
     private VampireBloodData bloodData = new VampireBloodData();
 
@@ -32,11 +58,18 @@ public class VampireData extends DataAttachment {
             VampireData::getInfectionTime,
             ByteBufCodecs.BOOL,
             VampireData::isVampire,
+            ByteBufCodecs.BOOL,
+            VampireData::isBat,
             VampireBloodData.FULL_STREAM_CODEC,
             VampireData::getBloodData,
             VampireData::new
     );
 
+    public VampireData(LivingEntity holder){
+        this.setHolder(holder);
+        if (holder.level().isClientSide() && this.bat == null)
+            this.bat = EntityType.BAT.create(holder.level());
+    }
     public VampireData(){
 
     }
@@ -50,9 +83,10 @@ public class VampireData extends DataAttachment {
         this.isVampire = isVampire;
     }
 
-    public VampireData(int infectionTime, boolean isVampire, VampireBloodData bloodData){
+    public VampireData(int infectionTime, boolean isVampire, boolean isBat, VampireBloodData bloodData){
         this.infectionTime = infectionTime;
         this.isVampire = isVampire;
+        this.isBat = isBat;
         this.bloodData = bloodData;
     }
 
@@ -60,6 +94,7 @@ public class VampireData extends DataAttachment {
     protected void save(CompoundTag tag) {
         tag.putInt("infectionTime", infectionTime);
         tag.putBoolean("isVampire", isVampire);
+        tag.putBoolean("isBat", isBat);
         tag.put("bloodData", VampireBloodData.save(new CompoundTag(), this.bloodData));
     }
 
@@ -67,13 +102,88 @@ public class VampireData extends DataAttachment {
     protected void load(CompoundTag tag) {
         this.infectionTime = tag.getInt("infectionTime");
         this.isVampire = tag.getBoolean("isVampire");
+        this.isBat = tag.getBoolean("isBat");
         this.bloodData = VampireBloodData.load(tag.getCompound("bloodData"));
+    }
+
+    public void toggleBatForm(){
+        if (!this.canTransform()) return;
+        this.isBat = !this.isBat;
+        updateBatAttributes();
+
+        playSoundServer(isBat() ? SanguisSoundEvents.BAT_TRANSFORM.get() : SanguisSoundEvents.VAMPIRE_TRANSFORM.get());
+        this.holder.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 20));
+
+        this.holder.syncData(type());
+        this.holder.refreshDimensions();
+    }
+    public void disableBatForm(){
+        if (!this.isBat) return;
+
+        this.isBat = false;
+        updateBatAttributes();
+
+        playSoundServer(SanguisSoundEvents.VAMPIRE_TRANSFORM.get());
+        this.holder.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 20));
+
+        this.holder.syncData(type());
+        this.holder.refreshDimensions();
+    }
+
+    private void updateBatAttributes(){
+        if (this.isBat()) {
+            this.holder.getAttributes().addTransientAttributeModifiers(BAT_ATTRIBUTES);
+        }
+        else {
+            this.holder.getAttributes().removeAttributeModifiers(BAT_ATTRIBUTES);
+        }
+
+        /*var flightAttribute = this.holder.getAttribute(NeoForgeMod.CREATIVE_FLIGHT);
+        var damageAttribute = this.holder.getAttribute(Attributes.ATTACK_DAMAGE);
+
+        if (this.isBat()) {
+            if (flightAttribute != null && !flightAttribute.hasModifier(FLY_MODIFIER.id())) flightAttribute.addTransientModifier(FLY_MODIFIER);
+            if (damageAttribute != null && !damageAttribute.hasModifier(BAT_DAMAGE_MODIFIER.id())) damageAttribute.addPermanentModifier(BAT_DAMAGE_MODIFIER);
+        } else {
+            if (flightAttribute != null && flightAttribute.hasModifier(FLY_MODIFIER.id())) flightAttribute.removeModifier(FLY_MODIFIER);
+            if (damageAttribute != null && damageAttribute.hasModifier(BAT_DAMAGE_MODIFIER.id())) damageAttribute.removeModifier(BAT_DAMAGE_MODIFIER);
+        }*/
+    }
+
+    private boolean canTransform() {
+        return !VampireUtil.shouldBurnInSunlight(this.holder) && this.holder.getHealth() > 2.0F;
+    }
+
+    public Bat getBat() {
+        return bat;
+    }
+    public void clientTick(){
+        if (!isVampire || holder == null || !holder.level().isClientSide()) return;
+
+        if (this.bat != null){
+            this.bat.tick();
+            this.bat.tickCount++;
+            this.setBatRotation(false);
+        }
+    }
+
+    public void setBatRotation(boolean includeX) {
+        if (this.bat == null) return;
+
+        this.bat.setYHeadRot(this.holder.getYHeadRot());
+        this.bat.setYRot(this.holder.getYRot());
+        this.bat.setYBodyRot(this.holder.getYRot());
+        this.bat.setXRot(includeX ? this.holder.getXRot() : 0.0F);
     }
 
     public void tick(){
         if (infectionTime > 0){
             infectionTime--;
             checkVampireStatus();
+        }
+
+        if (wasBat != isBat){
+            this.holder.refreshDimensions();
         }
 
         if (isVampire){
@@ -95,7 +205,16 @@ public class VampireData extends DataAttachment {
                     }
                 }
             }
+            if (this.isBat() && this.holder instanceof Player player){
+                if (bloodData.getBlood() <= 4){
+                    this.disableBatForm();
+                } else{
+                    player.getAbilities().flying = true;
+                }
+            }
         }
+
+        wasBat = isBat;
     }
 
     private boolean canBurn(LivingEntity entity) {
@@ -122,18 +241,42 @@ public class VampireData extends DataAttachment {
             }
         } else if (infectionTime < 0){
             isVampire = false;
-            if (wasVampire && this.holder instanceof ServerPlayer serverPlayer){
-                SanguisCriteriaTriggers.VAMPIRE_CURE.get().trigger(serverPlayer);
+            if (wasVampire){
+                revertFromVampire();
             }
         }
+        if (wasVampire && !isVampire)
+            this.disableBatForm();
     }
 
     private void transformToVampire(){
+        this.disableBatForm();
+        this.holder.refreshDimensions();
         bloodData.setBlood(bloodData.maxBlood());
         bloodData.setDrinkDelay(0);
         bloodData.setExhaustion(0.0F);
+        this.holder.playSound(SanguisSoundEvents.VAMPIRE_TRANSFORM.get());
         if (this.holder instanceof ServerPlayer serverPlayer){
             SanguisCriteriaTriggers.VAMPIRE_TRANSFORMATION.get().trigger(serverPlayer);
+        }
+    }
+
+    private void playSoundServer(SoundEvent soundEvent){
+        this.holder.level().playSound(null, this.holder.getX(), this.holder.getY(), this.holder.getZ(), soundEvent, this.holder.getSoundSource(), 1.0F, 1.0F);
+    }
+    private void playSoundServer(SoundEvent soundEvent, float volume, float pitch){
+        this.holder.level().playSound(null, this.holder.getX(), this.holder.getY(), this.holder.getZ(), soundEvent, this.holder.getSoundSource(), volume, pitch);
+    }
+
+    private void revertFromVampire(){
+        this.disableBatForm();
+        this.holder.refreshDimensions();
+        if (this.holder instanceof Player player){
+            player.getFoodData().setFoodLevel(2);
+        }
+
+        if (this.holder instanceof ServerPlayer serverPlayer){
+            SanguisCriteriaTriggers.VAMPIRE_CURE.get().trigger(serverPlayer);
         }
     }
 
@@ -143,6 +286,9 @@ public class VampireData extends DataAttachment {
 
     public boolean isVampire(){
         return isVampire && infectionTime >= 0;
+    }
+    public boolean isBat(){
+        return isVampire && isBat;
     }
 
     /**
@@ -215,6 +361,11 @@ public class VampireData extends DataAttachment {
             throw new IllegalArgumentException("Trying to set VampireData holder to non-LivingEntity");
         }
         this.holder = living;
+        if (living.level().isClientSide() && this.bat == null)
+            this.bat = EntityType.BAT.create(living.level());
+    }
+    protected void setHolder(LivingEntity living){
+        this.holder = living;
     }
 
     public static VampireData copyDeathPersistent(VampireData oldData, IAttachmentHolder holder, HolderLookup.Provider provider){
@@ -233,9 +384,7 @@ public class VampireData extends DataAttachment {
             throw new IllegalArgumentException("Trying to attach VampireData to non-LivingEntity");
         }
 
-        VampireData data = new VampireData();
-        data.holder = living;
-        return data;
+        return new VampireData(living);
     }
 
     public VampireData update(IAttachmentHolder holder, RegistryFriendlyByteBuf buffer){
@@ -245,6 +394,7 @@ public class VampireData extends DataAttachment {
 
         this.infectionTime = buffer.readInt();
         this.isVampire = buffer.readBoolean();
+        this.isBat = buffer.readBoolean();
         this.bloodData.update(buffer);
         this.setHolder(living);
         return this;
@@ -259,6 +409,7 @@ public class VampireData extends DataAttachment {
             } else{
                 buf.writeInt(attachment.infectionTime);
                 buf.writeBoolean(attachment.isVampire);
+                buf.writeBoolean(attachment.isBat);
                 VampireBloodData.FULL_STREAM_CODEC.encode(buf, attachment.bloodData);
             }
         }

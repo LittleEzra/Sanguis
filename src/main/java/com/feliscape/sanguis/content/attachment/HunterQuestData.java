@@ -1,6 +1,7 @@
 package com.feliscape.sanguis.content.attachment;
 
 import com.feliscape.sanguis.content.quest.HunterQuest;
+import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtOps;
@@ -8,12 +9,14 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import org.checkerframework.checker.units.qual.A;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.List;
 
 public class HunterQuestData {
@@ -57,12 +60,18 @@ public class HunterQuestData {
             return;
         }
 
-        if (this.player.tickCount % 5 == 0){
-            for (HunterQuest quest : activeQuests){
-                quest.updateIsCompleted(player);
+        var iterator = activeQuests.iterator();
+        try{
+            while (iterator.hasNext()){
+                var quest = iterator.next();
+                quest.tick(player);
+                if (quest.getDuration() == 0){
+                    iterator.remove();
+                }
             }
-            this.player.syncData(HunterData.type());
+        } catch (ConcurrentModificationException ignored){
         }
+        this.player.syncData(HunterData.type());
     }
 
     public List<HunterQuest> getActiveQuests() {

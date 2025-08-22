@@ -4,6 +4,7 @@ import com.feliscape.sanguis.client.render.quest.ItemQuestRenderer;
 import com.feliscape.sanguis.client.render.quest.KillMobsQuestRenderer;
 import com.feliscape.sanguis.client.render.quest.QuestRenderDispatcher;
 import com.feliscape.sanguis.client.render.quest.QuestRenderers;
+import com.feliscape.sanguis.content.component.namegen.EnUsQuestNameGenerator;
 import com.feliscape.sanguis.registry.SanguisQuestTypes;
 import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
@@ -19,6 +20,7 @@ import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 @Mod(value = Sanguis.MOD_ID, dist = Dist.CLIENT)
 @EventBusSubscriber(modid = Sanguis.MOD_ID, value = Dist.CLIENT)
 public class SanguisClient {
+
     public SanguisClient(ModContainer container) {
         container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
     }

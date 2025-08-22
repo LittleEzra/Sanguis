@@ -1,6 +1,7 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube_column",
   "textures": {
-    "all": "sanguis:block/quest_board"
+    "end": "minecraft:block/stripped_oak_log_top",
+    "side": "sanguis:block/quest_board_side"
   }
 }

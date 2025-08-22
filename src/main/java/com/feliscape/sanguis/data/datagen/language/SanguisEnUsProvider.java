@@ -4,10 +4,7 @@ import com.feliscape.sanguis.SanguisClientConfig;
 import com.feliscape.sanguis.SanguisServerConfig;
 import com.feliscape.sanguis.data.damage.SanguisDamageTypes;
 import com.feliscape.sanguis.data.datagen.advancement.SanguisAdvancements;
-import com.feliscape.sanguis.registry.SanguisBlocks;
-import com.feliscape.sanguis.registry.SanguisEntityTypes;
-import com.feliscape.sanguis.registry.SanguisItems;
-import com.feliscape.sanguis.registry.SanguisKeyMappings;
+import com.feliscape.sanguis.registry.*;
 import net.minecraft.data.PackOutput;
 
 public class SanguisEnUsProvider extends SanguisLanguageProvider{
@@ -55,6 +52,10 @@ public class SanguisEnUsProvider extends SanguisLanguageProvider{
         this.addEntityType(SanguisEntityTypes.VAMPIRE, "Vampire");
         this.addEntityType(SanguisEntityTypes.VAMPIRE_HUNTER, "Vampire Hunter");
 
+        this.addSubtitle(SanguisSoundEvents.BAT_TRANSFORM, "Player transforms into bat");
+        this.addSubtitle(SanguisSoundEvents.VAMPIRE_TRANSFORM, "Player transforms into vampire");
+        this.addSubtitle(SanguisSoundEvents.VAMPIRE_DRINK, "Vampire drinks");
+
         //noinspection SpellCheckingInspection
         this.addAdvancement(SanguisAdvancements.ROOT,
                 "Sanguis",
@@ -73,21 +74,22 @@ public class SanguisEnUsProvider extends SanguisLanguageProvider{
         this.addDeathMessage(SanguisDamageTypes.DRAINING, "%1$s was drained");
         this.addDeathMessagePlayer(SanguisDamageTypes.DRAINING, "%1$s was drained by %2$s");
 
-        this.add("quest.sanguis.fetch_items.title", "Fetch Items");
-        this.add("quest.sanguis.fetch_items.name", "Collect %1$s");
-        this.add("quest.sanguis.kill_mobs.title", "Kill Mobs");
-        this.add("quest.sanguis.kill_mobs.name", "Kill %1$s");
+        this.add("quest.sanguis.fetch_items.name", "Fetch Items");
+        this.add("quest.sanguis.fetch_items.title", "Collect %1$s");
+        this.add("quest.sanguis.kill_mobs.name", "Kill Mobs");
+        this.add("quest.sanguis.kill_mobs.title", "Defeat %1$s");
 
         this.add("itemGroup.sanguis.base", "Sanguis");
 
         this.add("sanguis.cant_eat_message", "You cannot eat this");
 
         this.addKeyMapping(SanguisKeyMappings.DRAIN_BLOOD, "Drain Blood");
+        this.addKeyMapping(SanguisKeyMappings.BAT_TRANSFORMATION, "Bat Transformation");
         this.addKeyMapping(SanguisKeyMappings.OPEN_ACTIVE_QUESTS, "Open Active Quests");
 
         this.add("container.sanguis.active_quests", "Active Quests");
-        this.add("container.sanguis.active_quests.cancel", "Cancel");
-        this.add("container.sanguis.active_quests.complete", "Complete");
+        this.add("container.sanguis.active_quests.cancel", "Cancel Quest");
+        this.add("container.sanguis.active_quests.complete", "Complete Quest");
 
         this.add("commands.sanguis.quest.addrandom.failure.invalid_type", "Quest type \"%1$s\" doesn't exist");
         this.add("commands.sanguis.quest.addrandom.success.single", "Added quest of type \"%1$s\" to %2$s");

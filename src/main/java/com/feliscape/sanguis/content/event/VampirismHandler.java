@@ -2,6 +2,7 @@ package com.feliscape.sanguis.content.event;
 
 import com.feliscape.sanguis.Sanguis;
 import com.feliscape.sanguis.content.attachment.EntityBloodData;
+import com.feliscape.sanguis.content.attachment.HunterData;
 import com.feliscape.sanguis.content.attachment.VampireData;
 import com.feliscape.sanguis.util.VampireUtil;
 import net.minecraft.network.chat.Component;
@@ -25,10 +26,14 @@ public class VampirismHandler {
                 EntityBloodData data = living.getData(EntityBloodData.type());
                 data.tick();
             }
+            if (living.hasData(HunterData.type())) {
+                HunterData data = living.getData(HunterData.type());
+                data.tick();
+            }
         }
     }
     @SubscribeEvent
-    public static void onEntityTick(LivingEntityUseItemEvent.Start event){
+    public static void entityUseItem(LivingEntityUseItemEvent.Start event){
         LivingEntity entity = event.getEntity();
         if (VampireUtil.isVampire(entity)){
             if (event.getItem().getFoodProperties(entity) != null){

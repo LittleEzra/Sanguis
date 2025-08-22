@@ -24,12 +24,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class KillMobsQuest extends HunterQuest {
-    public static final MapCodec<KillMobsQuest> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
-        Codec.unboundedMap(BuiltInRegistries.ENTITY_TYPE.byNameCodec(), Codec.INT).fieldOf("required_kills").forGetter(KillMobsQuest::getRequiredKills),
-        Codec.unboundedMap(BuiltInRegistries.ENTITY_TYPE.byNameCodec(), Codec.INT).fieldOf("kills").forGetter(KillMobsQuest::getKills)
+    public static final MapCodec<KillMobsQuest> CODEC = RecordCodecBuilder.mapCodec(inst ->
+            inst.group(
+                    Codec.INT.fieldOf("duration").forGetter(HunterQuest::getDuration),
+                    Codec.BOOL.fieldOf("completed").forGetter(HunterQuest::isCompleted),
+                    Codec.unboundedMap(BuiltInRegistries.ENTITY_TYPE.byNameCodec(), Codec.INT).fieldOf("required_kills").forGetter(KillMobsQuest::getRequiredKills),
+                    Codec.unboundedMap(BuiltInRegistries.ENTITY_TYPE.byNameCodec(), Codec.INT).fieldOf("kills").forGetter(KillMobsQuest::getKills)
     ).apply(inst, KillMobsQuest::new));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, KillMobsQuest> STREAM_CODEC = StreamCodec.composite(
+            ByteBufCodecs.INT,
+            KillMobsQuest::getDuration,
+            ByteBufCodecs.BOOL,
+            KillMobsQuest::isCompleted,
             ByteBufCodecs.map(Object2ObjectOpenHashMap::new, ByteBufCodecs.registry(Registries.ENTITY_TYPE), ByteBufCodecs.VAR_INT),
             KillMobsQuest::getRequiredKills,
             ByteBufCodecs.map(Object2ObjectOpenHashMap::new, ByteBufCodecs.registry(Registries.ENTITY_TYPE), ByteBufCodecs.VAR_INT),
@@ -44,6 +51,11 @@ public class KillMobsQuest extends HunterQuest {
         this.requiredKills = requiredKills;
     }
     public KillMobsQuest(Map<EntityType<?>, Integer> requiredKills, Map<EntityType<?>, Integer> kills){
+        this.requiredKills = requiredKills;
+        this.kills = new HashMap<>(kills);
+    }
+    public KillMobsQuest(int duration, boolean completed, Map<EntityType<?>, Integer> requiredKills, Map<EntityType<?>, Integer> kills){
+        super(duration, completed);
         this.requiredKills = requiredKills;
         this.kills = new HashMap<>(kills);
     }
@@ -69,14 +81,14 @@ public class KillMobsQuest extends HunterQuest {
     }
 
     @Override
-    public Component getTitle() {
-        return Component.translatable("quest.sanguis.kill_mobs.title")
+    public Component getTypeName() {
+        return Component.translatable("quest.sanguis.kill_mobs.name")
                 .withStyle(ChatFormatting.GRAY);
     }
 
     @Override
-    public Component getName() {
-        return Component.translatable("quest.sanguis.kill_mobs.name",
+    public Component getTitle() {
+        return Component.translatable("quest.sanguis.kill_mobs.title",
                         Component.translatable(requiredKills.entrySet().stream().findFirst().orElseThrow().getKey().getDescriptionId()))
                 .withStyle(ChatFormatting.WHITE);
     }
@@ -102,6 +114,7 @@ public class KillMobsQuest extends HunterQuest {
             this.kills.put(type, this.kills.get(type) + amount);
         else
             this.kills.put(type, amount);
+        this.setDirty(true);
     }
 
     public static KillMobsQuest create(ServerLevel level){

@@ -8,14 +8,21 @@ import com.feliscape.sanguis.registry.SanguisTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
 public class VampireUtil {
     public static boolean isVampire(Entity entity){
         if (!(entity instanceof LivingEntity)) return false;
+        if (entity instanceof Player player && player.isSpectator()) return false;
 
         if (entity.getType().is(SanguisTags.EntityTypes.VAMPIRIC)) return true;
         return entity.hasData(VampireData.type()) && entity.getData(VampireData.type()).isVampire();
+    }
+    public static boolean isBat(Entity entity){
+        if (!(entity instanceof Player) || !isVampire(entity)) return false;
+
+        return entity.getData(VampireData.type()).isBat();
     }
 
     public static boolean canInfect(Entity entity) {

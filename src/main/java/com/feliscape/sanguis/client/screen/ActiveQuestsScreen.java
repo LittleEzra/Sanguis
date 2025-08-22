@@ -1,10 +1,9 @@
 package com.feliscape.sanguis.client.screen;
 
 import com.feliscape.sanguis.Sanguis;
-import com.feliscape.sanguis.SanguisClient;
-import com.feliscape.sanguis.content.attachment.HunterData;
 import com.feliscape.sanguis.content.menu.ActiveQuestsMenu;
 import com.feliscape.sanguis.content.quest.HunterQuest;
+import com.feliscape.sanguis.util.QuestUtil;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
@@ -31,7 +30,7 @@ public class ActiveQuestsScreen extends AbstractContainerScreen<ActiveQuestsMenu
     @Override
     protected void init() {
         this.imageWidth = 176;
-        this.imageHeight = 211;
+        this.imageHeight = 212;
         super.init();
         this.titleLabelX = 10000;
         this.inventoryLabelY = this.imageHeight - 94;
@@ -53,7 +52,7 @@ public class ActiveQuestsScreen extends AbstractContainerScreen<ActiveQuestsMenu
         scrollY = Mth.clamp(scrollY, -1.0, 1.0);
         if (scrollY != 0.0D){
             scrollOffset = Mth.clamp(scrollOffset + Mth.ceil(Math.abs(scrollY)) * -Mth.sign(scrollY),
-                    0, this.menu.data.getActiveQuests().size() - 3);
+                    0, this.menu.data.getActiveQuests().size() - 4);
             return true;
         }
         return false;
@@ -74,7 +73,7 @@ public class ActiveQuestsScreen extends AbstractContainerScreen<ActiveQuestsMenu
         selectedIndex = -1;
 
         for (int i = 0; i < 3; i++){
-            if (isHovering(16, 13 + (i * 33), 144, 33, mouseX, mouseY)){
+            if (isHovering(16, 13 + (i * 25), 144, 25, mouseX, mouseY)){
                 int index = i + scrollOffset;
                 if (index < this.menu.data.getActiveQuests().size()){
                     selectedIndex = index;
@@ -110,6 +109,7 @@ public class ActiveQuestsScreen extends AbstractContainerScreen<ActiveQuestsMenu
         renderQuest(guiGraphics, scrollOffset, mouseX, mouseY, data.getQuestOrNull(scrollOffset));
         renderQuest(guiGraphics, scrollOffset + 1, mouseX, mouseY, data.getQuestOrNull(scrollOffset + 1));
         renderQuest(guiGraphics, scrollOffset + 2, mouseX, mouseY, data.getQuestOrNull(scrollOffset + 2));
+        renderQuest(guiGraphics, scrollOffset + 3, mouseX, mouseY, data.getQuestOrNull(scrollOffset + 3));
         renderTooltip(guiGraphics, mouseX, mouseY);
     }
 
@@ -117,11 +117,16 @@ public class ActiveQuestsScreen extends AbstractContainerScreen<ActiveQuestsMenu
         if (quest == null) return;
 
         int x = this.leftPos + 16;
-        int y = this.topPos + 13 + ((index - scrollOffset) * 33);
+        int y = this.topPos + 13 + ((index - scrollOffset) * 25);
         guiGraphics.blitSprite(index == selectedIndex ? QUEST_BACKGROUND_SELECTED : QUEST_BACKGROUND_UNSELECTED,
-                x, y, 144, 33);
+                x, y, 144, 25);
 
-        guiGraphics.drawString(this.font, quest.getName(), x + 2, y + 2, -1);
+        guiGraphics.drawString(this.font, quest.getTitle(), x + 2, y + 2, -1);
+
+        @SuppressWarnings("DataFlowIssue")
+        var time = QuestUtil.formatDuration(quest, 1.0F, this.minecraft.level.tickRateManager().tickrate());
+
+        guiGraphics.drawString(this.font, time, x + 2, y + 2 + 9, 8355711);
 
     }
 }

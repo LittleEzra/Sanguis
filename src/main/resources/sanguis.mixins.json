@@ -7,9 +7,11 @@
     "CrossbowMixin",
     "FoodDataMixin",
     "MobMixin",
+    "PlayerMixin",
     "VillagerHostilesSensorMixin"
   ],
   "client": [
+    "client.InventoryScreenMixin",
     "client.ItemRendererMixin",
     "client.LightTextureMixin"
   ],

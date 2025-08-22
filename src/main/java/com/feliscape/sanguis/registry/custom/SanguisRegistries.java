@@ -11,17 +11,17 @@ import net.neoforged.neoforge.registries.RegistryBuilder;
 
 @EventBusSubscriber(modid = Sanguis.MOD_ID)
 public class SanguisRegistries {
-    public static final Registry<QuestType<?>> QUEST_REQUIREMENTS = new RegistryBuilder<>(Keys.QUEST_REQUIREMENTS)
+    public static final Registry<QuestType<?>> QUEST_TYPES = new RegistryBuilder<>(Keys.QUEST_TYPES)
             .sync(true)
             .create();
 
     @SubscribeEvent
     static void registerRegistries(NewRegistryEvent event){
-        event.register(QUEST_REQUIREMENTS);
+        event.register(QUEST_TYPES);
     }
 
     public static class Keys{
 
-        public static final ResourceKey<Registry<QuestType<?>>> QUEST_REQUIREMENTS = ResourceKey.createRegistryKey(Sanguis.location("quest_requirements"));
+        public static final ResourceKey<Registry<QuestType<?>>> QUEST_TYPES = ResourceKey.createRegistryKey(Sanguis.location("quest_requirements"));
     }
 }

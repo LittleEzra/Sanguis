@@ -40,6 +40,17 @@ public class QuestRenderDispatcher implements ResourceManagerReloadListener {
         QuestRenderer<? super Q> renderer = getRenderer(quest);
 
         if (renderer == null) return;
-        renderer.render(quest, guiGraphics, x, y, mouseX, mouseY, canRenderTooltip);
+        renderer.renderActive(quest, guiGraphics, x, y, mouseX, mouseY, canRenderTooltip);
+    }
+    public <Q extends HunterQuest> void renderChoice(
+            Q quest,
+            int x,
+            int y, int mouseX, int mouseY, boolean canRenderTooltip,
+            GuiGraphics guiGraphics
+    ){
+        QuestRenderer<? super Q> renderer = getRenderer(quest);
+
+        if (renderer == null) return;
+        renderer.renderChoice(quest, guiGraphics, x, y, mouseX, mouseY, canRenderTooltip);
     }
 }

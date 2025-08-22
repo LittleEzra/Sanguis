@@ -1,4 +1,4 @@
-// 1.21.1	2025-08-20T14:34:06.1802576	Block States: sanguis
+// 1.21.1	2025-08-22T21:03:59.2827722	Block States: sanguis
 85e6d6b925f786a4c48ee1334451e9506fc4b0fd assets/sanguis/blockstates/garlic.json
 37d6421dd8f3a0bbf8f1b19df78b1c2d8c116f0d assets/sanguis/blockstates/garlic_string.json
 1bec9ea4fad7476446ab5d6e5675b1e0e7f8bf0b assets/sanguis/blockstates/quest_board.json
@@ -7,5 +7,5 @@ c5138675935c4e2556139fe98b701eaf3986c3ac assets/sanguis/models/block/garlic_0.js
 35015ecc503a2cd9c8a650b45cc4559de059b7b4 assets/sanguis/models/block/garlic_2.json
 c21a20634a41b3a384d0487142c09a950a072c05 assets/sanguis/models/block/garlic_3.json
 ca1059332f19f6465cf4010505b7c0e06fbf8ae3 assets/sanguis/models/block/garlic_4.json
-971fd4886d2bc4c075e868e6daf532319cafa9c2 assets/sanguis/models/block/quest_board.json
+48e13da03d9a12b6155957b0a0ecc40b2f1338f4 assets/sanguis/models/block/quest_board.json
 25bec841b0712930bec01d647f73770e5ac4467b assets/sanguis/models/item/quest_board.json

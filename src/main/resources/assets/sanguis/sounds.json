@@ -1,0 +1,22 @@
+{
+  "entity.player_vampire.bat_transform": {
+    "sounds": [
+      "sanguis:vampire/bat_transform"
+    ],
+    "subtitle": "subtitle.sanguis.entity.player_vampire.bat_transform"
+  },
+  "entity.player_vampire.vampire_transform": {
+    "sounds": [
+      "sanguis:vampire/bat_transform"
+    ],
+    "subtitle": "subtitle.sanguis.entity.player_vampire.vampire_transform"
+  },
+  "entity.player_vampire.drink": {
+    "sounds": [
+      "sanguis:vampire/drink_blood0",
+      "sanguis:vampire/drink_blood1",
+      "sanguis:vampire/drink_blood2"
+    ],
+    "subtitle": "subtitle.sanguis.entity.player_vampire.drink_blood"
+  }
+}

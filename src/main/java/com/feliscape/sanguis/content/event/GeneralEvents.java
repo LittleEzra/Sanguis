@@ -54,6 +54,11 @@ public class GeneralEvents {
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 VampireEntity::checkVampireSpawnRules,
                 RegisterSpawnPlacementsEvent.Operation.AND);
+        event.register(SanguisEntityTypes.VAMPIRE_HUNTER.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                VampireHunter::checkMobSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.AND);
     }
 
 

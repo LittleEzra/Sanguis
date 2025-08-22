@@ -38,12 +38,12 @@ public class VampireHunterModel extends HierarchicalModel<VampireHunter> impleme
                 "head", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -10.0F, -4.0F, 8.0F, 10.0F, 8.0F), PartPose.offset(0.0F, 0.0F, 0.0F)
         );
         head.addOrReplaceChild(
-                "hat", CubeListBuilder.create().texOffs(32, 0).addBox(-4.0F, -10.0F, -4.0F, 8.0F, 12.0F, 8.0F, new CubeDeformation(0.25F)), PartPose.ZERO
+                "hat", CubeListBuilder.create().texOffs(32, 0).addBox(-4.0F, -10.0F, -4.0F, 8.0F, 10.0F, 8.0F, new CubeDeformation(0.25F)), PartPose.ZERO
         );
         head.addOrReplaceChild(
                 "nose", CubeListBuilder.create().texOffs(24, 0).addBox(-1.0F, -1.0F, -6.0F, 2.0F, 4.0F, 2.0F), PartPose.offset(0.0F, -2.0F, 0.0F)
         );
-        PartDefinition brim = head.addOrReplaceChild("brim", CubeListBuilder.create().texOffs(28, 49).addBox(-6.0F, -12.0F, -1.0F, 12.0F, 12.0F, 1.0F, new CubeDeformation(0.1F)), PartPose.offsetAndRotation(0.0F, -7.0F, -5.0F, -1.5708F, 0.0F, 0.0F));
+        PartDefinition brim = head.addOrReplaceChild("brim", CubeListBuilder.create().texOffs(28, 49).addBox(-6.0F, -11.0F, -0.0F, 12.0F, 12.0F, 1.0F, new CubeDeformation(0.1F)), PartPose.offsetAndRotation(0.0F, -7.0F, -5.0F, -1.5708F, 0.0F, 0.0F));
         partdefinition.addOrReplaceChild(
                 "body",
                 CubeListBuilder.create()

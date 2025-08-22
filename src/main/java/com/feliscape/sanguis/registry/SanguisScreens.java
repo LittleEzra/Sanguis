@@ -2,6 +2,7 @@ package com.feliscape.sanguis.registry;
 
 import com.feliscape.sanguis.Sanguis;
 import com.feliscape.sanguis.client.screen.ActiveQuestsScreen;
+import com.feliscape.sanguis.client.screen.QuestBoardScreen;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -14,5 +15,6 @@ public class SanguisScreens {
     public static void registerMenuScreens(RegisterMenuScreensEvent event)
     {
         event.register(SanguisMenuTypes.ACTIVE_QUESTS.get(), ActiveQuestsScreen::new);
+        event.register(SanguisMenuTypes.QUEST_BOARD.get(), QuestBoardScreen::new);
     }
 }

@@ -1,5 +1,6 @@
 package com.feliscape.sanguis;
 
+import com.feliscape.sanguis.content.component.namegen.EnUsQuestNameGenerator;
 import com.feliscape.sanguis.registry.*;
 import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
@@ -19,6 +20,8 @@ import net.neoforged.neoforge.event.server.ServerStartingEvent;
 public class Sanguis {
     public static final String MOD_ID = "sanguis";
     public static final Logger LOGGER = LogUtils.getLogger();
+    
+    public static final EnUsQuestNameGenerator NAME_GENERATOR = new EnUsQuestNameGenerator();
 
     public Sanguis(IEventBus modEventBus, ModContainer modContainer) {
         modEventBus.addListener(this::commonSetup);
@@ -28,6 +31,7 @@ public class Sanguis {
         SanguisDataComponents.register(modEventBus);
 
         SanguisBlocks.register(modEventBus);
+        SanguisBlockEntityTypes.register(modEventBus);
 
         SanguisEntityTypes.register(modEventBus);
         SanguisDataAttachmentTypes.register(modEventBus);
@@ -38,6 +42,8 @@ public class Sanguis {
         SanguisQuestTypes.register(modEventBus);
 
         SanguisMenuTypes.register(modEventBus);
+
+        SanguisSoundEvents.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);
 

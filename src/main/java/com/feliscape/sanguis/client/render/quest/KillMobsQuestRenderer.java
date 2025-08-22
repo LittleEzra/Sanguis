@@ -19,26 +19,46 @@ public class KillMobsQuestRenderer extends QuestRenderer<KillMobsQuest> {
     }
 
     @Override
-    public void render(KillMobsQuest quest, GuiGraphics guiGraphics, int x, int y, int mouseX, int mouseY, boolean canRenderTooltip) {
-        var requiredKills = new ArrayList<>(quest.getRequiredKills().entrySet());
+    public void renderActive(KillMobsQuest quest, GuiGraphics guiGraphics, int x, int y, int mouseX, int mouseY, boolean canRenderTooltip) {
+        var requiredKillSet = new ArrayList<>(quest.getRequiredKills().entrySet());
 
-        for (int i = 0; i < requiredKills.size(); i++){
-            var entry = requiredKills.get(i);
+        for (int i = 0; i < requiredKillSet.size(); i++){
+            var entry = requiredKillSet.get(i);
             int offsetY = y + i * (5 + 9 + 3);
 
+            var kills = quest.getKills().getOrDefault(entry.getKey(), 0);
+            var requiredKills = entry.getValue();
+
             Component component = Component.translatable(entry.getKey().getDescriptionId()).withStyle(ChatFormatting.WHITE)
-                    .append(Component.literal(" x%s".formatted(entry.getValue()))).withStyle(ChatFormatting.GRAY);
+                    .append(Component.literal("  %s/%s".formatted(kills, requiredKills)).withStyle(ChatFormatting.GRAY));
 
             guiGraphics.drawString(this.minecraft.font, component, x, offsetY, -1);
             guiGraphics.blitSprite(PROGRESS_BACKGROUND, x, offsetY + 12, 121, 5);
             if (quest.getKills().containsKey(entry.getKey())){
-                int fill = (int) (((float) quest.getKills().get(entry.getKey()) / entry.getValue()) * 121.0F);
+                int fill = (int) (((float) kills / requiredKills) * 121.0F);
                 guiGraphics.blitSprite(PROGRESS_FILL,
                         121, 5,
                         0, 0,
                         x, offsetY + 12,
-                        fill, 5);
+                        Math.min(fill, 121), 5);
             }
+        }
+    }
+
+    @Override
+    public void renderChoice(KillMobsQuest quest, GuiGraphics guiGraphics, int x, int y, int mouseX, int mouseY, boolean canRenderTooltip) {
+        var requiredKillSet = new ArrayList<>(quest.getRequiredKills().entrySet());
+
+        for (int i = 0; i < requiredKillSet.size(); i++){
+            var entry = requiredKillSet.get(i);
+            int offsetY = y + i * (9 + 3);
+
+            var requiredKills = entry.getValue();
+
+            Component component = Component.translatable(entry.getKey().getDescriptionId()).withStyle(ChatFormatting.WHITE)
+                    .append(Component.literal(" x%s".formatted(requiredKills)).withStyle(ChatFormatting.GRAY));
+
+            guiGraphics.drawString(this.minecraft.font, component, x, offsetY, -1);
         }
     }
 }

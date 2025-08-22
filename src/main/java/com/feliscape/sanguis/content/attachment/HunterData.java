@@ -51,6 +51,12 @@ public class HunterData extends DataAttachment{
         this.quests.setPlayer(this.holder);
     }
 
+    public void tick(){
+        if (this.holder instanceof Player){
+            this.quests.tick();
+        }
+    }
+
     public void removeGarlic(){
         hasInjection = false;
         this.quests.getActiveQuests().clear();

@@ -24,6 +24,11 @@ public class SanguisPayloads {
                 DrainBloodPayload.STREAM_CODEC,
                 DrainBloodPayload::handle
         );
+        registrar.playToServer(
+                BatTransformationPayload.TYPE,
+                BatTransformationPayload.STREAM_CODEC,
+                BatTransformationPayload::handle
+        );
 
         registrar.playToServer(
                 OpenActiveQuestsPayload.TYPE,
@@ -31,14 +36,19 @@ public class SanguisPayloads {
                 OpenActiveQuestsPayload::handle
         );
         registrar.playToServer(
-                CompleteQuestPayload.TYPE,
-                CompleteQuestPayload.STREAM_CODEC,
-                CompleteQuestPayload::handle
+                ServerboundCompleteQuestPayload.TYPE,
+                ServerboundCompleteQuestPayload.STREAM_CODEC,
+                ServerboundCompleteQuestPayload::handle
         );
         registrar.playToServer(
-                CancelQuestPayload.TYPE,
-                CancelQuestPayload.STREAM_CODEC,
-                CancelQuestPayload::handle
+                ServerboundCancelQuestPayload.TYPE,
+                ServerboundCancelQuestPayload.STREAM_CODEC,
+                ServerboundCancelQuestPayload::handle
+        );
+        registrar.playToServer(
+                ServerboundChooseQuestPayload.TYPE,
+                ServerboundChooseQuestPayload.STREAM_CODEC,
+                ServerboundChooseQuestPayload::handle
         );
     }
 }

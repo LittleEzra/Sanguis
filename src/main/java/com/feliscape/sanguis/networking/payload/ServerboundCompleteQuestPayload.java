@@ -10,23 +10,22 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
-public record CancelQuestPayload(int containerId, int index) implements CustomPacketPayload{
-    public static final Type<CancelQuestPayload> TYPE =
-            new Type<>(Sanguis.location("cancel_quest"));
+public record ServerboundCompleteQuestPayload(int containerId, int index) implements CustomPacketPayload{
+    public static final CustomPacketPayload.Type<ServerboundCompleteQuestPayload> TYPE =
+            new CustomPacketPayload.Type<>(Sanguis.location("complete_quest"));
 
-    public static final StreamCodec<RegistryFriendlyByteBuf, CancelQuestPayload> STREAM_CODEC = StreamCodec.composite(
+    public static final StreamCodec<RegistryFriendlyByteBuf, ServerboundCompleteQuestPayload> STREAM_CODEC = StreamCodec.composite(
             ByteBufCodecs.VAR_INT,
-            CancelQuestPayload::containerId,
+            ServerboundCompleteQuestPayload::containerId,
             ByteBufCodecs.VAR_INT,
-            CancelQuestPayload::index,
-            CancelQuestPayload::new
+            ServerboundCompleteQuestPayload::index,
+            ServerboundCompleteQuestPayload::new
     );
 
-    public static void handle(CancelQuestPayload payload, IPayloadContext context) {
+    public static void handle(ServerboundCompleteQuestPayload payload, IPayloadContext context) {
         Player player = context.player();
-        Sanguis.LOGGER.debug("Canceled quest with index {}", payload.index);
         if (HunterUtil.isHunter(player)){
-            player.getData(HunterData.type()).getQuests().cancel(payload.index);
+            player.getData(HunterData.type()).getQuests().complete(payload.index);
         }
     }
 

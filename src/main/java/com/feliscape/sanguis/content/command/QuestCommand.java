@@ -1,7 +1,6 @@
 package com.feliscape.sanguis.content.command;
 
 import com.feliscape.sanguis.content.attachment.HunterData;
-import com.feliscape.sanguis.content.quest.HunterQuest;
 import com.feliscape.sanguis.content.quest.requirement.QuestType;
 import com.feliscape.sanguis.registry.custom.SanguisRegistries;
 import com.feliscape.sanguis.util.HunterUtil;
@@ -38,7 +37,7 @@ public class QuestCommand {
     }
 
     private static int addRandom(CommandSourceStack source, Collection<ServerPlayer> targets, ResourceLocation id) {
-        QuestType<?> type = source.registryAccess().registryOrThrow(SanguisRegistries.Keys.QUEST_REQUIREMENTS).get(id);
+        QuestType<?> type = source.registryAccess().registryOrThrow(SanguisRegistries.Keys.QUEST_TYPES).get(id);
         if (type == null){
             source.sendFailure(
                     Component.translatable("commands.sanguis.quest.addrandom.failure.invalid_type", id.toString())

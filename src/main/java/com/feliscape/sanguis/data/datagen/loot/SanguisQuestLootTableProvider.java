@@ -29,8 +29,9 @@ public class SanguisQuestLootTableProvider implements LootTableSubProvider {
                 .withPool(lootPool().add(lootTableItem(Items.DIAMOND)))); // TODO: replace with worthwhile loot
 
         output.accept(SanguisQuestLootTables.ItemRequirements.HUNT_VAMPIRE, LootTable.lootTable().withPool(lootPool()
-                        .add(lootTableItem(SanguisItems.VAMPIRE_BLOOD).apply(setCount(between(10.0F + 64.0F, 20.0F + 64.0F))))
-                        .add(lootTableItem(SanguisItems.BLOODY_FANG).apply(setCount(between(14.0F + 64.0F, 24.0F + 64.0F))))
+                        .add(lootTableItem(SanguisItems.VAMPIRE_BLOOD).apply(setCount(between(7.0F, 16.0F))))
+                        .add(lootTableItem(SanguisItems.BLOODY_FANG).apply(setCount(between(14.0F, 20.0F))))
+                        .add(lootTableItem(SanguisItems.GARLIC).apply(setCount(between(14.0F, 24.0F))))
                 ));
     }
 }

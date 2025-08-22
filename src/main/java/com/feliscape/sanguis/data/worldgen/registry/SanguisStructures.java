@@ -47,7 +47,7 @@ public class SanguisStructures {
                                 .terrainAdapation(TerrainAdjustment.BEARD_THIN)
                                 .spawnOverrides(HUNTER_CAMP_SPAWNS)
                                 .build(),
-                        poolGetter.getOrThrow(SanguisTemplatePools.HUNTER_CAMP_TOWER),
+                        poolGetter.getOrThrow(SanguisTemplatePools.HUNTER_CAMP_BASE),
                         3,
                         ConstantHeight.of(VerticalAnchor.absolute(0)),
                         true,

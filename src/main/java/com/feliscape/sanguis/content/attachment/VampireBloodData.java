@@ -2,19 +2,18 @@ package com.feliscape.sanguis.content.attachment;
 
 import com.feliscape.sanguis.data.damage.SanguisDamageSources;
 import com.feliscape.sanguis.registry.SanguisDataComponents;
-import com.feliscape.sanguis.registry.SanguisTags;
-import com.feliscape.sanguis.util.HunterUtil;
+import com.feliscape.sanguis.registry.SanguisSoundEvents;
 import com.feliscape.sanguis.util.VampireUtil;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.food.FoodConstants;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.GameRules;
 
@@ -52,7 +51,7 @@ public class VampireBloodData {
     }
 
     public void drink(LivingEntity holder, LivingEntity target){
-        if (drinkDelay > 0) return;
+        if (drinkDelay > 0 || !target.isAlive()) return;
 
         if (VampireUtil.hasFoulBlood(target)){
             target.hurt(SanguisDamageSources.draining(target.level(), target),
@@ -75,7 +74,18 @@ public class VampireBloodData {
             this.saturation = Math.min(this.saturation + data.getSaturation(), blood);
             holder.syncData(VampireData.type());
         }
+
+        float f = holder.getRandom().nextFloat() * 0.2F + 0.9F;
+        this.playSoundServer(holder, SanguisSoundEvents.VAMPIRE_DRINK.get(), 1.0F, f);
+
         this.drinkDelay = 14;
+    }
+
+    private void playSoundServer(LivingEntity entity, SoundEvent soundEvent){
+        entity.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(), soundEvent, entity.getSoundSource(), 1.0F, 1.0F);
+    }
+    private void playSoundServer(LivingEntity entity, SoundEvent soundEvent, float volume, float pitch){
+        entity.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(), soundEvent, entity.getSoundSource(), volume, pitch);
     }
 
     public void drink(LivingEntity holder, int amount, float saturation){
@@ -101,7 +111,7 @@ public class VampireBloodData {
                 }
             }
 
-            addExhaustion(restingExhaustion());
+            addExhaustion(getTickExhaustion(player));
 
             if (exhaustion >= 4.0F) {
                 exhaustion -= 4.0F;
@@ -137,6 +147,9 @@ public class VampireBloodData {
             } else {
                 this.tickTimer = 0;
             }
+
+            // Assign the food level to the blood level for effects such as no sprinting at 3 or less blood drops
+            player.getFoodData().setFoodLevel(this.getBlood());
         }
     }
 
@@ -148,8 +161,12 @@ public class VampireBloodData {
     /**
      * @return The amount that exhaustion is increased by each tick
      */
-    public float restingExhaustion(){
-        return 0.004F; // Same value as
+    public float getTickExhaustion(Player player){
+        return VampireUtil.isBat(player) ? getBatExhaustion(player) : 0.004F; // Same value as
+    }
+    public float getBatExhaustion(Player player){
+        if (player.isSprinting()) return 0.009F;
+        return 0.006F;
     }
 
     public void addExhaustion(float amount){
@@ -172,6 +189,8 @@ public class VampireBloodData {
         return this.blood;
     }
     public int increaseBlood(int amount, LivingEntity entity, boolean addExcessToBottles){
+        if (amount == 0) return this.blood;
+
         if (addExcessToBottles){
             int excess = this.blood + amount - maxBlood();
             if (excess > 0){

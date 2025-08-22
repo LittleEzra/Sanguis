@@ -22,7 +22,10 @@ public class SanguisBlockModelProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        blockWithItem(SanguisBlocks.QUEST_BOARD);
+        simpleBlockWithItem(SanguisBlocks.QUEST_BOARD.get(), models().cubeColumn(
+                name(SanguisBlocks.QUEST_BOARD.get()),
+                blockTexture(SanguisBlocks.QUEST_BOARD.get()).withSuffix("_side"),
+                ResourceLocation.withDefaultNamespace("block/stripped_oak_log_top")));
         simpleCropBlock(SanguisBlocks.GARLIC.get());
         simpleBlock(SanguisBlocks.GARLIC_STRING.get(), models().getExistingFile(Sanguis.location("block/garlic_string")));
     }

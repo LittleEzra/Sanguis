@@ -1,7 +1,12 @@
 package com.feliscape.sanguis.util;
 
 import com.feliscape.sanguis.content.attachment.HunterData;
+import com.feliscape.sanguis.content.quest.HunterQuest;
 import com.feliscape.sanguis.registry.SanguisTags;
+import net.minecraft.network.chat.Component;
+import net.minecraft.util.Mth;
+import net.minecraft.util.StringUtil;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;

@@ -12,7 +12,7 @@ import java.util.function.Supplier;
 
 public class SanguisQuestTypes {
     public static final DeferredRegister<QuestType<?>> QUEST_TYPES =
-            DeferredRegister.create(SanguisRegistries.QUEST_REQUIREMENTS, Sanguis.MOD_ID);
+            DeferredRegister.create(SanguisRegistries.QUEST_TYPES, Sanguis.MOD_ID);
 
     public static final Supplier<QuestType<ItemQuest>> FETCH_ITEMS = QUEST_TYPES.register(
             "fetch_items", () -> new QuestType<>(ItemQuest.CODEC, ItemQuest.STREAM_CODEC, ItemQuest::create)

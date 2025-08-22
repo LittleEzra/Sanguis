@@ -96,6 +96,8 @@ public class EntityBloodData extends DataAttachment{
             this.frozenTicks--;
             this.holder.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, 2));
             if (this.holder instanceof Mob mob){
+                if (mob.getNavigation().isInProgress())
+                    mob.getNavigation().stop();
                 // Disable all flags
                 /*mob.goalSelector.setControlFlag(Goal.Flag.MOVE, false);
                 mob.goalSelector.setControlFlag(Goal.Flag.JUMP, false);
@@ -106,6 +108,8 @@ public class EntityBloodData extends DataAttachment{
     }
 
     public int drain(){
+        if (this.remainingBlood == 0) return 0;
+
         this.remainingBlood--;
         this.holder.hurt(SanguisDamageSources.draining(this.holder.level(), this.holder),
                 remainingBlood == 0 ? this.holder.getMaxHealth() * 10.0F : holder.getMaxHealth() / (maxBlood + 1.0F));

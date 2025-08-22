@@ -15,6 +15,8 @@ import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorList;
 
 public class SanguisTemplatePools {
+    public static final ResourceKey<StructureTemplatePool> HUNTER_CAMP_BASE = createKey("hunter_camp/base");
+    public static final ResourceKey<StructureTemplatePool> HUNTER_CAMP_QUEST_BOARD = createKey("hunter_camp/quest_board");
     public static final ResourceKey<StructureTemplatePool> HUNTER_CAMP_TOWER = createKey("hunter_camp/tower");
     public static final ResourceKey<StructureTemplatePool> HUNTER_CAMP_FEATURES = createKey("hunter_camp/features");
 
@@ -25,6 +27,28 @@ public class SanguisTemplatePools {
         HolderGetter<StructureTemplatePool> poolGetter = context.lookup(Registries.TEMPLATE_POOL);
         Holder<StructureTemplatePool> empty = poolGetter.getOrThrow(Pools.EMPTY);
 
+        context.register(
+                HUNTER_CAMP_BASE,
+                new StructureTemplatePool(
+                        empty,
+                        ImmutableList.of(
+                                Pair.of(StructurePoolElement.legacy(Sanguis.stringLocation("hunter_camp/base")), 1)
+                        ),
+                        StructureTemplatePool.Projection.RIGID
+                )
+        );
+        context.register(
+                HUNTER_CAMP_QUEST_BOARD,
+                new StructureTemplatePool(
+                        empty,
+                        ImmutableList.of(
+                                Pair.of(StructurePoolElement.legacy(Sanguis.stringLocation("hunter_camp/quest_board/quest_board_0")), 1),
+                                Pair.of(StructurePoolElement.legacy(Sanguis.stringLocation("hunter_camp/quest_board/quest_board_1")), 1),
+                                Pair.of(StructurePoolElement.legacy(Sanguis.stringLocation("hunter_camp/quest_board/quest_board_2")), 1)
+                        ),
+                        StructureTemplatePool.Projection.RIGID
+                )
+        );
         context.register(
                 HUNTER_CAMP_TOWER,
                 new StructureTemplatePool(

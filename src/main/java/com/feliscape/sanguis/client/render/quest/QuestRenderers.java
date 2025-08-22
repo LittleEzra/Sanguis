@@ -22,7 +22,7 @@ public class QuestRenderers {
             try {
                 builder.put(type, factory.create(minecraft));
             } catch (Exception exception) {
-                throw new IllegalArgumentException("Failed to create renderer for " + SanguisRegistries.QUEST_REQUIREMENTS.getKey(type), exception);
+                throw new IllegalArgumentException("Failed to create renderer for " + SanguisRegistries.QUEST_TYPES.getKey(type), exception);
             }
         });
         return builder.build();

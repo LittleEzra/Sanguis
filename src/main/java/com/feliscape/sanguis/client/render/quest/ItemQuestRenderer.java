@@ -13,7 +13,7 @@ public class ItemQuestRenderer extends QuestRenderer<ItemQuest> {
     }
 
     @Override
-    public void render(ItemQuest quest, GuiGraphics guiGraphics, int x, int y, int mouseX, int mouseY, boolean canRenderTooltip) {
+    public void renderActive(ItemQuest quest, GuiGraphics guiGraphics, int x, int y, int mouseX, int mouseY, boolean canRenderTooltip) {
         List<ItemStack> items = quest.getItems();
         for (int i = 0; i < items.size(); i++){
             int itemX = x + (i * 18);
@@ -24,5 +24,10 @@ public class ItemQuestRenderer extends QuestRenderer<ItemQuest> {
                 guiGraphics.renderTooltip(minecraft.font, itemStack, mouseX, mouseY);
             }
         }
+    }
+
+    @Override
+    public void renderChoice(ItemQuest quest, GuiGraphics guiGraphics, int x, int y, int mouseX, int mouseY, boolean canRenderTooltip) {
+
     }
 }

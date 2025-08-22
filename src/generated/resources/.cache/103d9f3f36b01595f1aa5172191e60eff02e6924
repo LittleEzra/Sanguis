@@ -1,7 +1,9 @@
-// 1.21.1	2025-08-19T18:19:53.1310137	Registries
+// 1.21.1	2025-08-22T20:42:57.1757185	Registries
 71ae12e8e4e2b435535977b4ab157ce3d8a5c431 data/sanguis/damage_type/draining.json
 bf0b83b57cd7b4bbbcdfaade44fe11ff79a4d1a2 data/sanguis/neoforge/biome_modifier/add_vampires.json
-3b54ffb5bef5a3177291fc5d4a2a3be17dec2f60 data/sanguis/worldgen/structure/hunter_camp.json
+9d9e3164c02e119f1614ad22156f7d845fae9e20 data/sanguis/worldgen/structure/hunter_camp.json
 2c4bf43bb660f839dbd763f0bbf5bce299e8811b data/sanguis/worldgen/structure_set/hunter_camp.json
+237b528c382ba906386c240596390a9d6629013d data/sanguis/worldgen/template_pool/hunter_camp/base.json
 9a9f8606e1939dc84b455ac6eddaac473753e5a2 data/sanguis/worldgen/template_pool/hunter_camp/features.json
+69c0648c3af76583fa50a8425282ecc536a3257b data/sanguis/worldgen/template_pool/hunter_camp/quest_board.json
 1ae5f72bf6ed3ff100a95196a4a24ef5d58a18e2 data/sanguis/worldgen/template_pool/hunter_camp/tower.json

@@ -5,6 +5,7 @@ import com.feliscape.sanguis.content.block.GarlicCropBlock;
 import com.feliscape.sanguis.content.block.GarlicStringBlock;
 import com.feliscape.sanguis.content.block.QuestBoardBlock;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
@@ -12,6 +13,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
@@ -25,7 +27,12 @@ public class SanguisBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(Sanguis.MOD_ID);
 
     public static final DeferredBlock<QuestBoardBlock> QUEST_BOARD = registerBlockWithItem("quest_board",
-            p -> new QuestBoardBlock(p.instabreak()));
+            p -> new QuestBoardBlock(p
+                    .mapColor(MapColor.WOOD)
+                    .instrument(NoteBlockInstrument.BASS)
+                    .strength(3.0F)
+                    .sound(SoundType.WOOD)
+            ));
     public static final DeferredBlock<GarlicCropBlock> GARLIC = BLOCKS.registerBlock("garlic",
             p -> new GarlicCropBlock(p
                     .mapColor(MapColor.PLANT)

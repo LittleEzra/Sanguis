@@ -3,16 +3,17 @@ package com.feliscape.sanguis.client.screen;
 import com.feliscape.sanguis.Sanguis;
 import com.feliscape.sanguis.SanguisClient;
 import com.feliscape.sanguis.content.quest.HunterQuest;
-import com.feliscape.sanguis.networking.payload.CancelQuestPayload;
-import com.feliscape.sanguis.networking.payload.CompleteQuestPayload;
+import com.feliscape.sanguis.networking.payload.ServerboundCancelQuestPayload;
+import com.feliscape.sanguis.networking.payload.ServerboundCompleteQuestPayload;
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractButton;
 import net.minecraft.client.gui.components.Renderable;
+import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.narration.NarratableEntry;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
-import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.network.PacketDistributor;
@@ -54,21 +55,20 @@ public class QuestInformationComponent implements Renderable, GuiEventListener, 
 
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
-        if (this.isVisible()){
+        if (this.isVisible()) {
             int i = (this.width - 147) / 2 - this.xOffset;
             int j = (this.height - 166) / 2;
-            guiGraphics.blit(QUEST_INFORMATION_LOCATION, i, j, 1, 1, 147, 166);
+            guiGraphics.blit(QUEST_INFORMATION_LOCATION, i, j, 0, 0, 147, 166);
         }
     }
 
     public void renderContents(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick, boolean canRenderTooltip, HunterQuest quest) {
         int x = this.getX() + 10;
         int y = this.getY() + 10;
-        guiGraphics.drawString(this.minecraft.font, quest.getName(), x, y, -1);
-        y += 11;
         guiGraphics.drawString(this.minecraft.font, quest.getTitle(), x, y, -1);
         y += 11;
-        // TODO: Add Time
+        guiGraphics.drawString(this.minecraft.font, quest.getTypeName(), x, y, -1);
+        y += 13;
         SanguisClient.reloadListeners().getQuestRenderDispatcher().
                 render(quest, x, y, mouseX, mouseY, canRenderTooltip, guiGraphics);
 
@@ -130,7 +130,7 @@ public class QuestInformationComponent implements Renderable, GuiEventListener, 
 
     }
 
-    protected void setVisible(boolean visible) {
+    public void setVisible(boolean visible) {
         if (visible) {
             this.initVisuals();
         }
@@ -169,15 +169,16 @@ public class QuestInformationComponent implements Renderable, GuiEventListener, 
         private static final ResourceLocation ICON = Sanguis.location("container/quests/complete");
 
         public CompleteButton(int x, int y, int width, int height) {
-            super(x, y, width, height, CommonComponents.EMPTY);
+            super(x, y, width, height, Component.translatable("container.sanguis.active_quests.complete"));
         }
         public CompleteButton(int x, int y, int width, int height, Component message) {
             super(x, y, width, height, message);
+            this.setTooltip(Tooltip.create(message));
         }
 
         @Override
         public void onPress() {
-            PacketDistributor.sendToServer(new CompleteQuestPayload(
+            PacketDistributor.sendToServer(new ServerboundCompleteQuestPayload(
                     QuestInformationComponent.this.screen.getMenu().containerId,
                     QuestInformationComponent.this.screen.selectedIndex));
             QuestInformationComponent.this.screen.selectedIndex = -1;
@@ -196,15 +197,16 @@ public class QuestInformationComponent implements Renderable, GuiEventListener, 
         private static final ResourceLocation ICON = Sanguis.location("container/quests/cancel");
 
         public CancelButton(int x, int y, int width, int height) {
-            super(x, y, width, height, CommonComponents.EMPTY);
+            super(x, y, width, height, Component.translatable("container.sanguis.active_quests.cancel"));
         }
         public CancelButton(int x, int y, int width, int height, Component message) {
             super(x, y, width, height, message);
+            this.setTooltip(Tooltip.create(message));
         }
 
         @Override
         public void onPress() {
-            PacketDistributor.sendToServer(new CancelQuestPayload(
+            PacketDistributor.sendToServer(new ServerboundCancelQuestPayload(
                     QuestInformationComponent.this.screen.getMenu().containerId,
                     QuestInformationComponent.this.screen.selectedIndex));
         }

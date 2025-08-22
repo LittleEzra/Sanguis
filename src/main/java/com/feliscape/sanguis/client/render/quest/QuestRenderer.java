@@ -11,7 +11,14 @@ public abstract class QuestRenderer<T extends HunterQuest> {
         this.minecraft = minecraft;
     }
 
-    public abstract void render(T quest, GuiGraphics guiGraphics, int x, int y, int mouseX, int mouseY, boolean canRenderTooltip);
+    public abstract void renderActive(T quest, GuiGraphics guiGraphics, int x, int y, int mouseX, int mouseY, boolean canRenderTooltip);
+
+    /**
+     * Override this function if rendering a choice should be different from an active quest
+     */
+    public void renderChoice(T quest, GuiGraphics guiGraphics, int x, int y, int mouseX, int mouseY, boolean canRenderTooltip){
+        renderActive(quest, guiGraphics, x, y, mouseX, mouseY, canRenderTooltip);
+    }
 
     protected boolean isHovering(int x, int y, int width, int height, int mouseX, int mouseY) {
         return (mouseX > x && x + width > mouseX) && (mouseY > y && y + height > mouseY);
