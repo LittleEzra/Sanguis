@@ -14,6 +14,8 @@ public class SanguisEnUsProvider extends SanguisLanguageProvider{
 
     @Override
     protected void addTranslations() {
+        this.addItem(SanguisItems.DAEMONOLOGIE, "Daemonologie");
+
         this.addItem(SanguisItems.BLOODY_FANG, "Bloody Fang");
         this.addItem(SanguisItems.ACTIVATED_VAMPIRE_BLOOD, "Activated Vampire Blood");
         this.addItemTooltip(SanguisItems.ACTIVATED_VAMPIRE_BLOOD, "[DEBUG ITEM] Inflicts vampirism, while skipping the incubation time");

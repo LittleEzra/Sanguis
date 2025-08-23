@@ -26,7 +26,20 @@ public class SanguisQuestLootTableProvider implements LootTableSubProvider {
     @Override
     public void generate(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> output) {
         output.accept(SanguisQuestLootTables.BASIC_REWARD, LootTable.lootTable()
-                .withPool(lootPool().add(lootTableItem(Items.DIAMOND)))); // TODO: replace with worthwhile loot
+                .withPool(lootPool()
+                        .setRolls(between(1.0F, 2.0F))
+                        .add(lootTableItem(Items.DIAMOND).setWeight(2).apply(setCount(between(1.0F, 2.7F))))
+                        .add(lootTableItem(Items.EMERALD).setWeight(6).apply(setCount(between(2.0F, 5.3F))))
+                ).withPool(lootPool()
+                        .add(lootTableItem(Items.GOLD_INGOT).when(randomChance(0.6F)).apply(setCount(between(2.0F, 4.3F))))
+                        .add(lootTableItem(Items.IRON_INGOT).when(randomChance(0.9F)).apply(setCount(between(3.0F, 6.0F))))
+                ).withPool(lootPool().when(randomChance(0.35F))
+                        .setRolls(between(2.0F, 3.0F))
+                        .add(lootTableItem(SanguisItems.GARLIC).setWeight(4).when(randomChance(0.7F)).apply(setCount(between(2.0F, 4.3F))))
+                        .add(lootTableItem(Items.POTATO).setWeight(8).apply(setCount(between(3.0F, 6.0F))))
+                        .add(lootTableItem(Items.CARROT).setWeight(5).apply(setCount(between(2.0F, 5.0F))))
+                )
+        );
 
         output.accept(SanguisQuestLootTables.ItemRequirements.HUNT_VAMPIRE, LootTable.lootTable().withPool(lootPool()
                         .add(lootTableItem(SanguisItems.VAMPIRE_BLOOD).apply(setCount(between(7.0F, 16.0F))))

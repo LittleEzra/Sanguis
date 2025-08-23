@@ -1,0 +1,5 @@
+• {Becoming A Vampire|sanguis:vampires/becoming_a_vampire}
+• {Vampire Weaknesses|sanguis:vampires/vampire_weaknesses}
+• {Vampire Strengths|sanguis:vampires/vampire_strengths}
+    • {The Bat Form|sanguis:vampires/the_bat_form}
+• {Curing Vampirism|sanguis:vampires/curing_vampirism}

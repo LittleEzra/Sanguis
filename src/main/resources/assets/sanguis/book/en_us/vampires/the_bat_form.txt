@@ -1,0 +1,8 @@
+Vampires and bats are very closely related. In fact, it is theorized that vampirism originates from a kind of "Ur-bat", which some believe is still alive today.
+This relationship is obvious with a vampire's ability to turn into a bat.
+
+A vampire can turn into a bat at will (by pressing the appropriate key), though only when not in sunlight and not too hurt.
+
+As a bat, a vampire will be able to move freely through the air, but at a much higher blood cost, which is increased even further when sprinting.
+
+Bats are also much weaker than a humanoid vampire, with half the health and without the ability to attack.

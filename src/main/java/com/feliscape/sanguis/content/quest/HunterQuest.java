@@ -1,13 +1,22 @@
 package com.feliscape.sanguis.content.quest;
 
 import com.feliscape.sanguis.content.quest.requirement.QuestType;
+import com.feliscape.sanguis.data.loot.SanguisQuestLootTables;
 import com.feliscape.sanguis.registry.custom.SanguisRegistries;
 import com.mojang.serialization.Codec;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 
 public abstract class HunterQuest {
     public static final Codec<HunterQuest> TYPED_CODEC = SanguisRegistries.QUEST_TYPES
@@ -34,7 +43,18 @@ public abstract class HunterQuest {
         if (!checkCompleted(player)) return;
 
         onComplete(player);
-        // TODO: add rewards
+        if (player.level() instanceof ServerLevel serverLevel){
+            LootTable loot = serverLevel.getServer().reloadableRegistries().getLootTable(SanguisQuestLootTables.BASIC_REWARD);
+            ObjectArrayList<ItemStack> items = loot.getRandomItems(new LootParams.Builder(serverLevel)
+                    .withParameter(LootContextParams.ORIGIN, player.position())
+                    .withParameter(LootContextParams.THIS_ENTITY, player)
+                    .create(LootContextParamSets.GIFT));
+            for (ItemStack itemStack : items){
+                if (!player.getInventory().add(itemStack)){
+                    player.drop(itemStack, true);
+                }
+            }
+        }
     }
 
     public void tick(Player player){

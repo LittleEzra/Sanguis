@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "sanguis:quest_board"
+          "name": "minecraft:stripped_oak_log"
         }
       ],
       "rolls": 1.0

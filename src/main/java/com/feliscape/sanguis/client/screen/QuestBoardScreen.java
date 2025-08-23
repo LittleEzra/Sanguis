@@ -1,6 +1,8 @@
 package com.feliscape.sanguis.client.screen;
 
 import com.feliscape.sanguis.content.menu.QuestBoardMenu;
+import com.feliscape.sanguis.util.HunterUtil;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
@@ -51,7 +53,7 @@ public class QuestBoardScreen extends AbstractContainerScreen<QuestBoardMenu> {
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
         super.render(guiGraphics, mouseX, mouseY, partialTick);
         for (QuestChoiceComponent choice : choices){
-            choice.setActive(!this.menu.blockEntity.hasChosen());
+            choice.setActive(!this.menu.blockEntity.hasChosen() && HunterUtil.isHunter(Minecraft.getInstance().player));
             choice.render(guiGraphics, mouseX, mouseY, partialTick);
         }
     }

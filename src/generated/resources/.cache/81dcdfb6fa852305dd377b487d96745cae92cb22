@@ -1,4 +1,4 @@
-// 1.21.1	2025-08-20T09:49:41.7790118	Item Models: sanguis
+// 1.21.1	2025-08-23T10:33:22.750139	Item Models: sanguis
 3144ff9fc8c93ffc6bff4ef8458a50e4fe75990e assets/sanguis/models/item/acid_injection.json
 7bd89e4fb156ffdffd95790904ca2fb26d0e6026 assets/sanguis/models/item/activated_vampire_blood.json
 faf923147d06eb94886db10d5fd6057e5cf90353 assets/sanguis/models/item/bloody_fang.json
@@ -9,6 +9,7 @@ bd964b394c6ad22ffd6be924a89e9f69799a8ee1 assets/sanguis/models/item/blood_bottle
 0e5a13837e1d5ebc0f40c6990b8a339278d7483f assets/sanguis/models/item/blood_bottle_4.json
 deb1d7aaef14483660756c6a06c96b62dcf92fe8 assets/sanguis/models/item/blood_bottle_5.json
 d93527bd9beb9d763c7b1fae6d5378c0fda11757 assets/sanguis/models/item/blood_bottle_6.json
+22a16e71b6279c70ef78c38578c60664db9d2b8c assets/sanguis/models/item/daemonologie.json
 e9bb78d8439c5385319ac0a67699d910d2bc7f99 assets/sanguis/models/item/garlic.json
 3418c3155e0ac4705005aa9c597fb5a69d2fb754 assets/sanguis/models/item/garlic_flower.json
 b3852d83fae718029b84024002fe380c5c012560 assets/sanguis/models/item/garlic_injection.json

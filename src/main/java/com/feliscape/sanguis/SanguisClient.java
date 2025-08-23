@@ -1,10 +1,10 @@
 package com.feliscape.sanguis;
 
+import com.feliscape.sanguis.client.book.GuideBookManager;
 import com.feliscape.sanguis.client.render.quest.ItemQuestRenderer;
 import com.feliscape.sanguis.client.render.quest.KillMobsQuestRenderer;
 import com.feliscape.sanguis.client.render.quest.QuestRenderDispatcher;
 import com.feliscape.sanguis.client.render.quest.QuestRenderers;
-import com.feliscape.sanguis.content.component.namegen.EnUsQuestNameGenerator;
 import com.feliscape.sanguis.registry.SanguisQuestTypes;
 import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
@@ -39,6 +39,7 @@ public class SanguisClient {
 
     public static class ReloadListener {
         private final QuestRenderDispatcher questRenderDispatcher;
+        private final GuideBookManager guideBookManager;
 
         public ReloadListener(RegisterClientReloadListenersEvent event){
             reloadListeners = this;
@@ -46,10 +47,16 @@ public class SanguisClient {
             Minecraft minecraft = Minecraft.getInstance();
             questRenderDispatcher = new QuestRenderDispatcher(Minecraft.getInstance());
             event.registerReloadListener(questRenderDispatcher);
+            guideBookManager = new GuideBookManager("book");
+            event.registerReloadListener(guideBookManager);
         }
 
         public QuestRenderDispatcher getQuestRenderDispatcher() {
             return questRenderDispatcher;
+        }
+
+        public GuideBookManager getGuideBookManager() {
+            return guideBookManager;
         }
     }
 }

@@ -14,6 +14,9 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public class SanguisItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Sanguis.MOD_ID);
 
+    public static final DeferredItem<GuideBookItem> DAEMONOLOGIE = ITEMS.registerItem("daemonologie",
+            p -> new GuideBookItem(p.stacksTo(1)));
+
     public static final DeferredItem<VampireFangItem> BLOODY_FANG = ITEMS.registerItem("bloody_fang", VampireFangItem::new);
     public static final DeferredItem<Item> VAMPIRE_BLOOD = ITEMS.registerItem("vampire_blood", Item::new);
     public static final DeferredItem<InfectantItem> ACTIVATED_VAMPIRE_BLOOD = ITEMS.registerItem("activated_vampire_blood", InfectantItem::new);
