@@ -1,7 +1,7 @@
 package com.feliscape.sanguis.client.render.quest;
 
 import com.feliscape.sanguis.content.quest.HunterQuest;
-import com.feliscape.sanguis.content.quest.requirement.QuestType;
+import com.feliscape.sanguis.content.quest.registry.QuestType;
 import com.feliscape.sanguis.registry.custom.SanguisRegistries;
 import com.google.common.collect.ImmutableMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;

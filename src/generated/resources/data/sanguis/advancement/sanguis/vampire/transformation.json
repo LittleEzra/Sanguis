@@ -10,7 +10,6 @@
     "description": {
       "translate": "advancements.sanguis.sanguis.vampire.transformation.description"
     },
-    "frame": "goal",
     "icon": {
       "count": 1,
       "id": "sanguis:bloody_fang"

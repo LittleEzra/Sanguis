@@ -16,11 +16,14 @@ public class SanguisEnUsProvider extends SanguisLanguageProvider{
     protected void addTranslations() {
         this.addItem(SanguisItems.DAEMONOLOGIE, "Daemonologie");
 
+        this.addItem(SanguisItems.BAT_WING, "Bat Wing");
         this.addItem(SanguisItems.BLOODY_FANG, "Bloody Fang");
         this.addItem(SanguisItems.ACTIVATED_VAMPIRE_BLOOD, "Activated Vampire Blood");
         this.addItemTooltip(SanguisItems.ACTIVATED_VAMPIRE_BLOOD, "[DEBUG ITEM] Inflicts vampirism, while skipping the incubation time");
         this.addItem(SanguisItems.VAMPIRE_BLOOD, "Vampire Blood");
         this.addItem(SanguisItems.BLOOD_BOTTLE, "Blood Bottle");
+        this.addItem(SanguisItems.BLOOD_SOAKED_COIN, "Blood-Soaked Coin");
+        this.addItem(SanguisItems.BLACKENED_COIN, "Blackened Coin");
 
         this.addItem(SanguisItems.STEEL_BLEND, "Steel Blend");
         this.addItem(SanguisItems.STEEL_INGOT, "Steel Ingot");
@@ -66,12 +69,22 @@ public class SanguisEnUsProvider extends SanguisLanguageProvider{
         this.addAdvancement(SanguisAdvancements.VAMPIRE_TRANSFORMATION,
                 "Bloodsucker",
                 "Complete your transformation into a vampire");
+        this.addAdvancement(SanguisAdvancements.BAT_TRANSFORM,
+                "Look! I'm a bat!",
+                "Turn into bat. Adorable!");
         this.addAdvancement(SanguisAdvancements.VAMPIRE_CURE,
                 "Back to Mortal Blood",
                 "Revert your transformation by drinking harmful Garlic Solution");
+
         this.addAdvancement(SanguisAdvancements.HUNTER_INJECT,
                 "Vaccinated",
                 "Become a Vampire Hunter by immunizing yourself against vampirism");
+        this.addAdvancement(SanguisAdvancements.QUEST_COMPLETE,
+                "Toss A Coin To Your Witcher",
+                "Complete a quest from a Hunter Camp");
+        this.addAdvancement(SanguisAdvancements.BIBLE_HIT,
+                "Naughty Vampire!",
+                "Hit a Vampire with a copy of Daemonologie");
 
         this.addDeathMessage(SanguisDamageTypes.DRAINING, "%1$s was drained");
         this.addDeathMessagePlayer(SanguisDamageTypes.DRAINING, "%1$s was drained by %2$s");

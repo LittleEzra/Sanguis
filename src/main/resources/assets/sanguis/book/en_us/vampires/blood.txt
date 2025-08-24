@@ -1,0 +1,7 @@
+As a vampire, you will no longer be able to eat normal food like bread or apples, but will instead have to survive off of the blood of living creatures.
+
+You can drain a creature using "V" by default.
+Only certain creatures can be drained, however, with Villagers having the most blood.
+
+Unlike food, blood only drops with time, and not when doing exhausting things like running or jumping.
+However, as a Bat the hunger drain will be increased, as well as costing a blood drop to transform.

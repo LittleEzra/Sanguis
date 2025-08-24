@@ -1,4 +1,4 @@
-// 1.21.1	2025-08-20T09:53:44.7914301	Recipes
+// 1.21.1	2025-08-24T15:31:32.8231033	Recipes
 06a3176e2bad0e76893358c9059d188fc09e4f9c data/minecraft/advancement/recipes/building_blocks/steel_ingot_from_blasting.json
 0fb75ad3c4517b71df6e9ab4404cf42fd21c60fd data/minecraft/advancement/recipes/building_blocks/steel_ingot_from_smelting.json
 6d464615a5803d1b3e30c67a8bf94fe6bf13a756 data/minecraft/recipe/steel_ingot_from_blasting.json
@@ -10,12 +10,16 @@ eabbe1a8e5caa364ece399a00133d495f08dcc7b data/sanguis/advancement/recipes/combat
 4abd6df8c0f00be68bb8f5d613bdd57861b67f9f data/sanguis/advancement/recipes/combat/wooden_stake.json
 e69c7bbe9e56e85703c3cc90a4f08d0cf3e26033 data/sanguis/advancement/recipes/misc/acid_injection.json
 ae5d35534f62db898f1b1b4118992dbd182a2edb data/sanguis/advancement/recipes/misc/blood_bottle.json
+d397b61ccdd20842a232cba9ec3a914b4584bdbf data/sanguis/advancement/recipes/misc/blood_soaked_coin.json
+4e1ff45465f6f06023da5d9f8425993dedeacb57 data/sanguis/advancement/recipes/misc/daemonologie.json
 0a909c0e448369173c185f8babe1b44d0924f166 data/sanguis/advancement/recipes/misc/garlic_injection.json
 3bbe77ba0f8a8a1f43a49fe600f02c00f6e6c526 data/sanguis/advancement/recipes/misc/garlic_string.json
 f8674aa5a3b89d9a9a69465222bb983ef595135b data/sanguis/advancement/recipes/misc/steel_blend.json
 2b1acdc6f43258dfcfae5489d3752b7989ee7f43 data/sanguis/advancement/recipes/misc/syringe.json
 6ee7b5289b4b529bde2bbd55f69ce3b1148af195 data/sanguis/recipe/acid_injection.json
 2fd384a564eefb02d7fec8a9a98731d7e06d8489 data/sanguis/recipe/blood_bottle.json
+51103a997c2fbe4e933ed8100973ff2b6b3befe7 data/sanguis/recipe/blood_soaked_coin.json
+9087179d23cd5060771b674113d4c0d54661c9c2 data/sanguis/recipe/daemonologie.json
 76b0665695d044c4777f81c2cd6ea0eb782c197d data/sanguis/recipe/diamond_cleaver.json
 f9e8b9319be127177b42f04c653875084e84fe50 data/sanguis/recipe/garlic_injection.json
 27d2e11b6b8abb1df443c05d102cb28782e79fac data/sanguis/recipe/garlic_string.json

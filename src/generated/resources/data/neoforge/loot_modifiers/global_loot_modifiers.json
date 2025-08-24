@@ -3,7 +3,8 @@
     "sanguis:add_to_village_plains",
     "sanguis:add_to_village_taiga",
     "sanguis:add_to_village_savanna",
-    "sanguis:add_to_pillager_outpost"
+    "sanguis:add_to_pillager_outpost",
+    "sanguis:add_to_bat"
   ],
   "replace": false
 }

@@ -1,0 +1,47 @@
+{
+  "parent": "sanguis:sanguis/root",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "damage": {
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "items": "sanguis:daemonologie"
+              }
+            }
+          }
+        },
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "#sanguis:vampiric"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:player_hurt_entity"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.sanguis.bible_hit.description"
+    },
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "sanguis:daemonologie"
+    },
+    "title": {
+      "translate": "advancements.sanguis.bible_hit.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

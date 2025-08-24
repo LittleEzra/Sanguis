@@ -1,7 +1,7 @@
 package com.feliscape.sanguis.registry.custom;
 
 import com.feliscape.sanguis.Sanguis;
-import com.feliscape.sanguis.content.quest.requirement.QuestType;
+import com.feliscape.sanguis.content.quest.registry.QuestType;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.neoforged.bus.api.SubscribeEvent;

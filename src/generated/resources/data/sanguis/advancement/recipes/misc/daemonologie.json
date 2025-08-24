@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_guide_book_material": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#sanguis:guide_book_materials"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "sanguis:daemonologie"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_guide_book_material"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "sanguis:daemonologie"
+    ]
+  }
+}

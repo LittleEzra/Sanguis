@@ -1,5 +1,8 @@
-// 1.21.1	2025-08-19T12:10:53.0379418	Advancements
-1c8256a3b9f120125c18ff62145c09a83636de2f data/sanguis/advancement/sanguis/hunter/inject.json
-f12f41ce939b7020ab56c37e5b12e20dc6f4928b data/sanguis/advancement/sanguis/root.json
-3f8eda74b65426e775527ca98845b2ae5bdf2d38 data/sanguis/advancement/sanguis/vampire/cure.json
-d402584a23970f8618e43e82190229c984287beb data/sanguis/advancement/sanguis/vampire/transformation.json
+// 1.21.1	2025-08-24T18:06:04.7068139	Advancements
+383252b29ea590c7af105369de134343c7b12e49 data/sanguis/advancement/bible_hit.json
+8c6f1222b34de0cc9d9437ea849a6a7efbc39d2e data/sanguis/advancement/quest_complete.json
+0e8e8f7be62b47dd5d5e2a5dfdb679050352facb data/sanguis/advancement/sanguis/hunter/inject.json
+c288a1495f847542b25d10792bb5cb3c73bf7d60 data/sanguis/advancement/sanguis/root.json
+9cc7f0260fcc80983645e53a351839a0afce865a data/sanguis/advancement/sanguis/vampire/bat_transform.json
+0d73f4b630e432bea1f18d50ebd7e0e8df69030e data/sanguis/advancement/sanguis/vampire/cure.json
+8792e28b08889735f85e3abbd7eeb3c591e5be30 data/sanguis/advancement/sanguis/vampire/transformation.json

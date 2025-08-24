@@ -26,10 +26,13 @@ public class SanguisItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         simpleItem(SanguisItems.DAEMONOLOGIE);
+        simpleItem(SanguisItems.BAT_WING);
         simpleItem(SanguisItems.BLOODY_FANG);
         simpleItem(SanguisItems.VAMPIRE_BLOOD);
         simpleItem(SanguisItems.ACTIVATED_VAMPIRE_BLOOD);
         bloodBottleItem(SanguisItems.BLOOD_BOTTLE);
+        simpleItem(SanguisItems.BLOOD_SOAKED_COIN);
+        simpleItem(SanguisItems.BLACKENED_COIN);
 
         simpleItem(SanguisItems.STEEL_BLEND);
         simpleItem(SanguisItems.STEEL_INGOT);

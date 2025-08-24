@@ -1,0 +1,12 @@
+A freshly-transformed Vampire is relatively weak, with plenty of weaknesses and few abilities.
+However, there is a ritual that can increase your power:
+
+
+First, you will need a "Blood-Soaked Coin", made in a crafting table with a Gold Ingot in the center,
+two Bat Wings to the left and right of it, and a filled Blood Bottle below.
+
+
+Once you have your Blood-Soaked Coin, you will have to throw it into lava.
+Doing so transforms it into a Blackened Coin, which you'll have to collect.
+
+By using this item, you can unlock new abilities such as turning into a bat.

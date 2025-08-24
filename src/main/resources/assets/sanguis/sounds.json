@@ -17,6 +17,6 @@
       "sanguis:vampire/drink_blood1",
       "sanguis:vampire/drink_blood2"
     ],
-    "subtitle": "subtitle.sanguis.entity.player_vampire.drink_blood"
+    "subtitle": "subtitle.sanguis.entity.player_vampire.drink"
   }
 }

@@ -44,6 +44,7 @@ public class Sanguis {
         SanguisMenuTypes.register(modEventBus);
 
         SanguisSoundEvents.register(modEventBus);
+        SanguisIngredientTypes.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);
 

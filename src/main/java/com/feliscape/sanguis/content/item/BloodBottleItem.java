@@ -1,6 +1,7 @@
 package com.feliscape.sanguis.content.item;
 
 import com.feliscape.sanguis.content.attachment.VampireData;
+import com.feliscape.sanguis.data.damage.SanguisDamageTypes;
 import com.feliscape.sanguis.registry.SanguisDataComponents;
 import com.feliscape.sanguis.registry.SanguisItems;
 import com.feliscape.sanguis.util.VampireUtil;
@@ -14,6 +15,7 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 
@@ -83,5 +85,20 @@ public class BloodBottleItem extends Item {
         int blood = stack.getOrDefault(SanguisDataComponents.BLOOD, 0);
         int maxBlood = stack.getOrDefault(SanguisDataComponents.MAX_BLOOD, 0);
         tooltipComponents.add(Component.literal(blood + "/" + maxBlood).withStyle(ChatFormatting.GRAY));
+    }
+
+    @Override
+    public ItemStack getCraftingRemainingItem(ItemStack itemStack) {
+        int blood = itemStack.getOrDefault(SanguisDataComponents.BLOOD, 0);
+        if (blood <= 0 ) return ItemStack.EMPTY;
+
+        ItemStack copy = itemStack.copy();
+        copy.set(SanguisDataComponents.BLOOD, blood -1);
+        return copy;
+    }
+
+    @Override
+    public boolean hasCraftingRemainingItem(ItemStack stack) {
+        return stack.getOrDefault(SanguisDataComponents.BLOOD, 0) > 0;
     }
 }

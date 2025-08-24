@@ -1,0 +1,26 @@
+{
+  "parent": "sanguis:sanguis/vampire/transformation",
+  "criteria": {
+    "0": {
+      "trigger": "sanguis:transform_to_bat"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.sanguis.sanguis.vampire.bat_transform.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "sanguis:bat_wing"
+    },
+    "title": {
+      "translate": "advancements.sanguis.sanguis.vampire.bat_transform.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

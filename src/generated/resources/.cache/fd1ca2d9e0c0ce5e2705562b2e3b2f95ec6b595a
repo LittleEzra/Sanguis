@@ -1,5 +1,6 @@
-// 1.21.1	2025-08-18T18:39:47.3966609	Global Loot Modifiers : sanguis
-3c5bbb1358e3e776d68a11f89947ea1d4f263ced data/neoforge/loot_modifiers/global_loot_modifiers.json
+// 1.21.1	2025-08-24T11:22:06.1149212	Global Loot Modifiers : sanguis
+989a1fddf0fc7f25e251582d13e9f2679b3a17b4 data/neoforge/loot_modifiers/global_loot_modifiers.json
+46885f0f227eeeb6be66bcd5dcda0696607685bf data/sanguis/loot_modifiers/add_to_bat.json
 166bf6686ec75b8a6df102dd1fba2b154cea8981 data/sanguis/loot_modifiers/add_to_pillager_outpost.json
 b2392491a00c5c266e2dfa633cdf97c5a99d1419 data/sanguis/loot_modifiers/add_to_village_plains.json
 c6fd8a207910d19165fca82229a6ed52b15d1a0f data/sanguis/loot_modifiers/add_to_village_savanna.json

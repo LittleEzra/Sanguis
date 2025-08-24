@@ -1,7 +1,7 @@
 package com.feliscape.sanguis.content.command;
 
 import com.feliscape.sanguis.content.attachment.HunterData;
-import com.feliscape.sanguis.content.quest.requirement.QuestType;
+import com.feliscape.sanguis.content.quest.registry.QuestType;
 import com.feliscape.sanguis.registry.custom.SanguisRegistries;
 import com.feliscape.sanguis.util.HunterUtil;
 import com.mojang.brigadier.CommandDispatcher;

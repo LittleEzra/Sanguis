@@ -1,6 +1,6 @@
 package com.feliscape.sanguis.content.quest;
 
-import com.feliscape.sanguis.content.quest.requirement.QuestType;
+import com.feliscape.sanguis.content.quest.registry.QuestType;
 import com.feliscape.sanguis.registry.SanguisQuestTypes;
 import com.feliscape.sanguis.registry.SanguisTags;
 import com.mojang.serialization.Codec;

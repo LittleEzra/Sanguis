@@ -1,5 +1,14 @@
-For every weakness a vampire has, they also have a strength.
+For every weakness a Vampire has, they also have a strength.
 
-Among these is the ability to turn into a bat.
-This ability is more closely examined in its dedicated chapter.
-→ {The Bat Form|sanguis:vampires/the_bat_form}
+Among these is the ability to breathe underwater, since they do not need to breathe at all on account of being undead.
+
+Most undead also recognize a Vampire's power, and as such tend not to try and harm them.
+This doesn't apply to all creatures of the night, however.
+
+More powerful Vampires can also turn into a Bat.
+This ability is more closely examined in its dedicated chapter¹.
+
+Vampires also have night vision, though not quite as strong as the potion.
+This is especially useful in caves, where the darkness often hides valuable ores.
+
+1 → {The Bat Form|sanguis:vampires/the_bat_form}

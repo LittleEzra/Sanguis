@@ -5,6 +5,7 @@
   "mixins": [
     "BrainMixin",
     "CrossbowMixin",
+    "EntityMixin",
     "FoodDataMixin",
     "MobMixin",
     "PlayerMixin",

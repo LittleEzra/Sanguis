@@ -1,14 +1,12 @@
 package com.feliscape.sanguis.util;
 
 import com.feliscape.sanguis.content.quest.HunterQuest;
-import com.feliscape.sanguis.content.quest.requirement.QuestType;
+import com.feliscape.sanguis.content.quest.registry.QuestType;
 import com.feliscape.sanguis.registry.custom.SanguisRegistries;
 import net.minecraft.core.Holder;
-import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
-import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringUtil;
 
 import java.util.List;

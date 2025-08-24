@@ -20,12 +20,14 @@ public class SanguisTags {
         public static final TagKey<Item> STAKES = create("stakes");
         public static final TagKey<Item> CLEAVERS = create("cleavers");
         public static final TagKey<Item> QUARRELS = create("quarrels");
+        public static final TagKey<Item> GUIDE_BOOK_MATERIALS = create("guide_book_materials");
 
         private static TagKey<Item> create(String name){
             return TagKey.create(Registries.ITEM, Sanguis.location(name));
         }
     }
     public static class EntityTypes{
+        public static final TagKey<EntityType<?>> VAMPIRE_NEUTRAL = create("vampire_neutral");
         public static final TagKey<EntityType<?>> VAMPIRIC = create("vampiric");
         public static final TagKey<EntityType<?>> HUNTER = create("hunter");
         public static final TagKey<EntityType<?>> STAKE_IMMUNE = create("stake_immune");

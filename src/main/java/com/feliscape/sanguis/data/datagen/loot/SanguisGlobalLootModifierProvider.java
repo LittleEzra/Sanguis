@@ -43,5 +43,11 @@ public class SanguisGlobalLootModifierProvider extends GlobalLootModifierProvide
                 },
                         SanguisModifierLootTables.ADDITIONAL_VILLAGE_LOOT
                 ));
+        add("add_to_bat",
+                new AddTableLootModifier(new LootItemCondition[]{
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("entities/bat")).build()
+                },
+                        SanguisModifierLootTables.ADDITIONAL_BAT_LOOT
+                ));
     }
 }

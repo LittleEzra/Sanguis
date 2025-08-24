@@ -3,7 +3,7 @@ package com.feliscape.sanguis.registry;
 import com.feliscape.sanguis.Sanguis;
 import com.feliscape.sanguis.content.quest.ItemQuest;
 import com.feliscape.sanguis.content.quest.KillMobsQuest;
-import com.feliscape.sanguis.content.quest.requirement.QuestType;
+import com.feliscape.sanguis.content.quest.registry.QuestType;
 import com.feliscape.sanguis.registry.custom.SanguisRegistries;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;

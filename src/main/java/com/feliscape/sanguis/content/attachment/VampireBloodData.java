@@ -109,15 +109,10 @@ public class VampireBloodData {
                 } else if (difficulty != Difficulty.PEACEFUL) {
                     this.blood = Math.max(this.blood - 1, 0);
                 }
+                player.syncData(VampireData.type());
             }
 
             addExhaustion(getTickExhaustion(player));
-
-            if (exhaustion >= 4.0F) {
-                exhaustion -= 4.0F;
-                decreaseBlood(1);
-                player.syncData(VampireData.type());
-            }
 
             boolean canRegenerate = player.level().getGameRules().getBoolean(GameRules.RULE_NATURAL_REGENERATION);
             if (canRegenerate && this.saturation > 0.0F && player.isHurt() && this.blood >= 20) {
@@ -180,6 +175,13 @@ public class VampireBloodData {
         return saturation;
     }
 
+    public int consumeBlood(int amount, LivingEntity entity){
+        if (entity instanceof Player player && player.getAbilities().invulnerable){
+            return this.blood;
+        }
+        this.blood = Math.max(this.blood - amount, 0);
+        return this.blood;
+    }
     public int decreaseBlood(int amount){
         this.blood = Math.max(this.blood - amount, 0);
         return this.blood;

@@ -1,1 +1,2 @@
 • {Vampires|sanguis:vampires/chapter}
+• {Vampire Hunters|sanguis:vampire_hunters/chapter}

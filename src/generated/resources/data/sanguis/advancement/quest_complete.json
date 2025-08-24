@@ -1,0 +1,29 @@
+{
+  "parent": "sanguis:sanguis/hunter/inject",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "quest": {}
+      },
+      "trigger": "sanguis:quest_completed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.sanguis.quest_complete.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "sanguis:quest_board"
+    },
+    "title": {
+      "translate": "advancements.sanguis.quest_complete.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

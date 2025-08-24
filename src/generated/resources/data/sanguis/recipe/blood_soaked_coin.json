@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "type": "sanguis:blood_bottle"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "W": {
+      "item": "sanguis:bat_wing"
+    }
+  },
+  "pattern": [
+    "WGW",
+    " B "
+  ],
+  "result": {
+    "count": 1,
+    "id": "sanguis:blood_soaked_coin"
+  }
+}

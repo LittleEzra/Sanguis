@@ -1,6 +1,7 @@
 package com.feliscape.sanguis.registry;
 
 import com.feliscape.sanguis.Sanguis;
+import com.feliscape.sanguis.data.advancement.QuestCompletedTrigger;
 import com.feliscape.sanguis.data.advancement.SimpleEventTrigger;
 import net.minecraft.advancements.CriterionTrigger;
 import net.minecraft.core.registries.Registries;
@@ -19,6 +20,11 @@ public class SanguisCriteriaTriggers {
             SimpleEventTrigger::new);
     public static final Supplier<SimpleEventTrigger> HUNTER_INJECT = TRIGGER_TYPES.register("hunter_inject",
             SimpleEventTrigger::new);
+    public static final Supplier<SimpleEventTrigger> TRANSFORM_TO_BAT = TRIGGER_TYPES.register("transform_to_bat",
+            SimpleEventTrigger::new);
+
+    public static final Supplier<QuestCompletedTrigger> QUEST_COMPLETED = TRIGGER_TYPES.register("quest_completed",
+            QuestCompletedTrigger::new);
 
     public static void register(IEventBus eventBus){
         TRIGGER_TYPES.register(eventBus);

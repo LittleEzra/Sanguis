@@ -10,7 +10,6 @@
     "description": {
       "translate": "advancements.sanguis.sanguis.hunter.inject.description"
     },
-    "frame": "goal",
     "icon": {
       "count": 1,
       "id": "sanguis:garlic"

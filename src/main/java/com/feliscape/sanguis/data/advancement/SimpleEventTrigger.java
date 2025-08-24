@@ -22,7 +22,7 @@ public class SimpleEventTrigger extends SimpleCriterionTrigger<SimpleEventTrigge
         this.trigger(player, triggerInstance -> triggerInstance.matches());
     }
 
-    public static record TriggerInstance(Optional<ContextAwarePredicate> player) implements SimpleInstance {
+    public record TriggerInstance(Optional<ContextAwarePredicate> player) implements SimpleInstance {
         public static final Codec<SimpleEventTrigger.TriggerInstance> CODEC = RecordCodecBuilder.create(
                 inst -> inst.group(
                                 EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("player").forGetter(SimpleEventTrigger.TriggerInstance::player)
@@ -44,6 +44,12 @@ public class SimpleEventTrigger extends SimpleCriterionTrigger<SimpleEventTrigge
         }
         public static Criterion<SimpleEventTrigger.TriggerInstance> hunterInject() {
             return SanguisCriteriaTriggers.HUNTER_INJECT.get()
+                    .createCriterion(
+                            new SimpleEventTrigger.TriggerInstance(Optional.empty())
+                    );
+        }
+        public static Criterion<SimpleEventTrigger.TriggerInstance> batTransform() {
+            return SanguisCriteriaTriggers.TRANSFORM_TO_BAT.get()
                     .createCriterion(
                             new SimpleEventTrigger.TriggerInstance(Optional.empty())
                     );

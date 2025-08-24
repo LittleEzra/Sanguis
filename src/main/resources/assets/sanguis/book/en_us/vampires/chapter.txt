@@ -2,4 +2,6 @@
 • {Vampire Weaknesses|sanguis:vampires/vampire_weaknesses}
 • {Vampire Strengths|sanguis:vampires/vampire_strengths}
     • {The Bat Form|sanguis:vampires/the_bat_form}
+• {Furthering Abilities|sanguis:vampires/furthering_abilities}
+• {Blood|sanguis:vampires/blood}
 • {Curing Vampirism|sanguis:vampires/curing_vampirism}

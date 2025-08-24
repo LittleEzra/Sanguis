@@ -1,9 +1,7 @@
 package com.feliscape.sanguis.content.quest;
 
 import com.feliscape.sanguis.Sanguis;
-import com.feliscape.sanguis.content.component.GeneratedName;
-import com.feliscape.sanguis.content.component.NameGeneratorContents;
-import com.feliscape.sanguis.content.quest.requirement.QuestType;
+import com.feliscape.sanguis.content.quest.registry.QuestType;
 import com.feliscape.sanguis.data.loot.SanguisQuestLootTables;
 import com.feliscape.sanguis.registry.SanguisQuestTypes;
 import com.mojang.serialization.Codec;
@@ -12,7 +10,6 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.ComponentSerialization;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.server.level.ServerLevel;
@@ -21,7 +18,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;

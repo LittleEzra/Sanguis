@@ -3,6 +3,8 @@ package com.feliscape.sanguis.registry;
 import com.feliscape.sanguis.Sanguis;
 import com.feliscape.sanguis.content.entity.projectile.GoldenQuarrel;
 import com.feliscape.sanguis.content.item.*;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.util.Unit;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tiers;
@@ -17,6 +19,7 @@ public class SanguisItems {
     public static final DeferredItem<GuideBookItem> DAEMONOLOGIE = ITEMS.registerItem("daemonologie",
             p -> new GuideBookItem(p.stacksTo(1)));
 
+    public static final DeferredItem<Item> BAT_WING = ITEMS.registerItem("bat_wing", Item::new);
     public static final DeferredItem<VampireFangItem> BLOODY_FANG = ITEMS.registerItem("bloody_fang", VampireFangItem::new);
     public static final DeferredItem<Item> VAMPIRE_BLOOD = ITEMS.registerItem("vampire_blood", Item::new);
     public static final DeferredItem<InfectantItem> ACTIVATED_VAMPIRE_BLOOD = ITEMS.registerItem("activated_vampire_blood", InfectantItem::new);
@@ -25,6 +28,11 @@ public class SanguisItems {
                     .component(SanguisDataComponents.BLOOD, 6)
                     .component(SanguisDataComponents.MAX_BLOOD, 6)
             ));
+    public static final DeferredItem<BloodSoakedCoinItem> BLOOD_SOAKED_COIN = ITEMS.registerItem("blood_soaked_coin",
+            p -> new BloodSoakedCoinItem(p.stacksTo(1)));
+    public static final DeferredItem<BlackenedCoinItem> BLACKENED_COIN = ITEMS.registerItem("blackened_coin",
+            p -> new BlackenedCoinItem(p.stacksTo(1)
+                    .component(DataComponents.FIRE_RESISTANT, Unit.INSTANCE)));
 
     public static final DeferredItem<Item> STEEL_BLEND = ITEMS.registerItem("steel_blend", Item::new);
     public static final DeferredItem<Item> STEEL_INGOT = ITEMS.registerItem("steel_ingot", Item::new);

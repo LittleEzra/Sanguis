@@ -55,8 +55,8 @@ public class CustomAdvancement {
                 builder.type.background,
                 builder.type.border,
                 builder.type.showToast,
-                builder.type.announceToChat && (builder.announceToChatOverride.isEmpty() || builder.announceToChatOverride.get()),
-                builder.type.hidden && (builder.hiddenOverride.isEmpty() || builder.hiddenOverride.get())
+                builder.announceToChatOverride.orElse(builder.type.announceToChat),
+                builder.hiddenOverride.orElse(builder.type.hidden)
         );
 
         SanguisAdvancements.ENTRIES.add(this);

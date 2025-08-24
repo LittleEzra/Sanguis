@@ -1,16 +1,20 @@
 package com.feliscape.sanguis.content.quest;
 
-import com.feliscape.sanguis.content.quest.requirement.QuestType;
+import com.feliscape.sanguis.content.quest.registry.QuestType;
 import com.feliscape.sanguis.data.loot.SanguisQuestLootTables;
+import com.feliscape.sanguis.registry.SanguisCriteriaTriggers;
 import com.feliscape.sanguis.registry.custom.SanguisRegistries;
 import com.mojang.serialization.Codec;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import net.minecraft.core.HolderSet;
+import net.minecraft.nbt.NbtOps;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootParams;
@@ -39,6 +43,10 @@ public abstract class HunterQuest {
     protected boolean isDirty = false;
     protected int duration = 60 * 60 * 20; // 60 Minutes = 3 days
 
+    public static Tag serialize(HunterQuest quest) {
+        return TYPED_CODEC.encodeStart(NbtOps.INSTANCE, quest).getOrThrow();
+    }
+
     public void complete(Player player){
         if (!checkCompleted(player)) return;
 
@@ -54,6 +62,9 @@ public abstract class HunterQuest {
                     player.drop(itemStack, true);
                 }
             }
+        }
+        if (player instanceof ServerPlayer serverPlayer){
+            SanguisCriteriaTriggers.QUEST_COMPLETED.get().trigger(serverPlayer, this);
         }
     }
 
@@ -99,5 +110,9 @@ public abstract class HunterQuest {
 
     public void updateIsCompleted(Player player) {
         this.isCompleted = checkCompleted(player);
+    }
+
+    public boolean is(HolderSet<QuestType<?>> holders) {
+        return holders.contains(type().builtInRegistryHolder());
     }
 }

@@ -22,12 +22,21 @@ public class SanguisEntityTypeTagGenerator extends EntityTypeTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        this.tag(EntityTypeTags.UNDEAD)
-                .addTag(SanguisTags.EntityTypes.VAMPIRIC)
+        this.tag(SanguisTags.EntityTypes.VAMPIRE_NEUTRAL)
+                .addTag(EntityTypeTags.SKELETONS)
+                .addTag(EntityTypeTags.ZOMBIES)
+                .add(EntityType.CREEPER)
+                .add(EntityType.WITCH)
+                .add(EntityType.SPIDER)
+                .add(EntityType.CAVE_SPIDER)
         ;
 
         this.tag(SanguisTags.EntityTypes.VAMPIRIC)
                 .add(SanguisEntityTypes.VAMPIRE.get());
+
+        this.tag(EntityTypeTags.UNDEAD)
+                .addTag(SanguisTags.EntityTypes.VAMPIRIC)
+        ;
 
         this.tag(SanguisTags.EntityTypes.FOUL_BLOOD)
                 .add(SanguisEntityTypes.VAMPIRE_HUNTER.get());
@@ -39,7 +48,6 @@ public class SanguisEntityTypeTagGenerator extends EntityTypeTagsProvider {
                 .add(SanguisEntityTypes.VAMPIRE.get())
                 .add(EntityType.SKELETON)
                 .add(EntityType.ZOMBIE)
-                .add(EntityType.WITCH)
         ;
     }
 }

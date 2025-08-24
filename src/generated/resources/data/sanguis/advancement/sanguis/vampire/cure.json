@@ -10,7 +10,6 @@
     "description": {
       "translate": "advancements.sanguis.sanguis.vampire.cure.description"
     },
-    "frame": "goal",
     "icon": {
       "count": 1,
       "id": "sanguis:garlic_injection"

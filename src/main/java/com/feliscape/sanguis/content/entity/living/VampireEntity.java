@@ -70,6 +70,11 @@ public class VampireEntity extends Monster implements NeutralMob {
                 .build();
     }
 
+    @Override
+    protected int decreaseAirSupply(int currentAir) {
+        return currentAir;
+    }
+
     protected boolean shouldAttack(LivingEntity livingEntity){
         if (this.isAngryAt(livingEntity)) return true;
 

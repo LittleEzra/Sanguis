@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "sanguis:guide_book_materials"
+    },
+    {
+      "item": "minecraft:book"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "sanguis:daemonologie"
+  }
+}

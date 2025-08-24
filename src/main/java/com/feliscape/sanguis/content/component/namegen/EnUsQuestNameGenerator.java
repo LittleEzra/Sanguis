@@ -1,8 +1,6 @@
 package com.feliscape.sanguis.content.component.namegen;
 
-import com.feliscape.sanguis.content.quest.HunterQuest;
-import com.feliscape.sanguis.content.quest.requirement.QuestType;
-import net.minecraft.network.chat.Component;
+import com.feliscape.sanguis.content.quest.registry.QuestType;
 import net.minecraft.util.RandomSource;
 
 import java.util.List;

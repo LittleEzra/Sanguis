@@ -51,6 +51,8 @@ public class VampireData extends DataAttachment {
                     -0.5D, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
     );
 
+    private int tier;
+
     private VampireBloodData bloodData = new VampireBloodData();
 
     public static final StreamCodec<RegistryFriendlyByteBuf, VampireData> FULL_STREAM_CODEC = StreamCodec.composite(
@@ -60,6 +62,8 @@ public class VampireData extends DataAttachment {
             VampireData::isVampire,
             ByteBufCodecs.BOOL,
             VampireData::isBat,
+            ByteBufCodecs.VAR_INT,
+            VampireData::getTier,
             VampireBloodData.FULL_STREAM_CODEC,
             VampireData::getBloodData,
             VampireData::new
@@ -74,19 +78,22 @@ public class VampireData extends DataAttachment {
 
     }
 
-    public VampireData(boolean isVampire){
+    public VampireData(boolean isVampire, int tier){
         this.isVampire = isVampire;
         this.infectionTime = isVampire ? 0 : -1;
+        this.tier = tier;
     }
-    public VampireData(int infectionTime, boolean isVampire){
+    public VampireData(int infectionTime, boolean isVampire, int tier){
         this.infectionTime = infectionTime;
         this.isVampire = isVampire;
+        this.tier = tier;
     }
 
-    public VampireData(int infectionTime, boolean isVampire, boolean isBat, VampireBloodData bloodData){
+    public VampireData(int infectionTime, boolean isVampire, boolean isBat, int tier, VampireBloodData bloodData){
         this.infectionTime = infectionTime;
         this.isVampire = isVampire;
         this.isBat = isBat;
+        this.tier = tier;
         this.bloodData = bloodData;
     }
 
@@ -95,6 +102,7 @@ public class VampireData extends DataAttachment {
         tag.putInt("infectionTime", infectionTime);
         tag.putBoolean("isVampire", isVampire);
         tag.putBoolean("isBat", isBat);
+        tag.putInt("tier", tier);
         tag.put("bloodData", VampireBloodData.save(new CompoundTag(), this.bloodData));
     }
 
@@ -103,16 +111,22 @@ public class VampireData extends DataAttachment {
         this.infectionTime = tag.getInt("infectionTime");
         this.isVampire = tag.getBoolean("isVampire");
         this.isBat = tag.getBoolean("isBat");
+        this.tier = tag.getInt("tier");
         this.bloodData = VampireBloodData.load(tag.getCompound("bloodData"));
     }
 
     public void toggleBatForm(){
         if (!this.canTransform()) return;
+        this.bloodData.consumeBlood(2, this.holder);
         this.isBat = !this.isBat;
         updateBatAttributes();
 
         playSoundServer(isBat() ? SanguisSoundEvents.BAT_TRANSFORM.get() : SanguisSoundEvents.VAMPIRE_TRANSFORM.get());
         this.holder.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 20));
+
+        if (this.isBat && this.holder instanceof ServerPlayer serverPlayer){
+            SanguisCriteriaTriggers.TRANSFORM_TO_BAT.get().trigger(serverPlayer);
+        }
 
         this.holder.syncData(type());
         this.holder.refreshDimensions();
@@ -151,7 +165,12 @@ public class VampireData extends DataAttachment {
     }
 
     private boolean canTransform() {
-        return !VampireUtil.shouldBurnInSunlight(this.holder) && this.holder.getHealth() > 2.0F;
+        if (!isBat && tier == 0){
+            return false;
+        }
+
+        return (!VampireUtil.shouldBurnInSunlight(this.holder) && this.holder.getHealth() > 2.0F
+                && this.bloodData.getBlood() >= (isBat ? 4 : 6)) || (this.holder instanceof Player player && player.getAbilities().invulnerable);
     }
 
     public Bat getBat() {
@@ -206,7 +225,7 @@ public class VampireData extends DataAttachment {
                 }
             }
             if (this.isBat() && this.holder instanceof Player player){
-                if (bloodData.getBlood() <= 4){
+                if (bloodData.getBlood() < 4 && !player.getAbilities().invulnerable){
                     this.disableBatForm();
                 } else{
                     player.getAbilities().flying = true;
@@ -271,6 +290,7 @@ public class VampireData extends DataAttachment {
     private void revertFromVampire(){
         this.disableBatForm();
         this.holder.refreshDimensions();
+        this.tier = 0;
         if (this.holder instanceof Player player){
             player.getFoodData().setFoodLevel(2);
         }
@@ -289,6 +309,17 @@ public class VampireData extends DataAttachment {
     }
     public boolean isBat(){
         return isVampire && isBat;
+    }
+
+    public int getTier() {
+        return tier;
+    }
+
+    public boolean canUpgrade(){
+        return tier == 0;
+    }
+    public void upgradeTier(){
+        tier++;
     }
 
     /**
@@ -371,9 +402,9 @@ public class VampireData extends DataAttachment {
     public static VampireData copyDeathPersistent(VampireData oldData, IAttachmentHolder holder, HolderLookup.Provider provider){
         VampireData newData;
         if (oldData.infectionTime != 0){
-            newData = new VampireData(oldData.isVampire);
+            newData = new VampireData(oldData.isVampire, oldData.tier);
         } else{
-            newData = new VampireData(oldData.infectionTime, oldData.isVampire);
+            newData = new VampireData(oldData.infectionTime, oldData.isVampire, oldData.tier);
         }
         newData.setHolder(holder);
         return newData;
@@ -395,6 +426,7 @@ public class VampireData extends DataAttachment {
         this.infectionTime = buffer.readInt();
         this.isVampire = buffer.readBoolean();
         this.isBat = buffer.readBoolean();
+        this.tier = buffer.readVarInt();
         this.bloodData.update(buffer);
         this.setHolder(living);
         return this;
@@ -410,6 +442,7 @@ public class VampireData extends DataAttachment {
                 buf.writeInt(attachment.infectionTime);
                 buf.writeBoolean(attachment.isVampire);
                 buf.writeBoolean(attachment.isBat);
+                buf.writeVarInt(attachment.tier);
                 VampireBloodData.FULL_STREAM_CODEC.encode(buf, attachment.bloodData);
             }
         }
