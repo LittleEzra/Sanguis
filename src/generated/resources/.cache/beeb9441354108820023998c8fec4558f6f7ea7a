@@ -1,8 +1,9 @@
-// 1.21.1	2025-08-18T17:09:00.337994	Tags for minecraft:block mod id sanguis
+// 1.21.1	2025-08-27T15:49:33.6425609	Tags for minecraft:block mod id sanguis
 e3ca5134ab8b9b615f471384a27787bb95a1d6f8 data/minecraft/tags/block/bee_growables.json
 e3ca5134ab8b9b615f471384a27787bb95a1d6f8 data/minecraft/tags/block/crops.json
 93721cf04a62bfb7d779f3d60afb54c9cca0083b data/minecraft/tags/block/enchantment_power_transmitter.json
 e3ca5134ab8b9b615f471384a27787bb95a1d6f8 data/minecraft/tags/block/maintains_farmland.json
-93721cf04a62bfb7d779f3d60afb54c9cca0083b data/minecraft/tags/block/mineable/axe.json
+5c66aed08bf8eefaa26195c3e8a3715f589f83ab data/minecraft/tags/block/mineable/axe.json
 93721cf04a62bfb7d779f3d60afb54c9cca0083b data/minecraft/tags/block/sword_efficient.json
+a90c7773c581570f0c3a8f724f6a96e6d29e9ac8 data/sanguis/tags/block/coffins.json
 93721cf04a62bfb7d779f3d60afb54c9cca0083b data/sanguis/tags/block/vampire_repellents.json

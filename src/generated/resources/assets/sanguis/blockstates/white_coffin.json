@@ -1,0 +1,36 @@
+{
+  "variants": {
+    "facing=east,part=foot": {
+      "model": "sanguis:block/white_coffin_foot",
+      "y": 450
+    },
+    "facing=east,part=head": {
+      "model": "sanguis:block/white_coffin_head",
+      "y": 450
+    },
+    "facing=north,part=foot": {
+      "model": "sanguis:block/white_coffin_foot",
+      "y": 360
+    },
+    "facing=north,part=head": {
+      "model": "sanguis:block/white_coffin_head",
+      "y": 360
+    },
+    "facing=south,part=foot": {
+      "model": "sanguis:block/white_coffin_foot",
+      "y": 180
+    },
+    "facing=south,part=head": {
+      "model": "sanguis:block/white_coffin_head",
+      "y": 180
+    },
+    "facing=west,part=foot": {
+      "model": "sanguis:block/white_coffin_foot",
+      "y": 270
+    },
+    "facing=west,part=head": {
+      "model": "sanguis:block/white_coffin_head",
+      "y": 270
+    }
+  }
+}

@@ -1,25 +1,13 @@
+<p align="center"><img src="./src/main/resources/logo_clear.png" alt="Logo" width="96"></p>
 
-Installation information
-=======
+<h3 align="center">- Sanguis turpis et dentes cruenti -</h3>
+<h3 align="center">- Vile blood and blood-stained teeth -</h3>
+\
+Sanguis adds Vampires to the game, either for you to hunt them down or join them.
 
-This template repository can be directly cloned to get you started with a new
-mod. Simply create a new repository cloned from this one, by following the
-instructions provided by [GitHub](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
+This mod is heavily inspired by <a href="https://modrinth.com/mod/vampirism">Vampirism</a>, and takes many concepts from it, though it still represents my own take on a vampire mod.
 
-Once you have your clone, simply open the repository in the IDE of your choice. The usual recommendation for an IDE is either IntelliJ IDEA or Eclipse.
+<h2>Guide</h2>
+The mod includes an in-game guide book called "Daemonologie", crafted with a Bloody Fang (dropped by Vampire entities) or Garlic and a Book.
 
-If at any point you are missing libraries in your IDE, or you've run into problems you can
-run `gradlew --refresh-dependencies` to refresh the local cache. `gradlew clean` to reset everything 
-{this does not affect your code} and then start the process again.
-
-Mapping Names:
-============
-By default, the MDK is configured to use the official mapping names from Mojang for methods and fields 
-in the Minecraft codebase. These names are covered by a specific license. All modders should be aware of this
-license. For the latest license text, refer to the mapping file itself, or the reference copy here:
-https://github.com/NeoForged/NeoForm/blob/main/Mojang.md
-
-Additional Resources: 
-==========
-Community Documentation: https://docs.neoforged.net/  
-NeoForged Discord: https://discord.neoforged.net/
+<h4 align="center">- <a href="https://modrinth.com/mod/sanguis-turpis">Modrinth Page</a> -</h4>

@@ -3,6 +3,7 @@ package com.feliscape.sanguis.content.item;
 import com.feliscape.sanguis.content.attachment.HunterData;
 import com.feliscape.sanguis.content.attachment.VampireData;
 import com.feliscape.sanguis.registry.SanguisItems;
+import com.feliscape.sanguis.registry.SanguisSoundEvents;
 import com.feliscape.sanguis.util.HunterUtil;
 import com.feliscape.sanguis.util.VampireUtil;
 import net.minecraft.ChatFormatting;
@@ -35,9 +36,13 @@ public class GarlicInjectionItem extends Item {
                     player.getData(VampireData.type()).cure(false);
                 }
                 player.addEffect(new MobEffectInstance(MobEffects.POISON, 120, 0));
+                level.playSound(player, player.getX(), player.getY(), player.getZ(), SanguisSoundEvents.INJECT.get(),
+                        player.getSoundSource(), 1.0f, level.random.nextFloat() * 0.2F + 0.9F);
                 return InteractionResultHolder.sidedSuccess(player.hasInfiniteMaterials() ? itemStack : returnStack, level.isClientSide());
             } else if (VampireUtil.isVampire(player)){
                 player.getData(VampireData.type()).cure(true);
+                level.playSound(player, player.getX(), player.getY(), player.getZ(), SanguisSoundEvents.INJECT.get(),
+                        player.getSoundSource(), 1.0f, level.random.nextFloat() * 0.2F + 0.9F);
                 return InteractionResultHolder.sidedSuccess(player.hasInfiniteMaterials() ? itemStack : returnStack, level.isClientSide());
             }
         }

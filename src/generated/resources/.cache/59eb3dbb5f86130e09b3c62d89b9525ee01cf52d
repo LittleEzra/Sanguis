@@ -1,7 +1,23 @@
-// 1.21.1	2025-08-23T23:39:54.3100111	Loot Tables
+// 1.21.1	2025-08-27T15:49:33.6345963	Loot Tables
+f8a9d28d5dec2b7646fd70a848463ac52587d334 data/sanguis/loot_table/blocks/black_coffin.json
+b9015899cd263533f8000ea996a1444c4750a08d data/sanguis/loot_table/blocks/blue_coffin.json
+110bd39d2375778157c5ad949961214abc8b12dc data/sanguis/loot_table/blocks/brown_coffin.json
+a4f2b4537fea0eed43dfa14311242f1624d6e5e0 data/sanguis/loot_table/blocks/cyan_coffin.json
 9c0c27b45237d3fd7b25649b7fda48ce152304bc data/sanguis/loot_table/blocks/garlic.json
 6cc74d41bd4edb77b3f744d01671634fdfcef9d0 data/sanguis/loot_table/blocks/garlic_string.json
+dd82b44bcb66bd1587858e14bd7264cd0c2aef0a data/sanguis/loot_table/blocks/gray_coffin.json
+1cd55e9a93cf21f66406be6ae780b2bdf4a4fa6b data/sanguis/loot_table/blocks/green_coffin.json
+65120b8fa641916538edc91af7a2c608f8cffe38 data/sanguis/loot_table/blocks/light_blue_coffin.json
+9126b280c430636911e6af8a249d58a7b4df9fc0 data/sanguis/loot_table/blocks/light_gray_coffin.json
+aaee1b0be15e011597b97c682c87c41f1c0d79b1 data/sanguis/loot_table/blocks/lime_coffin.json
+6c5300af37a58da48f7f5e8ab911d2e6fed92342 data/sanguis/loot_table/blocks/magenta_coffin.json
+15d7ef1dad08817aa624f5979a8abcc6452afbc9 data/sanguis/loot_table/blocks/orange_coffin.json
+9ede7cfe14d95673bb8c9b8fcce33d61449c9a13 data/sanguis/loot_table/blocks/pink_coffin.json
+caef4944b605717cd988b3cd09320b5399e4f5d2 data/sanguis/loot_table/blocks/purple_coffin.json
 1950cdcb9aa67a2ca10e8cc6a10f8b94985e387d data/sanguis/loot_table/blocks/quest_board.json
+c12b36376c0bd0ef63fc39fd61faced158f4175b data/sanguis/loot_table/blocks/red_coffin.json
+34d20b33ad1b713ba6af0b77a389592bf3f8472d data/sanguis/loot_table/blocks/white_coffin.json
+dd471d33a731b3803f6bcb1dea0937bbb447b609 data/sanguis/loot_table/blocks/yellow_coffin.json
 50374d0d15e37745afc3dae41ac7c746aa3a2e97 data/sanguis/loot_table/chests/hunter_camp/food.json
 0ff646d716184aad6453d2a4c5b6bbe761df219c data/sanguis/loot_table/chests/hunter_camp/shrine.json
 c348bc8016ba96e41b4018f5e57de347915138e5 data/sanguis/loot_table/chests/hunter_camp/storage.json

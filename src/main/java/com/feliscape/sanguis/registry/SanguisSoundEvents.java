@@ -15,6 +15,8 @@ public class SanguisSoundEvents {
     public static final Supplier<SoundEvent> BAT_TRANSFORM = registerSoundEvent("entity.player_vampire.bat_transform");
     public static final Supplier<SoundEvent> VAMPIRE_TRANSFORM = registerSoundEvent("entity.player_vampire.vampire_transform");
     public static final Supplier<SoundEvent> VAMPIRE_DRINK = registerSoundEvent("entity.player_vampire.drink");
+    public static final Supplier<SoundEvent> BLACKENED_COIN_USE = registerSoundEvent("item.blackened_coin.use");
+    public static final Supplier<SoundEvent> INJECT = registerSoundEvent("item.inject");
 
     public static void register(IEventBus eventBus)
     {

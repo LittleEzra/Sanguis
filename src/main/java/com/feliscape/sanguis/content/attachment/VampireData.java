@@ -36,10 +36,12 @@ import org.jetbrains.annotations.Nullable;
 public class VampireData extends DataAttachment {
     private LivingEntity holder;
     private int infectionTime = -1;
+    private int startInfectionTime = -1;
     private boolean isVampire;
 
     private boolean wasBat;
     private boolean isBat;
+    private float storedHumanoidHealth;
     @Nullable
     private Bat bat;
     private static final Multimap<Holder<Attribute>, AttributeModifier> BAT_ATTRIBUTES = ImmutableMultimap.of(
@@ -58,6 +60,8 @@ public class VampireData extends DataAttachment {
     public static final StreamCodec<RegistryFriendlyByteBuf, VampireData> FULL_STREAM_CODEC = StreamCodec.composite(
             ByteBufCodecs.INT,
             VampireData::getInfectionTime,
+            ByteBufCodecs.INT,
+            VampireData::getStartInfectionTime,
             ByteBufCodecs.BOOL,
             VampireData::isVampire,
             ByteBufCodecs.BOOL,
@@ -89,8 +93,9 @@ public class VampireData extends DataAttachment {
         this.tier = tier;
     }
 
-    public VampireData(int infectionTime, boolean isVampire, boolean isBat, int tier, VampireBloodData bloodData){
+    public VampireData(int infectionTime, int startInfectionTime, boolean isVampire, boolean isBat, int tier, VampireBloodData bloodData){
         this.infectionTime = infectionTime;
+        this.startInfectionTime = startInfectionTime;
         this.isVampire = isVampire;
         this.isBat = isBat;
         this.tier = tier;
@@ -100,18 +105,22 @@ public class VampireData extends DataAttachment {
     @Override
     protected void save(CompoundTag tag) {
         tag.putInt("infectionTime", infectionTime);
+        tag.putInt("startInfectionTime", startInfectionTime);
         tag.putBoolean("isVampire", isVampire);
         tag.putBoolean("isBat", isBat);
         tag.putInt("tier", tier);
+        tag.putFloat("storedHumanoidHealth", storedHumanoidHealth);
         tag.put("bloodData", VampireBloodData.save(new CompoundTag(), this.bloodData));
     }
 
     @Override
     protected void load(CompoundTag tag) {
         this.infectionTime = tag.getInt("infectionTime");
+        this.startInfectionTime = tag.getInt("startInfectionTime");
         this.isVampire = tag.getBoolean("isVampire");
         this.isBat = tag.getBoolean("isBat");
         this.tier = tag.getInt("tier");
+        this.storedHumanoidHealth = tag.getFloat("storedHumanoidHealth");
         this.bloodData = VampireBloodData.load(tag.getCompound("bloodData"));
     }
 
@@ -119,14 +128,26 @@ public class VampireData extends DataAttachment {
         if (!this.canTransform()) return;
         this.bloodData.consumeBlood(2, this.holder);
         this.isBat = !this.isBat;
+
+        float health = this.holder.getHealth();
         updateBatAttributes();
 
         playSoundServer(isBat() ? SanguisSoundEvents.BAT_TRANSFORM.get() : SanguisSoundEvents.VAMPIRE_TRANSFORM.get());
         this.holder.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 20));
 
-        if (this.isBat && this.holder instanceof ServerPlayer serverPlayer){
-            SanguisCriteriaTriggers.TRANSFORM_TO_BAT.get().trigger(serverPlayer);
+        if (this.isBat){
+            if (this.holder instanceof ServerPlayer serverPlayer)
+                SanguisCriteriaTriggers.TRANSFORM_TO_BAT.get().trigger(serverPlayer);
+
+            if (!this.holder.level().isClientSide())
+                storedHumanoidHealth = Math.max(0.0F, health - this.holder.getMaxHealth());
+        } else{
+            if (!this.holder.level().isClientSide() && storedHumanoidHealth > 0.0F){
+                this.holder.heal(storedHumanoidHealth);
+                storedHumanoidHealth = 0.0F;
+            }
         }
+
 
         this.holder.syncData(type());
         this.holder.refreshDimensions();
@@ -303,6 +324,9 @@ public class VampireData extends DataAttachment {
     public int getInfectionTime(){
         return infectionTime;
     }
+    public int getStartInfectionTime(){
+        return startInfectionTime;
+    }
 
     public boolean isVampire(){
         return isVampire && infectionTime >= 0;
@@ -357,8 +381,12 @@ public class VampireData extends DataAttachment {
     }
 
     public void infect() {
+        this.infect(10 * 60 * 20);
+    }
+    public void infect(int duration) {
         this.holder.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 200, 1));
-        this.infectionTime = 5 * 60 * 20; // 5 Minutes
+        this.infectionTime = duration;
+        this.startInfectionTime = duration;
         this.holder.syncData(type());
     }
     public void infectImmediately() {
@@ -369,7 +397,7 @@ public class VampireData extends DataAttachment {
 
     public void reduceInfection(int amount) {
         this.infectionTime += amount;
-        if (infectionTime > 11000){
+        if (infectionTime > startInfectionTime + 5000){
             cure(false);
             this.holder.syncData(type());
         }

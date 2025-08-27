@@ -1,6 +1,7 @@
 package com.feliscape.sanguis.content.item;
 
 import com.feliscape.sanguis.content.attachment.VampireData;
+import com.feliscape.sanguis.registry.SanguisSoundEvents;
 import com.feliscape.sanguis.util.VampireUtil;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -23,6 +24,7 @@ public class BlackenedCoinItem extends Item {
 
             itemStack.consume(1, player);
             data.upgradeTier();
+            level.playSound(player, player.getX(), player.getY(), player.getZ(), SanguisSoundEvents.BLACKENED_COIN_USE.get(), player.getSoundSource());
             return InteractionResultHolder.sidedSuccess(itemStack, level.isClientSide());
         }
         return super.use(level, player, usedHand);

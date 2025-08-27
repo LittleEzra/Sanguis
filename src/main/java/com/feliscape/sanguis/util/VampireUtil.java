@@ -42,6 +42,9 @@ public class VampireUtil {
 
         return false;
     }
+    public static boolean isDay(Level level){
+        return level.isClientSide() ? level.getDayTime() < 13000L || level.getDayTime() > 23500L : level.isDay();
+    }
 
     @SuppressWarnings("deprecation")
     public static boolean canDrink(LivingEntity vampire, LivingEntity target){

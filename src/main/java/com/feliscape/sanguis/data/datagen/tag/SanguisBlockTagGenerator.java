@@ -22,8 +22,27 @@ public class SanguisBlockTagGenerator extends BlockTagsProvider {
                 .add(SanguisBlocks.GARLIC.get())
                 .add(SanguisBlocks.GARLIC_STRING.get())
         ;
+        this.tag(SanguisTags.Blocks.COFFINS).add(
+                SanguisBlocks.WHITE_COFFIN.get(),
+                SanguisBlocks.LIGHT_GRAY_COFFIN.get(),
+                SanguisBlocks.GRAY_COFFIN.get(),
+                SanguisBlocks.BLACK_COFFIN.get(),
+                SanguisBlocks.BROWN_COFFIN.get(),
+                SanguisBlocks.RED_COFFIN.get(),
+                SanguisBlocks.ORANGE_COFFIN.get(),
+                SanguisBlocks.YELLOW_COFFIN.get(),
+                SanguisBlocks.LIME_COFFIN.get(),
+                SanguisBlocks.GREEN_COFFIN.get(),
+                SanguisBlocks.CYAN_COFFIN.get(),
+                SanguisBlocks.LIGHT_BLUE_COFFIN.get(),
+                SanguisBlocks.BLUE_COFFIN.get(),
+                SanguisBlocks.PURPLE_COFFIN.get(),
+                SanguisBlocks.MAGENTA_COFFIN.get(),
+                SanguisBlocks.PINK_COFFIN.get()
+        );
 
         this.tag(BlockTags.MINEABLE_WITH_AXE)
+                .addTag(SanguisTags.Blocks.COFFINS)
                 .add(SanguisBlocks.GARLIC.get())
                 .add(SanguisBlocks.GARLIC_STRING.get())
         ;

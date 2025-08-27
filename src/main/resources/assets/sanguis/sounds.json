@@ -18,5 +18,17 @@
       "sanguis:vampire/drink_blood2"
     ],
     "subtitle": "subtitle.sanguis.entity.player_vampire.drink"
+  },
+  "item.blackened_coin.use": {
+    "sounds": [
+      "sanguis:vampire/bat_transform"
+    ],
+    "subtitle": "subtitle.sanguis.item.blackened_coin.use"
+  },
+  "item.inject": {
+    "sounds": [
+      "sanguis:item/inject"
+    ],
+    "subtitle": "subtitle.sanguis.item.inject"
   }
 }

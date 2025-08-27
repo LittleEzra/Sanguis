@@ -1,6 +1,7 @@
 package com.feliscape.sanguis.client.hud;
 
 import com.feliscape.sanguis.Sanguis;
+import com.feliscape.sanguis.content.attachment.VampireData;
 import com.feliscape.sanguis.util.HunterUtil;
 import com.feliscape.sanguis.util.VampireUtil;
 import net.minecraft.client.DeltaTracker;
@@ -32,14 +33,26 @@ public class StatusHudLayer extends HudLayer {
         int y = guiGraphics.guiHeight() - 36 - getHeight(player());
 
         guiGraphics.blitSprite(location, x , y, 19, 15);
+
+        if (VampireUtil.isVampire(player())){
+            int tier = player().getData(VampireData.type()).getTier();
+            String s = (tier + 1) + "";
+            int j = (guiGraphics.guiWidth() - this.minecraft.font.width(s)) / 2;
+            int k = guiGraphics.guiHeight() - 31 - getLevelHeight(player());
+            guiGraphics.drawString(this.minecraft.font, s, j + 1, k, 0, false);
+            guiGraphics.drawString(this.minecraft.font, s, j - 1, k, 0, false);
+            guiGraphics.drawString(this.minecraft.font, s, j, k + 1, 0, false);
+            guiGraphics.drawString(this.minecraft.font, s, j, k - 1, 0, false);
+            guiGraphics.drawString(this.minecraft.font, s, j, k, 0xb9214d, false);
+        }
     }
 
     private int getHeight(LocalPlayer player) {
-        if (!isExperienceBarVisible()) return -2;
+        if (!isAnyBarVisible()) return -2;
 
         int i = player.experienceLevel;
         if (i == 0){
-            return  4;
+            return 4;
         }
         int y = 7;
 
@@ -48,8 +61,20 @@ public class StatusHudLayer extends HudLayer {
         }
         return y;
     }
+    private int getLevelHeight(LocalPlayer player) {
+        if (!isAnyBarVisible()) return -2;
+
+        int i = player.experienceLevel;
+        if (i == 0){
+            return 4;
+        }
+        return 14;
+    }
 
     @SuppressWarnings("DataFlowIssue")
+    private boolean isAnyBarVisible() {
+        return this.minecraft.gameMode.hasExperience();
+    }
     private boolean isExperienceBarVisible() {
         return this.minecraft.player.jumpableVehicle() == null && this.minecraft.gameMode.hasExperience();
     }

@@ -1,5 +1,5 @@
 To become a Vampire, you must be either bitten by a Vampire from behind, or pierce yourself with one of their fangs (Sneak + Use).
-This will start the incubation progress, which usually takes around 5 minutes.
+This will start the incubation progress, which usually takes around 10 minutes when bitten or 5 when doing it manually.
 
 Should this not be desired, eating Garlic can delay the transformation, and after eating enough (roughly 5 bulbs) stop it entirely.
 

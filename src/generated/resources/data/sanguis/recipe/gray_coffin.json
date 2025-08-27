@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:gray_wool"
+    },
+    "X": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    "XXX",
+    "###",
+    "XXX"
+  ],
+  "result": {
+    "count": 1,
+    "id": "sanguis:gray_coffin"
+  }
+}

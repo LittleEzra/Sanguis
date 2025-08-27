@@ -54,12 +54,31 @@ public class SanguisEnUsProvider extends SanguisLanguageProvider{
         this.addBlock(SanguisBlocks.GARLIC, "Garlic");
         this.addBlock(SanguisBlocks.GARLIC_STRING, "Garlic String");
 
+        this.addBlock(SanguisBlocks.WHITE_COFFIN, "White Coffin");
+        this.addBlock(SanguisBlocks.LIGHT_GRAY_COFFIN, "Light Gray Coffin");
+        this.addBlock(SanguisBlocks.GRAY_COFFIN, "Gray Coffin");
+        this.addBlock(SanguisBlocks.BLACK_COFFIN, "Black Coffin");
+        this.addBlock(SanguisBlocks.BROWN_COFFIN, "Brown Coffin");
+        this.addBlock(SanguisBlocks.RED_COFFIN, "Red Coffin");
+        this.addBlock(SanguisBlocks.ORANGE_COFFIN, "Orange Coffin");
+        this.addBlock(SanguisBlocks.YELLOW_COFFIN, "Yellow Coffin");
+        this.addBlock(SanguisBlocks.LIME_COFFIN, "Lime Coffin");
+        this.addBlock(SanguisBlocks.GREEN_COFFIN, "Green Coffin");
+        this.addBlock(SanguisBlocks.CYAN_COFFIN, "Cyan Coffin");
+        this.addBlock(SanguisBlocks.LIGHT_BLUE_COFFIN, "Light Blue Coffin");
+        this.addBlock(SanguisBlocks.BLUE_COFFIN, "Blue Coffin");
+        this.addBlock(SanguisBlocks.PURPLE_COFFIN, "Purple Coffin");
+        this.addBlock(SanguisBlocks.MAGENTA_COFFIN, "Magenta Coffin");
+        this.addBlock(SanguisBlocks.PINK_COFFIN, "Pink Coffin");
+
         this.addEntityType(SanguisEntityTypes.VAMPIRE, "Vampire");
         this.addEntityType(SanguisEntityTypes.VAMPIRE_HUNTER, "Vampire Hunter");
 
         this.addSubtitle(SanguisSoundEvents.BAT_TRANSFORM, "Player transforms into bat");
         this.addSubtitle(SanguisSoundEvents.VAMPIRE_TRANSFORM, "Player transforms into vampire");
         this.addSubtitle(SanguisSoundEvents.VAMPIRE_DRINK, "Vampire drinks");
+        this.addSubtitle(SanguisSoundEvents.INJECT, "Injection is used");
+        this.addSubtitle(SanguisSoundEvents.BLACKENED_COIN_USE, "Blackened Coin is used");
 
         //noinspection SpellCheckingInspection
         this.addAdvancement(SanguisAdvancements.ROOT,

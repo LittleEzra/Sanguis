@@ -82,7 +82,7 @@ public class ClientEvents {
     @SubscribeEvent
     public static void registerGuiLayers(RegisterGuiLayersEvent event)
     {
-        event.registerBelow(VanillaGuiLayers.EXPERIENCE_BAR, StatusHudLayer.LOCATION, new StatusHudLayer());
+        event.registerBelow(VanillaGuiLayers.EXPERIENCE_LEVEL, StatusHudLayer.LOCATION, new StatusHudLayer());
         event.registerAbove(VanillaGuiLayers.FOOD_LEVEL, BloodLevelHudLayer.LOCATION, new BloodLevelHudLayer());
         event.registerAbove(VanillaGuiLayers.CROSSHAIR, DrainBarHudLayer.LOCATION, new DrainBarHudLayer());
     }

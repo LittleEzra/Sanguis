@@ -1,0 +1,61 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "coffin",
+  "ingredients": [
+    {
+      "item": "minecraft:red_dye"
+    },
+    [
+      {
+        "item": "sanguis:white_coffin"
+      },
+      {
+        "item": "sanguis:light_gray_coffin"
+      },
+      {
+        "item": "sanguis:gray_coffin"
+      },
+      {
+        "item": "sanguis:black_coffin"
+      },
+      {
+        "item": "sanguis:brown_coffin"
+      },
+      {
+        "item": "sanguis:orange_coffin"
+      },
+      {
+        "item": "sanguis:yellow_coffin"
+      },
+      {
+        "item": "sanguis:lime_coffin"
+      },
+      {
+        "item": "sanguis:green_coffin"
+      },
+      {
+        "item": "sanguis:cyan_coffin"
+      },
+      {
+        "item": "sanguis:light_blue_coffin"
+      },
+      {
+        "item": "sanguis:blue_coffin"
+      },
+      {
+        "item": "sanguis:purple_coffin"
+      },
+      {
+        "item": "sanguis:magenta_coffin"
+      },
+      {
+        "item": "sanguis:pink_coffin"
+      }
+    ]
+  ],
+  "result": {
+    "count": 1,
+    "id": "sanguis:red_coffin"
+  }
+}

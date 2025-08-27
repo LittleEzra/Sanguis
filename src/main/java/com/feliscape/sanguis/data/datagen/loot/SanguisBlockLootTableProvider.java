@@ -1,5 +1,6 @@
 package com.feliscape.sanguis.data.datagen.loot;
 
+import com.feliscape.sanguis.content.block.CoffinBlock;
 import com.feliscape.sanguis.content.block.GarlicCropBlock;
 import com.feliscape.sanguis.registry.SanguisBlocks;
 import com.feliscape.sanguis.registry.SanguisItems;
@@ -14,9 +15,11 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.block.BedBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CarrotBlock;
+import net.minecraft.world.level.block.state.properties.BedPart;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
@@ -43,6 +46,22 @@ public class SanguisBlockLootTableProvider extends BlockLootSubProvider {
         this.dropOther(SanguisBlocks.QUEST_BOARD.get(), Blocks.STRIPPED_OAK_LOG);
         this.dropSelf(SanguisBlocks.GARLIC_STRING.get());
 
+        this.add(SanguisBlocks.WHITE_COFFIN.get(), block -> this.createSinglePropConditionTable(block, CoffinBlock.PART, BedPart.HEAD));
+        this.add(SanguisBlocks.LIGHT_GRAY_COFFIN.get(), block -> this.createSinglePropConditionTable(block, CoffinBlock.PART, BedPart.HEAD));
+        this.add(SanguisBlocks.GRAY_COFFIN.get(), block -> this.createSinglePropConditionTable(block, CoffinBlock.PART, BedPart.HEAD));
+        this.add(SanguisBlocks.BLACK_COFFIN.get(), block -> this.createSinglePropConditionTable(block, CoffinBlock.PART, BedPart.HEAD));
+        this.add(SanguisBlocks.BROWN_COFFIN.get(), block -> this.createSinglePropConditionTable(block, CoffinBlock.PART, BedPart.HEAD));
+        this.add(SanguisBlocks.RED_COFFIN.get(), block -> this.createSinglePropConditionTable(block, CoffinBlock.PART, BedPart.HEAD));
+        this.add(SanguisBlocks.ORANGE_COFFIN.get(), block -> this.createSinglePropConditionTable(block, CoffinBlock.PART, BedPart.HEAD));
+        this.add(SanguisBlocks.YELLOW_COFFIN.get(), block -> this.createSinglePropConditionTable(block, CoffinBlock.PART, BedPart.HEAD));
+        this.add(SanguisBlocks.LIME_COFFIN.get(), block -> this.createSinglePropConditionTable(block, CoffinBlock.PART, BedPart.HEAD));
+        this.add(SanguisBlocks.GREEN_COFFIN.get(), block -> this.createSinglePropConditionTable(block, CoffinBlock.PART, BedPart.HEAD));
+        this.add(SanguisBlocks.CYAN_COFFIN.get(), block -> this.createSinglePropConditionTable(block, CoffinBlock.PART, BedPart.HEAD));
+        this.add(SanguisBlocks.LIGHT_BLUE_COFFIN.get(), block -> this.createSinglePropConditionTable(block, CoffinBlock.PART, BedPart.HEAD));
+        this.add(SanguisBlocks.BLUE_COFFIN.get(), block -> this.createSinglePropConditionTable(block, CoffinBlock.PART, BedPart.HEAD));
+        this.add(SanguisBlocks.PURPLE_COFFIN.get(), block -> this.createSinglePropConditionTable(block, CoffinBlock.PART, BedPart.HEAD));
+        this.add(SanguisBlocks.MAGENTA_COFFIN.get(), block -> this.createSinglePropConditionTable(block, CoffinBlock.PART, BedPart.HEAD));
+        this.add(SanguisBlocks.PINK_COFFIN.get(), block -> this.createSinglePropConditionTable(block, CoffinBlock.PART, BedPart.HEAD));
 
         LootItemCondition.Builder garlicAgeCondition = LootItemBlockStatePropertyCondition.hasBlockStateProperties(SanguisBlocks.GARLIC.get())
                 .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(GarlicCropBlock.AGE, 4));

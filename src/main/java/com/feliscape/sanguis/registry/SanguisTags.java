@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.Block;
 public class SanguisTags {
     public static class Blocks{
         public static final TagKey<Block> VAMPIRE_REPELLENTS = create("vampire_repellents");
+        public static final TagKey<Block> COFFINS = create("coffins");
 
         private static TagKey<Block> create(String name){
             return TagKey.create(Registries.BLOCK, Sanguis.location(name));

@@ -1,0 +1,7 @@
+Passing the night will do a Vampire little good - it would be far more convenient to skip the day, instead.
+For this, a coffin will be required.
+
+A coffin can be made with six planks filling the bottom and top rows and three wool filling the middle row.
+
+They work exactly like beds, except that they skip the day instead of night and can only be used by vampires.
+They come in the usual 16 colors, though the wood is always oak.

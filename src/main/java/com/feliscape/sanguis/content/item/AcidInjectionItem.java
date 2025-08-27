@@ -2,6 +2,7 @@ package com.feliscape.sanguis.content.item;
 
 import com.feliscape.sanguis.content.attachment.HunterData;
 import com.feliscape.sanguis.registry.SanguisItems;
+import com.feliscape.sanguis.registry.SanguisSoundEvents;
 import com.feliscape.sanguis.util.HunterUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -30,6 +31,8 @@ public class AcidInjectionItem extends Item {
                 player.getData(HunterData.type()).removeGarlic();
                 player.addEffect(new MobEffectInstance(MobEffects.WITHER, 400, 2));
                 ItemStack returnStack = SanguisItems.SYRINGE.toStack();
+                level.playSound(player, player.getX(), player.getY(), player.getZ(), SanguisSoundEvents.INJECT.get(),
+                        player.getSoundSource(), 1.0f, level.random.nextFloat() * 0.2F + 0.9F);
                 return InteractionResultHolder.sidedSuccess(player.hasInfiniteMaterials() ? itemStack : returnStack, level.isClientSide());
             }
         }

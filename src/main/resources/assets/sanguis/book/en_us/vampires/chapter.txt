@@ -4,4 +4,5 @@
     • {The Bat Form|sanguis:vampires/the_bat_form}
 • {Furthering Abilities|sanguis:vampires/furthering_abilities}
 • {Blood|sanguis:vampires/blood}
+• {Sleeping|sanguis:vampires/sleeping}
 • {Curing Vampirism|sanguis:vampires/curing_vampirism}

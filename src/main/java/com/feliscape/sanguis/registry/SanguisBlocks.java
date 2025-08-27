@@ -1,17 +1,20 @@
 package com.feliscape.sanguis.registry;
 
 import com.feliscape.sanguis.Sanguis;
+import com.feliscape.sanguis.content.block.CoffinBlock;
 import com.feliscape.sanguis.content.block.GarlicCropBlock;
 import com.feliscape.sanguis.content.block.GarlicStringBlock;
 import com.feliscape.sanguis.content.block.QuestBoardBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BedPart;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
@@ -49,6 +52,38 @@ public class SanguisBlocks {
                     .sound(SoundType.WOOL)
                     .pushReaction(PushReaction.DESTROY)));
 
+
+    public static final DeferredBlock<CoffinBlock> WHITE_COFFIN = registerCoffin(DyeColor.WHITE);
+    public static final DeferredBlock<CoffinBlock> LIGHT_GRAY_COFFIN = registerCoffin(DyeColor.LIGHT_GRAY);
+    public static final DeferredBlock<CoffinBlock> GRAY_COFFIN = registerCoffin(DyeColor.GRAY);
+    public static final DeferredBlock<CoffinBlock> BLACK_COFFIN = registerCoffin(DyeColor.BLACK);
+    public static final DeferredBlock<CoffinBlock> BROWN_COFFIN = registerCoffin(DyeColor.BROWN);
+    public static final DeferredBlock<CoffinBlock> RED_COFFIN = registerCoffin(DyeColor.RED);
+    public static final DeferredBlock<CoffinBlock> ORANGE_COFFIN = registerCoffin(DyeColor.ORANGE);
+    public static final DeferredBlock<CoffinBlock> YELLOW_COFFIN = registerCoffin(DyeColor.YELLOW);
+    public static final DeferredBlock<CoffinBlock> LIME_COFFIN = registerCoffin(DyeColor.LIME);
+    public static final DeferredBlock<CoffinBlock> GREEN_COFFIN = registerCoffin(DyeColor.GREEN);
+    public static final DeferredBlock<CoffinBlock> CYAN_COFFIN = registerCoffin(DyeColor.CYAN);
+    public static final DeferredBlock<CoffinBlock> LIGHT_BLUE_COFFIN = registerCoffin(DyeColor.LIGHT_BLUE);
+    public static final DeferredBlock<CoffinBlock> BLUE_COFFIN = registerCoffin(DyeColor.BLUE);
+    public static final DeferredBlock<CoffinBlock> PURPLE_COFFIN = registerCoffin(DyeColor.PURPLE);
+    public static final DeferredBlock<CoffinBlock> MAGENTA_COFFIN = registerCoffin(DyeColor.MAGENTA);
+    public static final DeferredBlock<CoffinBlock> PINK_COFFIN = registerCoffin(DyeColor.PINK);
+
+    private static DeferredBlock<CoffinBlock> registerCoffin(DyeColor color){
+        return registerBlockWithItem(color.getName() + "_coffin", p -> coffin(p, color));
+    }
+
+    private static CoffinBlock coffin(BlockBehaviour.Properties properties, DyeColor color) {
+        return new CoffinBlock(color, properties
+                .mapColor(color.getMapColor())
+                .sound(SoundType.WOOD)
+                .strength(0.2F)
+                .noOcclusion()
+                .ignitedByLava()
+                .pushReaction(PushReaction.DESTROY)
+        );
+    }
     private static LeavesBlock leaves(BlockBehaviour.Properties properties, SoundType soundType) {
         return new LeavesBlock(
                 properties

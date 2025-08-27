@@ -1,0 +1,5 @@
+{
+  "title": "book.sanguis.vampires.sleeping",
+  "parent": "sanguis:vampires/chapter",
+  "text": "sanguis:vampires/sleeping.txt"
+}
