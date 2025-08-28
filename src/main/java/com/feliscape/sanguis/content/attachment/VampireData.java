@@ -452,6 +452,7 @@ public class VampireData extends DataAttachment {
         }
 
         this.infectionTime = buffer.readInt();
+        this.startInfectionTime = buffer.readInt();
         this.isVampire = buffer.readBoolean();
         this.isBat = buffer.readBoolean();
         this.tier = buffer.readVarInt();
@@ -468,6 +469,7 @@ public class VampireData extends DataAttachment {
                 FULL_STREAM_CODEC.encode(buf, attachment);
             } else{
                 buf.writeInt(attachment.infectionTime);
+                buf.writeInt(attachment.startInfectionTime);
                 buf.writeBoolean(attachment.isVampire);
                 buf.writeBoolean(attachment.isBat);
                 buf.writeVarInt(attachment.tier);

@@ -19,6 +19,7 @@ public class SanguisLootTableProvider extends LootTableProvider {
         super(output, Collections.emptySet(), List.of(
                 new SubProviderEntry(SanguisBlockLootTableProvider::new, LootContextParamSets.BLOCK),
                 new SubProviderEntry(SanguisEntityLootTableProvider::new, LootContextParamSets.ENTITY),
+                new SubProviderEntry(SanguisAdditionalEntityLootTableProvider::new, LootContextParamSets.ENTITY),
                 new SubProviderEntry(SanguisChestLootTableProvider::new, LootContextParamSets.CHEST),
                 new SubProviderEntry(SanguisQuestLootTableProvider::new, LootContextParamSets.EMPTY)
                 ),
