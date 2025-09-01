@@ -1,4 +1,4 @@
-// 1.21.1	2025-08-27T18:22:12.5484324	Recipes
+// 1.21.1	2025-08-30T16:28:11.3972383	Recipes
 8c60ef55644f1ddec3093884c13012f3542f70e5 data/minecraft/advancement/recipes/building_blocks/dye_black_coffin.json
 cbdc8d4cbf1a15577123c52d7d2f7455427813e3 data/minecraft/advancement/recipes/building_blocks/dye_blue_coffin.json
 94ec62163d0a838eef52ed3ade3ec4b1c36b2a82 data/minecraft/advancement/recipes/building_blocks/dye_brown_coffin.json
@@ -62,6 +62,7 @@ d397b61ccdd20842a232cba9ec3a914b4584bdbf data/sanguis/advancement/recipes/misc/b
 4e1ff45465f6f06023da5d9f8425993dedeacb57 data/sanguis/advancement/recipes/misc/daemonologie.json
 0a909c0e448369173c185f8babe1b44d0924f166 data/sanguis/advancement/recipes/misc/garlic_injection.json
 3bbe77ba0f8a8a1f43a49fe600f02c00f6e6c526 data/sanguis/advancement/recipes/misc/garlic_string.json
+2d8e948c4656953af11a242568cc10e7f30bb38c data/sanguis/advancement/recipes/misc/parasol.json
 f8674aa5a3b89d9a9a69465222bb983ef595135b data/sanguis/advancement/recipes/misc/steel_blend.json
 2b1acdc6f43258dfcfae5489d3752b7989ee7f43 data/sanguis/advancement/recipes/misc/syringe.json
 6ee7b5289b4b529bde2bbd55f69ce3b1148af195 data/sanguis/recipe/acid_injection.json
@@ -83,6 +84,7 @@ bffae9b3bf398cfb66fa586cf34d1afc54edeb9f data/sanguis/recipe/light_blue_coffin.j
 b53b9dd6ca7703fe5ff1077b7d305e7ea5759069 data/sanguis/recipe/lime_coffin.json
 7bbe26c013426d67b1bf029bd13d11a8898cf93d data/sanguis/recipe/magenta_coffin.json
 7925df154977969d263a52134cd0e3c905206cdd data/sanguis/recipe/orange_coffin.json
+68f794678bd5967d92aea0e1d35b0f038fdca95c data/sanguis/recipe/parasol.json
 8f5bec763a79cb710efb3902eea04fd62f2ce447 data/sanguis/recipe/pink_coffin.json
 d08144fa40f12df956726dff40b58463cc71bb08 data/sanguis/recipe/purple_coffin.json
 b5c745b716eaab7d8c2ccc8f4f64b6e13b9659b1 data/sanguis/recipe/red_coffin.json

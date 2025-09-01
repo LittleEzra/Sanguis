@@ -1,10 +1,7 @@
 package com.feliscape.sanguis.registry;
 
 import com.feliscape.sanguis.Sanguis;
-import com.feliscape.sanguis.content.block.CoffinBlock;
-import com.feliscape.sanguis.content.block.GarlicCropBlock;
-import com.feliscape.sanguis.content.block.GarlicStringBlock;
-import com.feliscape.sanguis.content.block.QuestBoardBlock;
+import com.feliscape.sanguis.content.block.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.BlockItem;
@@ -41,6 +38,13 @@ public class SanguisBlocks {
                     .mapColor(MapColor.PLANT)
                     .noCollission()
                     .randomTicks()
+                    .instabreak()
+                    .sound(SoundType.CROP)
+                    .pushReaction(PushReaction.DESTROY)));
+    public static final DeferredBlock<WildGarlicBlock> WILD_GARLIC = registerBlockWithItem("wild_garlic",
+            p -> new WildGarlicBlock(p
+                    .mapColor(MapColor.PLANT)
+                    .noCollission()
                     .instabreak()
                     .sound(SoundType.CROP)
                     .pushReaction(PushReaction.DESTROY)));

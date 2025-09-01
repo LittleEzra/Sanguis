@@ -1,4 +1,4 @@
-// 1.21.1	2025-08-28T14:44:14.8424537	Loot Tables
+// 1.21.1	2025-09-01T22:32:11.384622	Loot Tables
 8a5d39eebefdbce8463937aea511e106e361d896 data/sanguis/loot_table/additional_bat_loot.json
 f8a9d28d5dec2b7646fd70a848463ac52587d334 data/sanguis/loot_table/blocks/black_coffin.json
 b9015899cd263533f8000ea996a1444c4750a08d data/sanguis/loot_table/blocks/blue_coffin.json
@@ -18,6 +18,7 @@ caef4944b605717cd988b3cd09320b5399e4f5d2 data/sanguis/loot_table/blocks/purple_c
 1950cdcb9aa67a2ca10e8cc6a10f8b94985e387d data/sanguis/loot_table/blocks/quest_board.json
 c12b36376c0bd0ef63fc39fd61faced158f4175b data/sanguis/loot_table/blocks/red_coffin.json
 34d20b33ad1b713ba6af0b77a389592bf3f8472d data/sanguis/loot_table/blocks/white_coffin.json
+76208e4cda7a5a79c991ef503a325c82eb23f305 data/sanguis/loot_table/blocks/wild_garlic.json
 dd471d33a731b3803f6bcb1dea0937bbb447b609 data/sanguis/loot_table/blocks/yellow_coffin.json
 50374d0d15e37745afc3dae41ac7c746aa3a2e97 data/sanguis/loot_table/chests/hunter_camp/food.json
 0ff646d716184aad6453d2a4c5b6bbe761df219c data/sanguis/loot_table/chests/hunter_camp/shrine.json

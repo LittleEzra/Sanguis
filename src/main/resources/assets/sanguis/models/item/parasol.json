@@ -1,0 +1,18 @@
+{
+	"parent": "item/handheld",
+	"loader": "neoforge:separate_transforms",
+	"base": {
+		"parent": "sanguis:item/parasol_in_hand"
+	},
+	"perspectives": {
+		"gui": {
+			"parent": "sanguis:item/parasol_flat"
+		},
+		"ground": {
+			"parent": "sanguis:item/parasol_flat"
+		},
+		"fixed": {
+			"parent": "sanguis:item/parasol_flat"
+		}
+	}
+}

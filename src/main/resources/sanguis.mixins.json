@@ -14,7 +14,8 @@
   "client": [
     "client.InventoryScreenMixin",
     "client.ItemRendererMixin",
-    "client.LightTextureMixin"
+    "client.LightTextureMixin",
+    "client.HumanoidModelMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -22,6 +22,7 @@ public class SanguisEnUsProvider extends SanguisLanguageProvider{
         this.addItemTooltip(SanguisItems.ACTIVATED_VAMPIRE_BLOOD, "[DEBUG ITEM] Inflicts vampirism, while skipping the incubation time");
         this.addItem(SanguisItems.VAMPIRE_BLOOD, "Vampire Blood");
         this.addItem(SanguisItems.BLOOD_BOTTLE, "Blood Bottle");
+        this.addItem(SanguisItems.PARASOL, "Parasol");
         this.addItem(SanguisItems.BLOOD_SOAKED_COIN, "Blood-Soaked Coin");
         this.addItem(SanguisItems.BLACKENED_COIN, "Blackened Coin");
 
@@ -52,6 +53,7 @@ public class SanguisEnUsProvider extends SanguisLanguageProvider{
 
         this.addBlock(SanguisBlocks.QUEST_BOARD, "Quest Board");
         this.addBlock(SanguisBlocks.GARLIC, "Garlic");
+        this.addBlock(SanguisBlocks.WILD_GARLIC, "Wild Garlic");
         this.addBlock(SanguisBlocks.GARLIC_STRING, "Garlic String");
 
         this.addBlock(SanguisBlocks.WHITE_COFFIN, "White Coffin");

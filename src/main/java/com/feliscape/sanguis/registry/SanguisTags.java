@@ -18,6 +18,8 @@ public class SanguisTags {
         }
     }
     public static class Items{
+        public static final TagKey<Item> HELD_SUN_PROTECTION = create("held_sun_protection");
+
         public static final TagKey<Item> STAKES = create("stakes");
         public static final TagKey<Item> CLEAVERS = create("cleavers");
         public static final TagKey<Item> QUARRELS = create("quarrels");
@@ -44,6 +46,7 @@ public class SanguisTags {
     public static class Biomes{
         public static final TagKey<Biome> SPAWNS_VAMPIRES = create("spawns_vampires");
         public static final TagKey<Biome> HAS_HUNTER_CAMPS = create("has_structure/hunter_camp");
+        public static final TagKey<Biome> HAS_WILD_GARLIC = create("has_wild_garlic");
 
         private static TagKey<Biome> create(String name){
             return TagKey.create(Registries.BIOME, Sanguis.location(name));

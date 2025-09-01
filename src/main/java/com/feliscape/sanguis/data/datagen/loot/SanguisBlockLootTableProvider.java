@@ -2,6 +2,7 @@ package com.feliscape.sanguis.data.datagen.loot;
 
 import com.feliscape.sanguis.content.block.CoffinBlock;
 import com.feliscape.sanguis.content.block.GarlicCropBlock;
+import com.feliscape.sanguis.content.item.GarlicItem;
 import com.feliscape.sanguis.registry.SanguisBlocks;
 import com.feliscape.sanguis.registry.SanguisItems;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
@@ -15,6 +16,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.BedBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -24,10 +26,13 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
+import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredItem;
 
 import java.util.Set;
 
@@ -63,6 +68,8 @@ public class SanguisBlockLootTableProvider extends BlockLootSubProvider {
         this.add(SanguisBlocks.MAGENTA_COFFIN.get(), block -> this.createSinglePropConditionTable(block, CoffinBlock.PART, BedPart.HEAD));
         this.add(SanguisBlocks.PINK_COFFIN.get(), block -> this.createSinglePropConditionTable(block, CoffinBlock.PART, BedPart.HEAD));
 
+        this.add(SanguisBlocks.WILD_GARLIC.get(), block -> createWildCropDrops(block, SanguisItems.GARLIC));
+
         LootItemCondition.Builder garlicAgeCondition = LootItemBlockStatePropertyCondition.hasBlockStateProperties(SanguisBlocks.GARLIC.get())
                 .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(GarlicCropBlock.AGE, 4));
         this.add(
@@ -85,6 +92,10 @@ public class SanguisBlockLootTableProvider extends BlockLootSubProvider {
                                 )
                 )
         );
+    }
+
+    private LootTable.Builder createWildCropDrops(Block block, ItemLike drop) {
+        return createShearsDispatchTable(block, LootItem.lootTableItem(drop).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))));
     }
 
     @Override

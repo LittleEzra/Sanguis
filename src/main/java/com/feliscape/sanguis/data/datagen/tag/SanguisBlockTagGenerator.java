@@ -20,6 +20,7 @@ public class SanguisBlockTagGenerator extends BlockTagsProvider {
     protected void addTags(HolderLookup.Provider provider) {
         this.tag(SanguisTags.Blocks.VAMPIRE_REPELLENTS)
                 .add(SanguisBlocks.GARLIC.get())
+                .add(SanguisBlocks.WILD_GARLIC.get())
                 .add(SanguisBlocks.GARLIC_STRING.get())
         ;
         this.tag(SanguisTags.Blocks.COFFINS).add(
@@ -43,22 +44,27 @@ public class SanguisBlockTagGenerator extends BlockTagsProvider {
 
         this.tag(BlockTags.MINEABLE_WITH_AXE)
                 .addTag(SanguisTags.Blocks.COFFINS)
+                .add(SanguisBlocks.QUEST_BOARD.get())
                 .add(SanguisBlocks.GARLIC.get())
+                .add(SanguisBlocks.WILD_GARLIC.get())
                 .add(SanguisBlocks.GARLIC_STRING.get())
         ;
 
         this.tag(BlockTags.SWORD_EFFICIENT)
                 .add(SanguisBlocks.GARLIC.get())
+                .add(SanguisBlocks.WILD_GARLIC.get())
                 .add(SanguisBlocks.GARLIC_STRING.get())
         ;
 
         this.tag(BlockTags.ENCHANTMENT_POWER_TRANSMITTER)
                 .add(SanguisBlocks.GARLIC.get())
+                .add(SanguisBlocks.WILD_GARLIC.get())
                 .add(SanguisBlocks.GARLIC_STRING.get())
         ;
 
         this.tag(BlockTags.MAINTAINS_FARMLAND)
                 .add(SanguisBlocks.GARLIC.get())
+                .add(SanguisBlocks.WILD_GARLIC.get())
         ;
         this.tag(BlockTags.CROPS)
                 .add(SanguisBlocks.GARLIC.get())

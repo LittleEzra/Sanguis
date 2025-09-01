@@ -228,7 +228,7 @@ public class VampireData extends DataAttachment {
 
         if (isVampire){
             if (!this.holder.level().isClientSide()) {
-                if (this.holder.tickCount % 5 == 0 && inSunlight(this.holder) && canBurn(this.holder)){
+                if (this.holder.tickCount % 5 == 0 && VampireUtil.shouldBurnInSunlight(this.holder) && canBurn(this.holder)){
                     this.holder.igniteForSeconds(2.0F);
                 }
 
@@ -239,7 +239,7 @@ public class VampireData extends DataAttachment {
                         BlockPos blockPos = this.holder.blockPosition();
                         if (BlockPos.findClosestMatch(blockPos, 4, 4, pos ->
                                 this.holder.level().getBlockState(pos).is(SanguisTags.Blocks.VAMPIRE_REPELLENTS)).isPresent()){
-                            this.holder.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 60, 1, true, true));
+                            this.holder.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 60, 2, true, true));
                             this.holder.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 0, true, true));
                         }
                     }

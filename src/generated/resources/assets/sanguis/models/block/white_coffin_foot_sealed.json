@@ -1,0 +1,6 @@
+{
+  "parent": "sanguis:block/template_coffin_foot_sealed",
+  "textures": {
+    "velvet": "sanguis:block/white_velvet"
+  }
+}

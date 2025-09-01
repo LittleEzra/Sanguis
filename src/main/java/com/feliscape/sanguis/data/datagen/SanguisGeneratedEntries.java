@@ -2,10 +2,7 @@ package com.feliscape.sanguis.data.datagen;
 
 import com.feliscape.sanguis.Sanguis;
 import com.feliscape.sanguis.data.damage.SanguisDamageTypes;
-import com.feliscape.sanguis.data.worldgen.registry.SanguisBiomeModifiers;
-import com.feliscape.sanguis.data.worldgen.registry.SanguisStructureSets;
-import com.feliscape.sanguis.data.worldgen.registry.SanguisStructures;
-import com.feliscape.sanguis.data.worldgen.registry.SanguisTemplatePools;
+import com.feliscape.sanguis.data.worldgen.registry.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
@@ -23,6 +20,8 @@ public class SanguisGeneratedEntries extends DatapackBuiltinEntriesProvider {
             .add(Registries.TEMPLATE_POOL, SanguisTemplatePools::bootstrap)
             .add(Registries.STRUCTURE, SanguisStructures::bootstrap)
             .add(Registries.STRUCTURE_SET, SanguisStructureSets::bootstrap)
+            .add(Registries.CONFIGURED_FEATURE, SanguisConfiguredFeatures::bootstrap)
+            .add(Registries.PLACED_FEATURE, SanguisPlacedFeatures::bootstrap)
             ;
 
     public SanguisGeneratedEntries(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {

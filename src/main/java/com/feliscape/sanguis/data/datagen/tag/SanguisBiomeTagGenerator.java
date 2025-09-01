@@ -50,10 +50,22 @@ public class SanguisBiomeTagGenerator extends BiomeTagsProvider {
                         BiomeTags.IS_SAVANNA
                         )
                 .add(
+                        Biomes.WINDSWEPT_FOREST,
+                        Biomes.WINDSWEPT_HILLS,
+                        Biomes.WINDSWEPT_GRAVELLY_HILLS,
+                        Biomes.PLAINS,
+                        Biomes.SUNFLOWER_PLAINS,
+                        Biomes.SNOWY_PLAINS,
+                        Biomes.SNOWY_TAIGA
+                );
+        this.tag(SanguisTags.Biomes.HAS_WILD_GARLIC)
+                .add(
+                    Biomes.WINDSWEPT_FOREST,
+                    Biomes.WINDSWEPT_HILLS,
+                    Biomes.WINDSWEPT_GRAVELLY_HILLS,
                     Biomes.PLAINS,
-                    Biomes.SUNFLOWER_PLAINS,
-                    Biomes.SNOWY_PLAINS,
-                    Biomes.SNOWY_TAIGA
+                    Biomes.MEADOW,
+                    Biomes.SUNFLOWER_PLAINS
                 );
     }
 }

@@ -1,7 +1,9 @@
 • {Becoming A Vampire|sanguis:vampires/becoming_a_vampire}
-• {Vampire Weaknesses|sanguis:vampires/vampire_weaknesses}
+• Vampire Weaknesses
+    • {Sunlight|sanguis:vampires/weaknesses/sunlight}
+    • {Garlic|sanguis:vampires/weaknesses/garlic}
 • {Vampire Strengths|sanguis:vampires/vampire_strengths}
-    • {The Bat Form|sanguis:vampires/the_bat_form}
+    • {The Bat Form|sanguis:vampires/strengths/the_bat_form}
 • {Furthering Abilities|sanguis:vampires/furthering_abilities}
 • {Blood|sanguis:vampires/blood}
 • {Sleeping|sanguis:vampires/sleeping}

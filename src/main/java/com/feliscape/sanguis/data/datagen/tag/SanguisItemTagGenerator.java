@@ -25,6 +25,9 @@ public class SanguisItemTagGenerator extends ItemTagsProvider {
                 .add(SanguisItems.BLOODY_FANG.get())
         ;
 
+        this.tag(SanguisTags.Items.HELD_SUN_PROTECTION)
+                .add(SanguisItems.PARASOL.get());
+
         this.tag(SanguisTags.Items.STAKES)
                 .add(SanguisItems.WOODEN_STAKE.get())
                 .add(SanguisItems.REINFORCED_STAKE.get());

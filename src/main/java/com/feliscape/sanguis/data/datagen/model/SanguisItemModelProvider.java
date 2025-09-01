@@ -46,6 +46,7 @@ public class SanguisItemModelProvider extends ItemModelProvider {
 
         simpleItem(SanguisItems.GOLDEN_QUARREL);
 
+        generatedBlockItem(SanguisBlocks.WILD_GARLIC);
         simpleItem(SanguisItems.GARLIC);
         simpleItem(SanguisItems.GARLIC_FLOWER);
         spawnEggItem(SanguisItems.VAMPIRE_SPAWN_EGG.get());

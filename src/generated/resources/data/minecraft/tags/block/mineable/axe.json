@@ -1,7 +1,9 @@
 {
   "values": [
     "#sanguis:coffins",
+    "sanguis:quest_board",
     "sanguis:garlic",
+    "sanguis:wild_garlic",
     "sanguis:garlic_string"
   ]
 }

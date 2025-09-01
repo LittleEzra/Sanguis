@@ -7,6 +7,7 @@ import com.feliscape.sanguis.registry.SanguisDataMapTypes;
 import com.feliscape.sanguis.registry.SanguisTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -32,15 +33,21 @@ public class VampireUtil {
 
     public static boolean shouldBurnInSunlight(LivingEntity entity){
         Level level = entity.level();
+        if (!level.canSeeSky(entity.blockPosition())) return false;
         boolean day = level.isClientSide() ? level.getDayTime() < 13000L || level.getDayTime() > 23500L : level.isDay();
+
+        boolean shouldByDefault = false;
 
         if (day && !level.isClientSide) {
             BlockPos blockpos = BlockPos.containing(entity.getX(), entity.getEyeY(), entity.getZ());
             boolean inColdBlockOrWater = entity.isInWaterRainOrBubble() || entity.isInPowderSnow || entity.wasInPowderSnow;
-            return !inColdBlockOrWater && level.canSeeSky(blockpos);
+            shouldByDefault = !inColdBlockOrWater && level.canSeeSky(blockpos);
         }
 
-        return false;
+        boolean hasSunEquipment = entity.getMainHandItem().is(SanguisTags.Items.HELD_SUN_PROTECTION)
+                || entity.getOffhandItem().is(SanguisTags.Items.HELD_SUN_PROTECTION);
+
+        return shouldByDefault && !hasSunEquipment;
     }
     public static boolean isDay(Level level){
         return level.isClientSide() ? level.getDayTime() < 13000L || level.getDayTime() > 23500L : level.isDay();
@@ -49,6 +56,9 @@ public class VampireUtil {
     @SuppressWarnings("deprecation")
     public static boolean canDrink(LivingEntity vampire, LivingEntity target){
         if (!isVampire(vampire)) return false;
+
+        if (vampire.getMainHandItem().is(SanguisTags.Items.HELD_SUN_PROTECTION)
+                || vampire.getOffhandItem().is(SanguisTags.Items.HELD_SUN_PROTECTION)) return false;
 
         return !isVampire(target) && (target.getType().is(SanguisTags.EntityTypes.FOUL_BLOOD) ||
                 target.getType().builtInRegistryHolder().getData(SanguisDataMapTypes.ENTITY_BLOOD) != null);

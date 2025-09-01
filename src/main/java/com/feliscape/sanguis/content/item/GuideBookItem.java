@@ -1,6 +1,7 @@
 package com.feliscape.sanguis.content.item;
 
 import com.feliscape.sanguis.content.menu.GuideBookMenu;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -10,8 +11,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class GuideBookItem extends Item implements MenuProvider {
     public GuideBookItem(Properties properties) {
@@ -36,5 +40,10 @@ public class GuideBookItem extends Item implements MenuProvider {
     @Override
     public @Nullable AbstractContainerMenu createMenu(int containerId, Inventory playerInventory, Player player) {
         return new GuideBookMenu(containerId, playerInventory);
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        tooltipComponents.add(Component.translatable("book.byAuthor", "L. Fellborn").withStyle(ChatFormatting.GRAY));
     }
 }

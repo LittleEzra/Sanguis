@@ -14,6 +14,7 @@ import com.feliscape.sanguis.networking.payload.BatTransformationPayload;
 import com.feliscape.sanguis.networking.payload.DrainBloodPayload;
 import com.feliscape.sanguis.networking.payload.OpenActiveQuestsPayload;
 import com.feliscape.sanguis.registry.SanguisEntityTypes;
+import com.feliscape.sanguis.registry.SanguisItems;
 import com.feliscape.sanguis.registry.SanguisKeyMappings;
 import com.feliscape.sanguis.util.HunterUtil;
 import com.feliscape.sanguis.util.VampireUtil;
@@ -21,19 +22,17 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.*;
+import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
-import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 
 @EventBusSubscriber(modid = Sanguis.MOD_ID, value = Dist.CLIENT)

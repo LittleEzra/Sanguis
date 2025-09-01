@@ -16,6 +16,7 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.crafting.ICustomIngredient;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -158,6 +159,15 @@ public class SanguisRecipeProvider extends RecipeProvider {
                 .define('W', SanguisItems.BAT_WING)
                 .define('B', NON_EMPTY_BLOOD_BOTTLE_INGREDIENT.toVanilla())
                 .unlockedBy(getHasName(SanguisItems.BAT_WING), has(SanguisItems.BAT_WING))
+                .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, SanguisItems.PARASOL)
+                .pattern("###")
+                .pattern("B/B")
+                .pattern(" / ")
+                .define('/', Items.IRON_INGOT)
+                .define('#', Blocks.BLACK_WOOL)
+                .define('B', SanguisItems.BAT_WING)
+                .unlockedBy(getHasName(Blocks.BLACK_WOOL), has(Blocks.BLACK_WOOL))
                 .save(recipeOutput);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, SanguisItems.STEEL_BLEND)

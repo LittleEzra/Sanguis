@@ -1,35 +1,67 @@
 {
   "variants": {
-    "facing=east,part=foot": {
+    "facing=east,occupied=false,part=foot": {
       "model": "sanguis:block/red_coffin_foot",
       "y": 450
     },
-    "facing=east,part=head": {
+    "facing=east,occupied=false,part=head": {
       "model": "sanguis:block/red_coffin_head",
       "y": 450
     },
-    "facing=north,part=foot": {
+    "facing=east,occupied=true,part=foot": {
+      "model": "sanguis:block/red_coffin_foot_sealed",
+      "y": 450
+    },
+    "facing=east,occupied=true,part=head": {
+      "model": "sanguis:block/red_coffin_head_sealed",
+      "y": 450
+    },
+    "facing=north,occupied=false,part=foot": {
       "model": "sanguis:block/red_coffin_foot",
       "y": 360
     },
-    "facing=north,part=head": {
+    "facing=north,occupied=false,part=head": {
       "model": "sanguis:block/red_coffin_head",
       "y": 360
     },
-    "facing=south,part=foot": {
+    "facing=north,occupied=true,part=foot": {
+      "model": "sanguis:block/red_coffin_foot_sealed",
+      "y": 360
+    },
+    "facing=north,occupied=true,part=head": {
+      "model": "sanguis:block/red_coffin_head_sealed",
+      "y": 360
+    },
+    "facing=south,occupied=false,part=foot": {
       "model": "sanguis:block/red_coffin_foot",
       "y": 180
     },
-    "facing=south,part=head": {
+    "facing=south,occupied=false,part=head": {
       "model": "sanguis:block/red_coffin_head",
       "y": 180
     },
-    "facing=west,part=foot": {
+    "facing=south,occupied=true,part=foot": {
+      "model": "sanguis:block/red_coffin_foot_sealed",
+      "y": 180
+    },
+    "facing=south,occupied=true,part=head": {
+      "model": "sanguis:block/red_coffin_head_sealed",
+      "y": 180
+    },
+    "facing=west,occupied=false,part=foot": {
       "model": "sanguis:block/red_coffin_foot",
       "y": 270
     },
-    "facing=west,part=head": {
+    "facing=west,occupied=false,part=head": {
       "model": "sanguis:block/red_coffin_head",
+      "y": 270
+    },
+    "facing=west,occupied=true,part=foot": {
+      "model": "sanguis:block/red_coffin_foot_sealed",
+      "y": 270
+    },
+    "facing=west,occupied=true,part=head": {
+      "model": "sanguis:block/red_coffin_head_sealed",
       "y": 270
     }
   }

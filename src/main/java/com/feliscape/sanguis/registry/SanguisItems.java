@@ -28,6 +28,8 @@ public class SanguisItems {
                     .component(SanguisDataComponents.BLOOD, 6)
                     .component(SanguisDataComponents.MAX_BLOOD, 6)
             ));
+    public static final DeferredItem<ParasolItem> PARASOL = ITEMS.registerItem("parasol", p ->
+            new ParasolItem(p.stacksTo(1)));
     public static final DeferredItem<BloodSoakedCoinItem> BLOOD_SOAKED_COIN = ITEMS.registerItem("blood_soaked_coin",
             p -> new BloodSoakedCoinItem(p.stacksTo(1)));
     public static final DeferredItem<BlackenedCoinItem> BLACKENED_COIN = ITEMS.registerItem("blackened_coin",

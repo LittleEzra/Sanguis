@@ -71,6 +71,30 @@ public class CoffinBlock extends HorizontalDirectionalBlock {
             Block.box(0.0D, 4.0D, 0.0D, 16.0D, 16.0D, 2.0D), // Right
             Block.box(0.0D, 4.0D, 14.0D, 16.0D, 16.0D, 16.0D)  // Left
     );
+    protected static final VoxelShape SOUTH_SHAPE_SEALED = Shapes.or(BASE,
+            Block.box(2.0D, 4.0D, 14.0D, 14.0D, 14.0D, 16.0D), // End
+            Block.box(0.0D, 4.0D, 0.0D, 2.0D, 14.0D, 16.0D), // Right
+            Block.box(14.0D, 4.0D, 0.0D, 16.0D, 14.0D, 16.0D),  // Left
+            Block.box(0.0D, 14.0D, 0.0D, 16.0D, 16.0D, 16.0D)
+    );
+    protected static final VoxelShape NORTH_SHAPE_SEALED = Shapes.or(BASE,
+            Block.box(2.0D, 4.0D, 0.0D, 14.0D, 14.0D, 2.0D), // End
+            Block.box(0.0D, 4.0D, 0.0D, 2.0D, 14.0D, 16.0D), // Right
+            Block.box(14.0D, 4.0D, 0.0D, 16.0D, 14.0D, 16.0D),  // Left
+            Block.box(0.0D, 14.0D, 0.0D, 16.0D, 16.0D, 16.0D)
+    );
+    protected static final VoxelShape WEST_SHAPE_SEALED = Shapes.or(BASE,
+            Block.box(0.0D, 4.0D, 2.0D, 2.0D, 14.0D, 14.0D), // End
+            Block.box(0.0D, 4.0D, 0.0D, 16.0D, 14.0D, 2.0D), // Right
+            Block.box(0.0D, 4.0D, 14.0D, 16.0D, 14.0D, 16.0D),  // Left
+            Block.box(0.0D, 14.0D, 0.0D, 16.0D, 16.0D, 16.0D)
+    );
+    protected static final VoxelShape EAST_SHAPE_SEALED = Shapes.or(BASE,
+            Block.box(14.0D, 4.0D, 2.0D, 16.0D, 14.0D, 14.0D), // End
+            Block.box(0.0D, 4.0D, 0.0D, 16.0D, 14.0D, 2.0D), // Right
+            Block.box(0.0D, 4.0D, 14.0D, 16.0D, 14.0D, 16.0D),  // Left
+            Block.box(0.0D, 14.0D, 0.0D, 16.0D, 16.0D, 16.0D)
+    );
 
     @Override
     protected MapCodec<? extends CoffinBlock> codec() {
@@ -92,6 +116,11 @@ public class CoffinBlock extends HorizontalDirectionalBlock {
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
         if (!VampireUtil.isVampire(player)) return InteractionResult.PASS;
+
+        if (player.isShiftKeyDown()){
+            state.setBedOccupied(level, pos, player, !state.getValue(OCCUPIED));
+            return InteractionResult.sidedSuccess(level.isClientSide());
+        }
 
         if (level.isClientSide) {
             return InteractionResult.CONSUME;
@@ -202,15 +231,16 @@ public class CoffinBlock extends HorizontalDirectionalBlock {
     @Override
     protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         Direction direction = getConnectedDirection(state).getOpposite();
+        boolean occupied = state.getValue(OCCUPIED);
         switch (direction) {
             case NORTH:
-                return NORTH_SHAPE;
+                return occupied ? NORTH_SHAPE_SEALED: NORTH_SHAPE;
             case SOUTH:
-                return SOUTH_SHAPE;
+                return occupied ? SOUTH_SHAPE_SEALED:  SOUTH_SHAPE;
             case WEST:
-                return WEST_SHAPE;
+                return occupied ? WEST_SHAPE_SEALED:  WEST_SHAPE;
             default:
-                return EAST_SHAPE;
+                return occupied ? EAST_SHAPE_SEALED:  EAST_SHAPE;
         }
     }
 
@@ -219,6 +249,7 @@ public class CoffinBlock extends HorizontalDirectionalBlock {
         return state.getValue(PART) == BedPart.HEAD ? direction.getOpposite() : direction;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     protected long getSeed(BlockState state, BlockPos pos) {
         BlockPos blockpos = pos.relative(state.getValue(FACING), state.getValue(PART) == BedPart.HEAD ? 0 : 1);

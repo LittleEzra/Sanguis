@@ -34,6 +34,7 @@ public class SanguisBlockModelProvider extends BlockStateProvider {
                 blockTexture(SanguisBlocks.QUEST_BOARD.get()).withSuffix("_side"),
                 ResourceLocation.withDefaultNamespace("block/stripped_oak_log_top")));
         simpleCropBlock(SanguisBlocks.GARLIC.get());
+        crossBlockWithRenderType(SanguisBlocks.WILD_GARLIC.get(), "cutout");
         simpleBlock(SanguisBlocks.GARLIC_STRING.get(), models().getExistingFile(Sanguis.location("block/garlic_string")));
         
         coffin(SanguisBlocks.WHITE_COFFIN.get());
@@ -62,6 +63,10 @@ public class SanguisBlockModelProvider extends BlockStateProvider {
                 .texture("velvet", velvetLocation);
         ModelFile foot = models().withExistingParent(name(block) + "_foot", Sanguis.location("block/template_coffin_foot"))
                 .texture("velvet", velvetLocation);
+        ModelFile headSealed = models().withExistingParent(name(block) + "_head_sealed", Sanguis.location("block/template_coffin_head_sealed"))
+                .texture("velvet", velvetLocation);
+        ModelFile footSealed = models().withExistingParent(name(block) + "_foot_sealed", Sanguis.location("block/template_coffin_foot_sealed"))
+                .texture("velvet", velvetLocation);
         ModelFile inventory = models().withExistingParent(name(block) + "_inventory", Sanguis.location("block/template_coffin_inventory"))
                 .texture("velvet", velvetLocation);
 
@@ -70,12 +75,12 @@ public class SanguisBlockModelProvider extends BlockStateProvider {
                 state -> {
                     BedPart part = state.getValue(CoffinBlock.PART);
                     Direction rotation = state.getValue(HorizontalDirectionalBlock.FACING);
+                    Boolean sealed = state.getValue(CoffinBlock.OCCUPIED);
 
                     return ConfiguredModel.builder()
-                            .modelFile(part == BedPart.HEAD ? head : foot)
+                            .modelFile(sealed ? (part == BedPart.HEAD ? headSealed : footSealed) : (part == BedPart.HEAD ? head : foot))
                             .rotationY(((int) rotation.toYRot()) + DEFAULT_ANGLE_OFFSET).build();
-                },
-                CoffinBlock.OCCUPIED);
+                });
     }
 
     private void simpleCropBlock(CropBlock block) {
