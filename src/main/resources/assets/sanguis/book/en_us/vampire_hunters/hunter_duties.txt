@@ -3,6 +3,7 @@ While not required, it is somewhat expected that you complete certain duties as 
 This is primarily in the form of tasks and quests. These can be accepted via the Quest Board found in every hunter camp.
 You can check which quests you have accepted and how close you are to completing them using your logbook (opened with "I" by default)
 
+
 Each quest lasts for three days, after which it cannot be accepted anymore and instead discarded.
 When completed, however, you will receive many rewards.
 

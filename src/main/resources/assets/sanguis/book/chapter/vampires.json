@@ -1,0 +1,88 @@
+{
+  "title": {
+    "translate": "book.sanguis.chapter.vampires"
+  },
+  "icon": {"id": "sanguis:bloody_fang"},
+  "entries": [
+    {
+      "type": "sanguis:link",
+      "title": {
+        "translate": "book.sanguis.entry.vampires.becoming_a_vampire"
+      },
+      "icon": {"id": "sanguis:bloody_fang"},
+      "location": "sanguis:vampires/becoming_a_vampire"
+    },
+
+    {
+      "type": "sanguis:plain",
+      "title": {
+        "translate": "book.sanguis.entry.vampires.weaknesses"
+      }
+    },
+        {
+          "type": "sanguis:link",
+          "title": {
+            "translate": "book.sanguis.entry.vampires.weaknesses.sunlight"
+          },
+          "icon": {"id": "sanguis:parasol"},
+          "location": "sanguis:vampires/weaknesses/sunlight",
+          "indent": 1
+        },
+        {
+          "type": "sanguis:link",
+          "title": {"translate": "book.sanguis.entry.vampires.weaknesses.garlic"},
+          "icon": {"id": "sanguis:garlic"},
+          "location": "sanguis:vampires/weaknesses/garlic",
+          "indent": 1
+        },
+
+    {
+      "type": "sanguis:link",
+      "title": {"translate": "book.sanguis.entry.vampires.strengths"},
+      "icon": {
+        "id": "sanguis:blood_bottle",
+        "components": {
+          "sanguis:blood": 6
+        }
+      },
+      "location": "sanguis:vampires/vampire_strengths"
+    },
+        {
+          "type": "sanguis:link",
+          "title": {"translate": "book.sanguis.entry.vampires.strengths.bat_form"},
+          "icon": {"id": "sanguis:bat_wing"},
+          "location": "sanguis:vampires/strengths/the_bat_form",
+          "indent": 1
+        },
+
+    {
+      "type": "sanguis:link",
+      "title": {"translate": "book.sanguis.entry.vampires.furthering_abilities"},
+      "icon": {"id": "sanguis:blood_soaked_coin"},
+      "location": "sanguis:vampires/furthering_abilities"
+    },
+    {
+      "type": "sanguis:link",
+      "title": {"translate": "book.sanguis.entry.vampires.blood"},
+      "icon": {
+        "id": "sanguis:blood_bottle",
+        "components": {
+          "sanguis:blood": 6
+        }
+      },
+      "location": "sanguis:vampires/blood"
+    },
+    {
+      "type": "sanguis:link",
+      "title": {"translate": "book.sanguis.entry.vampires.sleeping"},
+      "icon": {"id": "sanguis:white_coffin"},
+      "location": "sanguis:vampires/sleeping"
+    },
+    {
+      "type": "sanguis:link",
+      "title": {"translate": "book.sanguis.entry.vampires.curing_vampirism"},
+      "icon": {"id": "sanguis:garlic_injection"},
+      "location": "sanguis:vampires/curing_vampirism"
+    }
+  ]
+}

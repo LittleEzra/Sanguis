@@ -1,5 +1,5 @@
 {
   "title": "book.sanguis.vampires.curing_vampirism",
-  "parent": "sanguis:vampires/chapter",
+  "chapter": "sanguis:vampires",
   "text": "sanguis:vampires/curing_vampirism.txt"
 }

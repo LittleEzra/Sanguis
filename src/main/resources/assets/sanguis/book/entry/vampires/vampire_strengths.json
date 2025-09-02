@@ -1,5 +1,5 @@
 {
   "title": "book.sanguis.vampires.vampire_strengths",
-  "parent": "sanguis:vampires/chapter",
+  "chapter": "sanguis:vampires",
   "text": "sanguis:vampires/vampire_strengths.txt"
 }

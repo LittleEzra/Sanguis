@@ -110,6 +110,30 @@ public class SanguisEnUsProvider extends SanguisLanguageProvider{
         this.addDeathMessage(SanguisDamageTypes.DRAINING, "%1$s was drained");
         this.addDeathMessagePlayer(SanguisDamageTypes.DRAINING, "%1$s was drained by %2$s");
 
+        this.add("book.sanguis.root", "Table of Contents");
+
+        this.add("book.sanguis.chapter.vampires", "Vampires");
+        this.add("book.sanguis.entry.vampires.becoming_a_vampire", "Becoming a Vampire");
+
+        this.add("book.sanguis.entry.vampires.weaknesses", "Vampire Weaknesses");
+            this.add("book.sanguis.entry.vampires.weaknesses.sunlight", "Sunlight");
+            this.add("book.sanguis.entry.vampires.weaknesses.garlic", "Garlic");
+
+        this.add("book.sanguis.entry.vampires.strengths", "Vampire Strengths");
+            this.add("book.sanguis.entry.vampires.strengths.bat_form", "The Bat Form");
+
+        this.add("book.sanguis.entry.vampires.furthering_abilities", "Furthering Abilities");
+        this.add("book.sanguis.entry.vampires.sleeping", "Sleeping");
+        this.add("book.sanguis.entry.vampires.curing_vampirism", "Curing Vampirism");
+
+        this.add("book.sanguis.entry.vampires.blood", "Blood");
+
+        this.add("book.sanguis.chapter.vampire_hunters", "Vampire Hunters");
+        this.add("book.sanguis.entry.vampire_hunters.becoming_a_vampire_hunter", "Becoming a Vampire Hunter");
+        this.add("book.sanguis.entry.vampire_hunters.hunter_duties", "Hunter Duties");
+        this.add("book.sanguis.entry.vampire_hunters.vampires_hunted", "Vampires Hunted");
+        this.add("book.sanguis.entry.vampire_hunters.leaving_the_guild", "Leaving the Guild");
+
         this.add("quest.sanguis.fetch_items.name", "Fetch Items");
         this.add("quest.sanguis.fetch_items.title", "Collect %1$s");
         this.add("quest.sanguis.kill_mobs.name", "Kill Mobs");

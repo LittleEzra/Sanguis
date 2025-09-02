@@ -1,0 +1,34 @@
+{
+  "title": {
+    "translate": "book.sanguis.chapter.vampire_hunters"
+  },
+  "icon": {
+    "id": "sanguis:wooden_stake"
+  },
+  "entries": [
+    {
+      "type": "sanguis:link",
+      "title": {"translate": "book.sanguis.entry.vampire_hunters.becoming_a_vampire_hunter"},
+      "icon": {"id": "sanguis:garlic_injection"},
+      "location": "sanguis:vampire_hunters/becoming_a_vampire_hunter"
+    },
+    {
+      "type": "sanguis:link",
+      "title": {"translate": "book.sanguis.entry.vampire_hunters.hunter_duties"},
+      "icon": {"id": "sanguis:quest_board"},
+      "location": "sanguis:vampire_hunters/hunter_duties"
+    },
+    {
+      "type": "sanguis:link",
+      "title": {"translate": "book.sanguis.entry.vampire_hunters.vampires_hunted"},
+      "icon": {"id": "sanguis:steel_cleaver"},
+      "location": "sanguis:vampire_hunters/vampires_hunted"
+    },
+    {
+      "type": "sanguis:link",
+      "title": {"translate": "book.sanguis.entry.vampire_hunters.leaving_the_guild"},
+      "icon": {"id": "sanguis:acid_injection"},
+      "location": "sanguis:vampire_hunters/leaving_the_guild"
+    }
+  ]
+}

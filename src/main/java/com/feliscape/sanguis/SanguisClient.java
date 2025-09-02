@@ -48,7 +48,8 @@ public class SanguisClient {
             questRenderDispatcher = new QuestRenderDispatcher(Minecraft.getInstance());
             event.registerReloadListener(questRenderDispatcher);
             guideBookManager = new GuideBookManager("book");
-            event.registerReloadListener(guideBookManager);
+            event.registerReloadListener(guideBookManager.getChapterCollector());
+            event.registerReloadListener(guideBookManager.getEntryCollector());
         }
 
         public QuestRenderDispatcher getQuestRenderDispatcher() {

@@ -1,5 +1,5 @@
 {
   "title": "book.sanguis.vampires.leaving_the_guild",
-  "parent": "sanguis:vampire_hunters/chapter",
+  "chapter": "sanguis:vampire_hunters",
   "text": "sanguis:vampire_hunters/leaving_the_guild.txt"
 }

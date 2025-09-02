@@ -46,6 +46,8 @@ public class Sanguis {
         SanguisSoundEvents.register(modEventBus);
         SanguisIngredientTypes.register(modEventBus);
 
+        SanguisChapterEntryTypes.register(modEventBus);
+
         NeoForge.EVENT_BUS.register(this);
 
         modContainer.registerConfig(ModConfig.Type.CLIENT, SanguisClientConfig.SPEC);

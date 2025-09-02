@@ -23,12 +23,14 @@ public class BookEntry {
     public static final ResourceLocation EMPTY = Sanguis.location("empty");
     public static final Codec<BookEntry> CODEC = RecordCodecBuilder.create(inst -> inst.group(
             ComponentSerialization.CODEC.fieldOf("title").forGetter(entry -> entry.title),
+            ResourceLocation.CODEC.fieldOf("chapter").forGetter(entry -> entry.chapter),
             ResourceLocation.CODEC.lenientOptionalFieldOf("parent", EMPTY).forGetter(entry -> entry.parent),
             ResourceLocation.CODEC.lenientOptionalFieldOf("text", EMPTY).forGetter(entry -> entry.text),
             ResourceLocation.CODEC.lenientOptionalFieldOf("art", EMPTY).forGetter(entry -> entry.art)
     ).apply(inst, BookEntry::new));
 
     private Component title;
+    private ResourceLocation chapter;
     private ResourceLocation parent;
     private ResourceLocation text;
     private ResourceLocation art;
@@ -39,8 +41,9 @@ public class BookEntry {
     private List<String> entryText = new ArrayList<>();
     private List<BookLink> bookLinks = new ArrayList<>();
 
-    public BookEntry(Component title, ResourceLocation parent, ResourceLocation text, ResourceLocation art) {
+    public BookEntry(Component title, ResourceLocation chapter, ResourceLocation parent, ResourceLocation text, ResourceLocation art) {
         this.title = title;
+        this.chapter = chapter;
         this.parent = parent;
         this.text = text;
         this.art = art;
@@ -68,7 +71,6 @@ public class BookEntry {
             Sanguis.LOGGER.warn("Could not find language file for translation, defaulting to en_us");
             fileRes = location.withPrefix(getBookFileDirectory() + "en_us/");
         }
-        Sanguis.LOGGER.debug("Reading text file from {}", fileRes);
 
         List<String> strings = new ArrayList<>();
         Font font  = Minecraft.getInstance().font;
@@ -185,6 +187,10 @@ public class BookEntry {
 
     public Component getTitle() {
         return title;
+    }
+
+    public ResourceLocation getChapter() {
+        return chapter;
     }
 
     public ResourceLocation getParent() {

@@ -16,41 +16,99 @@ import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-public class GuideBookManager extends SimpleJsonResourceReloadListener {
-    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+public class GuideBookManager {
+    protected static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
     public static final Logger LOGGER = LogManager.getLogger();
 
     public static final ResourceLocation ROOT_LOCATION = Sanguis.location("root");
 
-    private Map<ResourceLocation, BookEntry> entries = ImmutableMap.of();
+    private ChapterCollector chapterCollector;
+    private EntryCollector entryCollector;
 
     public GuideBookManager(String directory) {
-        super(GSON, directory);
+        chapterCollector = new ChapterCollector(directory + "/chapter");
+        entryCollector = new EntryCollector(directory + "/entry");
+    }
+
+    public ChapterCollector getChapterCollector() {
+        return chapterCollector;
+    }
+
+    public EntryCollector getEntryCollector() {
+        return entryCollector;
     }
 
     @Nullable
     public BookEntry getEntry(ResourceLocation location){
-        return entries.getOrDefault(location, null);
+        return entryCollector.entries.getOrDefault(location, null);
+    }
+    @Nullable
+    public BookChapter getChapter(ResourceLocation location){
+        return chapterCollector.chapters.getOrDefault(location, null);
+    }
+    @Nullable
+    public BookChapter getChapter(int index){
+        if (index < 0 || index >= chapterCollector.chapterList.size()) return null;
+        return chapterCollector.chapterList.get(index);
+    }
+    public List<BookChapter> getAllChapters(){
+        return chapterCollector.chapterList;
     }
 
-    @Override
-    protected void apply(Map<ResourceLocation, JsonElement> object, ResourceManager resourceManager, ProfilerFiller profiler) {
-        ImmutableMap.Builder<ResourceLocation, BookEntry> builder = ImmutableMap.builder();
-        for (Map.Entry<ResourceLocation, JsonElement> jsonEntry : object.entrySet()){
-            ResourceLocation location = jsonEntry.getKey();
-            JsonElement json = jsonEntry.getValue();
-            try {
-                final var entry = BookEntry.CODEC.parse(JsonOps.INSTANCE, json)
-                        .getOrThrow(JsonParseException::new);
-                builder.put(location, entry);
-            } catch (Exception e) {
-                LOGGER.error("Failed to load animation {}", location, e);
-            }
+    public static class EntryCollector extends SimpleJsonResourceReloadListener{
+        protected Map<ResourceLocation, BookEntry> entries = ImmutableMap.of();
+
+        public EntryCollector(String directory) {
+            super(GSON, directory);
         }
-        entries = builder.build();
-        LOGGER.debug("Loaded {} book entries", entries.size());
+
+        @Override
+        protected void apply(Map<ResourceLocation, JsonElement> object, ResourceManager resourceManager, ProfilerFiller profiler) {
+            ImmutableMap.Builder<ResourceLocation, BookEntry> builder = ImmutableMap.builder();
+            for (Map.Entry<ResourceLocation, JsonElement> jsonEntry : object.entrySet()){
+                ResourceLocation location = jsonEntry.getKey();
+                JsonElement json = jsonEntry.getValue();
+                try {
+                    final var entry = BookEntry.CODEC.parse(JsonOps.INSTANCE, json)
+                            .getOrThrow(JsonParseException::new);
+                    builder.put(location, entry);
+                } catch (Exception e) {
+                    LOGGER.error("Failed to load book entry {}", location, e);
+                }
+            }
+            entries = builder.build();
+            LOGGER.debug("Loaded {} book entries", entries.size());
+        }
+    }
+    public static class ChapterCollector extends SimpleJsonResourceReloadListener{
+        protected Map<ResourceLocation, BookChapter> chapters = ImmutableMap.of();
+        protected List<BookChapter> chapterList = List.of();
+
+        public ChapterCollector(String directory) {
+            super(GSON, directory);
+        }
+
+        @Override
+        protected void apply(Map<ResourceLocation, JsonElement> object, ResourceManager resourceManager, ProfilerFiller profiler) {
+            ImmutableMap.Builder<ResourceLocation, BookChapter> builder = ImmutableMap.builder();
+            for (Map.Entry<ResourceLocation, JsonElement> jsonEntry : object.entrySet()){
+                ResourceLocation location = jsonEntry.getKey();
+                JsonElement json = jsonEntry.getValue();
+                try {
+                    final var entry = BookChapter.CODEC.parse(JsonOps.INSTANCE, json)
+                            .getOrThrow(JsonParseException::new);
+                    builder.put(location, entry);
+                } catch (Exception e) {
+                    LOGGER.error("Failed to load book chapter {}", location, e);
+                }
+            }
+            chapters = builder.build();
+            chapterList = new ArrayList<>(chapters.values());
+            LOGGER.debug("Loaded {} book chapters", chapters.size());
+        }
     }
 }
