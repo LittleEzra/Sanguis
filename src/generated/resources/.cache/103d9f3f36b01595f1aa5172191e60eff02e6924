@@ -1,9 +1,11 @@
-// 1.21.1	2025-09-01T23:06:26.1099426	Registries
+// 1.21.1	2025-09-02T17:49:53.5375921	Registries
 71ae12e8e4e2b435535977b4ab157ce3d8a5c431 data/sanguis/damage_type/draining.json
+6fedc2f1dce153148d25c7fb8dc5e9b9f939108f data/sanguis/neoforge/biome_modifier/add_common_wild_garlic.json
 bf0b83b57cd7b4bbbcdfaade44fe11ff79a4d1a2 data/sanguis/neoforge/biome_modifier/add_vampires.json
 f01a7be1dd68cc7431506b4b713375717b797015 data/sanguis/neoforge/biome_modifier/add_wild_garlic.json
-8b6a0ae98492c61626ef8e1b12bfc1e7c425a2f4 data/sanguis/worldgen/configured_feature/wild_garlic_patch.json
-00e1f69cf41b3dccad63bc28195f681cdb0f4738 data/sanguis/worldgen/placed_feature/wild_garlic_patch.json
+60d03adaee6bc8c2eeba54b66911f89d2b9c3d4d data/sanguis/worldgen/configured_feature/wild_garlic_patch.json
+4caad1420124772434cf603cbe5c9b764275a5ba data/sanguis/worldgen/placed_feature/wild_garlic_patch.json
+00e1f69cf41b3dccad63bc28195f681cdb0f4738 data/sanguis/worldgen/placed_feature/wild_garlic_patch_common.json
 9d9e3164c02e119f1614ad22156f7d845fae9e20 data/sanguis/worldgen/structure/hunter_camp.json
 2c4bf43bb660f839dbd763f0bbf5bce299e8811b data/sanguis/worldgen/structure_set/hunter_camp.json
 237b528c382ba906386c240596390a9d6629013d data/sanguis/worldgen/template_pool/hunter_camp/base.json

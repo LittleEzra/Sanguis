@@ -23,6 +23,7 @@ import java.util.List;
 public class SanguisBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_VAMPIRES = createKey("add_vampires");
     public static final ResourceKey<BiomeModifier> ADD_WILD_GARLIC = createKey("add_wild_garlic");
+    public static final ResourceKey<BiomeModifier> ADD_COMMON_WILD_GARLIC = createKey("add_common_wild_garlic");
 
     public static void bootstrap(BootstrapContext<BiomeModifier> context){
         HolderGetter<Biome> biomes = context.lookup(Registries.BIOME);
@@ -40,6 +41,12 @@ public class SanguisBiomeModifiers {
                 new BiomeModifiers.AddFeaturesBiomeModifier(
                         biomes.getOrThrow(SanguisTags.Biomes.HAS_WILD_GARLIC),
                         HolderSet.direct(placedFeatures.getOrThrow(SanguisPlacedFeatures.WILD_GARLIC_PATCH)),
+                        GenerationStep.Decoration.VEGETAL_DECORATION
+                ));
+        context.register(ADD_COMMON_WILD_GARLIC,
+                new BiomeModifiers.AddFeaturesBiomeModifier(
+                        biomes.getOrThrow(SanguisTags.Biomes.HAS_COMMON_WILD_GARLIC),
+                        HolderSet.direct(placedFeatures.getOrThrow(SanguisPlacedFeatures.WILD_GARLIC_PATCH_COMMON)),
                         GenerationStep.Decoration.VEGETAL_DECORATION
                 ));
     }

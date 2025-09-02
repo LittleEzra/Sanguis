@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#sanguis:has_common_wild_garlic",
+  "features": "sanguis:wild_garlic_patch_common",
+  "step": "vegetal_decoration"
+}

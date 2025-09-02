@@ -1,4 +1,5 @@
-// 1.21.1	2025-09-01T23:06:26.1079489	Tags for minecraft:worldgen/biome mod id sanguis
+// 1.21.1	2025-09-02T17:31:15.866899	Tags for minecraft:worldgen/biome mod id sanguis
+732f59c526588e06aa4b8206886ce777f20545fd data/sanguis/tags/worldgen/biome/has_common_wild_garlic.json
 9a686c52e6a2c5582d87857c1a973e82d9680ee3 data/sanguis/tags/worldgen/biome/has_structure/hunter_camp.json
-b3175bd7aca4942423df29eb1f60e97ca5421922 data/sanguis/tags/worldgen/biome/has_wild_garlic.json
+5fe0f8c202821d2393d548ca173ec3cd25aba998 data/sanguis/tags/worldgen/biome/has_wild_garlic.json
 2b741c82044a1a8456d3ac624b0e3a50f22d8077 data/sanguis/tags/worldgen/biome/spawns_vampires.json

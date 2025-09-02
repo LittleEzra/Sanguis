@@ -60,12 +60,16 @@ public class SanguisBiomeTagGenerator extends BiomeTagsProvider {
                 );
         this.tag(SanguisTags.Biomes.HAS_WILD_GARLIC)
                 .add(
-                    Biomes.WINDSWEPT_FOREST,
-                    Biomes.WINDSWEPT_HILLS,
-                    Biomes.WINDSWEPT_GRAVELLY_HILLS,
+                    Biomes.FOREST,
                     Biomes.PLAINS,
                     Biomes.MEADOW,
                     Biomes.SUNFLOWER_PLAINS
+                );
+        this.tag(SanguisTags.Biomes.HAS_COMMON_WILD_GARLIC)
+                .add(
+                    Biomes.WINDSWEPT_FOREST,
+                    Biomes.WINDSWEPT_HILLS,
+                    Biomes.WINDSWEPT_GRAVELLY_HILLS
                 );
     }
 }

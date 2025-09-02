@@ -28,12 +28,17 @@ import java.util.List;
 
 public class SanguisPlacedFeatures {
     public static final ResourceKey<PlacedFeature> WILD_GARLIC_PATCH = createKey("wild_garlic_patch");
+    public static final ResourceKey<PlacedFeature> WILD_GARLIC_PATCH_COMMON = createKey("wild_garlic_patch_common");
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
         Holder<ConfiguredFeature<?, ?>> wildGarlicPatchFeature = configuredFeatures.getOrThrow(SanguisConfiguredFeatures.WILD_GARLIC_PATCH);
         PlacementUtils.register(
-                context, WILD_GARLIC_PATCH, wildGarlicPatchFeature, RarityFilter.onAverageOnceEvery(50),
+                context, WILD_GARLIC_PATCH, wildGarlicPatchFeature, RarityFilter.onAverageOnceEvery(120),
+                InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()
+        );
+        PlacementUtils.register(
+                context, WILD_GARLIC_PATCH_COMMON, wildGarlicPatchFeature, RarityFilter.onAverageOnceEvery(50),
                 InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()
         );
     }

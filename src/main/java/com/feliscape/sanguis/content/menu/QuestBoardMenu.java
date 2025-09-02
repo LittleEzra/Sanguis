@@ -30,6 +30,7 @@ public class QuestBoardMenu extends AbstractContainerMenu {
     public QuestBoardMenu(int containerId, Inventory inv, BlockEntity entity) {
         super(SanguisMenuTypes.QUEST_BOARD.get(), containerId);
         blockEntity = ((QuestBoardBlockEntity) entity);
+        blockEntity.createQuests();
         this.level = inv.player.level();
     }
 

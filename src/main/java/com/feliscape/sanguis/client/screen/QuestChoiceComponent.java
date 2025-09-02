@@ -71,6 +71,7 @@ public class QuestChoiceComponent implements Renderable, GuiEventListener, Narra
     }
 
     public void renderContents(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick, boolean canRenderTooltip) {
+        if (quest == null) return;
         int x = this.getX() + 10;
         int y = this.getY() + 10;
         guiGraphics.drawString(this.minecraft.font, quest.getTitle(), x, y, -1);

@@ -46,9 +46,6 @@ public class QuestBoardBlockEntity extends BlockEntity implements MenuProvider {
     @Override
     public void onLoad() {
         super.onLoad();
-        if (quests.isEmpty()){
-            update();
-        }
     }
 
     @Override
@@ -67,15 +64,22 @@ public class QuestBoardBlockEntity extends BlockEntity implements MenuProvider {
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
         quests.clear();
-        ListTag list = tag.getList("quests", Tag.TAG_COMPOUND);
-        for (int i = 0; i < list.size(); i++){
-            quests.add(HunterQuest.TYPED_CODEC.decode(NbtOps.INSTANCE, list.get(i)).getOrThrow().getFirst());
+        if (tag.contains("quests")) {
+            ListTag list = tag.getList("quests", Tag.TAG_COMPOUND);
+            for (int i = 0; i < list.size(); i++) {
+                quests.add(HunterQuest.TYPED_CODEC.decode(NbtOps.INSTANCE, list.get(i)).getOrThrow().getFirst());
+            }
         }
         this.lastUpdate = tag.getInt("lastUpdate");
         this.chosen = tag.getBoolean("hasChosen");
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, QuestBoardBlockEntity questBoard){
+        if (questBoard.quests.isEmpty()){
+            questBoard.update();
+            return;
+        }
+
         var day = Mth.floor((double) level.getDayTime() / 24000.0D);
         if (day > questBoard.lastUpdate){
             questBoard.lastUpdate = day;
@@ -127,6 +131,8 @@ public class QuestBoardBlockEntity extends BlockEntity implements MenuProvider {
     }
     @Nullable
     public HunterQuest getQuest(int index) {
+        if (quests.isEmpty()) createQuests();
+
         if (index < 0 || index >= quests.size())
             return null;
         return quests.get(index);
@@ -140,5 +146,11 @@ public class QuestBoardBlockEntity extends BlockEntity implements MenuProvider {
     @Override
     public @Nullable AbstractContainerMenu createMenu(int containerId, Inventory playerInventory, Player player) {
         return new QuestBoardMenu(containerId, playerInventory, this);
+    }
+
+    public void createQuests() {
+        if (quests.isEmpty()){
+            update();
+        }
     }
 }

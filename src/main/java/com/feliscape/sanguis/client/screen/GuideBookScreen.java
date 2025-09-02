@@ -8,11 +8,13 @@ import com.feliscape.sanguis.client.book.BookLink;
 import com.feliscape.sanguis.client.book.GuideBookManager;
 import com.feliscape.sanguis.client.book.chapter.ChapterEntry;
 import com.feliscape.sanguis.client.book.chapter.LinkChapterEntry;
+import com.feliscape.sanguis.client.book.widget.BookWidget;
 import com.feliscape.sanguis.content.menu.GuideBookMenu;
 import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractButton;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
@@ -199,61 +201,64 @@ public class GuideBookScreen extends AbstractContainerScreen<GuideBookMenu> {
                     hover = output[0];
                     y = output[1];
                 } else{
-                    int x = this.leftPos + (Mth.floor((float) i / PAGE_SIZE_IN_LINES) % 2 == 0 ? 24 : 172);
+                    int x = this.leftPos + getXOffset(Mth.floor((float) i / PAGE_SIZE_IN_LINES)) + 5;
                     y = entry.render(x, y, i, guiGraphics, partialTick, mouseX, mouseY);
                 }
             }
             hoveredDirection = hover;
         } else {
-            int y = this.topPos + 18;
-            guiGraphics.blit(INDEX_ART, this.leftPos + 35, this.topPos + 22, 0, 0, 114, 159, 114, 159);
-            List<BookChapter> chapters = SanguisClient.reloadListeners().getGuideBookManager().getAllChapters();
-            int hover = -1;
-            for (int i = 0; i < chapters.size(); i++){
-                BookChapter entry = chapters.get(i);
-                ItemStack icon = entry.getIcon();
-                int x = this.leftPos + 172;
-
-                int startX = x;
-                int startY = y;
-
-                guiGraphics.drawString(font, ARROW, x, y, 0x3f3f3f, false);
-
-                if (icon.isEmpty()) {
-                    if (hover == -1 && isHoveringAbsolute(startX, y, font.width(entry.getTitle()), 7, mouseX, mouseY)){
-                        x += 5;
-                        hover = i;
-                    }
-
-                    guiGraphics.drawString(font, entry.getTitle(), x + 14, y, 0x3f3f3f, false);
-                } else{
-                    x += font.width(ARROW);
-                    PoseStack poseStack = guiGraphics.pose();
-
-                    if (hover == -1 && isHoveringAbsolute(x, y, (startX - x) + font.width(entry.getTitle()) + 14 + font.width(ARROW), 7, mouseX, mouseY)){
-                        x += 5;
-                        hover = i;
-                    }
-
-                    poseStack.pushPose();
-                    poseStack.scale(ITEM_SCALE, ITEM_SCALE, ITEM_SCALE);
-                    poseStack.translate(x / ITEM_SCALE, (y - 2) / ITEM_SCALE, 0.0F);
-                    guiGraphics.renderItem(icon, 0, 0);
-                    poseStack.popPose();
-
-                    guiGraphics.drawString(font, entry.getTitle(), x + 14, y, 0x3f3f3f, false);
-                }
-                y += 12;
-            }
-            hoveredDirection = hover;
+            renderIndex(guiGraphics, partialTick, mouseX, mouseY);
         }
     }
 
+    private void renderIndex(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY){
+        int y = this.topPos + 18;
+        guiGraphics.blit(INDEX_ART, this.leftPos + 35, this.topPos + 22, 0, 0, 114, 159, 114, 159);
+        List<BookChapter> chapters = SanguisClient.reloadListeners().getGuideBookManager().getAllChapters();
+        int hover = -1;
+        for (int i = 0; i < chapters.size(); i++){
+            BookChapter entry = chapters.get(i);
+            ItemStack icon = entry.getIcon();
+            int x = this.leftPos + getXOffset(1) + 5;
+
+            int startX = x;
+            int startY = y;
+
+            guiGraphics.drawString(font, ARROW, x, y, 0x3f3f3f, false);
+
+            if (icon.isEmpty()) {
+                if (hover == -1 && isHoveringAbsolute(startX, y, font.width(entry.getTitle()), 7, mouseX, mouseY)){
+                    x += 5;
+                    hover = i;
+                }
+
+                guiGraphics.drawString(font, entry.getTitle(), x + 14, y, 0x3f3f3f, false);
+            } else{
+                x += font.width(ARROW) - 3;
+                PoseStack poseStack = guiGraphics.pose();
+
+                if (hover == -1 && isHoveringAbsolute(x, y, (startX - x) + font.width(entry.getTitle()) + 14 + font.width(ARROW), 7, mouseX, mouseY)){
+                    x += 5;
+                    hover = i;
+                }
+
+                poseStack.pushPose();
+                poseStack.scale(ITEM_SCALE, ITEM_SCALE, ITEM_SCALE);
+                poseStack.translate(x / ITEM_SCALE, (y - 2) / ITEM_SCALE, 0.0F);
+                guiGraphics.renderItem(icon, 0, 0);
+                poseStack.popPose();
+
+                guiGraphics.drawString(font, entry.getTitle(), x + 14, y, 0x3f3f3f, false);
+            }
+            y += 12;
+        }
+        hoveredDirection = hover;
+    }
 
     private int[] renderLink(LinkChapterEntry link, int hover, int y, int i, GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY){
 
         ItemStack icon = link.getIcon();
-        int x = this.leftPos + (Mth.floor((float) i / PAGE_SIZE_IN_LINES) % 2 == 0 ? 24 : 172) + link.getIndent() * INDENT_SIZE;
+        int x = this.leftPos + getXOffset(Mth.floor((float) i / PAGE_SIZE_IN_LINES)) + 5 + link.getIndent() * INDENT_SIZE;
 
         int startX = x;
         int startY = y;
@@ -264,7 +269,7 @@ public class GuideBookScreen extends AbstractContainerScreen<GuideBookMenu> {
             y += 10;
         } else{
             guiGraphics.drawString(font, ARROW, x, y, 0x3f3f3f, false);
-            x += font.width(ARROW);
+            x += font.width(ARROW) - 3;
 
             if (hover == -1 && isHoveringAbsolute(x, y, (startX - x) + font.width(link.getTitle()) + 14 + font.width(ARROW), 7, mouseX, mouseY)){
                 x += 5;
@@ -294,10 +299,20 @@ public class GuideBookScreen extends AbstractContainerScreen<GuideBookMenu> {
                 && mouseY < (double)(y + height + 1);
     }
 
+    private int getXOffset(int page){
+        return page % 2 == 0 ? 24 : 172;
+    }
+
     private void renderPage(BookEntry entry, GuiGraphics guiGraphics, int xStart, float partialTick, int mouseX, int mouseY, int pageOffset, boolean startOnLeft) {
         if (pageOffset <= 0 && pageNumber <= 0 && !startOnLeft) return;
 
-        int x = (xStart) + ((pageNumber + pageOffset) % 2 == 0 ? 24 : 172);
+        int x = (xStart) + getXOffset(pageNumber + pageOffset);
+
+        for (BookWidget widget : entry.getWidgets()){
+            if (widget.getDisplayPage() == (pageNumber + pageOffset)){
+                widget.render(guiGraphics, x, this.topPos + 18, partialTick);
+            }
+        }
 
         int startReadingAt = ((pageNumber + pageOffset) - (startOnLeft ? 0 : 1)) * PAGE_SIZE_IN_LINES;
         for (int i = startReadingAt; i < startReadingAt + PAGE_SIZE_IN_LINES; i++){

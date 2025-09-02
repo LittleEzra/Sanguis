@@ -47,6 +47,7 @@ public class SanguisTags {
         public static final TagKey<Biome> SPAWNS_VAMPIRES = create("spawns_vampires");
         public static final TagKey<Biome> HAS_HUNTER_CAMPS = create("has_structure/hunter_camp");
         public static final TagKey<Biome> HAS_WILD_GARLIC = create("has_wild_garlic");
+        public static final TagKey<Biome> HAS_COMMON_WILD_GARLIC = create("has_common_wild_garlic");
 
         private static TagKey<Biome> create(String name){
             return TagKey.create(Registries.BIOME, Sanguis.location(name));

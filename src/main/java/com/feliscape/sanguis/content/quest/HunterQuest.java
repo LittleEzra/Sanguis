@@ -25,7 +25,7 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 public abstract class HunterQuest {
     public static final Codec<HunterQuest> TYPED_CODEC = SanguisRegistries.QUEST_TYPES
             .byNameCodec()
-            .dispatch("type", HunterQuest::type, QuestType::codec);
+            .dispatch("requirement", HunterQuest::type, QuestType::codec);
     public static final StreamCodec<RegistryFriendlyByteBuf, HunterQuest> TYPED_STREAM_CODEC = ByteBufCodecs.registry(SanguisRegistries.Keys.QUEST_TYPES)
             .dispatch(HunterQuest::type, QuestType::streamCodec);
 

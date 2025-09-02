@@ -1,6 +1,7 @@
 package com.feliscape.sanguis.client.book;
 
 import com.feliscape.sanguis.Sanguis;
+import com.feliscape.sanguis.client.book.widget.BookWidget;
 import com.feliscape.sanguis.client.screen.GuideBookScreen;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -26,7 +27,8 @@ public class BookEntry {
             ResourceLocation.CODEC.fieldOf("chapter").forGetter(entry -> entry.chapter),
             ResourceLocation.CODEC.lenientOptionalFieldOf("parent", EMPTY).forGetter(entry -> entry.parent),
             ResourceLocation.CODEC.lenientOptionalFieldOf("text", EMPTY).forGetter(entry -> entry.text),
-            ResourceLocation.CODEC.lenientOptionalFieldOf("art", EMPTY).forGetter(entry -> entry.art)
+            ResourceLocation.CODEC.lenientOptionalFieldOf("art", EMPTY).forGetter(entry -> entry.art),
+            BookWidget.TYPED_CODEC.listOf().optionalFieldOf("widgets", List.of()).forGetter(entry -> entry.widgets)
     ).apply(inst, BookEntry::new));
 
     private Component title;
@@ -35,18 +37,20 @@ public class BookEntry {
     private ResourceLocation text;
     private ResourceLocation art;
     private static Pattern linkPattern = Pattern.compile("\\{.*?}");
+    private List<BookWidget> widgets;
 
     private int pageCount;
 
     private List<String> entryText = new ArrayList<>();
     private List<BookLink> bookLinks = new ArrayList<>();
 
-    public BookEntry(Component title, ResourceLocation chapter, ResourceLocation parent, ResourceLocation text, ResourceLocation art) {
+    public BookEntry(Component title, ResourceLocation chapter, ResourceLocation parent, ResourceLocation text, ResourceLocation art, List<BookWidget> widgets) {
         this.title = title;
         this.chapter = chapter;
         this.parent = parent;
         this.text = text;
         this.art = art;
+        this.widgets = widgets;
     }
 
     public static String getBookFileDirectory(){
@@ -215,5 +219,9 @@ public class BookEntry {
 
     public List<BookLink> getBookLinks() {
         return bookLinks;
+    }
+
+    public List<BookWidget> getWidgets() {
+        return widgets;
     }
 }

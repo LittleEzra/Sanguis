@@ -29,7 +29,7 @@ public class SanguisConfiguredFeatures {
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         FeatureUtils.register(context, WILD_GARLIC_PATCH, Feature.RANDOM_PATCH, simplePatchConfiguration(
                 Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(SanguisBlocks.WILD_GARLIC.get())),
-                List.of(), 3, 2, 28
+                List.of(), 7, 3, 64
         ));
     }
 

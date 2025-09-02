@@ -129,10 +129,13 @@ public class SanguisEnUsProvider extends SanguisLanguageProvider{
         this.add("book.sanguis.entry.vampires.blood", "Blood");
 
         this.add("book.sanguis.chapter.vampire_hunters", "Vampire Hunters");
-        this.add("book.sanguis.entry.vampire_hunters.becoming_a_vampire_hunter", "Becoming a Vampire Hunter");
+        this.add("book.sanguis.entry.vampire_hunters.becoming_a_vampire_hunter", "Becoming a Hunter");
         this.add("book.sanguis.entry.vampire_hunters.hunter_duties", "Hunter Duties");
         this.add("book.sanguis.entry.vampire_hunters.vampires_hunted", "Vampires Hunted");
         this.add("book.sanguis.entry.vampire_hunters.leaving_the_guild", "Leaving the Guild");
+
+        this.add("book.sanguis.chapter.items", "Items & Blocks");
+        this.add("book.sanguis.entry.items.garlic", "Garlic");
 
         this.add("quest.sanguis.fetch_items.name", "Fetch Items");
         this.add("quest.sanguis.fetch_items.title", "Collect %1$s");

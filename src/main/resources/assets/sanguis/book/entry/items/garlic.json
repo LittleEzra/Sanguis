@@ -1,0 +1,17 @@
+{
+  "title": "book.sanguis.entry.items.garlic",
+  "chapter": "sanguis:items",
+  "text": "sanguis:items/garlic.txt",
+
+  "widgets": [
+    {
+      "display_page": 0,
+      "type": "sanguis:item_display",
+      "x": 0,
+      "y": 0,
+      "item": {
+        "id": "sanguis:garlic"
+      }
+    }
+  ]
+}

@@ -66,7 +66,7 @@ public class PlainChapterEntry extends ChapterEntry{
             guiGraphics.drawString(font, this.getTitle(), x + 14, y, 0x3f3f3f, false);
         } else{
             guiGraphics.drawString(font, DASH, x, y, 0x3f3f3f, false);
-            x += font.width(DASH);
+            x += font.width(DASH) - 3;
 
             PoseStack poseStack = guiGraphics.pose();
 

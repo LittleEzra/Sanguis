@@ -1,0 +1,16 @@
+{
+  "title": {
+    "translate": "book.sanguis.chapter.items"
+  },
+  "icon": {
+    "id": "sanguis:garlic"
+  },
+  "entries": [
+    {
+      "type": "sanguis:link",
+      "title": {"translate": "book.sanguis.entry.items.garlic"},
+      "icon": {"id": "sanguis:garlic"},
+      "location": "sanguis:items/garlic"
+    }
+  ]
+}
