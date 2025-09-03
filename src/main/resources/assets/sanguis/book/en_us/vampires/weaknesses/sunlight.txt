@@ -4,8 +4,10 @@ Sunlight also stops a Vampire from transforming into a bat.
 For a less monstrous Vampire, there are some ways to circumvent this.
 Naturally, you could simply not go outside during the day, or spend this time in a coffin¹.
 
-However, should you ever need to go outside during the day, you can craft a simple Parasol with Black Wool, Iron Ingots, and two Bat Wings.
-
-When held, this will make you immune to sunlight, though you will have trouble fighting or feeding while holding it.
 
 1 → {Sleeping|sanguis:vampires/sleeping}
+[PAGEBREAK]
+However, should you ever need to go outside during the day,
+you can craft a simple Parasol with Black Wool, Iron Ingots, and two Bat Wings.
+[PAGEBREAK]
+When held, this will make you immune to sunlight, though you will have trouble fighting or feeding while holding it.

@@ -1,5 +1,14 @@
 {
   "title": "book.sanguis.vampires",
   "chapter": "sanguis:vampires",
-  "text": "sanguis:vampires/weaknesses/sunlight.txt"
+  "text": "sanguis:vampires/weaknesses/sunlight.txt",
+  "widgets": [
+    {
+      "display_page": 1,
+      "type": "sanguis:crafting_recipe",
+      "x": 11,
+      "y": 79,
+      "recipe": "sanguis:parasol"
+    }
+  ]
 }

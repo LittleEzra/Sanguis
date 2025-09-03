@@ -1,5 +1,14 @@
 {
   "title": "book.sanguis.vampires.curing_vampirism",
   "chapter": "sanguis:vampires",
-  "text": "sanguis:vampires/curing_vampirism.txt"
+  "text": "sanguis:vampires/curing_vampirism.txt",
+  "widgets": [
+    {
+      "display_page": 1,
+      "type": "sanguis:crafting_recipe",
+      "x": 11,
+      "y": -2,
+      "recipe": "sanguis:garlic_injection"
+    }
+  ]
 }

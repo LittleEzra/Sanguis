@@ -136,6 +136,8 @@ public class SanguisEnUsProvider extends SanguisLanguageProvider{
 
         this.add("book.sanguis.chapter.items", "Items & Blocks");
         this.add("book.sanguis.entry.items.garlic", "Garlic");
+        this.add("book.sanguis.entry.items.steel", "Steel");
+        this.add("book.sanguis.entry.items.cleavers", "Cleavers");
 
         this.add("quest.sanguis.fetch_items.name", "Fetch Items");
         this.add("quest.sanguis.fetch_items.title", "Collect %1$s");

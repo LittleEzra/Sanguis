@@ -84,6 +84,15 @@ public class BookEntry {
             int currentLineCount = 0;
             bookLinks.clear();
             for (String readString : readIn){
+                if (readString.equals("[PAGEBREAK]")){
+                    int linesToAdd = GuideBookScreen.PAGE_SIZE_IN_LINES - strings.size() % GuideBookScreen.PAGE_SIZE_IN_LINES;
+                    for (int i = 0; i < linesToAdd; i++){
+                        strings.add("");
+                        currentLineCount++;
+                    }
+                    continue;
+                }
+
                 Matcher matcher = linkPattern.matcher(readString);
                 boolean skipLine = false;
                 boolean noOverflow = false;

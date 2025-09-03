@@ -1,5 +1,14 @@
 {
   "title": "book.sanguis.vampires.sleeping",
   "chapter": "sanguis:vampires",
-  "text": "sanguis:vampires/sleeping.txt"
+  "text": "sanguis:vampires/sleeping.txt",
+  "widgets": [
+    {
+      "display_page": 1,
+      "type": "sanguis:crafting_recipe",
+      "x": 11,
+      "y": 31,
+      "recipe": "sanguis:white_coffin"
+    }
+  ]
 }

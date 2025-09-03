@@ -1,0 +1,30 @@
+{
+  "title": "book.sanguis.entry.items.cleavers",
+  "chapter": "sanguis:items",
+  "text": "sanguis:items/cleavers.txt",
+  "widgets": [
+    {
+      "display_page": 0,
+      "type": "sanguis:item_display",
+      "x": 0,
+      "y": 0,
+      "item": {
+        "id": "sanguis:steel_cleaver"
+      }
+    },
+    {
+      "display_page": 0,
+      "type": "sanguis:crafting_recipe",
+      "x": 11,
+      "y": 111,
+      "recipe": "sanguis:steel_cleaver"
+    },
+    {
+      "display_page": 1,
+      "type": "sanguis:crafting_recipe",
+      "x": 11,
+      "y": 31,
+      "recipe": "sanguis:diamond_cleaver"
+    }
+  ]
+}

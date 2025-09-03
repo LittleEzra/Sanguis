@@ -12,6 +12,22 @@
       "item": {
         "id": "sanguis:garlic"
       }
+    },
+    {
+      "display_page": 2,
+      "type": "sanguis:item_display",
+      "x": 0,
+      "y": 0,
+      "item": {
+        "id": "sanguis:garlic_flower"
+      }
+    },
+    {
+      "display_page": 2,
+      "type": "sanguis:crafting_recipe",
+      "x": 11,
+      "y": 74,
+      "recipe": "sanguis:garlic_string"
     }
   ]
 }

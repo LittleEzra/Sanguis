@@ -1,5 +1,14 @@
 {
   "title": "book.sanguis.vampires.furthering_abilities",
   "chapter": "sanguis:vampires",
-  "text": "sanguis:vampires/furthering_abilities.txt"
+  "text": "sanguis:vampires/furthering_abilities.txt",
+  "widgets": [
+    {
+      "display_page": 1,
+      "type": "sanguis:crafting_recipe",
+      "x": 11,
+      "y": 0,
+      "recipe": "sanguis:blood_soaked_coin"
+    }
+  ]
 }
