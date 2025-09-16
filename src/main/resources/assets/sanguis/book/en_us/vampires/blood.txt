@@ -2,10 +2,23 @@ As a vampire, you will no longer be able to eat normal food like bread or apples
 
 You can drain a creature using "V" by default.
 Only certain creatures can be drained, however, with Villagers having the most blood.
-
-
-
-
-
+[PAGEBREAK]
 Unlike food, blood only drops with time, and not when doing exhausting things like running or jumping.
 However, as a Bat the hunger drain will be increased, as well as costing a blood drop to transform.
+[PAGEBREAK]
+Naturally, you won't always have access to living creatures to drain. To remedy this, Blood Bottles can be made.
+
+
+
+
+
+
+These will automatically store any excess blood that you drain up to 6 blood, and can be drank just like any potion.
+[PAGEBREAK]
+
+
+
+Another option for obtaining blood is Blood Oranges.
+These grow underground and can actually be eaten by vampires, unlike most foods.
+
+They are rather low quality blood, though, so they cannot replace proper feeding.

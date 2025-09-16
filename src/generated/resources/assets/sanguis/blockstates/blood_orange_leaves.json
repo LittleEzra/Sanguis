@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "oranges=false": {
+      "model": "sanguis:block/blood_orange_leaves"
+    },
+    "oranges=true": {
+      "model": "sanguis:block/blood_orange_leaves_oranges"
+    }
+  }
+}

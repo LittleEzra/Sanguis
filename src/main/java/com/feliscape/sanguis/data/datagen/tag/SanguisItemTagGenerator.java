@@ -39,6 +39,9 @@ public class SanguisItemTagGenerator extends ItemTagsProvider {
         this.tag(SanguisTags.Items.QUARRELS)
                 .add(SanguisItems.GOLDEN_QUARREL.get());
 
+        this.tag(SanguisTags.Items.VAMPIRE_EDIBLE)
+                .add(SanguisItems.BLOOD_ORANGE.get());
+
         this.tag(Tags.Items.TOOLS)
                 .addTag(SanguisTags.Items.STAKES)
                 .addTag(SanguisTags.Items.CLEAVERS);

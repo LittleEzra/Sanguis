@@ -61,18 +61,21 @@ public class VampireBloodData {
         }
         else if (target instanceof Player player){
             if (!VampireUtil.isVampire(player)){
-                target.hurt(SanguisDamageSources.draining(target.level(), target),
-                        2.0F);
-                increaseBlood(1, holder, true);
-                this.saturation = Math.min(this.saturation + 1.0F, blood);
-                holder.syncData(VampireData.type());
+                if (target.hurt(SanguisDamageSources.draining(target.level(), target), 2.0F)) {
+                    increaseBlood(1, holder, true);
+                    this.saturation = Math.min(this.saturation + 1.0F, blood);
+                    holder.syncData(VampireData.type());
+                }
             }
         }
         else if (EntityBloodData.canHaveBlood(target)){
             var data = target.getData(EntityBloodData.type());
-            increaseBlood(data.drain(), holder, true);
-            this.saturation = Math.min(this.saturation + data.getSaturation(), blood);
-            holder.syncData(VampireData.type());
+            int drainAmount = data.drain();
+            if (drainAmount > 0) {
+                increaseBlood(drainAmount, holder, true);
+                this.saturation = Math.min(this.saturation + data.getSaturation(), blood);
+                holder.syncData(VampireData.type());
+            }
         }
 
         float f = holder.getRandom().nextFloat() * 0.2F + 0.9F;

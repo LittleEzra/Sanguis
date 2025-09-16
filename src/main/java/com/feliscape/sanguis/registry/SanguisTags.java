@@ -24,6 +24,7 @@ public class SanguisTags {
         public static final TagKey<Item> CLEAVERS = create("cleavers");
         public static final TagKey<Item> QUARRELS = create("quarrels");
         public static final TagKey<Item> GUIDE_BOOK_MATERIALS = create("guide_book_materials");
+        public static final TagKey<Item> VAMPIRE_EDIBLE = create("vampire_edible");
 
         private static TagKey<Item> create(String name){
             return TagKey.create(Registries.ITEM, Sanguis.location(name));

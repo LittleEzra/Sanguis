@@ -1,5 +1,6 @@
 package com.feliscape.sanguis.data.datagen.loot;
 
+import com.feliscape.sanguis.content.block.BloodOrangeLeavesBlock;
 import com.feliscape.sanguis.content.block.CoffinBlock;
 import com.feliscape.sanguis.content.block.GarlicCropBlock;
 import com.feliscape.sanguis.content.item.GarlicItem;
@@ -29,6 +30,7 @@ import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -36,7 +38,12 @@ import net.neoforged.neoforge.registries.DeferredItem;
 
 import java.util.Set;
 
+import static net.minecraft.world.level.storage.loot.LootPool.lootPool;
+import static net.minecraft.world.level.storage.loot.LootTable.lootTable;
+import static net.minecraft.world.level.storage.loot.entries.LootItem.lootTableItem;
 import static net.minecraft.world.level.storage.loot.functions.ApplyBonusCount.addBonusBinomialDistributionCount;
+import static net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition.hasBlockStateProperties;
+import static net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition.randomChance;
 
 public class SanguisBlockLootTableProvider extends BlockLootSubProvider {
 
@@ -50,6 +57,9 @@ public class SanguisBlockLootTableProvider extends BlockLootSubProvider {
 
         this.dropOther(SanguisBlocks.QUEST_BOARD.get(), Blocks.STRIPPED_OAK_LOG);
         this.dropSelf(SanguisBlocks.GARLIC_STRING.get());
+
+        this.add(SanguisBlocks.BLOOD_ORANGE_VINE.get(), this::createBloodOrangeVineTable);
+        this.add(SanguisBlocks.BLOOD_ORANGE_LEAVES.get(), this::createBloodOrangeLeavesTable);
 
         this.add(SanguisBlocks.WHITE_COFFIN.get(), block -> this.createSinglePropConditionTable(block, CoffinBlock.PART, BedPart.HEAD));
         this.add(SanguisBlocks.LIGHT_GRAY_COFFIN.get(), block -> this.createSinglePropConditionTable(block, CoffinBlock.PART, BedPart.HEAD));
@@ -70,22 +80,22 @@ public class SanguisBlockLootTableProvider extends BlockLootSubProvider {
 
         this.add(SanguisBlocks.WILD_GARLIC.get(), block -> createWildCropDrops(block, SanguisItems.GARLIC));
 
-        LootItemCondition.Builder garlicAgeCondition = LootItemBlockStatePropertyCondition.hasBlockStateProperties(SanguisBlocks.GARLIC.get())
+        LootItemCondition.Builder garlicAgeCondition = hasBlockStateProperties(SanguisBlocks.GARLIC.get())
                 .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(GarlicCropBlock.AGE, 4));
         this.add(
                 SanguisBlocks.GARLIC.get(),
                 block -> this.applyExplosionDecay(
                         block,
-                        LootTable.lootTable()
-                                .withPool(LootPool.lootPool().add(LootItem.lootTableItem(SanguisItems.GARLIC)))
-                                .withPool(LootPool.lootPool().when(garlicAgeCondition).add(
-                                        LootItem.lootTableItem(SanguisItems.GARLIC)
+                        lootTable()
+                                .withPool(lootPool().add(lootTableItem(SanguisItems.GARLIC)))
+                                .withPool(lootPool().when(garlicAgeCondition).add(
+                                        lootTableItem(SanguisItems.GARLIC)
                                                 .apply(addBonusBinomialDistributionCount(enchantmentLookup.getOrThrow(Enchantments.FORTUNE),
                                                         0.5714286F, 3))
                                         )
                                 )
-                                .withPool(LootPool.lootPool().when(garlicAgeCondition).add(
-                                        LootItem.lootTableItem(SanguisItems.GARLIC_FLOWER)
+                                .withPool(lootPool().when(garlicAgeCondition).add(
+                                        lootTableItem(SanguisItems.GARLIC_FLOWER)
                                                 .apply(addBonusBinomialDistributionCount(enchantmentLookup.getOrThrow(Enchantments.FORTUNE),
                                                         0.4F, 2))
                                         )
@@ -94,8 +104,25 @@ public class SanguisBlockLootTableProvider extends BlockLootSubProvider {
         );
     }
 
+    private LootTable.Builder createBloodOrangeLeavesTable(Block block) {
+        return lootTable()
+                .withPool(lootPool()
+                        .add(lootTableItem(SanguisItems.BLOOD_ORANGE))
+                        .when(hasBlockStateProperties(block).setProperties(
+                                StatePropertiesPredicate.Builder.properties().hasProperty(BloodOrangeLeavesBlock.ORANGES, true)
+                        ))
+                ).withPool(lootPool()
+                        .add(applyExplosionDecay(block, lootTableItem(SanguisItems.BLOOD_ORANGE_SEEDS.get()).when(randomChance(0.25F)))));
+    }
+    private LootTable.Builder createBloodOrangeVineTable(Block block){
+        return LootTable.lootTable()
+                .withPool(lootPool().when(randomChance(0.15F))
+                        .add(lootTableItem(SanguisItems.BLOOD_ORANGE_SEEDS))
+                );
+    }
+
     private LootTable.Builder createWildCropDrops(Block block, ItemLike drop) {
-        return createShearsDispatchTable(block, LootItem.lootTableItem(drop).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))));
+        return createShearsDispatchTable(block, lootTableItem(drop).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))));
     }
 
     @Override

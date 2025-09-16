@@ -5,6 +5,7 @@ import com.feliscape.sanguis.content.attachment.EntityBloodData;
 import com.feliscape.sanguis.content.attachment.HunterData;
 import com.feliscape.sanguis.content.attachment.VampireData;
 import com.feliscape.sanguis.content.block.CoffinBlock;
+import com.feliscape.sanguis.registry.SanguisTags;
 import com.feliscape.sanguis.util.VampireUtil;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -48,7 +49,7 @@ public class VampirismHandler {
     public static void entityUseItem(LivingEntityUseItemEvent.Start event){
         LivingEntity entity = event.getEntity();
         if (VampireUtil.isVampire(entity)){
-            if (event.getItem().getFoodProperties(entity) != null){
+            if (event.getItem().getFoodProperties(entity) != null && !event.getItem().is(SanguisTags.Items.VAMPIRE_EDIBLE)){
                 event.setCanceled(true);
                 if (entity instanceof Player player){
                     player.displayClientMessage(Component.translatable("sanguis.cant_eat_message"), true);

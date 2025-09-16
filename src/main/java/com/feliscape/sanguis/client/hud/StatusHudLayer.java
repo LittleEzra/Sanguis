@@ -36,14 +36,16 @@ public class StatusHudLayer extends HudLayer {
 
         if (VampireUtil.isVampire(player())){
             int tier = player().getData(VampireData.type()).getTier();
-            String s = (tier + 1) + "";
-            int j = (guiGraphics.guiWidth() - this.minecraft.font.width(s)) / 2;
-            int k = guiGraphics.guiHeight() - 31 - getLevelHeight(player());
-            guiGraphics.drawString(this.minecraft.font, s, j + 1, k, 0, false);
-            guiGraphics.drawString(this.minecraft.font, s, j - 1, k, 0, false);
-            guiGraphics.drawString(this.minecraft.font, s, j, k + 1, 0, false);
-            guiGraphics.drawString(this.minecraft.font, s, j, k - 1, 0, false);
-            guiGraphics.drawString(this.minecraft.font, s, j, k, 0xb9214d, false);
+            if (tier > 0) {
+                String s = (tier) + "";
+                int j = (guiGraphics.guiWidth() - this.minecraft.font.width(s)) / 2;
+                int k = guiGraphics.guiHeight() - 31 - getLevelHeight(player());
+                guiGraphics.drawString(this.minecraft.font, s, j + 1, k, 0, false);
+                guiGraphics.drawString(this.minecraft.font, s, j - 1, k, 0, false);
+                guiGraphics.drawString(this.minecraft.font, s, j, k + 1, 0, false);
+                guiGraphics.drawString(this.minecraft.font, s, j, k - 1, 0, false);
+                guiGraphics.drawString(this.minecraft.font, s, j, k, 0xb9214d, false);
+            }
         }
     }
 

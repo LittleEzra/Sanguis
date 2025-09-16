@@ -1,4 +1,4 @@
-// 1.21.1	2025-08-30T16:28:11.4019385	Tags for minecraft:item mod id sanguis
+// 1.21.1	2025-09-04T11:20:05.8736172	Tags for minecraft:item mod id sanguis
 2fea17c5ea625ddbf606f797cfb9a3af4c972a1c data/c/tags/item/tools.json
 339517c62b40910b170f7e50db7a7f05b336145e data/minecraft/tags/item/enchantable/durability.json
 fd2b312b9ad27e098a3e5b9b2612075be57beaa6 data/minecraft/tags/item/enchantable/sharp_weapon.json
@@ -7,3 +7,4 @@ ce74862213f62d9f23d0c4a89419127cc187869b data/sanguis/tags/item/cleavers.json
 02442d1ff399658503d8508a47cd699d825b61ac data/sanguis/tags/item/held_sun_protection.json
 97fce1894ab4ed7aaa01b2ed0acd8274ef2a68e9 data/sanguis/tags/item/quarrels.json
 aa0972e31c437f01e615e8df68f5bbcb62424673 data/sanguis/tags/item/stakes.json
+dffc9f65ce75ddaa75e5497a99f89e3728e49066 data/sanguis/tags/item/vampire_edible.json

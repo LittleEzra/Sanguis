@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#c:is_overworld",
+  "features": "sanguis:blood_orange_vine_patch",
+  "step": "vegetal_decoration"
+}

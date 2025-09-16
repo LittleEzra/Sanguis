@@ -1,5 +1,24 @@
 {
   "title": "book.sanguis.vampires.blood",
   "chapter": "sanguis:vampires",
-  "text": "sanguis:vampires/blood.txt"
+  "text": "sanguis:vampires/blood.txt",
+
+  "widgets": [
+    {
+      "display_page": 2,
+      "type": "sanguis:crafting_recipe",
+      "x": 11,
+      "y": 48,
+      "recipe": "sanguis:blood_bottle"
+    },
+    {
+      "display_page": 3,
+      "type": "sanguis:item_display",
+      "x": 0,
+      "y": 0,
+      "item": {
+        "id": "sanguis:blood_orange"
+      }
+    }
+  ]
 }

@@ -11,6 +11,8 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import java.util.concurrent.CompletableFuture;
 
+import static com.feliscape.sanguis.registry.SanguisBlocks.*;
+
 public class SanguisBlockTagGenerator extends BlockTagsProvider {
     public SanguisBlockTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, ExistingFileHelper existingFileHelper) {
         super(output, lookupProvider, Sanguis.MOD_ID, existingFileHelper);
@@ -19,58 +21,62 @@ public class SanguisBlockTagGenerator extends BlockTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         this.tag(SanguisTags.Blocks.VAMPIRE_REPELLENTS)
-                .add(SanguisBlocks.GARLIC.get())
-                .add(SanguisBlocks.WILD_GARLIC.get())
-                .add(SanguisBlocks.GARLIC_STRING.get())
+                .add(GARLIC.get())
+                .add(WILD_GARLIC.get())
+                .add(GARLIC_STRING.get())
         ;
         this.tag(SanguisTags.Blocks.COFFINS).add(
-                SanguisBlocks.WHITE_COFFIN.get(),
-                SanguisBlocks.LIGHT_GRAY_COFFIN.get(),
-                SanguisBlocks.GRAY_COFFIN.get(),
-                SanguisBlocks.BLACK_COFFIN.get(),
-                SanguisBlocks.BROWN_COFFIN.get(),
-                SanguisBlocks.RED_COFFIN.get(),
-                SanguisBlocks.ORANGE_COFFIN.get(),
-                SanguisBlocks.YELLOW_COFFIN.get(),
-                SanguisBlocks.LIME_COFFIN.get(),
-                SanguisBlocks.GREEN_COFFIN.get(),
-                SanguisBlocks.CYAN_COFFIN.get(),
-                SanguisBlocks.LIGHT_BLUE_COFFIN.get(),
-                SanguisBlocks.BLUE_COFFIN.get(),
-                SanguisBlocks.PURPLE_COFFIN.get(),
-                SanguisBlocks.MAGENTA_COFFIN.get(),
-                SanguisBlocks.PINK_COFFIN.get()
+                WHITE_COFFIN.get(),
+                LIGHT_GRAY_COFFIN.get(),
+                GRAY_COFFIN.get(),
+                BLACK_COFFIN.get(),
+                BROWN_COFFIN.get(),
+                RED_COFFIN.get(),
+                ORANGE_COFFIN.get(),
+                YELLOW_COFFIN.get(),
+                LIME_COFFIN.get(),
+                GREEN_COFFIN.get(),
+                CYAN_COFFIN.get(),
+                LIGHT_BLUE_COFFIN.get(),
+                BLUE_COFFIN.get(),
+                PURPLE_COFFIN.get(),
+                MAGENTA_COFFIN.get(),
+                PINK_COFFIN.get()
         );
 
+        this.tag(BlockTags.MINEABLE_WITH_HOE)
+                .add(BLOOD_ORANGE_LEAVES.get());
         this.tag(BlockTags.MINEABLE_WITH_AXE)
                 .addTag(SanguisTags.Blocks.COFFINS)
-                .add(SanguisBlocks.QUEST_BOARD.get())
-                .add(SanguisBlocks.GARLIC.get())
-                .add(SanguisBlocks.WILD_GARLIC.get())
-                .add(SanguisBlocks.GARLIC_STRING.get())
+                .add(QUEST_BOARD.get())
+                .add(GARLIC.get())
+                .add(WILD_GARLIC.get())
+                .add(GARLIC_STRING.get())
+                .add(BLOOD_ORANGE_VINE.get())
         ;
 
         this.tag(BlockTags.SWORD_EFFICIENT)
-                .add(SanguisBlocks.GARLIC.get())
-                .add(SanguisBlocks.WILD_GARLIC.get())
-                .add(SanguisBlocks.GARLIC_STRING.get())
+                .add(GARLIC.get())
+                .add(WILD_GARLIC.get())
+                .add(GARLIC_STRING.get())
+                .add(BLOOD_ORANGE_VINE.get())
         ;
 
         this.tag(BlockTags.ENCHANTMENT_POWER_TRANSMITTER)
-                .add(SanguisBlocks.GARLIC.get())
-                .add(SanguisBlocks.WILD_GARLIC.get())
-                .add(SanguisBlocks.GARLIC_STRING.get())
+                .add(GARLIC.get())
+                .add(WILD_GARLIC.get())
+                .add(GARLIC_STRING.get())
         ;
 
         this.tag(BlockTags.MAINTAINS_FARMLAND)
-                .add(SanguisBlocks.GARLIC.get())
-                .add(SanguisBlocks.WILD_GARLIC.get())
+                .add(GARLIC.get())
+                .add(WILD_GARLIC.get())
         ;
         this.tag(BlockTags.CROPS)
-                .add(SanguisBlocks.GARLIC.get())
+                .add(GARLIC.get())
         ;
         this.tag(BlockTags.BEE_GROWABLES)
-                .add(SanguisBlocks.GARLIC.get())
+                .add(GARLIC.get())
         ;
     }
 }

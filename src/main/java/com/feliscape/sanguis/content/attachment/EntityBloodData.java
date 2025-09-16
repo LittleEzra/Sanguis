@@ -19,6 +19,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class EntityBloodData extends DataAttachment{
     private LivingEntity holder;
+    int restoration;
     int remainingBlood = 1;
     float saturation;
     int maxBlood = 1;
@@ -34,6 +35,7 @@ public class EntityBloodData extends DataAttachment{
         tag.putFloat("saturation", this.getSaturation());
         tag.putInt("maxBlood", this.getMaxBlood());
         tag.putInt("frozenTicks", this.getFrozenTicks());
+        tag.putInt("restoration", this.getRestoration());
     }
 
     @Override
@@ -42,6 +44,7 @@ public class EntityBloodData extends DataAttachment{
         this.saturation = tag.getInt("saturation");
         this.maxBlood = tag.getInt("maxBlood");
         this.frozenTicks = tag.getInt("frozenTicks");
+        this.restoration = tag.getInt("restoration");
     }
 
     public EntityBloodData(int remainingBlood, float saturation, int maxBlood) {
@@ -58,6 +61,9 @@ public class EntityBloodData extends DataAttachment{
 
     public int getRemainingBlood(){
         return remainingBlood;
+    }
+    public int getRestoration(){
+        return restoration;
     }
     private void setRemainingBlood(int remainingBlood){
         this.remainingBlood = remainingBlood;
@@ -105,14 +111,26 @@ public class EntityBloodData extends DataAttachment{
                 this.holder.setXRot(20.0F);
             }
         }
+
+        if (remainingBlood > 0 && remainingBlood < maxBlood){
+            this.restoration++;
+            if (this.restoration > 10 * 60 * 20){ // Every 10 Minutes
+                this.restoration -= 10 * 60 * 20;
+                this.remainingBlood++;
+            }
+        }
     }
 
     public int drain(){
         if (this.remainingBlood == 0) return 0;
 
+        if (!this.holder.hurt(SanguisDamageSources.draining(this.holder.level(), this.holder),
+                        (remainingBlood - 1) <= 0 ? this.holder.getMaxHealth() * 10.0F : holder.getMaxHealth() / (maxBlood + 1.0F))) {
+            return 0;
+        }
+
         this.remainingBlood--;
-        this.holder.hurt(SanguisDamageSources.draining(this.holder.level(), this.holder),
-                remainingBlood == 0 ? this.holder.getMaxHealth() * 10.0F : holder.getMaxHealth() / (maxBlood + 1.0F));
+        this.restoration = -500;
         this.holder.syncData(type());
         this.frozenTicks = 20;
         return 1;

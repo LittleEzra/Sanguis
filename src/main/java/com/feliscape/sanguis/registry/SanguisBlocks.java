@@ -3,7 +3,6 @@ package com.feliscape.sanguis.registry;
 import com.feliscape.sanguis.Sanguis;
 import com.feliscape.sanguis.content.block.*;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
@@ -11,7 +10,6 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BedPart;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
@@ -55,6 +53,30 @@ public class SanguisBlocks {
                     .instabreak()
                     .sound(SoundType.WOOL)
                     .pushReaction(PushReaction.DESTROY)));
+
+    public static final DeferredBlock<BloodOrangeVineBlock> BLOOD_ORANGE_VINE = BLOCKS.registerBlock("blood_orange_vine",
+            p -> new BloodOrangeVineBlock(p
+                    .mapColor(MapColor.PLANT)
+                    .randomTicks()
+                    .noCollission()
+                    .instabreak()
+                    .sound(SoundType.CAVE_VINES)
+                    .pushReaction(PushReaction.DESTROY)
+            ));
+    public static final DeferredBlock<BloodOrangeLeavesBlock> BLOOD_ORANGE_LEAVES = BLOCKS.registerBlock("blood_orange_leaves",
+            p -> new BloodOrangeLeavesBlock(p
+                    .mapColor(MapColor.PLANT)
+                    .randomTicks()
+                    .noOcclusion()
+                    .strength(0.2F)
+                    .randomTicks()
+                    .isValidSpawn(Blocks::ocelotOrParrot)
+                    .isSuffocating(SanguisBlocks::never)
+                    .isViewBlocking(SanguisBlocks::never)
+                    .sound(SoundType.CAVE_VINES)
+                    .pushReaction(PushReaction.DESTROY)
+                    .isRedstoneConductor(SanguisBlocks::never)
+            ));
 
 
     public static final DeferredBlock<CoffinBlock> WHITE_COFFIN = registerCoffin(DyeColor.WHITE);

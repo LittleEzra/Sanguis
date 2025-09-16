@@ -1,0 +1,23 @@
+{
+  "title": "book.sanguis.entry.items.stakes",
+  "chapter": "sanguis:items",
+  "text": "sanguis:items/stakes.txt",
+  "widgets": [
+    {
+      "display_page": 0,
+      "type": "sanguis:item_display",
+      "x": 0,
+      "y": 0,
+      "item": {
+        "id": "sanguis:wooden_stake"
+      }
+    },
+    {
+      "display_page": 1,
+      "type": "sanguis:crafting_recipe",
+      "x": 11,
+      "y": 0,
+      "recipe": "sanguis:wooden_stake"
+    }
+  ]
+}

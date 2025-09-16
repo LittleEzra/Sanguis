@@ -126,7 +126,7 @@ public class VampireData extends DataAttachment {
 
     public void toggleBatForm(){
         if (!this.canTransform()) return;
-        this.bloodData.consumeBlood(2, this.holder);
+        this.bloodData.addExhaustion(6.0F);
         this.isBat = !this.isBat;
 
         float health = this.holder.getHealth();

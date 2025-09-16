@@ -8,12 +8,11 @@ import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.tags.BiomeTags;
-import net.minecraft.world.level.SpawnData;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.common.world.BiomeModifiers;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
@@ -24,6 +23,7 @@ public class SanguisBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_VAMPIRES = createKey("add_vampires");
     public static final ResourceKey<BiomeModifier> ADD_WILD_GARLIC = createKey("add_wild_garlic");
     public static final ResourceKey<BiomeModifier> ADD_COMMON_WILD_GARLIC = createKey("add_common_wild_garlic");
+    public static final ResourceKey<BiomeModifier> ADD_BLOOD_ORANGE_VINES = createKey("add_blood_orange_vines");
 
     public static void bootstrap(BootstrapContext<BiomeModifier> context){
         HolderGetter<Biome> biomes = context.lookup(Registries.BIOME);
@@ -47,6 +47,12 @@ public class SanguisBiomeModifiers {
                 new BiomeModifiers.AddFeaturesBiomeModifier(
                         biomes.getOrThrow(SanguisTags.Biomes.HAS_COMMON_WILD_GARLIC),
                         HolderSet.direct(placedFeatures.getOrThrow(SanguisPlacedFeatures.WILD_GARLIC_PATCH_COMMON)),
+                        GenerationStep.Decoration.VEGETAL_DECORATION
+                ));
+        context.register(ADD_BLOOD_ORANGE_VINES,
+                new BiomeModifiers.AddFeaturesBiomeModifier(
+                        biomes.getOrThrow(Tags.Biomes.IS_OVERWORLD),
+                        HolderSet.direct(placedFeatures.getOrThrow(SanguisPlacedFeatures.BLOOD_ORANGE_VINE_PATCH)),
                         GenerationStep.Decoration.VEGETAL_DECORATION
                 ));
     }

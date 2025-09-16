@@ -1,0 +1,23 @@
+{
+  "title": "book.sanguis.entry.items.golden_quarrel",
+  "chapter": "sanguis:items",
+  "text": "sanguis:items/golden_quarrel.txt",
+  "widgets": [
+    {
+      "display_page": 0,
+      "type": "sanguis:item_display",
+      "x": 0,
+      "y": 0,
+      "item": {
+        "id": "sanguis:golden_quarrel"
+      }
+    },
+    {
+      "display_page": 1,
+      "type": "sanguis:crafting_recipe",
+      "x": 11,
+      "y": 0,
+      "recipe": "sanguis:golden_quarrel"
+    }
+  ]
+}

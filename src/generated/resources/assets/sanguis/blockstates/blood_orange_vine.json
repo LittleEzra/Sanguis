@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "head=false": {
+      "model": "sanguis:block/blood_orange_vine_body"
+    },
+    "head=true": {
+      "model": "sanguis:block/blood_orange_vine_head"
+    }
+  }
+}

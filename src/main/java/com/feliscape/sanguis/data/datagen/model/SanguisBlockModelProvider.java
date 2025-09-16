@@ -1,6 +1,8 @@
 package com.feliscape.sanguis.data.datagen.model;
 
 import com.feliscape.sanguis.Sanguis;
+import com.feliscape.sanguis.content.block.BloodOrangeLeavesBlock;
+import com.feliscape.sanguis.content.block.BloodOrangeVineBlock;
 import com.feliscape.sanguis.content.block.CoffinBlock;
 import com.feliscape.sanguis.content.block.GarlicCropBlock;
 import com.feliscape.sanguis.registry.SanguisBlocks;
@@ -36,7 +38,10 @@ public class SanguisBlockModelProvider extends BlockStateProvider {
         simpleCropBlock(SanguisBlocks.GARLIC.get());
         crossBlockWithRenderType(SanguisBlocks.WILD_GARLIC.get(), "cutout");
         simpleBlock(SanguisBlocks.GARLIC_STRING.get(), models().getExistingFile(Sanguis.location("block/garlic_string")));
-        
+
+        bloodOrangeVineBlock(SanguisBlocks.BLOOD_ORANGE_VINE.get());
+        bloodOrangeLeavesBlock(SanguisBlocks.BLOOD_ORANGE_LEAVES.get());
+
         coffin(SanguisBlocks.WHITE_COFFIN.get());
         coffin(SanguisBlocks.LIGHT_GRAY_COFFIN.get());
         coffin(SanguisBlocks.GRAY_COFFIN.get());
@@ -53,6 +58,33 @@ public class SanguisBlockModelProvider extends BlockStateProvider {
         coffin(SanguisBlocks.PURPLE_COFFIN.get());
         coffin(SanguisBlocks.MAGENTA_COFFIN.get());
         coffin(SanguisBlocks.PINK_COFFIN.get());
+    }
+
+    private void bloodOrangeLeavesBlock(BloodOrangeLeavesBlock block){
+        ResourceLocation vineEndTexture = Sanguis.location("block/blood_orange_vine_head");
+        ModelFile normal = models().withExistingParent(name(block), Sanguis.location("block/template_blood_orange_leaves"))
+                .texture("all", blockTexture(block))
+                .texture("vine", vineEndTexture);
+        ModelFile oranges = models().withExistingParent(name(block) + "_oranges", Sanguis.location("block/template_blood_orange_leaves"))
+                .texture("all", blockTexture(block).withSuffix("_oranges"))
+                .texture("vine", vineEndTexture);
+
+        getVariantBuilder(block)
+                .forAllStatesExcept(state -> ConfiguredModel.builder()
+                                .modelFile(state.getValue(BloodOrangeLeavesBlock.ORANGES) ? oranges : normal)
+                                .build(),
+                        BloodOrangeLeavesBlock.WATERLOGGED);
+    }
+    private void bloodOrangeVineBlock(BloodOrangeVineBlock block){
+        ModelFile body = models().cross(name(block) + "_body", blockTexture(block).withSuffix("_body"))
+                .renderType("cutout");
+        ModelFile head = models().cross(name(block) + "_head", blockTexture(block).withSuffix("_head"))
+                .renderType("cutout");
+
+        getVariantBuilder(block)
+                .forAllStates(state -> ConfiguredModel.builder()
+                                .modelFile(state.getValue(BloodOrangeVineBlock.HEAD) ? head : body)
+                                .build());
     }
 
     private void coffin(CoffinBlock block){

@@ -23,6 +23,18 @@
       "title": {"translate": "book.sanguis.entry.items.cleavers"},
       "icon": {"id": "sanguis:steel_cleaver"},
       "location": "sanguis:items/cleavers"
+    },
+    {
+      "type": "sanguis:link",
+      "title": {"translate": "book.sanguis.entry.items.golden_quarrel"},
+      "icon": {"id": "sanguis:golden_quarrel"},
+      "location": "sanguis:items/golden_quarrel"
+    },
+    {
+      "type": "sanguis:link",
+      "title": {"translate": "book.sanguis.entry.items.stakes"},
+      "icon": {"id": "sanguis:wooden_stake"},
+      "location": "sanguis:items/stakes"
     }
   ]
 }

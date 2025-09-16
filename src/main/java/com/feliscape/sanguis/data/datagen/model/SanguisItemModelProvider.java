@@ -31,6 +31,8 @@ public class SanguisItemModelProvider extends ItemModelProvider {
         simpleItem(SanguisItems.VAMPIRE_BLOOD);
         simpleItem(SanguisItems.ACTIVATED_VAMPIRE_BLOOD);
         bloodBottleItem(SanguisItems.BLOOD_BOTTLE);
+        simpleItem(SanguisItems.BLOOD_ORANGE);
+        simpleItem(SanguisItems.BLOOD_ORANGE_SEEDS);
         simpleItem(SanguisItems.BLOOD_SOAKED_COIN);
         simpleItem(SanguisItems.BLACKENED_COIN);
 
@@ -38,6 +40,7 @@ public class SanguisItemModelProvider extends ItemModelProvider {
         simpleItem(SanguisItems.STEEL_INGOT);
 
         syringeItem(SanguisItems.SYRINGE);
+        syringeItem(SanguisItems.BLOOD_SYRINGE);
         syringeItem(SanguisItems.GARLIC_INJECTION);
         syringeItem(SanguisItems.ACID_INJECTION);
 

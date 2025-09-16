@@ -22,6 +22,8 @@ public class SanguisEnUsProvider extends SanguisLanguageProvider{
         this.addItemTooltip(SanguisItems.ACTIVATED_VAMPIRE_BLOOD, "[DEBUG ITEM] Inflicts vampirism, while skipping the incubation time");
         this.addItem(SanguisItems.VAMPIRE_BLOOD, "Vampire Blood");
         this.addItem(SanguisItems.BLOOD_BOTTLE, "Blood Bottle");
+        this.addItem(SanguisItems.BLOOD_ORANGE, "Blood Orange");
+        this.addItem(SanguisItems.BLOOD_ORANGE_SEEDS, "Blood Orange Seeds");
         this.addItem(SanguisItems.PARASOL, "Parasol");
         this.addItem(SanguisItems.BLOOD_SOAKED_COIN, "Blood-Soaked Coin");
         this.addItem(SanguisItems.BLACKENED_COIN, "Blackened Coin");
@@ -30,6 +32,7 @@ public class SanguisEnUsProvider extends SanguisLanguageProvider{
         this.addItem(SanguisItems.STEEL_INGOT, "Steel Ingot");
 
         this.addItem(SanguisItems.SYRINGE, "Syringe");
+        this.addItem(SanguisItems.BLOOD_SYRINGE, "Blood Syringe");
         this.addItem(SanguisItems.GARLIC_INJECTION, "Garlic Injection");
         this.addItemTooltip(SanguisItems.GARLIC_INJECTION, "Cures or immunizes against vampirism");
         this.addItem(SanguisItems.ACID_INJECTION, "Acid Injection");
@@ -55,6 +58,9 @@ public class SanguisEnUsProvider extends SanguisLanguageProvider{
         this.addBlock(SanguisBlocks.GARLIC, "Garlic");
         this.addBlock(SanguisBlocks.WILD_GARLIC, "Wild Garlic");
         this.addBlock(SanguisBlocks.GARLIC_STRING, "Garlic String");
+
+        this.addBlock(SanguisBlocks.BLOOD_ORANGE_VINE, "Blood Orange Vine");
+        this.addBlock(SanguisBlocks.BLOOD_ORANGE_LEAVES, "Blood Orange Leaves");
 
         this.addBlock(SanguisBlocks.WHITE_COFFIN, "White Coffin");
         this.addBlock(SanguisBlocks.LIGHT_GRAY_COFFIN, "Light Gray Coffin");
@@ -138,6 +144,8 @@ public class SanguisEnUsProvider extends SanguisLanguageProvider{
         this.add("book.sanguis.entry.items.garlic", "Garlic");
         this.add("book.sanguis.entry.items.steel", "Steel");
         this.add("book.sanguis.entry.items.cleavers", "Cleavers");
+        this.add("book.sanguis.entry.items.golden_quarrel", "Golden Quarrel");
+        this.add("book.sanguis.entry.items.stakes", "Stakes");
 
         this.add("quest.sanguis.fetch_items.name", "Fetch Items");
         this.add("quest.sanguis.fetch_items.title", "Collect %1$s");

@@ -1,4 +1,4 @@
-// 1.21.1	2025-08-30T16:28:11.3972383	Recipes
+// 1.21.1	2025-09-04T15:38:27.535251	Recipes
 8c60ef55644f1ddec3093884c13012f3542f70e5 data/minecraft/advancement/recipes/building_blocks/dye_black_coffin.json
 cbdc8d4cbf1a15577123c52d7d2f7455427813e3 data/minecraft/advancement/recipes/building_blocks/dye_blue_coffin.json
 94ec62163d0a838eef52ed3ade3ec4b1c36b2a82 data/minecraft/advancement/recipes/building_blocks/dye_brown_coffin.json
@@ -17,6 +17,8 @@ d088a8cb8539fc0e79d26144bb9569db60f6cc68 data/minecraft/advancement/recipes/buil
 aeb0f395679e712c4351b5a40fd5a4ec04455273 data/minecraft/advancement/recipes/building_blocks/dye_yellow_coffin.json
 06a3176e2bad0e76893358c9059d188fc09e4f9c data/minecraft/advancement/recipes/building_blocks/steel_ingot_from_blasting.json
 0fb75ad3c4517b71df6e9ab4404cf42fd21c60fd data/minecraft/advancement/recipes/building_blocks/steel_ingot_from_smelting.json
+bb6609ae0a9caca87fbc94ecdbe6e49b8b0f9e4d data/minecraft/advancement/recipes/misc/blood_orange_seeds_from_blood_orange.json
+bbce3e511aba3ff7cd0b4f34efad348ca4739574 data/minecraft/recipe/blood_orange_seeds_from_blood_orange.json
 2006f8d9e61852d777879fe38c1479960af6d35e data/minecraft/recipe/dye_black_coffin.json
 332768a28e064ac5791cb4552c3fd6b7ee390da5 data/minecraft/recipe/dye_blue_coffin.json
 187dcba20a93663896071cb504af7accb5ee8d10 data/minecraft/recipe/dye_brown_coffin.json

@@ -170,6 +170,8 @@ public class SanguisRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(Blocks.BLACK_WOOL), has(Blocks.BLACK_WOOL))
                 .save(recipeOutput);
 
+        oneToOneConversionRecipe(recipeOutput, SanguisItems.BLOOD_ORANGE_SEEDS, SanguisItems.BLOOD_ORANGE, null);
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, SanguisItems.STEEL_BLEND)
                 .requires(Items.IRON_INGOT, 2)
                 .requires(ItemTags.COALS)

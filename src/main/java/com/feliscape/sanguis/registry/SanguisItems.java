@@ -6,6 +6,7 @@ import com.feliscape.sanguis.content.item.*;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.util.Unit;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tiers;
 import net.neoforged.bus.api.IEventBus;
@@ -28,6 +29,10 @@ public class SanguisItems {
                     .component(SanguisDataComponents.BLOOD, 6)
                     .component(SanguisDataComponents.MAX_BLOOD, 6)
             ));
+    public static final DeferredItem<BloodOrangeItem> BLOOD_ORANGE = ITEMS.registerItem("blood_orange",
+            p -> new BloodOrangeItem(p.food(SanguisFoods.BLOOD_ORANGE)));
+    public static final DeferredItem<ItemNameBlockItem> BLOOD_ORANGE_SEEDS = ITEMS.registerItem("blood_orange_seeds",
+            p -> new ItemNameBlockItem(SanguisBlocks.BLOOD_ORANGE_VINE.get(), p));
     public static final DeferredItem<ParasolItem> PARASOL = ITEMS.registerItem("parasol", p ->
             new ParasolItem(p.stacksTo(1)));
     public static final DeferredItem<BloodSoakedCoinItem> BLOOD_SOAKED_COIN = ITEMS.registerItem("blood_soaked_coin",
@@ -39,7 +44,8 @@ public class SanguisItems {
     public static final DeferredItem<Item> STEEL_BLEND = ITEMS.registerItem("steel_blend", Item::new);
     public static final DeferredItem<Item> STEEL_INGOT = ITEMS.registerItem("steel_ingot", Item::new);
 
-    public static final DeferredItem<Item> SYRINGE = ITEMS.registerItem("syringe", Item::new);
+    public static final DeferredItem<SyringeItem> SYRINGE = ITEMS.registerItem("syringe", SyringeItem::new);
+    public static final DeferredItem<Item> BLOOD_SYRINGE = ITEMS.registerItem("blood_syringe", Item::new);
     public static final DeferredItem<GarlicInjectionItem> GARLIC_INJECTION = ITEMS.registerItem("garlic_injection",
             p -> new GarlicInjectionItem(p.stacksTo(1)));
     public static final DeferredItem<AcidInjectionItem> ACID_INJECTION = ITEMS.registerItem("acid_injection",
