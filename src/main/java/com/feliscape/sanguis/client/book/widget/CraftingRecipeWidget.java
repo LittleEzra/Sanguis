@@ -86,7 +86,7 @@ public class CraftingRecipeWidget extends BookWidget{
 
                     ItemStack itemStack = ingredient.getItems()[(int)((playerTicks / 20F) % ingredient.getItems().length)];
 
-                    guiGraphics.renderItem(itemStack, x + 2 + (i % width) * 17, y + 2 + Mth.floor(i / (float)width) * 17 + (3 - height) * 17);
+                    guiGraphics.renderItem(itemStack, x + 2 + (i % width + (width == 1 ? 1 : 0)) * 17, y + 2 + Mth.floor(i / (float)width) * 17 + (3 - height) * 17);
                 }
                 guiGraphics.renderItem(recipe.getResultItem(Minecraft.getInstance().level.registryAccess()), x + 95, y + 19);
             }
