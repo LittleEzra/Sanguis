@@ -23,6 +23,7 @@ public class VampireBloodData {
     private float exhaustion;
     private float saturation;
     private int tickTimer;
+    private int healDelay;
 
     public static final StreamCodec<RegistryFriendlyByteBuf, VampireBloodData> FULL_STREAM_CODEC = StreamCodec.composite(
             ByteBufCodecs.INT,
@@ -35,6 +36,8 @@ public class VampireBloodData {
             VampireBloodData::getSaturation,
             ByteBufCodecs.INT,
             data -> data.tickTimer,
+            ByteBufCodecs.INT,
+            data -> data.healDelay,
             VampireBloodData::new
     );
 
@@ -42,12 +45,13 @@ public class VampireBloodData {
 
     }
 
-    public VampireBloodData(int drinkDelay, int blood, float exhaustion, float saturation, int tickTimer) {
+    public VampireBloodData(int drinkDelay, int blood, float exhaustion, float saturation, int tickTimer, int healDelay) {
         this.drinkDelay = drinkDelay;
         this.blood = blood;
         this.exhaustion = exhaustion;
         this.saturation = saturation;
         this.tickTimer = tickTimer;
+        this.healDelay = healDelay;
     }
 
     public void drink(LivingEntity holder, LivingEntity target){
@@ -82,6 +86,7 @@ public class VampireBloodData {
         this.playSoundServer(holder, SanguisSoundEvents.VAMPIRE_DRINK.get(), 1.0F, f);
 
         this.drinkDelay = 14;
+        this.healDelay = 20;
     }
 
     private void playSoundServer(LivingEntity entity, SoundEvent soundEvent){
@@ -101,6 +106,7 @@ public class VampireBloodData {
         if (drinkDelay > 0){
             drinkDelay--;
         }
+        if (healDelay > 0) healDelay--;
 
         if (!player.getAbilities().invulnerable) {
             Difficulty difficulty = player.level().getDifficulty();
@@ -117,7 +123,7 @@ public class VampireBloodData {
 
             addExhaustion(getTickExhaustion(player));
 
-            boolean canRegenerate = player.level().getGameRules().getBoolean(GameRules.RULE_NATURAL_REGENERATION);
+            boolean canRegenerate = healDelay <= 0 && player.level().getGameRules().getBoolean(GameRules.RULE_NATURAL_REGENERATION);
             if (canRegenerate && this.saturation > 0.0F && player.isHurt() && this.blood >= 20) {
                 this.tickTimer++;
                 if (this.tickTimer >= 10) {

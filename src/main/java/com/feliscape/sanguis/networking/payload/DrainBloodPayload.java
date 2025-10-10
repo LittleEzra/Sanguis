@@ -13,6 +13,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
+// Client To Server
 public record DrainBloodPayload(int entityId) implements CustomPacketPayload {
     public static final Type<DrainBloodPayload> TYPE =
             new Type<>(Sanguis.location("drain_blood"));

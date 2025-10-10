@@ -5,6 +5,7 @@ import com.feliscape.sanguis.content.attachment.VampireData;
 import com.feliscape.sanguis.util.VampireUtil;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -15,37 +16,38 @@ import javax.annotation.Nullable;
 public class BloodLevelHudLayer extends HudLayer{
     public static final ResourceLocation LOCATION = Sanguis.location("blood_level");
 
-    private static final ResourceLocation BLOOD_EMPTY_SPRITE = Sanguis.location("hud/blood_empty");
-    private static final ResourceLocation BLOOD_HALF_SPRITE = Sanguis.location("hud/blood_half");
-    private static final ResourceLocation BLOOD_FULL_SPRITE = Sanguis.location("hud/blood_full");
+    private static final ResourceLocation BLOOD_EMPTY_SPRITE = Sanguis.location("hud/blood/blood_empty");
+    private static final ResourceLocation BLOOD_HALF_SPRITE = Sanguis.location("hud/blood/blood_half");
+    private static final ResourceLocation BLOOD_FULL_SPRITE = Sanguis.location("hud/blood/blood_full");
 
     @Override
-    public void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
-        if (!canRenderOverlay() || player().isSpectator()) return;
+    public void renderOverlay(GuiGraphics guiGraphics, DeltaTracker deltaTracker, LocalPlayer player) {
+        LivingEntity livingentity = this.getPlayerVehicleWithHealth();
+        int vehicleMaxHearts = this.getVehicleMaxHearts(livingentity);
+        if (vehicleMaxHearts > 0) return;
 
-        if (VampireUtil.isVampire(player()) && this.minecraft.gameMode.hasExperience()){
-            LivingEntity livingentity = this.getPlayerVehicleWithHealth();
-            int vehicleMaxHearts = this.getVehicleMaxHearts(livingentity);
-            if (vehicleMaxHearts > 0) return;
+        int right = guiGraphics.guiWidth() / 2 + 91;
+        int top = guiGraphics.guiHeight() - this.minecraft.gui.rightHeight;
+        this.minecraft.gui.rightHeight += 10;
 
-            int left = guiGraphics.guiWidth() / 2 + 91;
-            int top = guiGraphics.guiHeight() - this.minecraft.gui.rightHeight;
-            this.minecraft.gui.rightHeight += 10;
+        int blood = player.getData(VampireData.type()).getBloodData().getBlood();
 
-            int blood = player().getData(VampireData.type()).getBloodData().getBlood();
+        for (int i = 0; i < 10; i++) {
+            int x = right - i * 8 - 9;
+            guiGraphics.blitSprite(BLOOD_EMPTY_SPRITE, x, top, 9, 9);
+            if (i * 2 + 1 < blood) {
+                guiGraphics.blitSprite(BLOOD_FULL_SPRITE, x, top, 9, 9);
+            }
 
-            for (int i = 0; i < 10; i++) {
-                int x = left - i * 8 - 9;
-                guiGraphics.blitSprite(BLOOD_EMPTY_SPRITE, x, top, 9, 9);
-                if (i * 2 + 1 < blood) {
-                    guiGraphics.blitSprite(BLOOD_FULL_SPRITE, x, top, 9, 9);
-                }
-
-                if (i * 2 + 1 == blood) {
-                    guiGraphics.blitSprite(BLOOD_HALF_SPRITE, x, top, 9, 9);
-                }
+            if (i * 2 + 1 == blood) {
+                guiGraphics.blitSprite(BLOOD_HALF_SPRITE, x, top, 9, 9);
             }
         }
+    }
+
+    @Override
+    public boolean canRenderOverlay(LocalPlayer player) {
+        return VampireUtil.isVampire(player) && this.minecraft.gameMode.hasExperience();
     }
 
     @Nullable

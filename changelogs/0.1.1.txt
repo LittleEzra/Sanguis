@@ -1,0 +1,9 @@
+## Added:
+- AppleSkin compatibility
+## Changes:
+- There will be a delay of 1 second after drinking before you can heal
+- Rebalanced blood saturation values (increasing most of them)
+- Modified the Garlic texture
+- Renamed Steel to Hunter Steel
+    - This does _not_ change the item ids
+- Added Coffin close and open sounds

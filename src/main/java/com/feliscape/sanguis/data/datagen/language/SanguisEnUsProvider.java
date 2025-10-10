@@ -28,8 +28,8 @@ public class SanguisEnUsProvider extends SanguisLanguageProvider{
         this.addItem(SanguisItems.BLOOD_SOAKED_COIN, "Blood-Soaked Coin");
         this.addItem(SanguisItems.BLACKENED_COIN, "Blackened Coin");
 
-        this.addItem(SanguisItems.STEEL_BLEND, "Steel Blend");
-        this.addItem(SanguisItems.STEEL_INGOT, "Steel Ingot");
+        this.addItem(SanguisItems.STEEL_BLEND, "Hunter Steel Blend");
+        this.addItem(SanguisItems.STEEL_INGOT, "Hunter Steel Ingot");
 
         this.addItem(SanguisItems.SYRINGE, "Syringe");
         this.addItem(SanguisItems.BLOOD_SYRINGE, "Blood Syringe");
@@ -87,6 +87,9 @@ public class SanguisEnUsProvider extends SanguisLanguageProvider{
         this.addSubtitle(SanguisSoundEvents.VAMPIRE_DRINK, "Vampire drinks");
         this.addSubtitle(SanguisSoundEvents.INJECT, "Injection is used");
         this.addSubtitle(SanguisSoundEvents.BLACKENED_COIN_USE, "Blackened Coin is used");
+
+        this.addSubtitle(SanguisSoundEvents.COFFIN_CLOSE, "Coffin closes");
+        this.addSubtitle(SanguisSoundEvents.COFFIN_OPEN, "Coffin opens");
 
         //noinspection SpellCheckingInspection
         this.addAdvancement(SanguisAdvancements.ROOT,

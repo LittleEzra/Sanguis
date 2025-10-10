@@ -1,11 +1,13 @@
 package com.feliscape.sanguis.content.block;
 
+import com.feliscape.sanguis.registry.SanguisSoundEvents;
 import com.feliscape.sanguis.util.VampireUtil;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
@@ -159,6 +161,17 @@ public class CoffinBlock extends HorizontalDirectionalBlock {
             }
         }
     }
+
+    @Override
+    public void setBedOccupied(BlockState state, Level level, BlockPos pos, LivingEntity sleeper, boolean occupied) {
+        super.setBedOccupied(state, level, pos, sleeper, occupied);
+        if (occupied){
+            level.playSound(null, pos, SanguisSoundEvents.COFFIN_CLOSE.get(), SoundSource.BLOCKS, 0.5F, 1.0F);
+        } else{
+            level.playSound(null, pos, SanguisSoundEvents.COFFIN_OPEN.get(), SoundSource.BLOCKS, 0.5F, 1.0F);
+        }
+    }
+
     public static boolean canSetSpawn(Level level) {
         return level.dimensionType().bedWorks();
     }

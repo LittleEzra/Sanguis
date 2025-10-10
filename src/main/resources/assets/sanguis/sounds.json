@@ -30,5 +30,18 @@
       "sanguis:item/inject"
     ],
     "subtitle": "subtitle.sanguis.item.inject"
+  },
+  "block.coffin.close": {
+    "sounds": [
+      "block/barrel/close"
+    ],
+    "subtitle": "subtitle.sanguis.block.coffin.close"
+  },
+  "block.coffin.open": {
+    "sounds": [
+      "block/barrel/open1",
+      "block/barrel/open2"
+    ],
+    "subtitle": "subtitle.sanguis.block.coffin.open"
   }
 }

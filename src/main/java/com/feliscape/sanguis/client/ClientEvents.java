@@ -3,9 +3,7 @@ package com.feliscape.sanguis.client;
 import com.feliscape.sanguis.Sanguis;
 import com.feliscape.sanguis.SanguisClient;
 import com.feliscape.sanguis.SanguisServerConfig;
-import com.feliscape.sanguis.client.hud.BloodLevelHudLayer;
-import com.feliscape.sanguis.client.hud.DrainBarHudLayer;
-import com.feliscape.sanguis.client.hud.StatusHudLayer;
+import com.feliscape.sanguis.client.hud.*;
 import com.feliscape.sanguis.client.render.entity.GoldenQuarrelRenderer;
 import com.feliscape.sanguis.client.render.entity.VampireHunterRenderer;
 import com.feliscape.sanguis.client.render.entity.VampireRenderer;
@@ -83,6 +81,8 @@ public class ClientEvents {
     {
         event.registerBelow(VanillaGuiLayers.EXPERIENCE_LEVEL, StatusHudLayer.LOCATION, new StatusHudLayer());
         event.registerAbove(VanillaGuiLayers.FOOD_LEVEL, BloodLevelHudLayer.LOCATION, new BloodLevelHudLayer());
+        event.registerAbove(BloodLevelHudLayer.LOCATION, BloodSaturationHudLayer.LOCATION, new BloodSaturationHudLayer());
+        event.registerBelow(BloodLevelHudLayer.LOCATION, BloodExhaustionHudLayer.LOCATION, new BloodExhaustionHudLayer());
         event.registerAbove(VanillaGuiLayers.CROSSHAIR, DrainBarHudLayer.LOCATION, new DrainBarHudLayer());
     }
     @SubscribeEvent

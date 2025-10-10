@@ -2,31 +2,31 @@
   "values": {
     "minecraft:chicken": {
       "amount": 1,
-      "saturationMod": 0.1
+      "saturationMod": 0.2
     },
     "minecraft:cow": {
       "amount": 4,
-      "saturationMod": 0.4
+      "saturationMod": 0.6
     },
     "minecraft:donkey": {
       "amount": 4,
-      "saturationMod": 0.3
+      "saturationMod": 0.5
     },
     "minecraft:goat": {
       "amount": 3,
-      "saturationMod": 0.6
+      "saturationMod": 0.7
     },
     "minecraft:horse": {
       "amount": 4,
-      "saturationMod": 0.3
+      "saturationMod": 0.5
     },
     "minecraft:mooshroom": {
       "amount": 4,
-      "saturationMod": 0.4
+      "saturationMod": 0.6
     },
     "minecraft:mule": {
       "amount": 4,
-      "saturationMod": 0.3
+      "saturationMod": 0.5
     },
     "minecraft:pig": {
       "amount": 3,
@@ -34,15 +34,15 @@
     },
     "minecraft:piglin": {
       "amount": 5,
-      "saturationMod": 0.75
+      "saturationMod": 0.85
     },
     "minecraft:piglin_brute": {
       "amount": 5,
-      "saturationMod": 0.75
+      "saturationMod": 0.85
     },
     "minecraft:sheep": {
       "amount": 3,
-      "saturationMod": 0.4
+      "saturationMod": 0.6
     },
     "minecraft:villager": {
       "amount": 6,

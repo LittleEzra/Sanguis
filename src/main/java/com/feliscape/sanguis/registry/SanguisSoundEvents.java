@@ -18,6 +18,9 @@ public class SanguisSoundEvents {
     public static final Supplier<SoundEvent> BLACKENED_COIN_USE = registerSoundEvent("item.blackened_coin.use");
     public static final Supplier<SoundEvent> INJECT = registerSoundEvent("item.inject");
 
+    public static final Supplier<SoundEvent> COFFIN_CLOSE = registerSoundEvent("block.coffin.close");
+    public static final Supplier<SoundEvent> COFFIN_OPEN = registerSoundEvent("block.coffin.open");
+
     public static void register(IEventBus eventBus)
     {
         SOUND_EVENTS.register(eventBus);

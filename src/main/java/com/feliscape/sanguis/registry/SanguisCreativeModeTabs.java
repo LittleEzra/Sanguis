@@ -27,12 +27,6 @@ public class SanguisCreativeModeTabs {
                     .title(Component.translatable("itemGroup.sanguis.base"))
                     .withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
                     .icon(() -> new ItemStack(SanguisItems.BLOODY_FANG.get()))
-                    /*.displayItems(((pParameters, pOutput) -> {
-                        pOutput.accept(WinterShineBlocks.CONFECTIONERY_OVEN.get());
-                        pOutput.accept(WinterShineBlocks.CANDY_CANE_LOG.get());
-
-                        pOutput.accept(WinterShineItems.CANDY_CANE.get());
-                    }))*/
                     .displayItems(new DisplayItemsGenerator())
                     .build());
 

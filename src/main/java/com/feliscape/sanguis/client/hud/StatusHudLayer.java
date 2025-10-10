@@ -17,9 +17,7 @@ public class StatusHudLayer extends HudLayer {
     private static final ResourceLocation HUNTER_SPRITE = Sanguis.location("hud/status/hunter");
 
     @Override
-    public void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
-        if (!canRenderOverlay() || player().isSpectator()) return;
-
+    public void renderOverlay(GuiGraphics guiGraphics, DeltaTracker deltaTracker, LocalPlayer player) {
         ResourceLocation location = null;
 
         if (VampireUtil.isInfected(player())) location = INFECTED_SPRITE;
