@@ -35,6 +35,6 @@ public class SyringeItem extends Item {
             }
             return InteractionResult.CONSUME;
         }
-        return super.interactLivingEntity(stack, player, interactionTarget, usedHand);
+        return InteractionResult.PASS;
     }
 }
