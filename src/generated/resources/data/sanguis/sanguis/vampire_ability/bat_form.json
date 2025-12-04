@@ -1,0 +1,9 @@
+{
+  "cost": 0,
+  "description": {
+    "translate": "advancements.sanguis.bat_form.description"
+  },
+  "name": {
+    "translate": "advancements.sanguis.bat_form.title"
+  }
+}

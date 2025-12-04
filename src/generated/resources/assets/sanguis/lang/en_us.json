@@ -1,8 +1,12 @@
 {
+  "advancements.sanguis.bat_form.description": "Allows you to turn into a bat",
+  "advancements.sanguis.bat_form.title": "Chiropteroid",
   "advancements.sanguis.bible_hit.description": "Hit a Vampire with a copy of Daemonologie",
   "advancements.sanguis.bible_hit.title": "Naughty Vampire!",
   "advancements.sanguis.quest_complete.description": "Complete a quest from a Hunter Camp",
   "advancements.sanguis.quest_complete.title": "Toss A Coin To Your Witcher",
+  "advancements.sanguis.root.description": "Become that which haunts us",
+  "advancements.sanguis.root.title": "Vampirism",
   "advancements.sanguis.sanguis.hunter.inject.description": "Become a Vampire Hunter by immunizing yourself against vampirism",
   "advancements.sanguis.sanguis.hunter.inject.title": "Vaccinated",
   "advancements.sanguis.sanguis.root.description": "Sanguis turpis et dentes cruenti",

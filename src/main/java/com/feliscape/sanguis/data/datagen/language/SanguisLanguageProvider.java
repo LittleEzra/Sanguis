@@ -1,6 +1,7 @@
 package com.feliscape.sanguis.data.datagen.language;
 
 import com.feliscape.sanguis.Sanguis;
+import com.feliscape.sanguis.data.ability.VampireAbilityWrapper;
 import com.feliscape.sanguis.data.advancement.CustomAdvancement;
 import net.minecraft.Util;
 import net.minecraft.client.KeyMapping;
@@ -9,6 +10,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.effect.MobEffect;
@@ -59,6 +61,16 @@ public abstract class SanguisLanguageProvider extends LanguageProvider {
     protected void addAdvancement(CustomAdvancement advancement, String title, String description) {
         if (advancement.getTitle().getContents() instanceof TranslatableContents translatable)
             add(translatable.getKey(), title);
+        if (advancement.getDescription().getContents() instanceof TranslatableContents translatable)
+            add(translatable.getKey(), description);
+    }
+    protected void addAbility(ResourceLocation id, String name, String description) {
+        add("vampire_ability.%s.%s.name".formatted(id.getNamespace(), id.getPath().replace('/', '.')), name);
+        add("vampire_ability.%s.%s.description".formatted(id.getNamespace(), id.getPath().replace('/', '.')), description);
+    }
+    protected void addAbility(VampireAbilityWrapper advancement, String name, String description) {
+        if (advancement.getName().getContents() instanceof TranslatableContents translatable)
+            add(translatable.getKey(), name);
         if (advancement.getDescription().getContents() instanceof TranslatableContents translatable)
             add(translatable.getKey(), description);
     }

@@ -3,6 +3,7 @@ package com.feliscape.sanguis.data.datagen.language;
 import com.feliscape.sanguis.SanguisClientConfig;
 import com.feliscape.sanguis.SanguisServerConfig;
 import com.feliscape.sanguis.data.damage.SanguisDamageTypes;
+import com.feliscape.sanguis.data.datagen.ability.SanguisVampireAbilities;
 import com.feliscape.sanguis.data.datagen.advancement.SanguisAdvancements;
 import com.feliscape.sanguis.registry.*;
 import net.minecraft.data.PackOutput;
@@ -115,6 +116,15 @@ public class SanguisEnUsProvider extends SanguisLanguageProvider{
         this.addAdvancement(SanguisAdvancements.BIBLE_HIT,
                 "Naughty Vampire!",
                 "Hit a Vampire with a copy of Daemonologie");
+
+        this.addAbility(SanguisVampireAbilities.ROOT,
+                "Vampirism",
+                "Become that which haunts us"
+        );
+        this.addAbility(SanguisVampireAbilities.BAT_FORM,
+                "Chiropteroid",
+                "Allows you to turn into a bat"
+        );
 
         this.addDeathMessage(SanguisDamageTypes.DRAINING, "%1$s was drained");
         this.addDeathMessagePlayer(SanguisDamageTypes.DRAINING, "%1$s was drained by %2$s");

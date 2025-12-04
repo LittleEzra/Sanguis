@@ -1,6 +1,5 @@
-package com.feliscape.sanguis.content.vampire;
+package com.feliscape.sanguis.data.ability;
 
-import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;

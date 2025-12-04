@@ -29,6 +29,10 @@ public abstract class HunterQuest {
     public static final StreamCodec<RegistryFriendlyByteBuf, HunterQuest> TYPED_STREAM_CODEC = ByteBufCodecs.registry(SanguisRegistries.Keys.QUEST_TYPES)
             .dispatch(HunterQuest::type, QuestType::streamCodec);
 
+    protected boolean isCompleted = false;
+    protected boolean isDirty = false;
+    protected int duration = 60 * 60 * 20; // 60 Minutes = 3 days
+
     protected HunterQuest(){
     }
     protected HunterQuest(int duration){
@@ -38,10 +42,6 @@ public abstract class HunterQuest {
         this.duration = duration;
         this.isCompleted = isCompleted;
     }
-
-    protected boolean isCompleted = false;
-    protected boolean isDirty = false;
-    protected int duration = 60 * 60 * 20; // 60 Minutes = 3 days
 
     public static Tag serialize(HunterQuest quest) {
         return TYPED_CODEC.encodeStart(NbtOps.INSTANCE, quest).getOrThrow();

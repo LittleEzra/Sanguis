@@ -1,6 +1,7 @@
 package com.feliscape.sanguis.content.attachment;
 
 import com.feliscape.sanguis.Sanguis;
+import com.feliscape.sanguis.data.datagen.ability.SanguisVampireAbilities;
 import com.feliscape.sanguis.registry.SanguisCriteriaTriggers;
 import com.feliscape.sanguis.registry.SanguisDataAttachmentTypes;
 import com.feliscape.sanguis.registry.SanguisSoundEvents;
@@ -125,7 +126,7 @@ public class VampireData extends DataAttachment {
     }
 
     public void toggleBatForm(){
-        if (!this.canTransform()) return;
+        if (!this.canTransformIntoBat()) return;
         this.bloodData.addExhaustion(6.0F);
         this.isBat = !this.isBat;
 
@@ -172,21 +173,10 @@ public class VampireData extends DataAttachment {
         else {
             this.holder.getAttributes().removeAttributeModifiers(BAT_ATTRIBUTES);
         }
-
-        /*var flightAttribute = this.holder.getAttribute(NeoForgeMod.CREATIVE_FLIGHT);
-        var damageAttribute = this.holder.getAttribute(Attributes.ATTACK_DAMAGE);
-
-        if (this.isBat()) {
-            if (flightAttribute != null && !flightAttribute.hasModifier(FLY_MODIFIER.id())) flightAttribute.addTransientModifier(FLY_MODIFIER);
-            if (damageAttribute != null && !damageAttribute.hasModifier(BAT_DAMAGE_MODIFIER.id())) damageAttribute.addPermanentModifier(BAT_DAMAGE_MODIFIER);
-        } else {
-            if (flightAttribute != null && flightAttribute.hasModifier(FLY_MODIFIER.id())) flightAttribute.removeModifier(FLY_MODIFIER);
-            if (damageAttribute != null && damageAttribute.hasModifier(BAT_DAMAGE_MODIFIER.id())) damageAttribute.removeModifier(BAT_DAMAGE_MODIFIER);
-        }*/
     }
 
-    private boolean canTransform() {
-        if (!isBat && tier == 0){
+    private boolean canTransformIntoBat() {
+        if ((!isBat && tier == 0) || !this.holder.getData(VampireAbilityData.type()).hasAbility(SanguisVampireAbilities.BAT_FORM)){
             return false;
         }
 

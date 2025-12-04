@@ -1,0 +1,9 @@
+{
+  "cost": 0,
+  "description": {
+    "translate": "advancements.sanguis.root.description"
+  },
+  "name": {
+    "translate": "advancements.sanguis.root.title"
+  }
+}

@@ -1,6 +1,7 @@
 package com.feliscape.sanguis.data.datagen;
 
 import com.feliscape.sanguis.Sanguis;
+import com.feliscape.sanguis.data.datagen.ability.SanguisVampireAbilities;
 import com.feliscape.sanguis.data.datagen.advancement.SanguisAdvancementProvider;
 import com.feliscape.sanguis.data.datagen.language.SanguisEnUsProvider;
 import com.feliscape.sanguis.data.datagen.loot.SanguisGlobalLootModifierProvider;
@@ -51,6 +52,7 @@ public class DataGenerators {
         generator.addProvider(event.includeServer(), new SanguisGlobalLootModifierProvider(packOutput, lookupProvider));
 
         generator.addProvider(event.includeServer(), new SanguisAdvancementProvider(packOutput, lookupProvider, existingFileHelper));
+        generator.addProvider(event.includeServer(), new SanguisVampireAbilities(packOutput, lookupProvider, existingFileHelper));
 
         generator.addProvider(true, new SanguisBlockModelProvider(packOutput, existingFileHelper));
         generator.addProvider(true, new SanguisItemModelProvider(packOutput, existingFileHelper));
