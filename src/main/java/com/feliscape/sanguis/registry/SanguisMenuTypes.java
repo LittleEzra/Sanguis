@@ -4,6 +4,7 @@ import com.feliscape.sanguis.Sanguis;
 import com.feliscape.sanguis.content.menu.ActiveQuestsMenu;
 import com.feliscape.sanguis.content.menu.GuideBookMenu;
 import com.feliscape.sanguis.content.menu.QuestBoardMenu;
+import com.feliscape.sanguis.content.menu.VampireAbilitiesMenu;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.MenuType;
 import net.neoforged.bus.api.IEventBus;
@@ -22,6 +23,8 @@ public class SanguisMenuTypes {
             () -> IMenuTypeExtension.create(QuestBoardMenu::new));
     public static final Supplier<MenuType<GuideBookMenu>> GUIDE_BOOK = MENU_TYPES.register("guide_book",
             () -> IMenuTypeExtension.create(GuideBookMenu::new));
+    public static final Supplier<MenuType<VampireAbilitiesMenu>> VAMPIRE_ABILITIES = MENU_TYPES.register("vampire_abilities",
+            () -> IMenuTypeExtension.create(VampireAbilitiesMenu::new));
 
     public static void register(IEventBus eventBus){
         MENU_TYPES.register(eventBus);

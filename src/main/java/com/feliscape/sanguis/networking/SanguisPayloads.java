@@ -31,6 +31,11 @@ public class SanguisPayloads {
         );
 
         registrar.playToServer(
+                OpenAbilitiesPayload.TYPE,
+                OpenAbilitiesPayload.STREAM_CODEC,
+                OpenAbilitiesPayload::handle
+        );
+        registrar.playToServer(
                 OpenActiveQuestsPayload.TYPE,
                 OpenActiveQuestsPayload.STREAM_CODEC,
                 OpenActiveQuestsPayload::handle

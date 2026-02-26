@@ -1,13 +1,10 @@
 package com.feliscape.sanguis.content.attachment;
 
-import com.feliscape.sanguis.data.ability.VampireAbility;
-import com.feliscape.sanguis.data.ability.VampireAbilityHolder;
-import com.feliscape.sanguis.data.ability.VampireAbilityWrapper;
+import com.feliscape.sanguis.content.ability.VampireAbility;
 import com.feliscape.sanguis.registry.SanguisDataAttachmentTypes;
+import com.feliscape.sanguis.registry.custom.SanguisRegistries;
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.nbt.*;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
@@ -15,30 +12,31 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.attachment.AttachmentType;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.function.Supplier;
 
 public class VampireAbilityData{
     public static final Codec<VampireAbilityData> CODEC = RecordCodecBuilder.create(inst -> inst.group(
             Codec.INT.fieldOf("skill_points").forGetter(VampireAbilityData::getSkillPoints),
-            ResourceLocation.CODEC.listOf().fieldOf("obtained_abilities").forGetter(VampireAbilityData::getObtainedAbilities)
+            SanguisRegistries.VAMPIRE_ABILITIES.byNameCodec().listOf()
+                    .fieldOf("obtained_abilities")
+                    .forGetter(VampireAbilityData::getObtainedAbilities)
     ).apply(inst, VampireAbilityData::new));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, VampireAbilityData> STREAM_CODEC = StreamCodec.composite(
             ByteBufCodecs.INT,
             VampireAbilityData::getSkillPoints,
-            ResourceLocation.STREAM_CODEC.apply(ByteBufCodecs.list()),
+            ByteBufCodecs.registry(SanguisRegistries.Keys.VAMPIRE_ABILITIES).apply(ByteBufCodecs.list()),
             VampireAbilityData::getObtainedAbilities,
             VampireAbilityData::new
     );
 
     private int skillPoints = 0;
-    private ArrayList<ResourceLocation> obtainedAbilities = new ArrayList<>();
+    private ArrayList<VampireAbility> obtainedAbilities = new ArrayList<>();
 
     public VampireAbilityData() {}
 
-    public VampireAbilityData(int skillPoints, List<ResourceLocation> obtainedAbilities) {
+    public VampireAbilityData(int skillPoints, List<VampireAbility> obtainedAbilities) {
         this.skillPoints = skillPoints;
         this.obtainedAbilities = new ArrayList<>(obtainedAbilities);
     }
@@ -46,7 +44,7 @@ public class VampireAbilityData{
     public int getSkillPoints() {
         return skillPoints;
     }
-    public List<ResourceLocation> getObtainedAbilities(){
+    public List<VampireAbility> getObtainedAbilities(){
         return obtainedAbilities;
     }
 
@@ -74,28 +72,24 @@ public class VampireAbilityData{
         tag.putInt("skill_points", skillPoints);
     }*/
 
-    public boolean hasAbility(ResourceLocation id){
-        return obtainedAbilities.contains(id);
+    public boolean hasAbility(VampireAbility ability){
+        return obtainedAbilities.contains(ability);
     }
-    public boolean hasAbility(VampireAbilityWrapper wrapper){
-        return obtainedAbilities.contains(wrapper.getId());
-    }
-    public boolean hasAbility(VampireAbilityHolder holder){
-        return obtainedAbilities.contains(holder.id());
+    public boolean hasAbility(Supplier<VampireAbility> ability){
+        return hasAbility(ability.get());
     }
 
-    public boolean unlockAbility(VampireAbilityWrapper wrapper){
-        if (skillPoints < wrapper.getAbility().cost() || !obtainedAbilities.add(wrapper.getId())){
+    public boolean unlockAbility(VampireAbility ability){
+        if (skillPoints < ability.getCost() || obtainedAbilities.contains(ability) || !obtainedAbilities.add(ability)){
             return false;
         }
-        skillPoints -= wrapper.getAbility().cost();
+        skillPoints -= ability.getCost();
         return true;
     }
-    public boolean unlockAbility(VampireAbilityHolder holder){
-        if (skillPoints < holder.value().cost() || !obtainedAbilities.add(holder.id())){
-            return false;
-        }
-        skillPoints -= holder.value().cost();
+
+    public boolean removeAbility(VampireAbility ability){
+        if (!obtainedAbilities.contains(ability)) return false;
+        obtainedAbilities.remove(ability);
         return true;
     }
 }

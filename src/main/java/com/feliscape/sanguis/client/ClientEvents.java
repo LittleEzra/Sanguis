@@ -10,6 +10,7 @@ import com.feliscape.sanguis.client.render.entity.VampireRenderer;
 import com.feliscape.sanguis.content.attachment.VampireData;
 import com.feliscape.sanguis.networking.payload.BatTransformationPayload;
 import com.feliscape.sanguis.networking.payload.DrainBloodPayload;
+import com.feliscape.sanguis.networking.payload.OpenAbilitiesPayload;
 import com.feliscape.sanguis.networking.payload.OpenActiveQuestsPayload;
 import com.feliscape.sanguis.registry.SanguisEntityTypes;
 import com.feliscape.sanguis.registry.SanguisItems;
@@ -135,6 +136,11 @@ public class ClientEvents {
         while(SanguisKeyMappings.OPEN_ACTIVE_QUESTS.get().consumeClick()){
             if (HunterUtil.isHunter(player))
                 PacketDistributor.sendToServer(new OpenActiveQuestsPayload());
+        }
+
+        while(SanguisKeyMappings.OPEN_ABILITIES.get().consumeClick()){
+            if (VampireUtil.isVampire(player))
+                PacketDistributor.sendToServer(new OpenAbilitiesPayload());
         }
     }
 }

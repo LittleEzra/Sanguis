@@ -1,5 +1,6 @@
 package com.feliscape.sanguis;
 
+import com.feliscape.sanguis.client.atlas.VampireAbilityTextureManager;
 import com.feliscape.sanguis.client.book.GuideBookManager;
 import com.feliscape.sanguis.client.render.quest.ItemQuestRenderer;
 import com.feliscape.sanguis.client.render.quest.KillMobsQuestRenderer;
@@ -41,15 +42,26 @@ public class SanguisClient {
         private final QuestRenderDispatcher questRenderDispatcher;
         private final GuideBookManager guideBookManager;
 
+        private final VampireAbilityTextureManager vampireAbilityTextureManager;
+
         public ReloadListener(RegisterClientReloadListenersEvent event){
             reloadListeners = this;
 
             Minecraft minecraft = Minecraft.getInstance();
-            questRenderDispatcher = new QuestRenderDispatcher(Minecraft.getInstance());
+
+            questRenderDispatcher = new QuestRenderDispatcher(minecraft);
             event.registerReloadListener(questRenderDispatcher);
+
             guideBookManager = new GuideBookManager("book");
             event.registerReloadListener(guideBookManager.getChapterCollector());
             event.registerReloadListener(guideBookManager.getEntryCollector());
+
+            vampireAbilityTextureManager = new VampireAbilityTextureManager(minecraft.getTextureManager());
+            event.registerReloadListener(vampireAbilityTextureManager);
+        }
+
+        public VampireAbilityTextureManager getVampireAbilityTextureManager() {
+            return vampireAbilityTextureManager;
         }
 
         public QuestRenderDispatcher getQuestRenderDispatcher() {

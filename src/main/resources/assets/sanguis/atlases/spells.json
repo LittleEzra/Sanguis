@@ -1,0 +1,9 @@
+{
+  "sources": [
+    {
+      "type": "directory",
+      "source": "vampire_ability",
+      "prefix": ""
+    }
+  ]
+}

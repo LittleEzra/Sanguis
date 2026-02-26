@@ -1,11 +1,7 @@
 package com.feliscape.sanguis.content.attachment;
 
 import com.feliscape.sanguis.Sanguis;
-import com.feliscape.sanguis.data.datagen.ability.SanguisVampireAbilities;
-import com.feliscape.sanguis.registry.SanguisCriteriaTriggers;
-import com.feliscape.sanguis.registry.SanguisDataAttachmentTypes;
-import com.feliscape.sanguis.registry.SanguisSoundEvents;
-import com.feliscape.sanguis.registry.SanguisTags;
+import com.feliscape.sanguis.registry.*;
 import com.feliscape.sanguis.util.VampireUtil;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
@@ -176,7 +172,7 @@ public class VampireData extends DataAttachment {
     }
 
     private boolean canTransformIntoBat() {
-        if ((!isBat && tier == 0) || !this.holder.getData(VampireAbilityData.type()).hasAbility(SanguisVampireAbilities.BAT_FORM)){
+        if ((!isBat && tier == 0) || !this.holder.getData(VampireAbilityData.type()).hasAbility(SanguisVampireAbilities.BAT_TRANSFORMATION)){
             return false;
         }
 

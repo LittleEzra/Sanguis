@@ -30,11 +30,18 @@ public class SanguisKeyMappings {
             GLFW.GLFW_KEY_I,
             "key.categories.inventory"
     ));
+    public static final Lazy<KeyMapping> OPEN_ABILITIES = Lazy.of(() -> new KeyMapping(
+            "key.sanguis.open_abilities",
+            InputConstants.Type.KEYSYM,
+            GLFW.GLFW_KEY_O,
+            "key.categories.inventory"
+    ));
 
     @SubscribeEvent
     public static void registerBindings(RegisterKeyMappingsEvent event) {
         event.register(DRAIN_BLOOD.get());
         event.register(BAT_TRANSFORMATION.get());
         event.register(OPEN_ACTIVE_QUESTS.get());
+        event.register(OPEN_ABILITIES.get());
     }
 }

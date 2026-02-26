@@ -33,6 +33,7 @@ public class Sanguis {
         SanguisBlocks.register(modEventBus);
         SanguisBlockEntityTypes.register(modEventBus);
 
+        SanguisVampireAbilities.register(modEventBus);
         SanguisEntityTypes.register(modEventBus);
         SanguisDataAttachmentTypes.register(modEventBus);
 

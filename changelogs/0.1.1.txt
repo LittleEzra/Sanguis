@@ -7,3 +7,5 @@
 - Renamed Steel to Hunter Steel
     - This does _not_ change the item ids
 - Added Coffin close and open sounds
+## Fixes:
+- Fixed StackOverflowError when using a Syringe on an entity to draw blood
