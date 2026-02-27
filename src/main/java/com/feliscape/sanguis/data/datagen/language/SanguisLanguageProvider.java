@@ -1,6 +1,7 @@
 package com.feliscape.sanguis.data.datagen.language;
 
 import com.feliscape.sanguis.Sanguis;
+import com.feliscape.sanguis.content.ability.VampireAbility;
 import com.feliscape.sanguis.data.advancement.CustomAdvancement;
 import net.minecraft.Util;
 import net.minecraft.client.KeyMapping;
@@ -62,6 +63,12 @@ public abstract class SanguisLanguageProvider extends LanguageProvider {
             add(translatable.getKey(), title);
         if (advancement.getDescription().getContents() instanceof TranslatableContents translatable)
             add(translatable.getKey(), description);
+    }
+    protected void add(VampireAbility key, String name) {
+        add(key.getDescriptionId(), name);
+    }
+    protected void addVampireAbility(Supplier<VampireAbility> key, String name) {
+        add(key.get(), name);
     }
     protected void addEnchantment(ResourceKey<Enchantment> key, String name) {
         add(Util.makeDescriptionId("enchantment", key.location()), name);

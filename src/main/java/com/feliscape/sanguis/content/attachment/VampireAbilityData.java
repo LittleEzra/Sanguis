@@ -1,19 +1,26 @@
 package com.feliscape.sanguis.content.attachment;
 
+import com.feliscape.sanguis.content.ability.ActiveVampireAbility;
 import com.feliscape.sanguis.content.ability.VampireAbility;
 import com.feliscape.sanguis.registry.SanguisDataAttachmentTypes;
 import com.feliscape.sanguis.registry.custom.SanguisRegistries;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.core.Holder;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.attachment.AttachmentType;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 public class VampireAbilityData{
     public static final Codec<VampireAbilityData> CODEC = RecordCodecBuilder.create(inst -> inst.group(
@@ -52,31 +59,26 @@ public class VampireAbilityData{
         return SanguisDataAttachmentTypes.VAMPIRE_ABILITIES.get();
     }
 
-    /*@Override
-    protected void load(CompoundTag tag) {
-        obtainedAbilities = new ArrayList<>();
-        ListTag list = tag.getList("0", Tag.TAG_STRING);
-        for (int i = 0; i < list.size(); i++){
-            obtainedAbilities.add(ResourceLocation.parse(list.getString(i)));
-        }
-        this.skillPoints = tag.getInt("skill_points");
+    public Set<ActiveVampireAbility> getActiveAbilities(Level level){
+        var registry = level.registryAccess().registryOrThrow(SanguisRegistries.Keys.VAMPIRE_ABILITIES);
+        return registry.holders()
+                .filter(ability -> hasAbility(ability) && ability.value() instanceof ActiveVampireAbility)
+                .map(holder -> (ActiveVampireAbility) holder.value())
+                .collect(Collectors.toSet());
     }
 
-    @Override
-    protected void save(CompoundTag tag) {
-        ListTag list = new ListTag();
-        for (int i = 0; i < obtainedAbilities.size(); i++){
-            list.add(StringTag.valueOf(obtainedAbilities.get(i).toString()));
-        }
-        tag.put("obtained_abilities", list);
-        tag.putInt("skill_points", skillPoints);
-    }*/
+    public void onLevelChange(int newLevel){
+        skillPoints = (newLevel * newLevel + newLevel) / 2;
+    }
 
     public boolean hasAbility(VampireAbility ability){
         return obtainedAbilities.contains(ability);
     }
-    public boolean hasAbility(Supplier<VampireAbility> ability){
+    public boolean hasAbility(Supplier<? extends VampireAbility> ability){
         return hasAbility(ability.get());
+    }
+    public boolean hasAbility(Holder<VampireAbility> ability){
+        return hasAbility(ability.value());
     }
 
     public boolean unlockAbility(VampireAbility ability){

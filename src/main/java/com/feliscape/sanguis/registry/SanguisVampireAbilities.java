@@ -14,6 +14,8 @@ public class SanguisVampireAbilities {
 
     public static final Supplier<VampireAbility> BAT_TRANSFORMATION = VAMPIRE_ABILITIES.register(
             "bat_transformation", () -> new VampireAbility(2));
+    public static final Supplier<VampireAbility> INVISIBILITY = VAMPIRE_ABILITIES.register(
+            "invisibility", () -> new VampireAbility(3));
 
     public static void register(IEventBus eventBus){
         VAMPIRE_ABILITIES.register(eventBus);

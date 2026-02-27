@@ -3,6 +3,8 @@ package com.feliscape.sanguis.content.entity.projectile;
 import com.feliscape.sanguis.registry.SanguisEntityTypes;
 import com.feliscape.sanguis.registry.SanguisItems;
 import com.feliscape.sanguis.util.VampireUtil;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
@@ -29,7 +31,10 @@ public class GoldenQuarrel extends AbstractArrow {
     protected void onHitEntity(EntityHitResult result) {
         double baseDamage = this.getBaseDamage();
         if (VampireUtil.isVampire(result.getEntity())){
-            this.setBaseDamage(baseDamage * 2.5D);
+            this.setBaseDamage(baseDamage * 1.5D);
+            if (result.getEntity() instanceof LivingEntity living){
+                living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 2 * 20, 2));
+            }
         }
         super.onHitEntity(result);
         this.setBaseDamage(baseDamage);

@@ -116,7 +116,7 @@ public class VampireData extends DataAttachment {
         this.startInfectionTime = tag.getInt("startInfectionTime");
         this.isVampire = tag.getBoolean("isVampire");
         this.isBat = tag.getBoolean("isBat");
-        this.tier = tag.getInt("tier");
+        this.setTier(tag.getInt("tier"));
         this.storedHumanoidHealth = tag.getFloat("storedHumanoidHealth");
         this.bloodData = VampireBloodData.load(tag.getCompound("bloodData"));
     }
@@ -297,7 +297,7 @@ public class VampireData extends DataAttachment {
     private void revertFromVampire(){
         this.disableBatForm();
         this.holder.refreshDimensions();
-        this.tier = 0;
+        this.setTier(0);
         if (this.holder instanceof Player player){
             player.getFoodData().setFoodLevel(2);
         }
@@ -326,10 +326,14 @@ public class VampireData extends DataAttachment {
     }
 
     public boolean canUpgrade(){
-        return tier == 0;
+        return tier < 20;
+    }
+    public void setTier(int tier){
+        this.tier = tier;
+        this.holder.getData(VampireAbilityData.type()).onLevelChange(tier);
     }
     public void upgradeTier(){
-        tier++;
+        setTier(tier + 1);
     }
 
     /**

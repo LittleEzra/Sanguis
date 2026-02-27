@@ -116,6 +116,9 @@ public class SanguisEnUsProvider extends SanguisLanguageProvider{
                 "Naughty Vampire!",
                 "Hit a Vampire with a copy of Daemonologie");
 
+        this.addVampireAbility(SanguisVampireAbilities.BAT_TRANSFORMATION, "Chyropteroid");
+        this.addVampireAbility(SanguisVampireAbilities.INVISIBILITY, "Invisibility");
+
         /*this.addAbility(SanguisVampireAbilities.ROOT,
                 "Vampirism",
                 "Become that which haunts us"
@@ -166,7 +169,7 @@ public class SanguisEnUsProvider extends SanguisLanguageProvider{
 
         this.add("itemGroup.sanguis.base", "Sanguis");
 
-        this.add("sanguis.cant_eat_message", "You cannot eat this");
+        this.add("sanguis.cant_eat_message", "You cannot consume this");
 
         this.addKeyMapping(SanguisKeyMappings.DRAIN_BLOOD, "Drain Blood");
         this.addKeyMapping(SanguisKeyMappings.BAT_TRANSFORMATION, "Bat Transformation");
