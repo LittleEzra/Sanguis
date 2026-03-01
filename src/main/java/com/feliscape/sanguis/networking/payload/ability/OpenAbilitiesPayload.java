@@ -1,7 +1,6 @@
-package com.feliscape.sanguis.networking.payload;
+package com.feliscape.sanguis.networking.payload.ability;
 
 import com.feliscape.sanguis.Sanguis;
-import com.feliscape.sanguis.content.menu.ActiveQuestsMenu;
 import com.feliscape.sanguis.content.menu.VampireAbilitiesMenu;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;

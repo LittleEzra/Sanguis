@@ -2,6 +2,9 @@ package com.feliscape.sanguis.networking;
 
 import com.feliscape.sanguis.Sanguis;
 import com.feliscape.sanguis.networking.payload.*;
+import com.feliscape.sanguis.networking.payload.ability.OpenAbilitiesPayload;
+import com.feliscape.sanguis.networking.payload.ability.SetActiveAbilityPayload;
+import com.feliscape.sanguis.networking.payload.ability.UpdateAbilitiesPayload;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
@@ -29,12 +32,27 @@ public class SanguisPayloads {
                 BatTransformationPayload.STREAM_CODEC,
                 BatTransformationPayload::handle
         );
-
+        registrar.playToServer(
+                UseActiveAbilityPayload.TYPE,
+                UseActiveAbilityPayload.STREAM_CODEC,
+                UseActiveAbilityPayload::handle
+        );
         registrar.playToServer(
                 OpenAbilitiesPayload.TYPE,
                 OpenAbilitiesPayload.STREAM_CODEC,
                 OpenAbilitiesPayload::handle
         );
+        registrar.playToServer(
+                UpdateAbilitiesPayload.TYPE,
+                UpdateAbilitiesPayload.STREAM_CODEC,
+                UpdateAbilitiesPayload::handle
+        );
+        registrar.playToServer(
+                SetActiveAbilityPayload.TYPE,
+                SetActiveAbilityPayload.STREAM_CODEC,
+                SetActiveAbilityPayload::handle
+        );
+
         registrar.playToServer(
                 OpenActiveQuestsPayload.TYPE,
                 OpenActiveQuestsPayload.STREAM_CODEC,

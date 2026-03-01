@@ -116,8 +116,12 @@ public class SanguisEnUsProvider extends SanguisLanguageProvider{
                 "Naughty Vampire!",
                 "Hit a Vampire with a copy of Daemonologie");
 
-        this.addVampireAbility(SanguisVampireAbilities.BAT_TRANSFORMATION, "Chyropteroid");
-        this.addVampireAbility(SanguisVampireAbilities.INVISIBILITY, "Invisibility");
+        this.addVampireAbility(SanguisVampireAbilities.BAT_TRANSFORMATION,
+                "Chyropteroid",
+                "Allows you to turn into a bat in the dark.");
+        this.addVampireAbility(SanguisVampireAbilities.INVISIBILITY,
+                "Invisibility",
+                "Allows you to turn invisible on command.");
 
         /*this.addAbility(SanguisVampireAbilities.ROOT,
                 "Vampirism",
@@ -172,9 +176,10 @@ public class SanguisEnUsProvider extends SanguisLanguageProvider{
         this.add("sanguis.cant_eat_message", "You cannot consume this");
 
         this.addKeyMapping(SanguisKeyMappings.DRAIN_BLOOD, "Drain Blood");
-        this.addKeyMapping(SanguisKeyMappings.BAT_TRANSFORMATION, "Bat Transformation");
+        this.addKeyMapping(SanguisKeyMappings.USE_ABILITY, "Use Vampire Ability");
         this.addKeyMapping(SanguisKeyMappings.OPEN_ACTIVE_QUESTS, "Open Active Quests");
         this.addKeyMapping(SanguisKeyMappings.OPEN_ABILITIES, "Open Abilities");
+        this.addKeyMapping(SanguisKeyMappings.OPEN_ABILITY_WHEEL, "Open Ability Wheel");
 
         this.add("container.sanguis.vampire_abilities", "Vampire Abilities");
         this.add("container.sanguis.active_quests", "Active Quests");

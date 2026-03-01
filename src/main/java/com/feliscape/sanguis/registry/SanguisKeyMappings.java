@@ -18,8 +18,8 @@ public class SanguisKeyMappings {
             GLFW.GLFW_KEY_V,
             "key.categories.gameplay"
     ));
-    public static final Lazy<KeyMapping> BAT_TRANSFORMATION = Lazy.of(() -> new KeyMapping(
-            "key.sanguis.bat_transformation",
+    public static final Lazy<KeyMapping> USE_ABILITY = Lazy.of(() -> new KeyMapping(
+            "key.sanguis.use_ability",
             InputConstants.Type.KEYSYM,
             GLFW.GLFW_KEY_Y,
             "key.categories.gameplay"
@@ -36,11 +36,17 @@ public class SanguisKeyMappings {
             GLFW.GLFW_KEY_O,
             "key.categories.inventory"
     ));
+    public static final Lazy<KeyMapping> OPEN_ABILITY_WHEEL = Lazy.of(() -> new KeyMapping(
+            "key.sanguis.open_ability_wheel",
+            InputConstants.Type.KEYSYM,
+            GLFW.GLFW_KEY_G,
+            "key.categories.inventory"
+    ));
 
     @SubscribeEvent
     public static void registerBindings(RegisterKeyMappingsEvent event) {
         event.register(DRAIN_BLOOD.get());
-        event.register(BAT_TRANSFORMATION.get());
+        event.register(USE_ABILITY.get());
         event.register(OPEN_ACTIVE_QUESTS.get());
         event.register(OPEN_ABILITIES.get());
     }

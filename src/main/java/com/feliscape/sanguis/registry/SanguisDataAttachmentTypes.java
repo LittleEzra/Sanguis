@@ -17,7 +17,8 @@ public class SanguisDataAttachmentTypes {
             DeferredRegister.create(NeoForgeRegistries.ATTACHMENT_TYPES, Sanguis.MOD_ID);
 
     public static final Supplier<AttachmentType<VampireData>> VAMPIRISM = ATTACHMENT_TYPES.register("vampirism",
-            () -> AttachmentType.serializable(VampireData::getInstance)
+            () -> AttachmentType.builder(VampireData::getInstance)
+                    .serialize(new VampireData.Serializer())
                     .sync(new VampireData.SyncHandler())
                     .copyOnDeath()
                     .copyHandler(VampireData::copyDeathPersistent).build());
@@ -27,9 +28,9 @@ public class SanguisDataAttachmentTypes {
                     .copyOnDeath()
                     .copyHandler(HunterData::copyDeathPersistent).build());
     public static final Supplier<AttachmentType<VampireAbilityData>> VAMPIRE_ABILITIES = ATTACHMENT_TYPES.register("vampire_abilities",
-            () -> AttachmentType.builder(VampireAbilityData::new)
-                    .serialize(VampireAbilityData.CODEC)
-                    .sync(VampireAbilityData.STREAM_CODEC)
+            () -> AttachmentType.builder(VampireAbilityData::getInstance)
+                    .serialize(new VampireAbilityData.Serializer())
+                    .sync(new VampireAbilityData.SyncHandler())
                     .copyOnDeath().build());
     public static final Supplier<AttachmentType<EntityBloodData>> ENTITY_BLOOD = ATTACHMENT_TYPES.register("entity_blood",
             () -> AttachmentType.serializable(EntityBloodData::getInstance).sync(new EntityBloodData.SyncHandler()).build());

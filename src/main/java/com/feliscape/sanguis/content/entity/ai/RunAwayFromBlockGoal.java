@@ -17,9 +17,8 @@ public class RunAwayFromBlockGoal extends Goal {
     protected final PathfinderMob mob;
     private final Predicate<BlockState> predicate;
     private final double speedModifier;
-    private int horizontalRange = 8;
-    private int verticalRange = 4;
     protected Path path;
+    private int ticksUntilNextCheck;
 
     public RunAwayFromBlockGoal(PathfinderMob mob, Predicate<BlockState> predicate, double speedModifier) {
         this.mob = mob;
@@ -27,36 +26,10 @@ public class RunAwayFromBlockGoal extends Goal {
         this.speedModifier = speedModifier;
     }
     public RunAwayFromBlockGoal(PathfinderMob mob, Block block, double speedModifier) {
-        this.mob = mob;
-        this.predicate = state -> state.is(block);
-        this.speedModifier = speedModifier;
+        this(mob, state -> state.is(block), speedModifier);
     }
     public RunAwayFromBlockGoal(PathfinderMob mob, TagKey<Block> block, double speedModifier) {
-        this.mob = mob;
-        this.predicate = state -> state.is(block);
-        this.speedModifier = speedModifier;
-    }
-
-    public RunAwayFromBlockGoal(PathfinderMob mob, Predicate<BlockState> predicate, int horizontalRange, int verticalRange, double speedModifier) {
-        this.mob = mob;
-        this.predicate = predicate;
-        this.speedModifier = speedModifier;
-        this.horizontalRange = horizontalRange;
-        this.verticalRange = verticalRange;
-    }
-    public RunAwayFromBlockGoal(PathfinderMob mob, Block block, int horizontalRange, int verticalRange, double speedModifier) {
-        this.mob = mob;
-        this.predicate = state -> state.is(block);
-        this.speedModifier = speedModifier;
-        this.horizontalRange = horizontalRange;
-        this.verticalRange = verticalRange;
-    }
-    public RunAwayFromBlockGoal(PathfinderMob mob, TagKey<Block> block, int horizontalRange, int verticalRange, double speedModifier) {
-        this.mob = mob;
-        this.predicate = state -> state.is(block);
-        this.speedModifier = speedModifier;
-        this.horizontalRange = horizontalRange;
-        this.verticalRange = verticalRange;
+        this(mob, state -> state.is(block), speedModifier);
     }
 
     public Predicate<BlockState> block(){
@@ -65,26 +38,37 @@ public class RunAwayFromBlockGoal extends Goal {
 
     @Override
     public boolean canUse() {
-        Optional<BlockPos> nearestRepellentOptional = nearestBlockToAvoid(this.horizontalRange, this.verticalRange);
-        if (nearestRepellentOptional.isEmpty()) return false;
-        BlockPos nearestRepellent = nearestRepellentOptional.get();
-        Vec3 repellentCenter = nearestRepellent.getBottomCenter();
-
-        Vec3 pos = DefaultRandomPos.getPosAway(mob, 12, 7, repellentCenter);
-        if (pos == null)
+        if (ticksUntilNextCheck > 0){
+            ticksUntilNextCheck--;
             return false;
+        } else{
+            ticksUntilNextCheck = 10 + this.mob.getRandom().nextInt(10);
+            Optional<BlockPos> nearestRepellentOptional = nearestBlockToAvoid(5, 3);
+            if (nearestRepellentOptional.isEmpty()) return false;
+            BlockPos nearestRepellent = nearestRepellentOptional.get();
+            Vec3 repellentCenter = nearestRepellent.getBottomCenter();
 
-        if (repellentCenter.distanceToSqr(pos) < pos.distanceToSqr(mob.position())){
-            return false;
+            Vec3 pos = DefaultRandomPos.getPosAway(mob, 12, 7, repellentCenter);
+            if (pos == null)
+                return false;
+
+            if (repellentCenter.distanceToSqr(pos) < pos.distanceToSqr(mob.position())){
+                return false;
+            }
+
+            path = mob.getNavigation().createPath(pos.x, pos.y, pos.z, 0);
+            return path != null;
         }
+    }
 
-        path = mob.getNavigation().createPath(pos.x, pos.y, pos.z, 0);
-        return path != null;
+    @Override
+    public boolean requiresUpdateEveryTick() {
+        return true;
     }
 
     @Override
     public void start() {
-        this.mob.getNavigation().moveTo(this.path, 1.2D);
+        this.mob.getNavigation().moveTo(this.path, speedModifier);
     }
 
     @Override

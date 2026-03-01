@@ -62,7 +62,7 @@ public class BloodBottleItem extends Item {
 
     @Override
     public int getUseDuration(ItemStack stack, LivingEntity entity) {
-        return 32;
+        return 24;
     }
 
     @Override

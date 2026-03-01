@@ -1,9 +1,8 @@
 package com.feliscape.sanguis.content.ability;
 
-import com.feliscape.sanguis.registry.SanguisVampireAbilities;
 import com.feliscape.sanguis.registry.custom.SanguisRegistries;
+import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 
 import javax.annotation.Nullable;
@@ -17,15 +16,21 @@ public class VampireAbility {
         this.cost = cost;
     }
 
+    public Component getTranslation() {
+        return Component.translatable(this.getTranslationId());
+    }
     public Component getDescription() {
-        return Component.translatable(this.getDescriptionId());
+        return Component.translatable(this.getDescriptionId()).withStyle(ChatFormatting.GRAY);
     }
 
+    public String getTranslationId() {
+        return this.getOrCreateTranslationId();
+    }
     public String getDescriptionId() {
-        return this.getOrCreateDescriptionId();
+        return this.getOrCreateTranslationId() + ".description";
     }
 
-    protected String getOrCreateDescriptionId() {
+    protected String getOrCreateTranslationId() {
         if (this.descriptionId == null) {
             this.descriptionId = Util.makeDescriptionId("vampire_ability", SanguisRegistries.VAMPIRE_ABILITIES.getKey(this));
         }

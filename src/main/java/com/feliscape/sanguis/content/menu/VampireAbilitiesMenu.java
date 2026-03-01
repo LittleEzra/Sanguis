@@ -3,6 +3,7 @@ package com.feliscape.sanguis.content.menu;
 import com.feliscape.sanguis.content.ability.VampireAbility;
 import com.feliscape.sanguis.content.attachment.VampireAbilityData;
 import com.feliscape.sanguis.content.attachment.VampireData;
+import com.feliscape.sanguis.networking.payload.ability.UpdateAbilitiesPayload;
 import com.feliscape.sanguis.registry.SanguisMenuTypes;
 import com.feliscape.sanguis.registry.custom.SanguisRegistries;
 import com.feliscape.sanguis.util.VampireUtil;
@@ -13,6 +14,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -108,6 +110,12 @@ public class VampireAbilitiesMenu extends AbstractContainerMenu {
     @Override
     public void removed(Player player) {
         super.removed(player);
+        // if valid, update abilities
+        if (player.level().isClientSide()){
+            if (getCurrentCost() <= getMaxCost()){
+                PacketDistributor.sendToServer(new UpdateAbilitiesPayload(obtainedAbilities, player.getId()));
+            }
+        }
     }
 
     public int getCurrentCost() {

@@ -1,6 +1,9 @@
 package com.feliscape.sanguis.registry;
 
 import com.feliscape.sanguis.Sanguis;
+import com.feliscape.sanguis.content.ability.BatVampireAbility;
+import com.feliscape.sanguis.content.ability.DebugVampireAbility;
+import com.feliscape.sanguis.content.ability.InvisibilityVampireAbility;
 import com.feliscape.sanguis.content.ability.VampireAbility;
 import com.feliscape.sanguis.registry.custom.SanguisRegistries;
 import net.neoforged.bus.api.IEventBus;
@@ -13,9 +16,9 @@ public class SanguisVampireAbilities {
             DeferredRegister.create(SanguisRegistries.VAMPIRE_ABILITIES, Sanguis.MOD_ID);
 
     public static final Supplier<VampireAbility> BAT_TRANSFORMATION = VAMPIRE_ABILITIES.register(
-            "bat_transformation", () -> new VampireAbility(2));
+            "bat_transformation", () -> new BatVampireAbility(2, 20));
     public static final Supplier<VampireAbility> INVISIBILITY = VAMPIRE_ABILITIES.register(
-            "invisibility", () -> new VampireAbility(3));
+            "invisibility", () -> new InvisibilityVampireAbility(3, 200));
 
     public static void register(IEventBus eventBus){
         VAMPIRE_ABILITIES.register(eventBus);

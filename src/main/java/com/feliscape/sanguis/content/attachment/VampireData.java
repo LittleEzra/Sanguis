@@ -27,6 +27,7 @@ import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.attachment.AttachmentSyncHandler;
 import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.attachment.IAttachmentHolder;
+import net.neoforged.neoforge.attachment.IAttachmentSerializer;
 import net.neoforged.neoforge.common.NeoForgeMod;
 import org.jetbrains.annotations.Nullable;
 
@@ -116,7 +117,7 @@ public class VampireData extends DataAttachment {
         this.startInfectionTime = tag.getInt("startInfectionTime");
         this.isVampire = tag.getBoolean("isVampire");
         this.isBat = tag.getBoolean("isBat");
-        this.setTier(tag.getInt("tier"));
+        this.tier = tag.getInt("tier");
         this.storedHumanoidHealth = tag.getFloat("storedHumanoidHealth");
         this.bloodData = VampireBloodData.load(tag.getCompound("bloodData"));
     }
@@ -330,7 +331,7 @@ public class VampireData extends DataAttachment {
     }
     public void setTier(int tier){
         this.tier = tier;
-        this.holder.getData(VampireAbilityData.type()).onLevelChange(tier);
+        if (this.holder.hasData(VampireAbilityData.type())) this.holder.getData(VampireAbilityData.type()).onLevelChange(tier);
     }
     public void upgradeTier(){
         setTier(tier + 1);
@@ -451,6 +452,22 @@ public class VampireData extends DataAttachment {
         return this;
     }
 
+    public static class Serializer implements IAttachmentSerializer<CompoundTag, VampireData>{
+        @Override
+        public VampireData read(IAttachmentHolder holder, CompoundTag compoundTag, HolderLookup.Provider provider) {
+            VampireData data = new VampireData();
+            data.load(compoundTag);
+            data.setHolder(holder);
+            return data;
+        }
+
+        @Override
+        public @Nullable CompoundTag write(VampireData data, HolderLookup.Provider provider) {
+            CompoundTag tag = new CompoundTag();
+            data.save(tag);
+            return tag;
+        }
+    }
     public static class SyncHandler implements AttachmentSyncHandler<VampireData> {
 
         @Override

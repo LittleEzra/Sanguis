@@ -7,13 +7,13 @@ import com.feliscape.sanguis.client.hud.*;
 import com.feliscape.sanguis.client.render.entity.GoldenQuarrelRenderer;
 import com.feliscape.sanguis.client.render.entity.VampireHunterRenderer;
 import com.feliscape.sanguis.client.render.entity.VampireRenderer;
+import com.feliscape.sanguis.client.screen.ability.VampireAbilityWheel;
 import com.feliscape.sanguis.content.attachment.VampireData;
-import com.feliscape.sanguis.networking.payload.BatTransformationPayload;
 import com.feliscape.sanguis.networking.payload.DrainBloodPayload;
-import com.feliscape.sanguis.networking.payload.OpenAbilitiesPayload;
+import com.feliscape.sanguis.networking.payload.UseActiveAbilityPayload;
+import com.feliscape.sanguis.networking.payload.ability.OpenAbilitiesPayload;
 import com.feliscape.sanguis.networking.payload.OpenActiveQuestsPayload;
 import com.feliscape.sanguis.registry.SanguisEntityTypes;
-import com.feliscape.sanguis.registry.SanguisItems;
 import com.feliscape.sanguis.registry.SanguisKeyMappings;
 import com.feliscape.sanguis.util.HunterUtil;
 import com.feliscape.sanguis.util.VampireUtil;
@@ -30,7 +30,6 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.*;
-import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import net.neoforged.neoforge.network.PacketDistributor;
 
@@ -129,8 +128,10 @@ public class ClientEvents {
                 }
             }
         }
-        while (SanguisKeyMappings.BAT_TRANSFORMATION.get().consumeClick()){
-            PacketDistributor.sendToServer(new BatTransformationPayload());
+        while (SanguisKeyMappings.USE_ABILITY.get().consumeClick()){
+            if (VampireUtil.isVampire(player)) {
+                PacketDistributor.sendToServer(new UseActiveAbilityPayload());
+            }
         }
 
         while(SanguisKeyMappings.OPEN_ACTIVE_QUESTS.get().consumeClick()){
@@ -141,6 +142,12 @@ public class ClientEvents {
         while(SanguisKeyMappings.OPEN_ABILITIES.get().consumeClick()){
             if (VampireUtil.isVampire(player))
                 PacketDistributor.sendToServer(new OpenAbilitiesPayload());
+        }
+
+        while (SanguisKeyMappings.OPEN_ABILITY_WHEEL.get().consumeClick()){
+            if (!(Minecraft.getInstance().screen instanceof VampireAbilityWheel)){
+                Minecraft.getInstance().setScreen(new VampireAbilityWheel());
+            }
         }
     }
 }

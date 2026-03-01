@@ -10,7 +10,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.effect.MobEffect;
@@ -64,11 +63,12 @@ public abstract class SanguisLanguageProvider extends LanguageProvider {
         if (advancement.getDescription().getContents() instanceof TranslatableContents translatable)
             add(translatable.getKey(), description);
     }
-    protected void add(VampireAbility key, String name) {
-        add(key.getDescriptionId(), name);
+    protected void add(VampireAbility key, String name, String description) {
+        add(key.getTranslationId(), name);
+        add(key.getDescriptionId(), description);
     }
-    protected void addVampireAbility(Supplier<VampireAbility> key, String name) {
-        add(key.get(), name);
+    protected void addVampireAbility(Supplier<VampireAbility> key, String name, String description) {
+        add(key.get(), name, description);
     }
     protected void addEnchantment(ResourceKey<Enchantment> key, String name) {
         add(Util.makeDescriptionId("enchantment", key.location()), name);

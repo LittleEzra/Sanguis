@@ -12,6 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
 import java.util.List;
+import java.util.Optional;
 
 public class VampireAbilitiesScreen extends AbstractContainerScreen<VampireAbilitiesMenu> {
     private static final ResourceLocation BACKGROUND_LOCATION = Sanguis.location("textures/gui/container/vampire_abilities.png");
@@ -50,6 +51,34 @@ public class VampireAbilitiesScreen extends AbstractContainerScreen<VampireAbili
     }
 
     @Override
+    protected void renderTooltip(GuiGraphics guiGraphics, int x, int y) {
+        super.renderTooltip(guiGraphics, x, y);
+        if (this.menu.getCarried().isEmpty() && selectedAbility > -1) {
+            guiGraphics.renderTooltip(font,
+                    getAbilityTooltip(getSelectedAbility(selectedAbility, !hasSelectedUnobtainedAbility)),
+                    Optional.empty(),
+                    x, y);
+        }
+    }
+
+    private VampireAbility getSelectedAbility(int index, boolean obtained){
+        var list = (obtained ? menu.getObtainedAbilities() : menu.getUnobtainedAbilities());
+        return list.get(index);
+    }
+
+    public static List<Component> getAbilityTooltip(VampireAbility ability){
+        return List.of(
+                ability.getTranslation(),
+                ability.getDescription()
+        );
+    }
+
+    public static void renderAbility(VampireAbility ability, GuiGraphics guiGraphics, int x, int y){
+        TextureAtlasSprite sprite = SanguisClient.reloadListeners().getVampireAbilityTextureManager().get(ability);
+        guiGraphics.blit(x, y, 0, 16, 16, sprite);
+    }
+
+    @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
         if (button == 0){
             if (selectedAbility > -1){
@@ -70,14 +99,14 @@ public class VampireAbilitiesScreen extends AbstractContainerScreen<VampireAbili
             var ability = abilities.get(i);
             int x = startX + (i % 9) * (16 + 2);
             int y = startY + (i / 9) * (16 + 2);
-            if (mouseX >= x && mouseY >= y && mouseX < x + 16 && mouseY < y + 16){ // When hovered
+
+            if (mouseX >= x - 1 && mouseY >= y - 1 && mouseX < x + 17 && mouseY < y + 17){ // When hovered
                 y -= 1;
                 selectedAbility = i;
                 hasSelectedUnobtainedAbility = true;
             }
 
-            TextureAtlasSprite sprite = SanguisClient.reloadListeners().getVampireAbilityTextureManager().get(ability);
-            guiGraphics.blit(x, y, 0, 16, 16, sprite);
+            renderAbility(ability, guiGraphics, x, y);
         }
     }
     private void renderObtainedAbilities(GuiGraphics guiGraphics, int mouseX, int mouseY, List<VampireAbility> abilities) {
@@ -88,14 +117,13 @@ public class VampireAbilitiesScreen extends AbstractContainerScreen<VampireAbili
             int x = startX + i * (16 + 2);
             int y = startY;
 
-            if (mouseX >= x && mouseY >= y && mouseX < x + 16 && mouseY < y + 16){ // When hovered
+            if (mouseX >= x - 1 && mouseY >= y - 1 && mouseX < x + 17 && mouseY < y + 17){ // When hovered
                 y -= 1;
                 selectedAbility = i;
                 hasSelectedUnobtainedAbility = false;
             }
 
-            TextureAtlasSprite sprite = SanguisClient.reloadListeners().getVampireAbilityTextureManager().get(ability);
-            guiGraphics.blit(x, y, 0, 16, 16, sprite);
+            renderAbility(ability, guiGraphics, x, y);
         }
     }
 }
