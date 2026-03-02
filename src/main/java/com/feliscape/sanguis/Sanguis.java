@@ -48,6 +48,7 @@ public class Sanguis {
         SanguisIngredientTypes.register(modEventBus);
 
         SanguisChapterEntryTypes.register(modEventBus);
+        SanguisRituals.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);
 

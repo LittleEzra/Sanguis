@@ -3,10 +3,15 @@ package com.feliscape.sanguis.content.block;
 import com.feliscape.sanguis.content.item.BloodBottleItem;
 import com.feliscape.sanguis.registry.SanguisDataComponents;
 import com.feliscape.sanguis.registry.SanguisItems;
+import com.feliscape.sanguis.registry.SanguisSoundEvents;
+import com.feliscape.sanguis.registry.custom.SanguisRegistries;
+import com.feliscape.sanguis.util.VampireUtil;
 import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -16,10 +21,13 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+
+import java.util.List;
 
 public class BloodAltarBlock extends Block {
     public static BooleanProperty FILLED = BooleanProperty.create("filled");
@@ -55,6 +63,22 @@ public class BloodAltarBlock extends Block {
                 }
                 level.setBlock(pos, state.setValue(FILLED, false), Block.UPDATE_ALL);
                 return ItemInteractionResult.sidedSuccess(level.isClientSide());
+            } else{
+                var allRituals = level.registryAccess().registryOrThrow(SanguisRegistries.Keys.RITUALS).holders();
+                allRituals = allRituals.filter(r -> r.value().verify(
+                        level, pos, player, stack
+                ));
+                var any = allRituals.findAny();
+                if (any.isPresent()){
+                    List<Player> nearbyPlayers = level.getEntitiesOfClass(Player.class, new AABB(pos).inflate(4.0D, 2.5D, 4.0D),
+                            p -> VampireUtil.isVampire(p));
+                    level.playSound(player, pos, SanguisSoundEvents.BAT_TRANSFORM.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
+                    var result = any.get().value().activate(level, pos, nearbyPlayers, player);
+                    if (result.consumesItem()){
+                        stack.consume(1, player);
+                    }
+                    return result.isSuccess() ? ItemInteractionResult.sidedSuccess(level.isClientSide) : ItemInteractionResult.FAIL;
+                }
             }
         } else{
             if (stack.is(SanguisItems.BLOOD_BOTTLE)){

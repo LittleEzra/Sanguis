@@ -4,6 +4,7 @@ import com.feliscape.sanguis.Sanguis;
 import com.feliscape.sanguis.client.book.chapter.ChapterEntryType;
 import com.feliscape.sanguis.content.ability.VampireAbility;
 import com.feliscape.sanguis.content.quest.registry.QuestType;
+import com.feliscape.sanguis.content.ritual.BloodRitual;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -21,18 +22,27 @@ public class SanguisRegistries {
     public static final Registry<VampireAbility> VAMPIRE_ABILITIES = new RegistryBuilder<>(Keys.VAMPIRE_ABILITIES)
             .sync(true)
             .create();
+    public static final Registry<BloodRitual> RITUALS = new RegistryBuilder<>(Keys.RITUALS)
+            .sync(true)
+            .create();
 
     @SubscribeEvent
     static void registerRegistries(NewRegistryEvent event){
         event.register(QUEST_TYPES);
         event.register(CHAPTER_ENTRY_TYPES);
         event.register(VAMPIRE_ABILITIES);
+        event.register(RITUALS);
     }
 
     public static class Keys{
 
-        public static final ResourceKey<Registry<QuestType<?>>> QUEST_TYPES = ResourceKey.createRegistryKey(Sanguis.location("quest_types"));
-        public static final ResourceKey<Registry<ChapterEntryType<?>>> CHAPTER_ENTRY_TYPES = ResourceKey.createRegistryKey(Sanguis.location("chapter_entry_types"));
-        public static final ResourceKey<Registry<VampireAbility>> VAMPIRE_ABILITIES = ResourceKey.createRegistryKey(Sanguis.location("vampire_abilities"));
+        public static final ResourceKey<Registry<QuestType<?>>> QUEST_TYPES =
+                ResourceKey.createRegistryKey(Sanguis.location("quest_types"));
+        public static final ResourceKey<Registry<ChapterEntryType<?>>> CHAPTER_ENTRY_TYPES =
+                ResourceKey.createRegistryKey(Sanguis.location("chapter_entry_types"));
+        public static final ResourceKey<Registry<VampireAbility>> VAMPIRE_ABILITIES =
+                ResourceKey.createRegistryKey(Sanguis.location("vampire_abilities"));
+        public static final ResourceKey<Registry<BloodRitual>> RITUALS =
+                ResourceKey.createRegistryKey(Sanguis.location("rituals"));
     }
 }
