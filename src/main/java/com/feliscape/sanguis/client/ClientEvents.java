@@ -21,6 +21,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -41,7 +42,7 @@ public class ClientEvents {
     {
         LivingEntity entity = event.getEntity();
         float partialTick = event.getPartialTick();
-        if (VampireUtil.isBat(entity)){
+        if (VampireUtil.isBat(entity) && !entity.isInvisible()){
             var bat = entity.getData(VampireData.type()).getBat();
             if (bat == null) {
                 return;
@@ -50,7 +51,7 @@ public class ClientEvents {
             event.setCanceled(true);
             float f = Mth.lerp(partialTick, entity.yRotO, entity.getYRot());
             Minecraft.getInstance().getEntityRenderDispatcher().render(bat,
-                    0.0D, 0.0D, 0.0D, f, partialTick,
+                    0.0D, -0.2D, 0.0D, f, partialTick,
                     event.getPoseStack(), event.getMultiBufferSource(), event.getPackedLight());
         }
     }
@@ -84,6 +85,7 @@ public class ClientEvents {
         event.registerAbove(BloodLevelHudLayer.LOCATION, BloodSaturationHudLayer.LOCATION, new BloodSaturationHudLayer());
         event.registerBelow(BloodLevelHudLayer.LOCATION, BloodExhaustionHudLayer.LOCATION, new BloodExhaustionHudLayer());
         event.registerAbove(VanillaGuiLayers.CROSSHAIR, DrainBarHudLayer.LOCATION, new DrainBarHudLayer());
+        event.registerAboveAll(ActiveAbilityHudLayer.LOCATION, new ActiveAbilityHudLayer());
     }
     @SubscribeEvent
     public static void skipRenderingFoodBar(RenderGuiLayerEvent.Pre event)

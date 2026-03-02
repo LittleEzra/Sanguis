@@ -23,6 +23,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -35,7 +36,7 @@ public class VampireAbilityData{
 
     public static final Codec<VampireAbilityData> CODEC = RecordCodecBuilder.create(inst -> inst.group(
             Codec.INT.fieldOf("skill_points").forGetter(VampireAbilityData::getSkillPoints),
-            ABILITY_CODEC.optionalFieldOf("active_ability", null).forGetter(VampireAbilityData::getActiveAbility),
+            ABILITY_CODEC.optionalFieldOf("active_ability").forGetter(data -> Optional.ofNullable(data.activeAbility)),
             ABILITY_CODEC.listOf().fieldOf("obtained_abilities").forGetter(VampireAbilityData::getObtainedAbilities)
     ).apply(inst, VampireAbilityData::new));
 
@@ -66,6 +67,11 @@ public class VampireAbilityData{
     public VampireAbilityData(int skillPoints, VampireAbility activeAbility, List<VampireAbility> obtainedAbilities) {
         this.skillPoints = skillPoints;
         this.setActiveAbility(activeAbility);
+        this.obtainedAbilities = new ArrayList<>(obtainedAbilities);
+    }
+    public VampireAbilityData(int skillPoints, Optional<VampireAbility> activeAbility, List<VampireAbility> obtainedAbilities) {
+        this.skillPoints = skillPoints;
+        this.setActiveAbility(activeAbility.orElse(null));
         this.obtainedAbilities = new ArrayList<>(obtainedAbilities);
     }
 
@@ -120,7 +126,14 @@ public class VampireAbilityData{
         }
 
         obtainedAbilities.removeIf(a -> !newAbilities.contains(a));
+        validateActiveAbility();
         this.holder.syncData(type());
+    }
+
+    public void validateActiveAbility(){
+        if (activeAbility != null && !obtainedAbilities.contains(activeAbility)){
+            setActiveAbility(null);
+        }
     }
 
     protected void setHolder(IAttachmentHolder holder){
