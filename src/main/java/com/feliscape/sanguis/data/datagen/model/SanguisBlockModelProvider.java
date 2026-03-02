@@ -1,10 +1,7 @@
 package com.feliscape.sanguis.data.datagen.model;
 
 import com.feliscape.sanguis.Sanguis;
-import com.feliscape.sanguis.content.block.BloodOrangeLeavesBlock;
-import com.feliscape.sanguis.content.block.BloodOrangeVineBlock;
-import com.feliscape.sanguis.content.block.CoffinBlock;
-import com.feliscape.sanguis.content.block.GarlicCropBlock;
+import com.feliscape.sanguis.content.block.*;
 import com.feliscape.sanguis.registry.SanguisBlocks;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -41,6 +38,7 @@ public class SanguisBlockModelProvider extends BlockStateProvider {
 
         bloodOrangeVineBlock(SanguisBlocks.BLOOD_ORANGE_VINE.get());
         bloodOrangeLeavesBlock(SanguisBlocks.BLOOD_ORANGE_LEAVES.get());
+        bloodAltar(SanguisBlocks.BLOOD_ALTAR.get());
 
         coffin(SanguisBlocks.WHITE_COFFIN.get());
         coffin(SanguisBlocks.LIGHT_GRAY_COFFIN.get());
@@ -58,6 +56,19 @@ public class SanguisBlockModelProvider extends BlockStateProvider {
         coffin(SanguisBlocks.PURPLE_COFFIN.get());
         coffin(SanguisBlocks.MAGENTA_COFFIN.get());
         coffin(SanguisBlocks.PINK_COFFIN.get());
+    }
+
+    private void bloodAltar(BloodAltarBlock block){
+        var filledModel = models().getExistingFile(Sanguis.location("block/blood_altar"));
+        var emptyModel = models().getExistingFile(Sanguis.location("block/blood_altar_empty"));
+
+        getVariantBuilder(block)
+                .forAllStates(
+                        state -> ConfiguredModel.builder()
+                                .modelFile(state.getValue(BloodAltarBlock.FILLED) ? filledModel : emptyModel)
+                                .build()
+                );
+        simpleBlockItem(block, emptyModel);
     }
 
     private void bloodOrangeLeavesBlock(BloodOrangeLeavesBlock block){

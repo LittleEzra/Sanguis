@@ -61,6 +61,8 @@ public class SanguisBlockLootTableProvider extends BlockLootSubProvider {
         this.add(SanguisBlocks.BLOOD_ORANGE_VINE.get(), this::createBloodOrangeVineTable);
         this.add(SanguisBlocks.BLOOD_ORANGE_LEAVES.get(), this::createBloodOrangeLeavesTable);
 
+        this.dropSelf(SanguisBlocks.BLOOD_ALTAR.get());
+
         this.add(SanguisBlocks.WHITE_COFFIN.get(), block -> this.createSinglePropConditionTable(block, CoffinBlock.PART, BedPart.HEAD));
         this.add(SanguisBlocks.LIGHT_GRAY_COFFIN.get(), block -> this.createSinglePropConditionTable(block, CoffinBlock.PART, BedPart.HEAD));
         this.add(SanguisBlocks.GRAY_COFFIN.get(), block -> this.createSinglePropConditionTable(block, CoffinBlock.PART, BedPart.HEAD));

@@ -44,6 +44,8 @@ public class SanguisBlockTagGenerator extends BlockTagsProvider {
                 PINK_COFFIN.get()
         );
 
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
+                .add(BLOOD_ALTAR.get());
         this.tag(BlockTags.MINEABLE_WITH_HOE)
                 .add(BLOOD_ORANGE_LEAVES.get());
         this.tag(BlockTags.MINEABLE_WITH_AXE)

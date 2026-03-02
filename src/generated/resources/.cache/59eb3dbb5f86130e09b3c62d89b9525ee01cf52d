@@ -1,6 +1,7 @@
-// 1.21.1	2025-09-04T15:00:28.137715	Loot Tables
+// 1.21.1	2026-03-02T15:01:17.7517638	Loot Tables
 8a5d39eebefdbce8463937aea511e106e361d896 data/sanguis/loot_table/additional_bat_loot.json
 f8a9d28d5dec2b7646fd70a848463ac52587d334 data/sanguis/loot_table/blocks/black_coffin.json
+71f5ce0284dc6ec2bb1d50a9517128b4247d119c data/sanguis/loot_table/blocks/blood_altar.json
 dae0ed7dcb540170518b542c8d81c0190b169121 data/sanguis/loot_table/blocks/blood_orange_leaves.json
 f9f7985f9bcfb622ddbb912449b3f80ef0250b5e data/sanguis/loot_table/blocks/blood_orange_vine.json
 b9015899cd263533f8000ea996a1444c4750a08d data/sanguis/loot_table/blocks/blue_coffin.json

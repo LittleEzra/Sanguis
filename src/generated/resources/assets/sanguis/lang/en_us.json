@@ -14,6 +14,7 @@
   "advancements.sanguis.sanguis.vampire.transformation.description": "Complete your transformation into a vampire",
   "advancements.sanguis.sanguis.vampire.transformation.title": "Bloodsucker",
   "block.sanguis.black_coffin": "Black Coffin",
+  "block.sanguis.blood_altar": "Blood Altar",
   "block.sanguis.blood_orange_leaves": "Blood Orange Leaves",
   "block.sanguis.blood_orange_vine": "Blood Orange Vine",
   "block.sanguis.blue_coffin": "Blue Coffin",
@@ -124,10 +125,6 @@
   "subtitle.sanguis.item.inject": "Injection is used",
   "vampire_ability.sanguis.bat_transformation": "Chyropteroid",
   "vampire_ability.sanguis.bat_transformation.description": "Allows you to turn into a bat in the dark.",
-  "vampire_ability.sanguis.debug_1": "Debug 1",
-  "vampire_ability.sanguis.debug_1.description": "Debug 1",
-  "vampire_ability.sanguis.debug_2": "Debug 2",
-  "vampire_ability.sanguis.debug_2.description": "Debug 2",
   "vampire_ability.sanguis.invisibility": "Invisibility",
   "vampire_ability.sanguis.invisibility.description": "Allows you to turn invisible on command."
 }

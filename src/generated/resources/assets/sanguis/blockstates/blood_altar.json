@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "filled=false": {
+      "model": "sanguis:block/blood_altar_empty"
+    },
+    "filled=true": {
+      "model": "sanguis:block/blood_altar"
+    }
+  }
+}

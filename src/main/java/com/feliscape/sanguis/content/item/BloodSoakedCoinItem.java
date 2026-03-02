@@ -19,9 +19,9 @@ public class BloodSoakedCoinItem extends Item {
             ItemStack transformed = new ItemStack(SanguisItems.BLACKENED_COIN.get(), itemStack.getCount());
             ItemEntity transformedEntity = new ItemEntity(itemEntity.level(), itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), transformed);
             double theta = itemEntity.level().random.nextDouble() * Math.TAU;
-            double x = Math.cos(theta);
-            double y = itemEntity.level().random.nextDouble() * 0.2D + 0.1D;
-            double z = Math.sin(theta);
+            double x = Math.cos(theta) * 0.1D;
+            double y = itemEntity.level().random.nextDouble() * 0.2D + 0.2D;
+            double z = Math.sin(theta) * 0.1D;
             transformedEntity.setDeltaMovement(x, y, z);
             serverLevel.addFreshEntity(transformedEntity);
         }

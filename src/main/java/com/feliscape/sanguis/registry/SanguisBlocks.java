@@ -96,6 +96,17 @@ public class SanguisBlocks {
     public static final DeferredBlock<CoffinBlock> MAGENTA_COFFIN = registerCoffin(DyeColor.MAGENTA);
     public static final DeferredBlock<CoffinBlock> PINK_COFFIN = registerCoffin(DyeColor.PINK);
 
+    public static final DeferredBlock<BloodAltarBlock> BLOOD_ALTAR = registerBlockWithItem(
+            "blood_altar",
+            p -> new BloodAltarBlock(p
+                    .mapColor(state -> state.getValue(BloodAltarBlock.FILLED) ?
+                            MapColor.COLOR_RED :
+                            MapColor.GOLD)
+                    .sound(SoundType.METAL)
+                    .requiresCorrectToolForDrops()
+                    .strength(3.0F, 6.0F)
+            ));
+
     private static DeferredBlock<CoffinBlock> registerCoffin(DyeColor color){
         return registerBlockWithItem(color.getName() + "_coffin", p -> coffin(p, color));
     }

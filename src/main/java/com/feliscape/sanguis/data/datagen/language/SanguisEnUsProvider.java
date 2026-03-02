@@ -62,6 +62,8 @@ public class SanguisEnUsProvider extends SanguisLanguageProvider{
         this.addBlock(SanguisBlocks.BLOOD_ORANGE_VINE, "Blood Orange Vine");
         this.addBlock(SanguisBlocks.BLOOD_ORANGE_LEAVES, "Blood Orange Leaves");
 
+        this.addBlock(SanguisBlocks.BLOOD_ALTAR, "Blood Altar");
+
         this.addBlock(SanguisBlocks.WHITE_COFFIN, "White Coffin");
         this.addBlock(SanguisBlocks.LIGHT_GRAY_COFFIN, "Light Gray Coffin");
         this.addBlock(SanguisBlocks.GRAY_COFFIN, "Gray Coffin");

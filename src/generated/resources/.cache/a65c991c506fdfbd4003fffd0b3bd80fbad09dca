@@ -1,5 +1,6 @@
-// 1.21.1	2025-09-04T15:00:28.1407593	Block States: sanguis
+// 1.21.1	2026-03-02T15:01:17.7584888	Block States: sanguis
 34e36740d86fc41015fbe62bae22ff42459c74f2 assets/sanguis/blockstates/black_coffin.json
+8298c2db01b87cf1cecdd00a62d286da5025a16a assets/sanguis/blockstates/blood_altar.json
 9f6de6b0709cdcab42cfbb2455bcf7e054c9fcbe assets/sanguis/blockstates/blood_orange_leaves.json
 95f0f537b38b085fd52a468e14bb645b74590c46 assets/sanguis/blockstates/blood_orange_vine.json
 4c1b23e309c57b3da7a23b32d5d8239b0d592079 assets/sanguis/blockstates/blue_coffin.json
@@ -113,6 +114,7 @@ c5fe73d7d32171ca190316cf3b65f68dbd60545c assets/sanguis/models/block/yellow_coff
 6226b82100f9637912a6a8b11be28e21fae2491d assets/sanguis/models/block/yellow_coffin_head_sealed.json
 b18c4a48523dfc46bc337379c58fd9a1b7a76c47 assets/sanguis/models/block/yellow_coffin_inventory.json
 68126fdeefdae65b05f938968253b1221f640676 assets/sanguis/models/item/black_coffin.json
+d8ea679e1fc729dd3326bc591ebc6ed264dcb36f assets/sanguis/models/item/blood_altar.json
 d3983db1d6c88c6ac45a5e83874c1758433405c0 assets/sanguis/models/item/blue_coffin.json
 e374c83c5eeea55b543fee411536b5d8ecb6c30e assets/sanguis/models/item/brown_coffin.json
 19cd9a19bc3201d579a45671a748f6188e5db587 assets/sanguis/models/item/cyan_coffin.json
