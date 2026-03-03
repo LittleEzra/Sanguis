@@ -37,8 +37,8 @@ public class SanguisItems {
             new ParasolItem(p.stacksTo(1)));
     public static final DeferredItem<BloodSoakedCoinItem> BLOOD_SOAKED_COIN = ITEMS.registerItem("blood_soaked_coin",
             p -> new BloodSoakedCoinItem(p.stacksTo(1)));
-    public static final DeferredItem<BlackenedCoinItem> BLACKENED_COIN = ITEMS.registerItem("blackened_coin",
-            p -> new BlackenedCoinItem(p.stacksTo(1)
+    public static final DeferredItem<Item> BLACKENED_COIN = ITEMS.registerItem("blackened_coin",
+            p -> new Item(p.stacksTo(1)
                     .component(DataComponents.FIRE_RESISTANT, Unit.INSTANCE)));
 
     public static final DeferredItem<Item> STEEL_BLEND = ITEMS.registerItem("steel_blend", Item::new);

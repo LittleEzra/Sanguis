@@ -1,12 +1,17 @@
 package com.feliscape.sanguis.content.block;
 
 import com.feliscape.sanguis.content.item.BloodBottleItem;
+import com.feliscape.sanguis.content.ritual.BloodRitual;
 import com.feliscape.sanguis.registry.SanguisDataComponents;
 import com.feliscape.sanguis.registry.SanguisItems;
+import com.feliscape.sanguis.registry.SanguisParticles;
 import com.feliscape.sanguis.registry.SanguisSoundEvents;
 import com.feliscape.sanguis.registry.custom.SanguisRegistries;
 import com.feliscape.sanguis.util.VampireUtil;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ColorParticleOption;
+import net.minecraft.core.particles.ParticleType;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -70,14 +75,7 @@ public class BloodAltarBlock extends Block {
                 ));
                 var any = allRituals.findAny();
                 if (any.isPresent()){
-                    List<Player> nearbyPlayers = level.getEntitiesOfClass(Player.class, new AABB(pos).inflate(4.0D, 2.5D, 4.0D),
-                            p -> VampireUtil.isVampire(p));
-                    level.playSound(player, pos, SanguisSoundEvents.BAT_TRANSFORM.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
-                    var result = any.get().value().activate(level, pos, nearbyPlayers, player);
-                    if (result.consumesItem()){
-                        stack.consume(1, player);
-                    }
-                    return result.isSuccess() ? ItemInteractionResult.sidedSuccess(level.isClientSide) : ItemInteractionResult.FAIL;
+                    commenceRitual(any.get().value(), level, pos, state, player, stack);
                 }
             }
         } else{
@@ -92,6 +90,22 @@ public class BloodAltarBlock extends Block {
             }
         }
         return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
+    }
+    private ItemInteractionResult commenceRitual(BloodRitual ritual,
+                                                 Level level,
+                                                 BlockPos pos,
+                                                 BlockState state,
+                                                 Player player,
+                                                 ItemStack stack){
+        List<Player> nearbyPlayers = level.getEntitiesOfClass(Player.class, new AABB(pos).inflate(4.0D, 2.5D, 4.0D),
+                p -> VampireUtil.isVampire(p));
+        var result = ritual.activate(level, pos, nearbyPlayers, player);
+
+        if (result.consumesItem()){
+            stack.consume(1, player);
+            level.setBlock(pos, state.setValue(FILLED, false), Block.UPDATE_ALL);
+        }
+        return result.isSuccess() ? ItemInteractionResult.sidedSuccess(level.isClientSide()) : ItemInteractionResult.FAIL;
     }
 
     @Override

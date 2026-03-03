@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public abstract class BloodRitual {
     protected BlockPattern pattern;
@@ -116,6 +117,9 @@ public abstract class BloodRitual {
 
         public LayeredBlockPatternBuilder where(char symbol, Block block) {
             return this.where(symbol, b -> b.getState().is(block));
+        }
+        public LayeredBlockPatternBuilder where(char symbol, Supplier<? extends Block> block) {
+            return this.where(symbol, b -> b.getState().is(block.get()));
         }
         public LayeredBlockPatternBuilder where(char symbol, TagKey<Block> tag) {
             return this.where(symbol, b -> b.getState().is(tag));

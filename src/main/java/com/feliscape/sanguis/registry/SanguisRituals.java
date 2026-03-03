@@ -23,6 +23,8 @@ public class SanguisRituals {
             "level_up_2", () -> new LevelUpRitual(SanguisItems.BAT_WING.get(), 1));
     public static final Supplier<LevelUpRitual> LEVEL_UP_3 = RITUALS.register(
             "level_up_3", () -> new LevelUpRitual(SanguisItems.VAMPIRE_BLOOD.get(), 2));
+    public static final Supplier<LevelUpRitual> LEVEL_UP_4 = RITUALS.register(
+            "level_up_4", () -> new LevelUpRitual(SanguisItems.BLACKENED_COIN.get(), 3));
 
     public static void register(IEventBus eventBus){
         RITUALS.register(eventBus);

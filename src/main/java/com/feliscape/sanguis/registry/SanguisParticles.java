@@ -2,6 +2,7 @@ package com.feliscape.sanguis.registry;
 
 import com.feliscape.sanguis.Sanguis;
 import com.feliscape.sanguis.client.particle.BiteParticle;
+import com.feliscape.sanguis.client.particle.DropletParticle;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
@@ -24,12 +25,15 @@ public class SanguisParticles {
     public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES =
             DeferredRegister.create(Registries.PARTICLE_TYPE, Sanguis.MOD_ID);
 
+    public static final Supplier<SimpleParticleType> BLOOD_DROPLET = PARTICLE_TYPES.register("blood_droplet",
+            () -> new SimpleParticleType(false));
     public static final Supplier<SimpleParticleType> VAMPIRE_BITE = PARTICLE_TYPES.register("vampire_bite",
             () -> new SimpleParticleType(false));
 
     @SubscribeEvent
     public static void registerParticleProviders(RegisterParticleProvidersEvent event)
     {
+        event.registerSpriteSet(SanguisParticles.BLOOD_DROPLET.get(), DropletParticle.BloodProvider::new);
         event.registerSpriteSet(SanguisParticles.VAMPIRE_BITE.get(), BiteParticle.Provider::new);
     }
 
