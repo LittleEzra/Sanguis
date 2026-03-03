@@ -170,6 +170,16 @@ public class SanguisRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(Blocks.BLACK_WOOL), has(Blocks.BLACK_WOOL))
                 .save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, SanguisBlocks.BLOOD_ALTAR)
+                .pattern("###")
+                .pattern(" I ")
+                .pattern(" / ")
+                .define('#', Tags.Items.STORAGE_BLOCKS_GOLD)
+                .define('/', Tags.Items.INGOTS_GOLD)
+                .define('I', Tags.Items.INGOTS_IRON)
+                .unlockedBy("has_gold_block", has(Tags.Items.STORAGE_BLOCKS_GOLD))
+                .save(recipeOutput);
+
         oneToOneConversionRecipe(recipeOutput, SanguisItems.BLOOD_ORANGE_SEEDS, SanguisItems.BLOOD_ORANGE, null);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, SanguisItems.STEEL_BLEND)

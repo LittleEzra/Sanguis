@@ -331,7 +331,7 @@ public class VampireData extends DataAttachment {
     }
     public void setTier(int tier){
         this.tier = tier;
-        if (this.holder.hasData(VampireAbilityData.type())) this.holder.getData(VampireAbilityData.type()).onLevelChange(tier);
+        if (this.holder instanceof Player player) this.holder.getData(VampireAbilityData.type()).onLevelChange(tier);
     }
     public void upgradeTier(){
         setTier(tier + 1);
