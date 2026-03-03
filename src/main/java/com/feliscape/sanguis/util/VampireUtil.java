@@ -15,7 +15,7 @@ import net.minecraft.world.level.Level;
 public class VampireUtil {
     public static boolean isVampire(Entity entity){
         if (!(entity instanceof LivingEntity)) return false;
-        if (entity instanceof Player player && player.isSpectator()) return false;
+        //if (entity instanceof Player player && player.isSpectator()) return false;
 
         if (entity.getType().is(SanguisTags.EntityTypes.VAMPIRIC)) return true;
         return entity.hasData(VampireData.type()) && entity.getData(VampireData.type()).isVampire();
