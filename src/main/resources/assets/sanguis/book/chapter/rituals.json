@@ -1,0 +1,14 @@
+{
+  "title": {
+    "translate": "book.sanguis.chapter.rituals"
+  },
+  "icon": {"id": "sanguis:blood_altar"},
+  "entries": [
+    {
+      "type": "sanguis:link",
+      "title": {"translate": "book.sanguis.entry.rituals.altar"},
+      "icon": {"id": "sanguis:blood_altar"},
+      "location": "sanguis:rituals/altar"
+    }
+  ]
+}

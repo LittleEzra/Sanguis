@@ -192,7 +192,7 @@ public class GuideBookScreen extends AbstractContainerScreen<GuideBookMenu> {
                     0, 0, 0x3f3f3f, false);
             guiGraphics.pose().popPose();
 
-            int y = this.topPos + 12 + 14;
+            int y = this.topPos + 12 + 18;
             for (int i = 0; i < entries.size(); i++){
                 ChapterEntry entry = entries.get(i);
                 if (entry instanceof LinkChapterEntry link){

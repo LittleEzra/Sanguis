@@ -1,0 +1,12 @@
+Vampires have access to blood rituals. For these, a Blood Altar is required.
+
+
+
+
+
+
+
+When crafted, it can be placed down and filled with blood from a Blood Bottle.
+[PAGEBREAK]
+Rituals need certain structures to be built around the altar for them to work, and may have other requirements as well.
+These are outlined in their respective pages.

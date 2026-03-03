@@ -155,6 +155,9 @@ public class SanguisEnUsProvider extends SanguisLanguageProvider{
 
         this.add("book.sanguis.entry.vampires.blood", "Blood");
 
+        this.add("book.sanguis.chapter.rituals", "Rituals");
+        this.add("book.sanguis.entry.rituals.altar", "Introduction");
+
         this.add("book.sanguis.chapter.vampire_hunters", "Vampire Hunters");
         this.add("book.sanguis.entry.vampire_hunters.becoming_a_vampire_hunter", "Becoming a Hunter");
         this.add("book.sanguis.entry.vampire_hunters.hunter_duties", "Hunter Duties");
