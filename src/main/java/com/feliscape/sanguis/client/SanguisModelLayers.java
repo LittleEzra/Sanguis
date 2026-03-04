@@ -1,6 +1,7 @@
 package com.feliscape.sanguis.client;
 
 import com.feliscape.sanguis.Sanguis;
+import com.feliscape.sanguis.client.model.PlayerWerebatModel;
 import com.feliscape.sanguis.client.model.VampireHunterModel;
 import com.google.common.collect.Sets;
 import net.minecraft.client.model.HumanoidArmorModel;
@@ -24,6 +25,9 @@ public class SanguisModelLayers {
     public static final ModelLayerLocation VAMPIRE_ARMOR_OUTER = registerOuterArmor("vampire");
     public static final ModelLayerLocation VAMPIRE_ARMOR_INNER = registerInnerArmor("vampire");
     public static final ModelLayerLocation VAMPIRE_HUNTER = register("vampire_hunter");
+
+    public static final ModelLayerLocation WEREBAT_WIDE = register("werebat", "wide");
+    public static final ModelLayerLocation WEREBAT_SLIM = register("werebat", "slim");
 
     private static ModelLayerLocation register(String path) {
         return register(path, "main");
@@ -66,5 +70,8 @@ public class SanguisModelLayers {
         event.registerLayerDefinition(VAMPIRE_ARMOR_OUTER, () -> outerArmor);
         event.registerLayerDefinition(VAMPIRE_ARMOR_INNER, () -> innerArmor);
         event.registerLayerDefinition(VAMPIRE_HUNTER, VampireHunterModel::createBodyLayer);
+
+        event.registerLayerDefinition(WEREBAT_WIDE, () -> PlayerWerebatModel.createBodyLayer(false));
+        event.registerLayerDefinition(WEREBAT_SLIM, () -> PlayerWerebatModel.createBodyLayer(true));
     }
 }

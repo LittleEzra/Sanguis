@@ -12,10 +12,11 @@
     "VillagerHostilesSensorMixin"
   ],
   "client": [
+    "client.EntityRenderDispatcherMixin",
+    "client.HumanoidModelMixin",
     "client.InventoryScreenMixin",
     "client.ItemRendererMixin",
-    "client.LightTextureMixin",
-    "client.HumanoidModelMixin"
+    "client.LightTextureMixin"
   ],
   "injectors": {
     "defaultRequire": 1
