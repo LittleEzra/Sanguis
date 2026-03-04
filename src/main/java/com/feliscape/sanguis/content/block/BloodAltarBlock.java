@@ -54,12 +54,10 @@ public class BloodAltarBlock extends BaseEntityBlock {
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
         boolean filled = state.getValue(FILLED);
-        if (filled){
-            var blockEntity = level.getBlockEntity(pos);
-            if (blockEntity instanceof BloodAltarBlockEntity bloodAltar){
-                bloodAltar.removeItems();
-                return InteractionResult.CONSUME;
-            }
+        var blockEntity = level.getBlockEntity(pos);
+        if (blockEntity instanceof BloodAltarBlockEntity bloodAltar){
+            bloodAltar.removeItems();
+            return InteractionResult.sidedSuccess(level.isClientSide);
         }
         return super.useWithoutItem(state, level, pos, player, hitResult);
     }
@@ -87,19 +85,13 @@ public class BloodAltarBlock extends BaseEntityBlock {
             } else{
                 var blockEntity = level.getBlockEntity(pos);
                 if (blockEntity instanceof BloodAltarBlockEntity bloodAltar){
-                    bloodAltar.addItem(stack.copyWithCount(1));
-                    stack.consume(1, player);
-                    return ItemInteractionResult.CONSUME;
+                    if (stack.isEmpty()){
+                        bloodAltar.removeItems();
+                    } else{
+                        bloodAltar.useItem(player, stack);
+                    }
+                    return ItemInteractionResult.sidedSuccess(level.isClientSide);
                 }
-
-                /*var allRituals = level.registryAccess().registryOrThrow(SanguisRegistries.Keys.RITUALS).holders();
-                allRituals = allRituals.filter(r -> r.value().verify(
-                        level, pos, player, stack
-                ));
-                var any = allRituals.findAny();
-                if (any.isPresent()){
-                    commenceRitual(any.get().value(), level, pos, state, player, stack);
-                }*/
             }
         } else{
             if (stack.is(SanguisItems.BLOOD_BOTTLE)){

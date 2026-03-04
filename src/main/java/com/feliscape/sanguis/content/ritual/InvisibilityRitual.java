@@ -6,6 +6,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.EnderpearlItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -17,7 +18,14 @@ import net.neoforged.neoforge.common.Tags;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InvisibilityRitual extends BloodRitual{
+public class InvisibilityRitual extends ReagentListRitual{
+    public InvisibilityRitual() {
+        super(List.of(
+                new ItemStack(Items.GOLD_INGOT),
+                new ItemStack(Items.GOLDEN_CARROT)
+        ), new ItemStack(Items.ENDER_PEARL));
+    }
+
     @Override
     protected BlockPattern createPattern() {
         return LayeredBlockPatternBuilder.start()
@@ -49,31 +57,10 @@ public class InvisibilityRitual extends BloodRitual{
     }
 
     @Override
-    public boolean verify(Level level, BlockPos pos, Player player, List<ItemStack> itemStacks, ItemStack reagent) {
-        if (itemStacks.size() != 3) return false;
-        var shoppingList = new ArrayList<>(List.of(
-                new ItemStack(Items.GOLD_INGOT),
-                new ItemStack(Items.GOLDEN_CARROT),
-                new ItemStack(Items.ENDER_PEARL)
-        ));
-        for (ItemStack itemStack : itemStacks){
-            if (shoppingList.isEmpty()) break;
-            for (ItemStack requiredStack : shoppingList){
-                if (ItemStack.isSameItemSameComponents(itemStack, requiredStack)){
-                    shoppingList.remove(requiredStack);
-                    break;
-                }
-            }
-        }
-        if (!shoppingList.isEmpty()) return false;
-        return super.verify(level, pos, player, itemStacks, reagent);
-    }
-
-    @Override
     public Result activate(Level level, BlockPos pos, List<Player> nearbyPlayers, Player activatingPlayer) {
         for (Player player : nearbyPlayers){
             player.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 20 * 20));
         }
-        return Result.SUCCESS;
+        return Result.SUCCESS_CONSUME;
     }
 }
