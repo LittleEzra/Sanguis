@@ -1,28 +1,24 @@
 package com.feliscape.sanguis.content.block;
 
-import com.feliscape.sanguis.content.item.BloodBottleItem;
+import com.feliscape.sanguis.Sanguis;
+import com.feliscape.sanguis.content.block.entity.BloodAltarBlockEntity;
 import com.feliscape.sanguis.content.ritual.BloodRitual;
 import com.feliscape.sanguis.registry.SanguisDataComponents;
 import com.feliscape.sanguis.registry.SanguisItems;
-import com.feliscape.sanguis.registry.SanguisParticles;
-import com.feliscape.sanguis.registry.SanguisSoundEvents;
-import com.feliscape.sanguis.registry.custom.SanguisRegistries;
 import com.feliscape.sanguis.util.VampireUtil;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ColorParticleOption;
-import net.minecraft.core.particles.ParticleType;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
-import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -31,10 +27,12 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class BloodAltarBlock extends Block {
+public class BloodAltarBlock extends BaseEntityBlock {
+    private static final MapCodec<BloodAltarBlock> CODEC = simpleCodec(BloodAltarBlock::new);
     public static BooleanProperty FILLED = BooleanProperty.create("filled");
 
     public static VoxelShape SHAPE = Shapes.or(
@@ -46,6 +44,24 @@ public class BloodAltarBlock extends Block {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FILLED, false));
+    }
+
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
+    }
+
+    @Override
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+        boolean filled = state.getValue(FILLED);
+        if (filled){
+            var blockEntity = level.getBlockEntity(pos);
+            if (blockEntity instanceof BloodAltarBlockEntity bloodAltar){
+                bloodAltar.removeItems();
+                return InteractionResult.CONSUME;
+            }
+        }
+        return super.useWithoutItem(state, level, pos, player, hitResult);
     }
 
     @Override
@@ -69,14 +85,21 @@ public class BloodAltarBlock extends Block {
                 level.setBlock(pos, state.setValue(FILLED, false), Block.UPDATE_ALL);
                 return ItemInteractionResult.sidedSuccess(level.isClientSide());
             } else{
-                var allRituals = level.registryAccess().registryOrThrow(SanguisRegistries.Keys.RITUALS).holders();
+                var blockEntity = level.getBlockEntity(pos);
+                if (blockEntity instanceof BloodAltarBlockEntity bloodAltar){
+                    bloodAltar.addItem(stack.copyWithCount(1));
+                    stack.consume(1, player);
+                    return ItemInteractionResult.CONSUME;
+                }
+
+                /*var allRituals = level.registryAccess().registryOrThrow(SanguisRegistries.Keys.RITUALS).holders();
                 allRituals = allRituals.filter(r -> r.value().verify(
                         level, pos, player, stack
                 ));
                 var any = allRituals.findAny();
                 if (any.isPresent()){
                     commenceRitual(any.get().value(), level, pos, state, player, stack);
-                }
+                }*/
             }
         } else{
             if (stack.is(SanguisItems.BLOOD_BOTTLE)){
@@ -116,5 +139,15 @@ public class BloodAltarBlock extends Block {
     @Override
     protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return SHAPE;
+    }
+
+    @Override
+    public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+        return new BloodAltarBlockEntity(blockPos, blockState);
+    }
+
+    @Override
+    protected RenderShape getRenderShape(BlockState state) {
+        return RenderShape.MODEL;
     }
 }

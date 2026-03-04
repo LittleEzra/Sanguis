@@ -38,9 +38,9 @@ public abstract class BloodRitual {
 
     public abstract Result activate(Level level, BlockPos pos, List<Player> nearbyPlayers, Player activatingPlayer);
 
-    public boolean verify(Level level, BlockPos pos, Player player, ItemStack itemStack){
+    public boolean verify(Level level, BlockPos pos, Player player, List<ItemStack> itemStacks, ItemStack reagent){
         if (pattern == null) return false;
-        if (!verifyItem(player, itemStack)) return false;
+        if (!verifyItem(player, reagent)) return false;
 
         return pattern.find(level, pos) != null;
     }

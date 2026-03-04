@@ -5,6 +5,7 @@ import com.feliscape.sanguis.content.ability.BatVampireAbility;
 import com.feliscape.sanguis.content.ability.InvisibilityVampireAbility;
 import com.feliscape.sanguis.content.ability.VampireAbility;
 import com.feliscape.sanguis.content.ritual.BloodRitual;
+import com.feliscape.sanguis.content.ritual.InvisibilityRitual;
 import com.feliscape.sanguis.content.ritual.LevelUpRitual;
 import com.feliscape.sanguis.registry.custom.SanguisRegistries;
 import net.minecraft.world.item.Items;
@@ -16,6 +17,9 @@ import java.util.function.Supplier;
 public class SanguisRituals {
     public static final DeferredRegister<BloodRitual> RITUALS =
             DeferredRegister.create(SanguisRegistries.RITUALS, Sanguis.MOD_ID);
+
+    public static final Supplier<InvisibilityRitual> INVISIBILITY = RITUALS.register(
+            "invisibility", () -> new InvisibilityRitual());
 
     public static final Supplier<LevelUpRitual> LEVEL_UP_1 = RITUALS.register(
             "level_up_1", () -> new LevelUpRitual(Items.GOLD_INGOT, 0));

@@ -2,6 +2,7 @@ package com.feliscape.sanguis;
 
 import com.feliscape.sanguis.client.atlas.VampireAbilityTextureManager;
 import com.feliscape.sanguis.client.book.GuideBookManager;
+import com.feliscape.sanguis.client.registry.ClientRitualStructures;
 import com.feliscape.sanguis.client.render.quest.ItemQuestRenderer;
 import com.feliscape.sanguis.client.render.quest.KillMobsQuestRenderer;
 import com.feliscape.sanguis.client.render.quest.QuestRenderDispatcher;
@@ -41,6 +42,7 @@ public class SanguisClient {
     public static class ReloadListener {
         private final QuestRenderDispatcher questRenderDispatcher;
         private final GuideBookManager guideBookManager;
+        private final ClientRitualStructures ritualStructures;
 
         private final VampireAbilityTextureManager vampireAbilityTextureManager;
 
@@ -56,6 +58,9 @@ public class SanguisClient {
             event.registerReloadListener(guideBookManager.getChapterCollector());
             event.registerReloadListener(guideBookManager.getEntryCollector());
 
+            ritualStructures = new ClientRitualStructures();
+            event.registerReloadListener(ritualStructures);
+
             vampireAbilityTextureManager = new VampireAbilityTextureManager(minecraft.getTextureManager());
             event.registerReloadListener(vampireAbilityTextureManager);
         }
@@ -70,6 +75,10 @@ public class SanguisClient {
 
         public GuideBookManager getGuideBookManager() {
             return guideBookManager;
+        }
+
+        public ClientRitualStructures getRitualStructures() {
+            return ritualStructures;
         }
     }
 }

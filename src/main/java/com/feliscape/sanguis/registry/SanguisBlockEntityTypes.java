@@ -1,6 +1,7 @@
 package com.feliscape.sanguis.registry;
 
 import com.feliscape.sanguis.Sanguis;
+import com.feliscape.sanguis.content.block.entity.BloodAltarBlockEntity;
 import com.feliscape.sanguis.content.block.entity.QuestBoardBlockEntity;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -19,6 +20,13 @@ public class SanguisBlockEntityTypes {
             () -> BlockEntityType.Builder.of(
                     QuestBoardBlockEntity::new,
                     SanguisBlocks.QUEST_BOARD.get()
+            ).build(null)
+    );
+    public static final Supplier<BlockEntityType<BloodAltarBlockEntity>> BLOOD_ALTAR = BLOCK_ENTITY_TYPES.register(
+            "blood_altar",
+            () -> BlockEntityType.Builder.of(
+                    BloodAltarBlockEntity::new,
+                    SanguisBlocks.BLOOD_ALTAR.get()
             ).build(null)
     );
 
