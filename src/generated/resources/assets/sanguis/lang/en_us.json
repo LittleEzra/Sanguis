@@ -70,6 +70,7 @@
   "container.sanguis.vampire_abilities": "Vampire Abilities",
   "death.attack.sanguis:draining": "%1$s was drained",
   "death.attack.sanguis:draining.player": "%1$s was drained by %2$s",
+  "effect.sanguis.werebat_curse": "Curse of the Werebat",
   "entity.sanguis.vampire": "Vampire",
   "entity.sanguis.vampire_hunter": "Vampire Hunter",
   "item.sanguis.acid_injection": "Acid Injection",

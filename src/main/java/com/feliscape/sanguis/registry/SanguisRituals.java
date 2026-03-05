@@ -7,6 +7,7 @@ import com.feliscape.sanguis.content.ability.VampireAbility;
 import com.feliscape.sanguis.content.ritual.BloodRitual;
 import com.feliscape.sanguis.content.ritual.InvisibilityRitual;
 import com.feliscape.sanguis.content.ritual.LevelUpRitual;
+import com.feliscape.sanguis.content.ritual.WerebatRitual;
 import com.feliscape.sanguis.registry.custom.SanguisRegistries;
 import net.minecraft.world.item.Items;
 import net.neoforged.bus.api.IEventBus;
@@ -20,6 +21,8 @@ public class SanguisRituals {
 
     public static final Supplier<InvisibilityRitual> INVISIBILITY = RITUALS.register(
             "invisibility", () -> new InvisibilityRitual());
+    public static final Supplier<WerebatRitual> WEREBAT = RITUALS.register(
+            "werebat", () -> new WerebatRitual());
 
     public static final Supplier<LevelUpRitual> LEVEL_UP_1 = RITUALS.register(
             "level_up_1", () -> new LevelUpRitual(Items.GOLD_INGOT, 0));

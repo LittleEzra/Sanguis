@@ -2,6 +2,7 @@ package com.feliscape.sanguis.mixin.client;
 
 import com.feliscape.sanguis.SanguisClient;
 import com.feliscape.sanguis.content.attachment.VampireData;
+import com.feliscape.sanguis.registry.SanguisDataAttachmentTypes;
 import com.feliscape.sanguis.util.VampireUtil;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
@@ -19,8 +20,8 @@ public class EntityRenderDispatcherMixin {
     @SuppressWarnings("unchecked")
     @Inject(method = "getRenderer", at = @At("HEAD"), cancellable = true)
     public <T extends Entity> void replacePlayerWithMyceling(T entity, CallbackInfoReturnable<EntityRenderer<? super T>> cir) {
-        if (entity instanceof AbstractClientPlayer player && VampireUtil.isVampire(player)){
-            if (player.getData(VampireData.type()).getTier() >= 3){
+        if (entity instanceof AbstractClientPlayer player){
+            if (player.hasData(SanguisDataAttachmentTypes.WEREBAT_CURSE)){
                 PlayerSkin.Model model = player.getSkin().model();
                 cir.setReturnValue((EntityRenderer<? super T>) SanguisClient.reloadListeners().getUniqueEntityRenderers().getWerebatRenderer(model == PlayerSkin.Model.SLIM));
             }

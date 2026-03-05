@@ -36,6 +36,7 @@ public class Sanguis {
         SanguisVampireAbilities.register(modEventBus);
         SanguisEntityTypes.register(modEventBus);
         SanguisDataAttachmentTypes.register(modEventBus);
+        SanguisMobEffects.register(modEventBus);
 
         SanguisParticles.register(modEventBus);
 

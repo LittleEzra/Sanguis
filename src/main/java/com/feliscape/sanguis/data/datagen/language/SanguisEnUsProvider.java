@@ -84,6 +84,8 @@ public class SanguisEnUsProvider extends SanguisLanguageProvider{
         this.addEntityType(SanguisEntityTypes.VAMPIRE, "Vampire");
         this.addEntityType(SanguisEntityTypes.VAMPIRE_HUNTER, "Vampire Hunter");
 
+        this.addMobEffect(SanguisMobEffects.WEREBAT_CURSE, "Curse of the Werebat");
+
         this.addSubtitle(SanguisSoundEvents.BAT_TRANSFORM, "Player transforms into bat");
         this.addSubtitle(SanguisSoundEvents.VAMPIRE_TRANSFORM, "Player transforms into vampire");
         this.addSubtitle(SanguisSoundEvents.VAMPIRE_DRINK, "Vampire drinks");

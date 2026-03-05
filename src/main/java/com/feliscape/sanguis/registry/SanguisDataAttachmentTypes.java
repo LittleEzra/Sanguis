@@ -5,6 +5,8 @@ import com.feliscape.sanguis.content.attachment.EntityBloodData;
 import com.feliscape.sanguis.content.attachment.HunterData;
 import com.feliscape.sanguis.content.attachment.VampireAbilityData;
 import com.feliscape.sanguis.content.attachment.VampireData;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.util.Unit;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -15,6 +17,12 @@ import java.util.function.Supplier;
 public class SanguisDataAttachmentTypes {
     public static final DeferredRegister<AttachmentType<?>> ATTACHMENT_TYPES =
             DeferredRegister.create(NeoForgeRegistries.ATTACHMENT_TYPES, Sanguis.MOD_ID);
+
+    public static final Supplier<AttachmentType<Unit>> WEREBAT_CURSE = ATTACHMENT_TYPES.register("werebat_curse",
+            () -> AttachmentType.builder(() -> Unit.INSTANCE)
+                    .serialize(Unit.CODEC)
+                    .sync(StreamCodec.unit(Unit.INSTANCE))
+                    .build());
 
     public static final Supplier<AttachmentType<VampireData>> VAMPIRISM = ATTACHMENT_TYPES.register("vampirism",
             () -> AttachmentType.builder(VampireData::getInstance)
