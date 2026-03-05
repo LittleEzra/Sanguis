@@ -9,10 +9,13 @@ import com.feliscape.sanguis.client.render.entity.VampireHunterRenderer;
 import com.feliscape.sanguis.client.render.entity.VampireRenderer;
 import com.feliscape.sanguis.client.screen.ability.VampireAbilityWheel;
 import com.feliscape.sanguis.content.attachment.VampireData;
+import com.feliscape.sanguis.content.event.WerebatHandler;
 import com.feliscape.sanguis.networking.payload.DrainBloodPayload;
+import com.feliscape.sanguis.networking.payload.SetWerebatInputPayload;
 import com.feliscape.sanguis.networking.payload.UseActiveAbilityPayload;
 import com.feliscape.sanguis.networking.payload.ability.OpenAbilitiesPayload;
 import com.feliscape.sanguis.networking.payload.OpenActiveQuestsPayload;
+import com.feliscape.sanguis.registry.SanguisDataAttachmentTypes;
 import com.feliscape.sanguis.registry.SanguisEntityTypes;
 import com.feliscape.sanguis.registry.SanguisKeyMappings;
 import com.feliscape.sanguis.util.HunterUtil;
@@ -22,6 +25,7 @@ import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
+import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -116,6 +120,10 @@ public class ClientEvents {
         if (minecraft.player == null) return;
 
         LocalPlayer player = minecraft.player;
+
+        if (WerebatHandler.isWerebat(player)){
+            PacketDistributor.sendToServer(new SetWerebatInputPayload(player.input));
+        }
 
         boolean triggered = false;
         while (SanguisKeyMappings.DRAIN_BLOOD.get().consumeClick()){

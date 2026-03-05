@@ -1,10 +1,7 @@
 package com.feliscape.sanguis.registry;
 
 import com.feliscape.sanguis.Sanguis;
-import com.feliscape.sanguis.content.attachment.EntityBloodData;
-import com.feliscape.sanguis.content.attachment.HunterData;
-import com.feliscape.sanguis.content.attachment.VampireAbilityData;
-import com.feliscape.sanguis.content.attachment.VampireData;
+import com.feliscape.sanguis.content.attachment.*;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.util.Unit;
 import net.neoforged.bus.api.IEventBus;
@@ -24,6 +21,11 @@ public class SanguisDataAttachmentTypes {
                     .sync(StreamCodec.unit(Unit.INSTANCE))
                     .build());
 
+    public static final Supplier<AttachmentType<WerebatData>> WEREBAT = ATTACHMENT_TYPES.register("werebat",
+            () -> AttachmentType.builder(WerebatData::getInstance)
+                    .serialize(new WerebatData.Serializer())
+                    .sync(new WerebatData.SyncHandler())
+                    .build());
     public static final Supplier<AttachmentType<VampireData>> VAMPIRISM = ATTACHMENT_TYPES.register("vampirism",
             () -> AttachmentType.builder(VampireData::getInstance)
                     .serialize(new VampireData.Serializer())

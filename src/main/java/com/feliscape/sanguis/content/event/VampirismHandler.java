@@ -4,6 +4,7 @@ import com.feliscape.sanguis.Sanguis;
 import com.feliscape.sanguis.content.attachment.EntityBloodData;
 import com.feliscape.sanguis.content.attachment.HunterData;
 import com.feliscape.sanguis.content.attachment.VampireData;
+import com.feliscape.sanguis.content.attachment.WerebatData;
 import com.feliscape.sanguis.content.block.CoffinBlock;
 import com.feliscape.sanguis.registry.SanguisTags;
 import com.feliscape.sanguis.util.VampireUtil;
@@ -41,6 +42,10 @@ public class VampirismHandler {
             }
             if (living.hasData(HunterData.type())) {
                 HunterData data = living.getData(HunterData.type());
+                data.tick();
+            }
+            if (living.hasData(WerebatData.TYPE) || WerebatHandler.isWerebat(living)) {
+                WerebatData data = living.getData(WerebatData.TYPE);
                 data.tick();
             }
         }

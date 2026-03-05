@@ -52,6 +52,11 @@ public class SanguisPayloads {
                 SetActiveAbilityPayload.STREAM_CODEC,
                 SetActiveAbilityPayload::handle
         );
+        registrar.playToServer(
+                SetWerebatInputPayload.TYPE,
+                SetWerebatInputPayload.STREAM_CODEC,
+                SetWerebatInputPayload::handle
+        );
 
         registrar.playToServer(
                 OpenActiveQuestsPayload.TYPE,
